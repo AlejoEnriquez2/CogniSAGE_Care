@@ -40,9 +40,10 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Form',
         theme: myTheme,
-        initialRoute: 'login',
+        initialRoute: 'home',
         routes: {
-          'home': (_) => const TestScreen(),
+          'home': (_) => const HomeScreen(),
+          'test': (_) => const TestScreen(),
           'login': (_) => const LoginScreen(),
           'register': (_) => RegisterScreen(),
         });
