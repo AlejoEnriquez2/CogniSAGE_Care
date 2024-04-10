@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:frontend_form/screens/home_screen.dart';
-import 'package:frontend_form/services/form_service.dart';
+import 'package:flutter/services.dart';
 import 'package:frontend_form/theme/theme.dart';
 import 'package:provider/provider.dart';
 
+import 'package:frontend_form/screens/screens.dart';
+import 'package:frontend_form/services/services.dart';
+
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const AppState());
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]).then((_) {
+    runApp(const AppState());
+  });
 }
 
 class AppState extends StatelessWidget {
@@ -33,9 +40,11 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Form',
         theme: myTheme,
-        initialRoute: 'home',
+        initialRoute: 'login',
         routes: {
-          'home': (_) => const HomeScreen(),
+          'home': (_) => const TestScreen(),
+          'login': (_) => const LoginScreen(),
+          'register': (_) => RegisterScreen(),
         });
   }
 }

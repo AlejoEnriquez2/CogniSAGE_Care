@@ -8,14 +8,14 @@ import 'package:frontend_form/providers/form_provider.dart';
 import 'package:frontend_form/services/form_service.dart';
 import 'package:provider/provider.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class TestScreen extends StatefulWidget {
+  const TestScreen({Key? key}) : super(key: key);
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _TestScreenState createState() => _TestScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _TestScreenState extends State<TestScreen> {
   int currentStep = 0;
   static FormModel formModel = FormModel();
   final FormProvider formProvider = FormProvider();
@@ -106,11 +106,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<Step> getSteps() {
-    final Map<String, dynamic> formValues = {
-      'answer1': formModel.answer1,
-      'answer2': formModel.answer2,
-      'draw': formModel.draw,
-    };
     return <Step>[
       Step(
         state: currentStep > 0 ? StepState.complete : StepState.indexed,
