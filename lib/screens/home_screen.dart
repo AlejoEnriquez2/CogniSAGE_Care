@@ -7,7 +7,6 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
         elevation: 0,
         title: const Text(
           'CogniSAGE Care',
@@ -74,7 +73,7 @@ class HomeScreen extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () {
                         print('button Test');
-                        Navigator.pushReplacementNamed(context, 'test');
+                        Navigator.pushReplacementNamed(context, 'instructions');
                       },
                       child: ClipOval(
                         child: Stack(
@@ -114,12 +113,12 @@ class HomeScreen extends StatelessWidget {
                           children: [
                             Image.asset(
                               'assets/images/button.png',
-                              width: 200, // Adjust as needed
-                              height: 300, // Adjust as needed
+                              width: 200,
+                              height: 300,
                               fit: BoxFit.cover,
                             ),
                             const Positioned(
-                              top: 134, // Adjust the value as needed
+                              top: 134,
                               child: Text(
                                 'GAMES',
                                 style: TextStyle(
@@ -148,12 +147,12 @@ class HomeScreen extends StatelessWidget {
                           children: [
                             Image.asset(
                               'assets/images/button.png',
-                              width: 200, // Adjust as needed
-                              height: 300, // Adjust as needed
+                              width: 200,
+                              height: 300,
                               fit: BoxFit.cover,
                             ),
                             const Positioned(
-                              top: 134, // Adjust the value as needed
+                              top: 134,
                               child: Text(
                                 'USER',
                                 style: TextStyle(

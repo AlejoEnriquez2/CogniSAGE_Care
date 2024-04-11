@@ -8,14 +8,14 @@ import 'package:frontend_form/providers/form_provider.dart';
 import 'package:frontend_form/services/form_service.dart';
 import 'package:provider/provider.dart';
 
-class TestScreen extends StatefulWidget {
-  const TestScreen({Key? key}) : super(key: key);
+class FormScreen extends StatefulWidget {
+  const FormScreen({Key? key}) : super(key: key);
 
   @override
-  _TestScreenState createState() => _TestScreenState();
+  _FormScreenState createState() => _FormScreenState();
 }
 
-class _TestScreenState extends State<TestScreen> {
+class _FormScreenState extends State<FormScreen> {
   int currentStep = 0;
   static FormModel formModel = FormModel();
   final FormProvider formProvider = FormProvider();
@@ -38,7 +38,7 @@ class _TestScreenState extends State<TestScreen> {
             },
           ),
           title: const Text(
-            'Form Flutter',
+            'SAGE Test Adaptation',
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
