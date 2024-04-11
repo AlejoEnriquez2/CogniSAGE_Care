@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -20,21 +19,23 @@ class HomeScreen extends StatelessWidget {
             color: Colors.white,
           ),
           onPressed: () {
-            Navigator.pushReplacementNamed(context, 'home');
+            // Navigator.pushReplacementNamed(context, 'home');
           },
         ),
         centerTitle: true,
       ),
       body: Center(
         child: Container(
-          color: Color.fromARGB(255, 47, 95, 226),
+          decoration: BoxDecoration(
+            color: const Color.fromARGB(255, 37, 102, 183),
+            borderRadius: BorderRadius.circular(20),
+          ),
           child: SizedBox(
-            height: MediaQuery.of(context).size.height - 135,
+            height: MediaQuery.of(context).size.height - 175,
             width: MediaQuery.of(context).size.width - 50,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const SizedBox(height: 10),
+                const SizedBox(height: 30),
                 const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text(
@@ -45,20 +46,23 @@ class HomeScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                const SizedBox(height: 100),
+                const SizedBox(height: 30),
                 Stack(children: [
                   Center(
                     child: Container(
                       width: 650,
-                      height: 900,
+                      height: MediaQuery.of(context).size.height - 500,
                       // color: Colors.white,
                       child: Center(
-                        child: Container(
-                          height: 500,
-                          width: 400,
-                          child: Image.asset(
-                            'assets/images/logo1.png',
-                            fit: BoxFit.fitWidth,
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Container(
+                            height: 500,
+                            width: 400,
+                            child: Image.asset(
+                              'assets/images/logo1.png',
+                              fit: BoxFit.fitWidth,
+                            ),
                           ),
                         ),
                       ),
@@ -66,46 +70,102 @@ class HomeScreen extends StatelessWidget {
                   ),
                   Positioned(
                     top: 140,
-                    left: 20,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        // Add your button logic here
+                    left: 0,
+                    child: GestureDetector(
+                      onTap: () {
+                        print('button Test');
+                        Navigator.pushReplacementNamed(context, 'test');
                       },
-                      style: ElevatedButton.styleFrom(
-                        shape: CircleBorder(),
-                        padding: EdgeInsets.all(75),
+                      child: ClipOval(
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            Image.asset(
+                              'assets/images/button.png',
+                              width: 200, // Adjust as needed
+                              height: 300, // Adjust as needed
+                              fit: BoxFit.cover,
+                            ),
+                            const Positioned(
+                              top: 134, // Adjust the value as needed
+                              child: Text(
+                                'TEST',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      child: Text('TEST'),
                     ),
                   ),
                   Align(
                     alignment: Alignment.topCenter,
-                    child: Positioned(
-                      top: 0,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          // Add your button logic here
-                        },
-                        style: ElevatedButton.styleFrom(
-                          shape: CircleBorder(),
-                          padding: EdgeInsets.all(75),
+                    child: GestureDetector(
+                      onTap: () {
+                        print('button games');
+                      },
+                      child: ClipOval(
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            Image.asset(
+                              'assets/images/button.png',
+                              width: 200, // Adjust as needed
+                              height: 300, // Adjust as needed
+                              fit: BoxFit.cover,
+                            ),
+                            const Positioned(
+                              top: 134, // Adjust the value as needed
+                              child: Text(
+                                'GAMES',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                        child: Text('GAMES'),
                       ),
                     ),
                   ),
                   Positioned(
                     top: 140,
-                    right: 20,
-                    child: ElevatedButton(
-                      onPressed: () {
+                    right: 0,
+                    child: GestureDetector(
+                      onTap: () {
+                        print('button User');
                         Navigator.pushReplacementNamed(context, 'login');
                       },
-                      style: ElevatedButton.styleFrom(
-                        shape: CircleBorder(),
-                        padding: EdgeInsets.all(75),
+                      child: ClipOval(
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            Image.asset(
+                              'assets/images/button.png',
+                              width: 200, // Adjust as needed
+                              height: 300, // Adjust as needed
+                              fit: BoxFit.cover,
+                            ),
+                            const Positioned(
+                              top: 134, // Adjust the value as needed
+                              child: Text(
+                                'USER',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      child: Text('USER'),
                     ),
                   ),
                 ]),

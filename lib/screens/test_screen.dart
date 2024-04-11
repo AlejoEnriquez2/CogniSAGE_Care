@@ -30,15 +30,21 @@ class _TestScreenState extends State<TestScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Center(
-            child: Text(
-              'Form Flutter',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
+          leading: IconButton(
+            color: Colors.white,
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, 'home');
+            },
+          ),
+          title: const Text(
+            'Form Flutter',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
             ),
           ),
+          centerTitle: true,
         ),
         body: Center(
             child: Padding(
