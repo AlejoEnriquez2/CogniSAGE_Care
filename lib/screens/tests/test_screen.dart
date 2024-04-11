@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/providers.dart';
@@ -12,6 +13,17 @@ class TestScreen extends StatefulWidget {
 
 class _TestScreenState extends State<TestScreen> {
   int currentStep = 0;
+  final _stepIcons = [
+    Icons.person,
+    Icons.calendar_month,
+    Icons.mms_outlined,
+    Icons.menu_book_rounded,
+    Icons.calculate_rounded,
+    Icons.psychology_rounded,
+    Icons.api_rounded,
+    Icons.edit_rounded,
+    Icons.golf_course_sharp,
+  ];
   static TestProvider testProvider = TestProvider();
 
   @override
@@ -47,7 +59,7 @@ class _TestScreenState extends State<TestScreen> {
                 width: MediaQuery.of(context).size.width - 50,
                 child: Center(
                   child: Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: const EdgeInsets.all(15.0),
                     child: ChangeNotifierProvider(
                       create: (context) => TestProvider(),
                       child: Consumer<TestProvider>(
@@ -57,6 +69,7 @@ class _TestScreenState extends State<TestScreen> {
                             child: Container(
                               child: Stepper(
                                 physics: NeverScrollableScrollPhysics(),
+                                elevation: 10,
                                 type: StepperType.horizontal,
                                 currentStep: currentStep,
                                 onStepCancel: () => currentStep == 0
@@ -76,6 +89,54 @@ class _TestScreenState extends State<TestScreen> {
                                   }
                                 },
                                 steps: getSteps(),
+                                stepIconBuilder: (index, state) {
+                                  Color color = currentStep == index
+                                      ? Colors.blue
+                                      : (currentStep < index
+                                          ? Colors.black
+                                          : const Color.fromARGB(
+                                              155, 158, 158, 158));
+                                  return Container(
+                                    decoration: const BoxDecoration(
+                                      color: Colors.white,
+                                    ),
+                                    child: Icon(
+                                      _stepIcons[index],
+                                      color: color,
+                                      size: 25,
+                                    ),
+                                  );
+                                },
+                                controlsBuilder: (BuildContext context,
+                                    ControlsDetails details) {
+                                  return Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      IconButton(
+                                        onPressed: details.onStepCancel,
+                                        icon: const Icon(
+                                          Icons.arrow_back,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      ElevatedButton(
+                                        onPressed: details.onStepContinue,
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.yellow,
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 20, vertical: 10),
+                                        ),
+                                        child: const Text(
+                                          'Continue',
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  );
+                                },
                               ),
                             ));
                       }),
@@ -132,7 +193,7 @@ class _TestScreenState extends State<TestScreen> {
       Step(
         state: currentStep > 0 ? StepState.complete : StepState.indexed,
         isActive: currentStep >= 0,
-        title: const Icon(Icons.person),
+        title: const Text(''),
         content: const Column(children: [
           Text(''),
         ]),
@@ -140,7 +201,7 @@ class _TestScreenState extends State<TestScreen> {
       Step(
         state: currentStep > 1 ? StepState.complete : StepState.indexed,
         isActive: currentStep >= 1,
-        title: const Icon(Icons.calendar_month),
+        title: const Text(''),
         content: const Column(children: [
           Text(''),
         ]),
@@ -148,7 +209,7 @@ class _TestScreenState extends State<TestScreen> {
       Step(
         state: currentStep > 2 ? StepState.complete : StepState.indexed,
         isActive: currentStep >= 2,
-        title: const Icon(Icons.mms_outlined),
+        title: const Text(''),
         content: const Column(children: [
           Text(''),
         ]),
@@ -156,7 +217,7 @@ class _TestScreenState extends State<TestScreen> {
       Step(
         state: currentStep > 3 ? StepState.complete : StepState.indexed,
         isActive: currentStep >= 3,
-        title: const Icon(Icons.menu_book_rounded),
+        title: const Text(''),
         content: const Column(children: [
           Text(''),
         ]),
@@ -164,7 +225,7 @@ class _TestScreenState extends State<TestScreen> {
       Step(
         state: currentStep > 4 ? StepState.complete : StepState.indexed,
         isActive: currentStep >= 4,
-        title: const Icon(Icons.calculate_rounded),
+        title: const Text(''),
         content: const Column(children: [
           Text(''),
         ]),
@@ -172,7 +233,7 @@ class _TestScreenState extends State<TestScreen> {
       Step(
         state: currentStep > 5 ? StepState.complete : StepState.indexed,
         isActive: currentStep >= 5,
-        title: const Icon(Icons.psychology_rounded),
+        title: const Text(''),
         content: const Column(children: [
           Text(''),
         ]),
@@ -180,7 +241,7 @@ class _TestScreenState extends State<TestScreen> {
       Step(
         state: currentStep > 6 ? StepState.complete : StepState.indexed,
         isActive: currentStep >= 6,
-        title: const Icon(Icons.api_rounded),
+        title: const Text(''),
         content: const Column(children: [
           Text(''),
         ]),
@@ -188,15 +249,15 @@ class _TestScreenState extends State<TestScreen> {
       Step(
         state: currentStep > 7 ? StepState.complete : StepState.indexed,
         isActive: currentStep >= 7,
-        title: const Icon(Icons.edit_rounded),
+        title: const Text(''),
         content: const Column(children: [
           Text(''),
         ]),
       ),
       Step(
         state: currentStep > 8 ? StepState.complete : StepState.indexed,
-        isActive: currentStep >= 9,
-        title: const Icon(Icons.golf_course_sharp),
+        isActive: currentStep >= 8,
+        title: const Text(''),
         content: const Column(children: [
           Text(''),
         ]),
