@@ -5,7 +5,7 @@ class TestModel {
   int? testTotalTime;
   int? testTotalGrade;
   String? patientName;
-  DateTime? patientBirthday;
+  String? patientBirthday;
   String? patientEducation;
   String? patientGender;
   String? patientRace;
@@ -53,7 +53,7 @@ class TestModel {
         testTotalTime: json["testTotalTime"],
         testTotalGrade: json["testTotalGrade"],
         patientName: json["patientName"],
-        patientBirthday: DateTime.parse(json["patientBirthday"]),
+        patientBirthday: json["patientBirthday"],
         patientEducation: json["patientEducation"],
         patientGender: json["patientGender"],
         patientRace: json["patientRace"],

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:frontend_form/screens/tests/steps/naming_image_step.dart';
+import 'package:frontend_form/screens/tests/steps/personal_information_step.dart';
+import 'package:frontend_form/screens/tests/steps/orientation_step.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/providers.dart';
@@ -12,6 +14,10 @@ class TestScreen extends StatefulWidget {
 }
 
 class _TestScreenState extends State<TestScreen> {
+  void refresh() {
+    setState(() {});
+  }
+
   int currentStep = 0;
   final _stepIcons = [
     Icons.person,
@@ -24,7 +30,7 @@ class _TestScreenState extends State<TestScreen> {
     Icons.edit_rounded,
     Icons.golf_course_sharp,
   ];
-  static TestProvider testProvider = TestProvider();
+  List<FocusNode> focusNodes = List.generate(20, (_) => FocusNode());
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +117,7 @@ class _TestScreenState extends State<TestScreen> {
                                     ControlsDetails details) {
                                   return Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceEvenly,
                                     children: [
                                       IconButton(
                                         onPressed: details.onStepCancel,
@@ -152,7 +158,7 @@ class _TestScreenState extends State<TestScreen> {
               height: 160,
               child: Stack(
                 children: [
-                  const Positioned(
+                  Positioned(
                     bottom: 0,
                     left: 0,
                     right: 0,
@@ -161,6 +167,21 @@ class _TestScreenState extends State<TestScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(),
+                          IconButton(
+                            onPressed: () {
+                              int currentFocus = focusNodes
+                                  .indexWhere((node) => node.hasFocus);
+                              if (currentFocus >= 0 &&
+                                  currentFocus < focusNodes.length - 1) {
+                                FocusScope.of(context)
+                                    .requestFocus(focusNodes[currentFocus + 1]);
+                              }
+                            },
+                            icon: const Icon(
+                              Icons.arrow_forward_ios_rounded,
+                              color: Colors.white,
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -194,25 +215,22 @@ class _TestScreenState extends State<TestScreen> {
         state: currentStep > 0 ? StepState.complete : StepState.indexed,
         isActive: currentStep >= 0,
         title: const Text(''),
-        content: const Column(children: [
-          Text(''),
-        ]),
+        content: PersonalInformationStep(
+          focusNodes: focusNodes,
+          onRefresh: refresh,
+        ),
       ),
       Step(
         state: currentStep > 1 ? StepState.complete : StepState.indexed,
         isActive: currentStep >= 1,
         title: const Text(''),
-        content: const Column(children: [
-          Text(''),
-        ]),
+        content: OrientationStep(focusNodes: focusNodes),
       ),
       Step(
         state: currentStep > 2 ? StepState.complete : StepState.indexed,
         isActive: currentStep >= 2,
         title: const Text(''),
-        content: const Column(children: [
-          Text(''),
-        ]),
+        content: NamingImageStep(focusNodes: focusNodes),
       ),
       Step(
         state: currentStep > 3 ? StepState.complete : StepState.indexed,

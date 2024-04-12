@@ -8,7 +8,7 @@ class TestProvider extends ChangeNotifier {
     testTotalTime: 0,
     testTotalGrade: 0,
     patientName: '',
-    patientBirthday: DateTime.now(),
+    patientBirthday: '',
     patientEducation: '',
     patientGender: '',
     patientRace: '',
@@ -29,5 +29,16 @@ class TestProvider extends ChangeNotifier {
 
   bool isValidForm() {
     return formKey.currentState?.validate() ?? false;
+  }
+
+  updateGender(bool selectedGender) {
+    var gender = '';
+    if (selectedGender) {
+      gender = "man";
+    } else {
+      gender = "woman";
+    }
+    test.patientGender = gender;
+    notifyListeners();
   }
 }
