@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_form/models/models.dart';
 
 class OrientationStep extends StatefulWidget {
   final List<FocusNode> focusNodes;
+  final AnswersModel answersModel;
 
-  const OrientationStep({super.key, required this.focusNodes});
+  const OrientationStep({
+    super.key,
+    required this.focusNodes,
+    required this.answersModel,
+  });
 
   @override
   State<OrientationStep> createState() => _OrientationStepState();
@@ -53,7 +59,9 @@ class _OrientationStepState extends State<OrientationStep> {
                             ),
                             TextFormField(
                               keyboardType: TextInputType.number,
-                              onChanged: (value) {},
+                              onChanged: (value) {
+                                widget.answersModel.orientationMonth = value;
+                              },
                               focusNode: widget.focusNodes[4],
                               onFieldSubmitted: (_) {
                                 FocusScope.of(context)
@@ -76,7 +84,9 @@ class _OrientationStepState extends State<OrientationStep> {
                               style: TextStyle(fontSize: 25),
                             ),
                             TextFormField(
-                              onChanged: (value) {},
+                              onChanged: (value) {
+                                widget.answersModel.orientationDay = value;
+                              },
                               focusNode: widget.focusNodes[5],
                               onFieldSubmitted: (_) {
                                 FocusScope.of(context)
@@ -100,7 +110,9 @@ class _OrientationStepState extends State<OrientationStep> {
                               style: TextStyle(fontSize: 25),
                             ),
                             TextFormField(
-                              onChanged: (value) {},
+                              onChanged: (value) {
+                                widget.answersModel.orientationYear = value;
+                              },
                               focusNode: widget.focusNodes[6],
                               onFieldSubmitted: (_) {
                                 FocusScope.of(context)
@@ -118,6 +130,12 @@ class _OrientationStepState extends State<OrientationStep> {
                       ],
                     ),
                     const SizedBox(height: 10),
+                    IconButton(
+                      onPressed: () {
+                        print(widget.answersModel.toRawJson());
+                      },
+                      icon: Icon(Icons.arrow_forward),
+                    ),
                     const SizedBox(height: 10),
                     const SizedBox(height: 10),
                     const SizedBox(height: 10),

@@ -86,7 +86,10 @@ class TestInstructionsScreen extends StatelessWidget {
                             SizedBox(),
                             ElevatedButton(
                               onPressed: () {
-                                Navigator.pushReplacementNamed(context, 'test');
+                                Navigator.pushReplacementNamed(
+                                  context,
+                                  'personal',
+                                );
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.yellow,

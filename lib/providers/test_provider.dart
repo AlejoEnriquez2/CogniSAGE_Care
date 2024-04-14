@@ -41,4 +41,39 @@ class TestProvider extends ChangeNotifier {
     test.patientGender = gender;
     notifyListeners();
   }
+
+  updateRelatives(bool selectedRelatives) {
+    test.patientRelatives = selectedRelatives;
+    notifyListeners();
+  }
+
+  updateMemoryProblems(String memoryProblems) {
+    test.patientMemory = memoryProblems;
+    notifyListeners();
+  }
+
+  updateBalanceProblems(String balanceProblems) {
+    test.patientBalance = balanceProblems;
+    notifyListeners();
+  }
+
+  updateMajorStroke(bool selectedMajorStroke) {
+    test.patientMajorStroke = selectedMajorStroke;
+    notifyListeners();
+  }
+
+  updateMinorStroke(bool selectedMinorStroke) {
+    test.patientMinorStroke = selectedMinorStroke;
+    notifyListeners();
+  }
+
+  updateDepression(String depression) {
+    test.patientDepression = depression;
+    notifyListeners();
+  }
+
+  updatePersonality(String personality) {
+    test.patientPersonality = personality;
+    notifyListeners();
+  }
 }

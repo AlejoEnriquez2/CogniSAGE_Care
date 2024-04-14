@@ -46,6 +46,7 @@ class MyApp extends StatelessWidget {
           'form': (_) => const FormScreen(),
           'test': (_) => const TestScreen(),
           'instructions': (_) => const TestInstructionsScreen(),
+          'personal': (_) => const PersonalInformationScreen(),
           'login': (_) => const LoginScreen(),
           'register': (_) => RegisterScreen(),
         });

@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:frontend_form/screens/tests/test_steps/naming_image_step.dart';
-import 'package:frontend_form/screens/tests/test_steps/personal_information_step.dart';
-import 'package:frontend_form/screens/tests/test_steps/orientation_step.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/models.dart';
 import '../../providers/providers.dart';
+import 'package:frontend_form/screens/steps.dart';
 
-class TestScreen extends StatefulWidget {
-  const TestScreen({Key? key}) : super(key: key);
+class PersonalInformationScreen extends StatefulWidget {
+  const PersonalInformationScreen({Key? key}) : super(key: key);
 
   @override
-  State<TestScreen> createState() => _TestScreenState();
+  State<PersonalInformationScreen> createState() =>
+      _PersonalInformationScreenState();
 }
 
-class _TestScreenState extends State<TestScreen> {
+class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
   void refresh() {
     setState(() {});
   }
@@ -22,22 +21,17 @@ class _TestScreenState extends State<TestScreen> {
   int currentStep = 0;
   final _stepIcons = [
     Icons.person,
-    Icons.calendar_month,
-    Icons.mms_outlined,
-    Icons.menu_book_rounded,
-    Icons.calculate_rounded,
-    Icons.psychology_rounded,
-    Icons.api_rounded,
-    Icons.edit_rounded,
-    Icons.golf_course_sharp,
+    Icons.palette,
+    Icons.contact_page_rounded,
+    Icons.home_repair_service_rounded,
   ];
-  List<FocusNode> focusNodes = List.generate(20, (_) => FocusNode());
+  List<FocusNode> focusNodes = List.generate(6, (_) => FocusNode());
   TestModel testModel = TestModel();
-  AnswersModel answersModel = AnswersModel();
 
   @override
   Widget build(BuildContext context) {
     testModel.testDate = DateTime.now();
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -65,7 +59,7 @@ class _TestScreenState extends State<TestScreen> {
                 borderRadius: BorderRadius.circular(20),
               ),
               child: SizedBox(
-                height: MediaQuery.of(context).size.height - 150,
+                height: MediaQuery.of(context).size.height - 125,
                 width: MediaQuery.of(context).size.width - 50,
                 child: Center(
                   child: Padding(
@@ -219,7 +213,7 @@ class _TestScreenState extends State<TestScreen> {
         state: currentStep > 0 ? StepState.complete : StepState.indexed,
         isActive: currentStep >= 0,
         title: const Text(''),
-        content: PersonalInformationStep(
+        content: PersonalStep(
           focusNodes: focusNodes,
           onRefresh: refresh,
           testModel: testModel,
@@ -229,64 +223,31 @@ class _TestScreenState extends State<TestScreen> {
         state: currentStep > 1 ? StepState.complete : StepState.indexed,
         isActive: currentStep >= 1,
         title: const Text(''),
-        content: OrientationStep(
+        content: RelativesStep(
           focusNodes: focusNodes,
-          answersModel: answersModel,
+          onRefresh: refresh,
+          testModel: testModel,
         ),
       ),
       Step(
         state: currentStep > 2 ? StepState.complete : StepState.indexed,
         isActive: currentStep >= 2,
         title: const Text(''),
-        content: NamingImageStep(focusNodes: focusNodes),
+        content: MedicalStep(
+          focusNodes: focusNodes,
+          onRefresh: refresh,
+          testModel: testModel,
+        ),
       ),
       Step(
         state: currentStep > 3 ? StepState.complete : StepState.indexed,
         isActive: currentStep >= 3,
         title: const Text(''),
-        content: const Column(children: [
-          Text(''),
-        ]),
-      ),
-      Step(
-        state: currentStep > 4 ? StepState.complete : StepState.indexed,
-        isActive: currentStep >= 4,
-        title: const Text(''),
-        content: const Column(children: [
-          Text(''),
-        ]),
-      ),
-      Step(
-        state: currentStep > 5 ? StepState.complete : StepState.indexed,
-        isActive: currentStep >= 5,
-        title: const Text(''),
-        content: const Column(children: [
-          Text(''),
-        ]),
-      ),
-      Step(
-        state: currentStep > 6 ? StepState.complete : StepState.indexed,
-        isActive: currentStep >= 6,
-        title: const Text(''),
-        content: const Column(children: [
-          Text(''),
-        ]),
-      ),
-      Step(
-        state: currentStep > 7 ? StepState.complete : StepState.indexed,
-        isActive: currentStep >= 7,
-        title: const Text(''),
-        content: const Column(children: [
-          Text(''),
-        ]),
-      ),
-      Step(
-        state: currentStep > 8 ? StepState.complete : StepState.indexed,
-        isActive: currentStep >= 8,
-        title: const Text(''),
-        content: const Column(children: [
-          Text(''),
-        ]),
+        content: MentalStep(
+          focusNodes: focusNodes,
+          onRefresh: refresh,
+          testModel: testModel,
+        ),
       ),
     ];
   }

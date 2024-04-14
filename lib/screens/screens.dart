@@ -4,3 +4,4 @@ export 'package:frontend_form/screens/login_screen.dart';
 export 'package:frontend_form/screens/register_screen.dart';
 export 'package:frontend_form/screens/tests/test_screen.dart';
 export 'package:frontend_form/screens/tests/test_instructions_screen.dart';
+export 'package:frontend_form/screens/tests/personal_information_screen.dart';
