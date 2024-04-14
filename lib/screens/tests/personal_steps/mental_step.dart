@@ -244,7 +244,7 @@ class _MentalStepState extends State<MentalStep> {
                       Material(
                         elevation: 10,
                         borderRadius: BorderRadius.circular(50),
-                        color: widget.testModel.patientMinorStroke == true
+                        color: widget.testModel.patientDifficulties == true
                             ? Colors.green
                             : const Color.fromARGB(255, 204, 204, 204),
                         child: Container(
@@ -259,8 +259,8 @@ class _MentalStepState extends State<MentalStep> {
                                 ),
                                 onPressed: () {
                                   setState(() {
-                                    widget.testModel.patientMinorStroke = true;
-                                    testProvider.updateMinorStroke(true);
+                                    widget.testModel.patientDifficulties = true;
+                                    testProvider.updateDifficulties(true);
                                   });
                                 },
                               ),
@@ -273,7 +273,7 @@ class _MentalStepState extends State<MentalStep> {
                       Material(
                         elevation: 10,
                         borderRadius: BorderRadius.circular(50),
-                        color: widget.testModel.patientMinorStroke == false
+                        color: widget.testModel.patientDifficulties == false
                             ? Colors.green
                             : const Color.fromARGB(255, 204, 204, 204),
                         child: Container(
@@ -288,8 +288,9 @@ class _MentalStepState extends State<MentalStep> {
                                 ),
                                 onPressed: () {
                                   setState(() {
-                                    widget.testModel.patientMinorStroke = false;
-                                    testProvider.updateMinorStroke(false);
+                                    widget.testModel.patientDifficulties =
+                                        false;
+                                    testProvider.updateDifficulties(false);
                                   });
                                 },
                               ),

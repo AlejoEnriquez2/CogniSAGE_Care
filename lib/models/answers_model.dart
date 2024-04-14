@@ -7,8 +7,8 @@ class AnswersModel {
   String? namingPicture1;
   String? namingPicture2;
   String? similarities;
-  int? calculation1;
-  int? calculation2;
+  double? calculation1;
+  double? calculation2;
   List<int>? constructionsRedraw;
   List<int>? constructionsDraw;
   List<String>? verbalWords;
@@ -16,6 +16,7 @@ class AnswersModel {
   String? executiveLines;
   List<int>? executiveDraw;
   String? memoryPhrase;
+  String? w1, w2, w3, w4, w5, w6, w7, w8, w9, w10, w11, w12;
 
   AnswersModel({
     this.orientationMonth,
@@ -33,6 +34,18 @@ class AnswersModel {
     this.executiveLines,
     this.executiveDraw,
     this.memoryPhrase,
+    this.w1,
+    this.w2,
+    this.w3,
+    this.w4,
+    this.w5,
+    this.w6,
+    this.w7,
+    this.w8,
+    this.w9,
+    this.w10,
+    this.w11,
+    this.w12,
   });
 
   factory AnswersModel.fromRawJson(String str) =>

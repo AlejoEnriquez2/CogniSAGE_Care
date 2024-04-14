@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
 
+import '../../../models/models.dart';
+
 class NamingImageStep extends StatefulWidget {
   final List<FocusNode> focusNodes;
+  final VoidCallback onRefresh;
+  final AnswersModel answersModel;
 
-  const NamingImageStep({super.key, required this.focusNodes});
+  const NamingImageStep({
+    super.key,
+    required this.focusNodes,
+    required this.onRefresh,
+    required this.answersModel,
+  });
 
   @override
   State<NamingImageStep> createState() => _NamingImageStepState();
@@ -59,11 +68,15 @@ class _NamingImageStepState extends State<NamingImageStep> {
                               ),
                               SizedBox(height: 75),
                               TextFormField(
-                                onChanged: (value) {},
-                                focusNode: widget.focusNodes[7],
+                                onChanged: (value) {
+                                  setState(() {
+                                    widget.answersModel.namingPicture1 = value;
+                                  });
+                                },
+                                focusNode: widget.focusNodes[9],
                                 onFieldSubmitted: (_) {
                                   FocusScope.of(context)
-                                      .requestFocus(widget.focusNodes[8]);
+                                      .requestFocus(widget.focusNodes[10]);
                                 },
                                 decoration: const InputDecoration(
                                   labelText: '',
@@ -83,11 +96,16 @@ class _NamingImageStepState extends State<NamingImageStep> {
                               ),
                               SizedBox(height: 75),
                               TextFormField(
-                                onChanged: (value) {},
-                                focusNode: widget.focusNodes[8],
+                                onChanged: (value) {
+                                  setState(() {
+                                    widget.answersModel.namingPicture2 = value;
+                                  });
+                                },
+                                focusNode: widget.focusNodes[10],
                                 onFieldSubmitted: (_) {
+                                  print(widget.answersModel.toJson());
                                   FocusScope.of(context)
-                                      .requestFocus(widget.focusNodes[9]);
+                                      .requestFocus(widget.focusNodes[11]);
                                 },
                                 decoration: const InputDecoration(
                                   labelText: '',

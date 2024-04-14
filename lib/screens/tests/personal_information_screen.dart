@@ -85,7 +85,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                                   bool isLastStep =
                                       (currentStep == getSteps().length - 1);
                                   if (isLastStep) {
-                                    // SEND TEST TO API
+                                    Navigator.pushNamed(context, 'test');
                                   } else {
                                     setState(() {
                                       currentStep += 1;
@@ -124,6 +124,8 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                                           color: Colors.white,
                                         ),
                                       ),
+                                      SizedBox(width: 10),
+                                      SizedBox(width: 10),
                                       ElevatedButton(
                                         onPressed: details.onStepContinue,
                                         style: ElevatedButton.styleFrom(

@@ -3,13 +3,19 @@ import 'package:frontend_form/models/models.dart';
 
 class OrientationStep extends StatefulWidget {
   final List<FocusNode> focusNodes;
+  final VoidCallback onRefresh;
   final AnswersModel answersModel;
 
   const OrientationStep({
     super.key,
     required this.focusNodes,
+    required this.onRefresh,
     required this.answersModel,
   });
+
+  void refreshMainScreen() {
+    onRefresh();
+  }
 
   @override
   State<OrientationStep> createState() => _OrientationStepState();
@@ -62,10 +68,10 @@ class _OrientationStepState extends State<OrientationStep> {
                               onChanged: (value) {
                                 widget.answersModel.orientationMonth = value;
                               },
-                              focusNode: widget.focusNodes[4],
+                              focusNode: widget.focusNodes[6],
                               onFieldSubmitted: (_) {
                                 FocusScope.of(context)
-                                    .requestFocus(widget.focusNodes[5]);
+                                    .requestFocus(widget.focusNodes[7]);
                               },
                               decoration: const InputDecoration(
                                 labelText: 'MM',
@@ -87,10 +93,10 @@ class _OrientationStepState extends State<OrientationStep> {
                               onChanged: (value) {
                                 widget.answersModel.orientationDay = value;
                               },
-                              focusNode: widget.focusNodes[5],
+                              focusNode: widget.focusNodes[7],
                               onFieldSubmitted: (_) {
                                 FocusScope.of(context)
-                                    .requestFocus(widget.focusNodes[6]);
+                                    .requestFocus(widget.focusNodes[8]);
                               },
                               decoration: const InputDecoration(
                                 labelText: 'DD',
@@ -113,10 +119,10 @@ class _OrientationStepState extends State<OrientationStep> {
                               onChanged: (value) {
                                 widget.answersModel.orientationYear = value;
                               },
-                              focusNode: widget.focusNodes[6],
+                              focusNode: widget.focusNodes[8],
                               onFieldSubmitted: (_) {
                                 FocusScope.of(context)
-                                    .requestFocus(widget.focusNodes[7]);
+                                    .requestFocus(widget.focusNodes[9]);
                               },
                               decoration: const InputDecoration(
                                 labelText: 'YYYY',
@@ -130,12 +136,12 @@ class _OrientationStepState extends State<OrientationStep> {
                       ],
                     ),
                     const SizedBox(height: 10),
-                    IconButton(
-                      onPressed: () {
-                        print(widget.answersModel.toRawJson());
-                      },
-                      icon: Icon(Icons.arrow_forward),
-                    ),
+                    // IconButton(
+                    //   onPressed: () {
+                    //     print(widget.answersModel.toRawJson());
+                    //   },
+                    //   icon: Icon(Icons.arrow_forward),
+                    // ),
                     const SizedBox(height: 10),
                     const SizedBox(height: 10),
                     const SizedBox(height: 10),

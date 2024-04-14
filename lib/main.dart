@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Form',
+        title: 'CogniSAGE Care',
         theme: myTheme,
         initialRoute: 'home',
         routes: {

@@ -19,7 +19,7 @@ class TestProvider extends ChangeNotifier {
     patientMinorStroke: false,
     patientDepression: '',
     patientPersonality: '',
-    patientDifficulties: '',
+    patientDifficulties: false,
     answersId: 0,
     formId: 0,
     patientId: 0,
@@ -74,6 +74,11 @@ class TestProvider extends ChangeNotifier {
 
   updatePersonality(String personality) {
     test.patientPersonality = personality;
+    notifyListeners();
+  }
+
+  updateDifficulties(bool selectedDifficulties) {
+    test.patientDifficulties = selectedDifficulties;
     notifyListeners();
   }
 }

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_form/models/answers_model.dart';
 import 'package:frontend_form/screens/tests/test_steps/naming_image_step.dart';
-import 'package:frontend_form/screens/tests/test_steps/personal_information_step.dart';
 import 'package:frontend_form/screens/tests/test_steps/orientation_step.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/models.dart';
 import '../../providers/providers.dart';
+import '../steps.dart';
 
 class TestScreen extends StatefulWidget {
   const TestScreen({Key? key}) : super(key: key);
@@ -31,7 +32,7 @@ class _TestScreenState extends State<TestScreen> {
     Icons.edit_rounded,
     Icons.golf_course_sharp,
   ];
-  List<FocusNode> focusNodes = List.generate(20, (_) => FocusNode());
+  List<FocusNode> focusNodes = List.generate(40, (_) => FocusNode());
   TestModel testModel = TestModel();
   AnswersModel answersModel = AnswersModel();
 
@@ -78,7 +79,9 @@ class _TestScreenState extends State<TestScreen> {
                             key: testProvider.formKey,
                             child: Container(
                               child: Stepper(
-                                physics: NeverScrollableScrollPhysics(),
+                                physics: currentStep >= 5
+                                    ? const NeverScrollableScrollPhysics()
+                                    : const AlwaysScrollableScrollPhysics(),
                                 elevation: 10,
                                 type: StepperType.horizontal,
                                 currentStep: currentStep,
@@ -93,6 +96,7 @@ class _TestScreenState extends State<TestScreen> {
                                   if (isLastStep) {
                                     // SEND TEST TO API
                                   } else {
+                                    print(answersModel.toJson());
                                     setState(() {
                                       currentStep += 1;
                                     });
@@ -130,8 +134,16 @@ class _TestScreenState extends State<TestScreen> {
                                           color: Colors.white,
                                         ),
                                       ),
+                                      const SizedBox(width: 10),
+                                      const SizedBox(width: 10),
                                       ElevatedButton(
-                                        onPressed: details.onStepContinue,
+                                        onPressed: () {
+                                          if (currentStep == 6) {
+                                            onContinueStep8(details);
+                                          } else {
+                                            details.onStepContinue!();
+                                          }
+                                        },
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.yellow,
                                           padding: const EdgeInsets.symmetric(
@@ -156,6 +168,9 @@ class _TestScreenState extends State<TestScreen> {
               ),
             ),
           ),
+          // Visibility(
+          //   visible: MediaQuery.of(context).viewInsets.bottom == 0,
+          //   child:
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
@@ -208,6 +223,7 @@ class _TestScreenState extends State<TestScreen> {
               ),
             ),
           ),
+          // ),
         ],
       ),
     );
@@ -219,18 +235,21 @@ class _TestScreenState extends State<TestScreen> {
         state: currentStep > 0 ? StepState.complete : StepState.indexed,
         isActive: currentStep >= 0,
         title: const Text(''),
-        content: PersonalInformationStep(
-          focusNodes: focusNodes,
-          onRefresh: refresh,
-          testModel: testModel,
+        content: SingleChildScrollView(
+          child: OrientationStep(
+            focusNodes: focusNodes,
+            onRefresh: refresh,
+            answersModel: answersModel,
+          ),
         ),
       ),
       Step(
         state: currentStep > 1 ? StepState.complete : StepState.indexed,
         isActive: currentStep >= 1,
         title: const Text(''),
-        content: OrientationStep(
+        content: NamingImageStep(
           focusNodes: focusNodes,
+          onRefresh: refresh,
           answersModel: answersModel,
         ),
       ),
@@ -238,39 +257,51 @@ class _TestScreenState extends State<TestScreen> {
         state: currentStep > 2 ? StepState.complete : StepState.indexed,
         isActive: currentStep >= 2,
         title: const Text(''),
-        content: NamingImageStep(focusNodes: focusNodes),
+        content: SimilaritiesStep(
+          focusNodes: focusNodes,
+          onRefresh: refresh,
+          answersModel: answersModel,
+        ),
       ),
       Step(
         state: currentStep > 3 ? StepState.complete : StepState.indexed,
         isActive: currentStep >= 3,
         title: const Text(''),
-        content: const Column(children: [
-          Text(''),
-        ]),
+        content: MemoryInstructionsStep(
+          focusNodes: focusNodes,
+          onRefresh: refresh,
+          answersModel: answersModel,
+        ),
       ),
       Step(
         state: currentStep > 4 ? StepState.complete : StepState.indexed,
         isActive: currentStep >= 4,
         title: const Text(''),
-        content: const Column(children: [
-          Text(''),
-        ]),
+        content: DrawStep(
+          focusNodes: focusNodes,
+          onRefresh: refresh,
+          answersModel: answersModel,
+        ),
       ),
       Step(
         state: currentStep > 5 ? StepState.complete : StepState.indexed,
         isActive: currentStep >= 5,
         title: const Text(''),
-        content: const Column(children: [
-          Text(''),
-        ]),
+        content: ConstructionDrawStep(
+          focusNodes: focusNodes,
+          onRefresh: refresh,
+          answersModel: answersModel,
+        ),
       ),
       Step(
         state: currentStep > 6 ? StepState.complete : StepState.indexed,
         isActive: currentStep >= 6,
         title: const Text(''),
-        content: const Column(children: [
-          Text(''),
-        ]),
+        content: WordStep(
+          focusNodes: focusNodes,
+          onRefresh: refresh,
+          answersModel: answersModel,
+        ),
       ),
       Step(
         state: currentStep > 7 ? StepState.complete : StepState.indexed,
@@ -289,5 +320,27 @@ class _TestScreenState extends State<TestScreen> {
         ]),
       ),
     ];
+  }
+
+  void onContinueStep8(ControlsDetails details) {
+    print('STEP WORDS');
+    answersModel.verbalWords = [];
+    List<String?> verbalWords = [
+      answersModel.w1,
+      answersModel.w2,
+      answersModel.w3,
+      answersModel.w4,
+      answersModel.w5,
+      answersModel.w6,
+      answersModel.w7,
+      answersModel.w8,
+      answersModel.w9,
+      answersModel.w10,
+      answersModel.w11,
+      answersModel.w12,
+    ];
+    verbalWords.removeWhere((word) => word == null);
+    answersModel.verbalWords!.addAll(verbalWords.toList().whereType<String>());
+    details.onStepContinue!();
   }
 }

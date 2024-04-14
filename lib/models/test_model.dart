@@ -16,7 +16,7 @@ class TestModel {
   bool? patientMinorStroke;
   String? patientDepression;
   String? patientPersonality;
-  String? patientDifficulties;
+  bool? patientDifficulties;
   int? answersId;
   int? formId;
   int? patientId;
