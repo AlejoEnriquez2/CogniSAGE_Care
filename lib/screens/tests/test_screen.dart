@@ -277,7 +277,7 @@ class _TestScreenState extends State<TestScreen> {
         state: currentStep > 4 ? StepState.complete : StepState.indexed,
         isActive: currentStep >= 4,
         title: const Text(''),
-        content: DrawStep(
+        content: RedrawStep(
           focusNodes: focusNodes,
           onRefresh: refresh,
           answersModel: answersModel,
@@ -307,9 +307,11 @@ class _TestScreenState extends State<TestScreen> {
         state: currentStep > 7 ? StepState.complete : StepState.indexed,
         isActive: currentStep >= 7,
         title: const Text(''),
-        content: const Column(children: [
-          Text(''),
-        ]),
+        content: TrailStep(
+          focusNodes: focusNodes,
+          onRefresh: refresh,
+          answersModel: answersModel,
+        ),
       ),
       Step(
         state: currentStep > 8 ? StepState.complete : StepState.indexed,

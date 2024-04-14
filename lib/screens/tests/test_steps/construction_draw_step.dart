@@ -41,7 +41,7 @@ class _ConstructionDrawStepState extends State<ConstructionDrawStep> {
             ),
             child: Center(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 40),
+                padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -51,7 +51,7 @@ class _ConstructionDrawStepState extends State<ConstructionDrawStep> {
                         Column(
                           children: [
                             Text(
-                              'DRAW',
+                              'Draw',
                               style: TextStyle(
                                 fontSize: 30,
                                 fontWeight: FontWeight.bold,
