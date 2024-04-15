@@ -31,6 +31,7 @@ class _TestScreenState extends State<TestScreen> {
     Icons.api_rounded,
     Icons.edit_rounded,
     Icons.golf_course_sharp,
+    Icons.golf_course_sharp,
   ];
   List<FocusNode> focusNodes = List.generate(40, (_) => FocusNode());
   TestModel testModel = TestModel();
@@ -317,9 +318,21 @@ class _TestScreenState extends State<TestScreen> {
         state: currentStep > 8 ? StepState.complete : StepState.indexed,
         isActive: currentStep >= 8,
         title: const Text(''),
-        content: const Column(children: [
-          Text(''),
-        ]),
+        content: ExecutiveStep(
+          focusNodes: focusNodes,
+          onRefresh: refresh,
+          answersModel: answersModel,
+        ),
+      ),
+      Step(
+        state: currentStep > 8 ? StepState.complete : StepState.indexed,
+        isActive: currentStep >= 8,
+        title: const Text(''),
+        content: ExecutiveDrawStep(
+          focusNodes: focusNodes,
+          onRefresh: refresh,
+          answersModel: answersModel,
+        ),
       ),
     ];
   }
