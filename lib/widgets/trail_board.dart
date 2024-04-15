@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -25,6 +26,18 @@ class TrailBoard extends StatefulWidget {
 class _TrailBoardState extends State<TrailBoard> {
   List<Offset> _points = <Offset>[];
   bool _isLocked = false;
+  Offset startPoint = Offset.zero;
+  Offset endPoint = Offset.zero;
+  List<String> answers = [];
+
+  List<Circle> circles = [
+    Circle(position: const Offset(80, 100), text: '1'),
+    Circle(position: const Offset(255, 50), text: 'A'),
+    Circle(position: const Offset(355, 100), text: '2'),
+    Circle(position: const Offset(180, 140), text: 'B'),
+    Circle(position: const Offset(430, 170), text: '3'),
+    Circle(position: const Offset(480, 100), text: 'C'),
+  ];
 
   void _undoLastLine() {
     if (!_isLocked && _points.isNotEmpty) {
@@ -38,6 +51,20 @@ class _TrailBoardState extends State<TrailBoard> {
           _points.clear();
         }
         _points.add(Offset.zero);
+
+        for (Circle circle in circles) {
+          bool isIntersecting = false;
+          for (int i = 0; i < _points.length - 1; i++) {
+            if (_points[i] != Offset.zero && _points[i + 1] != Offset.zero) {
+              if (doesLineIntersectCircle(_points[i], _points[i + 1], circle)) {
+                isIntersecting = true;
+                break;
+              }
+            }
+          }
+          circle.isDrawnOn = isIntersecting;
+        }
+
         print('Removed last line');
       });
     }
@@ -47,6 +74,11 @@ class _TrailBoardState extends State<TrailBoard> {
     if (!_isLocked) {
       setState(() {
         _points.clear();
+        circles.forEach((circle) {
+          circle.isDrawnOn = false;
+        });
+        answers = [];
+        widget.answersModel.executiveTrail = '';
         print('Cleared board');
       });
     }
@@ -63,7 +95,7 @@ class _TrailBoardState extends State<TrailBoard> {
       Colors.white,
       BlendMode.color,
     );
-    _BoardPainter(points: _points)
+    _BoardPainter(points: _points, circles: circles)
         .paint(canvas, Size(widget.canvaSize, widget.canvaSize));
     print("Points length now: $_points");
     // End recording and obtain the image
@@ -98,7 +130,7 @@ class _TrailBoardState extends State<TrailBoard> {
       Colors.white,
       BlendMode.color,
     );
-    _BoardPainter(points: _points)
+    _BoardPainter(points: _points, circles: circles)
         .paint(canvas, Size(widget.canvaSize, widget.canvaSize));
     // End recording and obtain the image
     ui.Picture picture = recorder.endRecording();
@@ -120,34 +152,151 @@ class _TrailBoardState extends State<TrailBoard> {
     }
   }
 
+  bool doesLineIntersectCircle(Offset p1, Offset p2, Circle circle) {
+    Offset d = Offset(p2.dx - p1.dx, p2.dy - p1.dy);
+    Offset f = Offset(p1.dx - circle.position.dx, p1.dy - circle.position.dy);
+
+    double a = d.dx * d.dx + d.dy * d.dy;
+    double b = 2 * (f.dx * d.dx + f.dy * d.dy);
+    double c = f.dx * f.dx + f.dy * f.dy - 27 * 27;
+
+    double discriminant = b * b - 4 * a * c;
+    if (discriminant < 0) {
+      return false;
+    } else {
+      discriminant = math.sqrt(discriminant);
+      double t1 = (-b - discriminant) / (2 * a);
+      double t2 = (-b + discriminant) / (2 * a);
+
+      if ((t1 >= 0 && t1 <= 1) || (t2 >= 0 && t2 <= 1)) {
+        return true;
+      }
+      return false;
+    }
+  }
+
+  bool doesPointLieInCircle(Offset point, Circle circle) {
+    double dx = circle.position.dx - point.dx;
+    double dy = circle.position.dy - point.dy;
+
+    double distance = math.sqrt(dx * dx + dy * dy);
+
+    return distance <= circle.radius;
+  }
+
   @override
   Widget build(BuildContext context) {
-    Offset _startPoint = Offset.zero;
-    Offset _endPoint = Offset.zero;
-
     return GestureDetector(
       onPanDown: (DragDownDetails details) {
         if (!_isLocked) {
           RenderBox renderBox = context.findRenderObject() as RenderBox;
-          _startPoint = renderBox.globalToLocal(details.globalPosition);
+          startPoint = renderBox.globalToLocal(details.globalPosition);
+          print("START POINT: " + startPoint.toString());
         }
       },
       onPanUpdate: (DragUpdateDetails details) {
         if (!_isLocked) {
-          RenderBox renderBox = context.findRenderObject() as RenderBox;
-          _endPoint = renderBox.globalToLocal(details.globalPosition);
+          setState(() {
+            RenderBox renderBox = context.findRenderObject() as RenderBox;
+            endPoint = renderBox.globalToLocal(details.globalPosition);
+            print("END POINT: " + endPoint.toString());
+            Offset localPosition =
+                renderBox.globalToLocal(details.globalPosition);
+            if (localPosition.dx >= 0 &&
+                localPosition.dx <= renderBox.size.width &&
+                localPosition.dy >= 0 &&
+                localPosition.dy <= renderBox.size.height - 75) {
+              _points = List.from(_points)..add(localPosition);
+            }
+            for (Circle circle in circles) {
+              if ((localPosition - circle.position).distance <= 25) {
+                circle.isDrawnOn = true;
+              }
+            }
+          });
         }
       },
       onPanEnd: (DragEndDetails details) {
         if (!_isLocked) {
           setState(() {
-            _points.add(_startPoint);
-            _points.add(_endPoint);
+            print("START POINT: " + startPoint.toString());
+            _undoLastLine();
+            Circle startCircle = Circle(position: Offset.zero, text: '');
+            Circle endCircle = Circle(position: Offset.zero, text: '');
+            for (Circle circle in circles) {
+              if (doesPointLieInCircle(startPoint, circle)) {
+                startCircle = circle;
+              }
+              if (doesPointLieInCircle(endPoint, circle)) {
+                endCircle = circle;
+              }
+            }
+
+            if (startCircle.position != Offset.zero &&
+                endCircle.position != Offset.zero) {
+              // Calculate the angle of the line for the startPoint
+              double startAngle = math.atan2(
+                  endPoint.dy - startPoint.dy, endPoint.dx - startPoint.dx);
+
+              // Calculate the x and y coordinates of the point on the startCircle's border for the startPoint
+              double startFinalX = startCircle.position.dx +
+                  startCircle.radius * math.cos(startAngle);
+              double startFinalY = startCircle.position.dy +
+                  startCircle.radius * math.sin(startAngle);
+
+              // Replace the startPoint with the intersection point
+              startPoint = Offset(startFinalX, startFinalY);
+
+              // Calculate the angle of the line for the endPoint using the startPoint and the center of the endCircle
+              double endAngle = math.atan2(
+                  startPoint.dy - endCircle.position.dy,
+                  startPoint.dx - endCircle.position.dx);
+
+              // Calculate the x and y coordinates of the point on the endCircle's border for the endPoint
+              double endFinalX =
+                  endCircle.position.dx + endCircle.radius * math.cos(endAngle);
+              double endFinalY =
+                  endCircle.position.dy + endCircle.radius * math.sin(endAngle);
+
+              // Replace the endPoint with the intersection point
+              endPoint = Offset(endFinalX, endFinalY);
+            }
+
+            _points.add(startPoint);
+            print("END POINT: " + endPoint.toString());
+            if (endPoint.dx > 550 ||
+                endPoint.dy > 550 ||
+                endPoint.dx < 0 ||
+                endPoint.dy < 0) {
+              endPoint = startPoint;
+            }
+            _points.add(endPoint);
             _points.add(Offset.zero);
-            _startPoint = Offset.zero;
-            _endPoint = Offset.zero;
+            startPoint = Offset.zero;
+            endPoint = Offset.zero;
+
+            for (Circle circle in circles) {
+              bool isIntersecting = false;
+              for (int i = 0; i < _points.length - 1; i++) {
+                if (_points[i] != Offset.zero &&
+                    _points[i + 1] != Offset.zero) {
+                  if (doesLineIntersectCircle(
+                      _points[i], _points[i + 1], circle)) {
+                    isIntersecting = true;
+                    print("IT SHOULD RECORD THE CIRCLE: " + circle.text);
+                    if (!answers.contains(circle.text)) {
+                      answers.add(circle.text);
+                    }
+                    break;
+                  }
+                }
+              }
+              circle.isDrawnOn = isIntersecting;
+            }
           });
         }
+        widget.answersModel.executiveTrail = answers.toString();
+        print(widget.answersModel.executiveTrail);
       },
       child: Column(
         children: [
@@ -159,7 +308,7 @@ class _TrailBoardState extends State<TrailBoard> {
             height: widget.canvaSize,
             width: widget.canvaSize,
             child: CustomPaint(
-              painter: _BoardPainter(points: _points),
+              painter: _BoardPainter(points: _points, circles: circles),
             ),
           ),
           Container(
@@ -169,10 +318,10 @@ class _TrailBoardState extends State<TrailBoard> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                IconButton(
-                  onPressed: _undoLastLine,
-                  icon: const Icon(Icons.undo),
-                ),
+                // IconButton(
+                //   onPressed: _undoLastLine,
+                //   icon: const Icon(Icons.undo),
+                // ),
                 IconButton(
                   onPressed: _clearBoard,
                   icon: SvgPicture.asset(
@@ -181,14 +330,14 @@ class _TrailBoardState extends State<TrailBoard> {
                     width: 20,
                   ),
                 ),
-                IconButton(
-                  onPressed: () {
-                    setState(() {
-                      _saveDraw();
-                    });
-                  },
-                  icon: const Icon(Icons.save),
-                )
+                // IconButton(
+                //   onPressed: () {
+                //     setState(() {
+                //       _saveDraw();
+                //     });
+                //   },
+                //   icon: const Icon(Icons.save),
+                // )
               ],
             ),
           )
@@ -200,28 +349,64 @@ class _TrailBoardState extends State<TrailBoard> {
 
 class _BoardPainter extends CustomPainter {
   final List<Offset> points;
+  final List<Circle> circles;
 
-  _BoardPainter({required this.points});
+  _BoardPainter({required this.points, required this.circles});
 
   @override
   void paint(Canvas canvas, Size size) {
+    final circlePaint = Paint()
+      ..color = Colors.black
+      ..strokeCap = StrokeCap.round
+      ..strokeWidth = 5.0;
+
     Paint paint = Paint()
       ..color = Colors.black
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 5.0;
 
-    drawNode(canvas, size, paint, Offset(80, 100), '1');
-    drawNode(canvas, size, paint, Offset(255, 50), 'A');
-    drawNode(canvas, size, paint, Offset(355, 100), '2');
-    drawNode(canvas, size, paint, Offset(180, 140), 'B');
-    drawNode(canvas, size, paint, Offset(430, 170), '3');
-    drawNode(canvas, size, paint, Offset(480, 100), 'C');
+    // drawNode(canvas, size, paint, Offset(80, 100), '1');
+    // drawNode(canvas, size, paint, Offset(255, 50), 'A');
+    // drawNode(canvas, size, paint, Offset(355, 100), '2');
+    // drawNode(canvas, size, paint, Offset(180, 140), 'B');
+    // drawNode(canvas, size, paint, Offset(430, 170), '3');
+    // drawNode(canvas, size, paint, Offset(480, 100), 'C');
+    for (Circle circle in circles) {
+      drawCircle(canvas, size, circlePaint, circle);
+    }
 
     for (int i = 0; i < points.length - 1; i++) {
       if (points[i] != Offset.zero && points[i + 1] != Offset.zero) {
         canvas.drawLine(points[i], points[i + 1], paint);
       }
     }
+  }
+
+  void drawCircle(Canvas canvas, Size size, Paint paint, Circle circle) {
+    canvas.drawCircle(
+      circle.position,
+      25,
+      paint
+        ..style = PaintingStyle.stroke
+        ..color = circle.isDrawnOn ? Colors.green : Colors.black,
+    );
+    TextPainter textPainter = TextPainter(
+      text: TextSpan(
+        text: circle.text,
+        style: const TextStyle(
+          color: Colors.black,
+          fontSize: 25, // Increase the font size
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      textAlign: TextAlign.center,
+      textDirection: TextDirection.ltr,
+    );
+    textPainter.layout();
+    textPainter.paint(
+      canvas,
+      circle.position - Offset(textPainter.width / 2, textPainter.height / 2),
+    );
   }
 
   void drawNode(
@@ -254,4 +439,17 @@ class _BoardPainter extends CustomPainter {
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     return true;
   }
+}
+
+class Circle {
+  Offset position;
+  String text;
+  bool isDrawnOn;
+  double radius = 25;
+
+  Circle({
+    required this.position,
+    required this.text,
+    this.isDrawnOn = false,
+  });
 }
