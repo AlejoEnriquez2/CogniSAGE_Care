@@ -3,8 +3,8 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:frontend_form/providers/providers.dart';
 import 'package:frontend_form/models/models.dart';
-import 'package:frontend_form/screens/steps.dart';
-import 'package:frontend_form/widgets/executive_board.dart';
+import 'package:frontend_form/widgets/executive_draw_board.dart';
+import 'package:frontend_form/widgets/show_byte_image_widget.dart';
 
 class ExecutiveDrawStep extends StatefulWidget {
   final List<FocusNode> focusNodes;
@@ -51,7 +51,7 @@ class _ExecutiveDrawStepState extends State<ExecutiveDrawStep> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Column(
+                        const Column(
                           children: [
                             Text(
                               'Draw your answer:',
@@ -64,13 +64,13 @@ class _ExecutiveDrawStepState extends State<ExecutiveDrawStep> {
                             SizedBox(
                               width: 200,
                               child: Text(
-                                'With the 4 lines you took out, draw the final result of the 4 squares only',
+                                'Considering the 4 lines you took out, draw the final result of 4 squares only',
                                 style: TextStyle(fontSize: 17),
                               ),
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 175,
                           child: VerticalDivider(
                             color: Color.fromARGB(255, 88, 88, 88),
@@ -80,19 +80,22 @@ class _ExecutiveDrawStepState extends State<ExecutiveDrawStep> {
                         SizedBox(
                           height: 200,
                           width: 250,
-                          child: ShowImageWidget(
-                            imageBytes: Uint8List.fromList(
-                                widget.answersModel.executiveTempDraw ?? []),
-                          ),
+                          child: widget.answersModel.executiveTempDraw != null
+                              ? ShowImageWidget(
+                                  imageBytes: Uint8List.fromList(
+                                      widget.answersModel.executiveTempDraw ??
+                                          []),
+                                )
+                              : const Text(''),
                         ),
                       ],
                     ),
                     SizedBox(
                       height: 650,
                       width: 550,
-                      child: ExecutiveBoard(
+                      child: ExecutiveDrawBoard(
                         canvaSize: 550,
-                        type: 'draw',
+                        type: 'executive',
                         answersModel: widget.answersModel,
                       ),
                     ),

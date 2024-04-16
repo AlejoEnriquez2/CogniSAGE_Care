@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:frontend_form/providers/providers.dart';
 import 'package:frontend_form/models/models.dart';
+import 'package:frontend_form/widgets/show_byte_image_widget.dart';
 
 class ShowDrawStep extends StatefulWidget {
   final List<FocusNode> focusNodes;
@@ -84,23 +85,6 @@ class _ShowDrawStepState extends State<ShowDrawStep> {
           ),
         ],
       ),
-    );
-  }
-}
-
-class ShowImageWidget extends StatelessWidget {
-  final Uint8List imageBytes;
-
-  const ShowImageWidget({
-    Key? key,
-    required this.imageBytes,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Image.memory(
-      imageBytes,
-      fit: BoxFit.contain,
     );
   }
 }

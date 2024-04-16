@@ -79,11 +79,9 @@ class _ExecutiveStepState extends State<ExecutiveStep> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Text(
-                                '1. Select 4 lines that you will have to move in order to have 4 squares only',
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                                'Mark 4 lines that you would have to move in order to have 4 squares only',
+                                style: TextStyle(fontSize: 20),
                               ),
-                              Text(
-                                  '2. With the 4 lines you took out, draw the final result of the 4 squares only'),
                             ],
                           ),
                         ),

@@ -14,3 +14,4 @@ export 'package:frontend_form/screens/tests/test_steps/word_step.dart';
 export 'package:frontend_form/screens/tests/test_steps/trail_step.dart';
 export 'package:frontend_form/screens/tests/test_steps/executive_step.dart';
 export 'package:frontend_form/screens/tests/test_steps/executive_draw_step.dart';
+export 'package:frontend_form/screens/tests/test_steps/memory_step.dart';
