@@ -100,6 +100,12 @@ class AnswersModel {
         "executiveLinesDraw": executiveLinesDraw,
         "memoryPhrase": memoryPhrase,
       };
+
+  String toPrint() {
+    Map<String, dynamic> json = toJson();
+    json.removeWhere((key, value) => value is List<int>);
+    return jsonEncode(json);
+  }
 }
 
 class Draw {

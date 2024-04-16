@@ -91,7 +91,8 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                                     //     testModel, context);
                                     // Navigator.pushReplacementNamed(
                                     //     context, 'home');
-                                    Navigator.pushNamed(context, 'test');
+                                    Navigator.pushNamed(context, 'test',
+                                        arguments: testModel);
                                   } else {
                                     setState(() {
                                       currentStep += 1;
@@ -133,7 +134,10 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                                       SizedBox(width: 10),
                                       SizedBox(width: 10),
                                       ElevatedButton(
-                                        onPressed: details.onStepContinue,
+                                        onPressed: () {
+                                          print(testModel.toJson());
+                                          details.onStepContinue!();
+                                        },
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.yellow,
                                           padding: const EdgeInsets.symmetric(

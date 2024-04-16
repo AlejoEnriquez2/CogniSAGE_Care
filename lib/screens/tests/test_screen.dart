@@ -33,12 +33,13 @@ class _TestScreenState extends State<TestScreen> {
     Icons.flag,
   ];
   List<FocusNode> focusNodes = List.generate(40, (_) => FocusNode());
-  TestModel testModel = TestModel();
+
   AnswersModel answersModel = AnswersModel();
 
   @override
   Widget build(BuildContext context) {
-    testModel.testDate = DateTime.now();
+    TestModel testModel =
+        ModalRoute.of(context)!.settings.arguments as TestModel;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -96,12 +97,12 @@ class _TestScreenState extends State<TestScreen> {
                                   if (isLastStep) {
                                     // SEND TEST TO API
                                     final stateManager = TestService();
-                                    stateManager.saveTestAnswers(
-                                        answersModel, context);
+                                    stateManager.saveTestPersonalInfo(
+                                        testModel, answersModel, context);
                                     Navigator.pushReplacementNamed(
                                         context, 'home');
                                   } else {
-                                    log(answersModel.toJson().toString());
+                                    // log(answersModel.toJson().toString());
                                     setState(() {
                                       currentStep += 1;
                                     });
@@ -142,6 +143,8 @@ class _TestScreenState extends State<TestScreen> {
                                       const SizedBox(width: 10),
                                       ElevatedButton(
                                         onPressed: () {
+                                          print(testModel);
+                                          print(answersModel.toPrint());
                                           if (currentStep == 7) {
                                             onContinueStep7(details);
                                           } else if (currentStep == 4) {
