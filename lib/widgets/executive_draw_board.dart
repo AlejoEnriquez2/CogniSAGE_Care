@@ -65,14 +65,19 @@ class _ExecutiveDrawBoardState extends State<ExecutiveDrawBoard> {
     } else if (widget.type == 'draw') {
       widget.answersModel.constructionsDraw = bytes;
     } else if (widget.type == 'temp') {
-      widget.answersModel.executiveTempDraw = bytes;
+      widget.answersModel.executiveLinesDraw = bytes;
     } else if (widget.type == 'executive') {
       widget.answersModel.executiveDraw = bytes;
     }
+    widget.answersModel.isExecDrawCompleted = false;
   }
 
   @override
   Widget build(BuildContext context) {
+    if (widget.answersModel.isExecDrawCompleted != true) {
+    } else {
+      _convertToByteData();
+    }
     return GestureDetector(
       onPanUpdate: (DragUpdateDetails details) {
         if (!_isLocked) {

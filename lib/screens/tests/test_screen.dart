@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:frontend_form/models/answers_model.dart';
-import 'package:frontend_form/screens/tests/test_steps/naming_image_step.dart';
-import 'package:frontend_form/screens/tests/test_steps/orientation_step.dart';
+import 'package:frontend_form/services/services.dart';
 import 'package:provider/provider.dart';
-
+import 'dart:developer';
 import '../../models/models.dart';
 import '../../providers/providers.dart';
 import '../steps.dart';
@@ -22,17 +20,17 @@ class _TestScreenState extends State<TestScreen> {
 
   int currentStep = 0;
   final _stepIcons = [
-    Icons.person,
     Icons.calendar_month,
     Icons.mms_outlined,
-    Icons.menu_book_rounded,
-    Icons.calculate_rounded,
     Icons.psychology_rounded,
+    Icons.menu_book_rounded,
+    Icons.edit,
     Icons.api_rounded,
-    Icons.edit_rounded,
-    Icons.golf_course_sharp,
-    Icons.golf_course_sharp,
-    Icons.golf_course_sharp,
+    Icons.text_fields_rounded,
+    Icons.swap_horizontal_circle_rounded,
+    Icons.edit_document,
+    Icons.draw_rounded,
+    Icons.flag,
   ];
   List<FocusNode> focusNodes = List.generate(40, (_) => FocusNode());
   TestModel testModel = TestModel();
@@ -81,7 +79,7 @@ class _TestScreenState extends State<TestScreen> {
                             key: testProvider.formKey,
                             child: Container(
                               child: Stepper(
-                                physics: currentStep >= 5
+                                physics: currentStep >= 4
                                     ? const NeverScrollableScrollPhysics()
                                     : const AlwaysScrollableScrollPhysics(),
                                 elevation: 10,
@@ -97,8 +95,13 @@ class _TestScreenState extends State<TestScreen> {
                                       (currentStep == getSteps().length - 1);
                                   if (isLastStep) {
                                     // SEND TEST TO API
+                                    final stateManager = TestService();
+                                    stateManager.saveTestAnswers(
+                                        answersModel, context);
+                                    Navigator.pushReplacementNamed(
+                                        context, 'home');
                                   } else {
-                                    print(answersModel.toJson());
+                                    log(answersModel.toJson().toString());
                                     setState(() {
                                       currentStep += 1;
                                     });
@@ -107,11 +110,10 @@ class _TestScreenState extends State<TestScreen> {
                                 steps: getSteps(),
                                 stepIconBuilder: (index, state) {
                                   Color color = currentStep == index
-                                      ? Colors.blue
+                                      ? Color.fromARGB(255, 37, 95, 255)
                                       : (currentStep < index
-                                          ? Colors.black
-                                          : const Color.fromARGB(
-                                              155, 158, 158, 158));
+                                          ? Color.fromARGB(144, 0, 0, 0)
+                                          : Color.fromARGB(87, 158, 158, 158));
                                   return Container(
                                     decoration: const BoxDecoration(
                                       color: Colors.white,
@@ -140,8 +142,16 @@ class _TestScreenState extends State<TestScreen> {
                                       const SizedBox(width: 10),
                                       ElevatedButton(
                                         onPressed: () {
-                                          if (currentStep == 6) {
+                                          if (currentStep == 7) {
+                                            onContinueStep7(details);
+                                          } else if (currentStep == 4) {
+                                            onContinueStep4(details);
+                                          } else if (currentStep == 5) {
+                                            onContinueStep5(details);
+                                          } else if (currentStep == 8) {
                                             onContinueStep8(details);
+                                          } else if (currentStep == 9) {
+                                            onContinueStep9(details);
                                           } else {
                                             details.onStepContinue!();
                                           }
@@ -348,8 +358,8 @@ class _TestScreenState extends State<TestScreen> {
     ];
   }
 
-  void onContinueStep8(ControlsDetails details) {
-    print('STEP WORDS');
+  void onContinueStep7(ControlsDetails details) {
+    log('STEP WORDS');
     answersModel.verbalWords = [];
     List<String?> verbalWords = [
       answersModel.w1,
@@ -367,6 +377,30 @@ class _TestScreenState extends State<TestScreen> {
     ];
     verbalWords.removeWhere((word) => word == null);
     answersModel.verbalWords!.addAll(verbalWords.toList().whereType<String>());
+    details.onStepContinue!();
+  }
+
+  void onContinueStep4(ControlsDetails details) {
+    log('SAVING REDRAW');
+    answersModel.isDrawCompleted = true;
+    details.onStepContinue!();
+  }
+
+  void onContinueStep5(ControlsDetails details) {
+    log('SAVING CLOCK DRAW');
+    answersModel.isDrawCompleted = true;
+    details.onStepContinue!();
+  }
+
+  void onContinueStep8(ControlsDetails details) {
+    log('SAVING EXECUTIVE DRAW');
+    answersModel.isExecLinesDrawCompleted = true;
+    details.onStepContinue!();
+  }
+
+  void onContinueStep9(ControlsDetails details) {
+    log('SAVING EXECUTIVE DRAW');
+    answersModel.isExecDrawCompleted = true;
     details.onStepContinue!();
   }
 }

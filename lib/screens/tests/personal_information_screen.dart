@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_form/services/services.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/models.dart';
@@ -85,6 +86,11 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                                   bool isLastStep =
                                       (currentStep == getSteps().length - 1);
                                   if (isLastStep) {
+                                    // final stateManager = TestService();
+                                    // stateManager.saveTestPersonalInfo(
+                                    //     testModel, context);
+                                    // Navigator.pushReplacementNamed(
+                                    //     context, 'home');
                                     Navigator.pushNamed(context, 'test');
                                   } else {
                                     setState(() {

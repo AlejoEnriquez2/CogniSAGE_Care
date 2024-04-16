@@ -14,10 +14,13 @@ class AnswersModel {
   List<String>? verbalWords;
   String? executiveTrail;
   String? executiveLines;
-  List<int>? executiveTempDraw;
+  List<int>? executiveLinesDraw;
   List<int>? executiveDraw;
   String? memoryPhrase;
   String? w1, w2, w3, w4, w5, w6, w7, w8, w9, w10, w11, w12;
+  bool? isDrawCompleted;
+  bool? isExecDrawCompleted;
+  bool? isExecLinesDrawCompleted;
 
   AnswersModel({
     this.orientationMonth,
@@ -33,7 +36,7 @@ class AnswersModel {
     this.verbalWords,
     this.executiveTrail,
     this.executiveLines,
-    this.executiveTempDraw,
+    this.executiveLinesDraw,
     this.executiveDraw,
     this.memoryPhrase,
     this.w1,
@@ -48,6 +51,9 @@ class AnswersModel {
     this.w10,
     this.w11,
     this.w12,
+    this.isDrawCompleted,
+    this.isExecDrawCompleted,
+    this.isExecLinesDrawCompleted,
   });
 
   factory AnswersModel.fromRawJson(String str) =>
@@ -70,6 +76,7 @@ class AnswersModel {
         executiveTrail: json["executiveTrail"],
         executiveLines: json["executiveLines"],
         executiveDraw: json["executiveDraw"],
+        executiveLinesDraw: json["executiveLinesDraw"],
         memoryPhrase: json["memoryPhrase"],
       );
 
@@ -90,6 +97,7 @@ class AnswersModel {
         "executiveTrail": executiveTrail,
         "executiveLines": executiveLines,
         "executiveDraw": executiveDraw,
+        "executiveLinesDraw": executiveLinesDraw,
         "memoryPhrase": memoryPhrase,
       };
 }

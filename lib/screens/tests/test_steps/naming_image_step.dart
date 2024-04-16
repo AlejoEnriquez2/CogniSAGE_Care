@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../models/models.dart';
 
@@ -104,8 +105,8 @@ class _NamingImageStepState extends State<NamingImageStep> {
                                 focusNode: widget.focusNodes[10],
                                 onFieldSubmitted: (_) {
                                   print(widget.answersModel.toJson());
-                                  FocusScope.of(context)
-                                      .requestFocus(widget.focusNodes[11]);
+                                  SystemChannels.textInput
+                                      .invokeMethod('TextInput.hide');
                                 },
                                 decoration: const InputDecoration(
                                   labelText: '',

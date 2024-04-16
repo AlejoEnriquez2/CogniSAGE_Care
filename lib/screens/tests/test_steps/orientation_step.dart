@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:frontend_form/models/models.dart';
 
 class OrientationStep extends StatefulWidget {
@@ -121,8 +122,8 @@ class _OrientationStepState extends State<OrientationStep> {
                               },
                               focusNode: widget.focusNodes[8],
                               onFieldSubmitted: (_) {
-                                FocusScope.of(context)
-                                    .requestFocus(widget.focusNodes[9]);
+                                SystemChannels.textInput
+                                    .invokeMethod('TextInput.hide');
                               },
                               decoration: const InputDecoration(
                                 labelText: 'YYYY',

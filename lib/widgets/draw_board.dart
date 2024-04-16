@@ -110,7 +110,7 @@ class _DrawBoardState extends State<DrawBoard> {
     // Convert the image to bytes
     ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
     Uint8List bytes = byteData!.buffer.asUint8List();
-    print(bytes);
+    // print(bytes);
     // Use the bytes as needed
     // ...
     if (widget.type == 'redraw') {
@@ -118,10 +118,15 @@ class _DrawBoardState extends State<DrawBoard> {
     } else if (widget.type == 'draw') {
       widget.answersModel.constructionsDraw = bytes;
     }
+    widget.answersModel.isDrawCompleted = false;
   }
 
   @override
   Widget build(BuildContext context) {
+    if (widget.answersModel.isDrawCompleted != true) {
+    } else {
+      _convertToByteData();
+    }
     return GestureDetector(
       onPanUpdate: (DragUpdateDetails details) {
         if (!_isLocked) {

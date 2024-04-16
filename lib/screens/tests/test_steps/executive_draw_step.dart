@@ -77,17 +77,32 @@ class _ExecutiveDrawStepState extends State<ExecutiveDrawStep> {
                             thickness: 2,
                           ),
                         ),
-                        SizedBox(
-                          height: 200,
-                          width: 250,
-                          child: widget.answersModel.executiveTempDraw != null
-                              ? ShowImageWidget(
-                                  imageBytes: Uint8List.fromList(
-                                      widget.answersModel.executiveTempDraw ??
-                                          []),
-                                )
-                              : const Text(''),
-                        ),
+                        FutureBuilder(
+                          // Wait for 3 seconds
+                          future: Future.delayed(Duration(seconds: 3)),
+                          builder: (context, snapshot) {
+                            // While the Future is not completed, show a CircularProgressIndicator
+                            if (snapshot.connectionState !=
+                                ConnectionState.done) {
+                              return CircularProgressIndicator();
+                            }
+
+                            // Once the Future is completed, show the ShowImageWidget
+                            return SizedBox(
+                              height: 200,
+                              width: 250,
+                              child:
+                                  widget.answersModel.executiveLinesDraw != null
+                                      ? ShowImageWidget(
+                                          imageBytes: Uint8List.fromList(widget
+                                                  .answersModel
+                                                  .executiveLinesDraw ??
+                                              []),
+                                        )
+                                      : const Text(''),
+                            );
+                          },
+                        )
                       ],
                     ),
                     SizedBox(

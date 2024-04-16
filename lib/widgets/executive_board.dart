@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'dart:typed_data';
+import 'dart:developer' as dev;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'dart:ui' as ui;
@@ -29,22 +30,59 @@ class _ExecutiveBoardState extends State<ExecutiveBoard> {
   List<String> answers = [];
   bool _allowInput = true;
   int _greenLineCount = 0;
+  int _correctLines = 0;
 
   List<Line> lines = [
-    Line(start: const Offset(50, 330), end: const Offset(50, 495)),
-    Line(start: const Offset(210, 330), end: const Offset(210, 495)),
+    Line(
+        start: const Offset(50, 330),
+        end: const Offset(50, 495),
+        isTheCorrect: false),
+    Line(
+        start: const Offset(210, 330),
+        end: const Offset(210, 495),
+        isTheCorrect: false),
     // Line(start: const Offset(370, 330), end: const Offset(370, 495)),
-    Line(start: const Offset(210, 135), end: const Offset(210, 300)),
-    Line(start: const Offset(370, 135), end: const Offset(370, 300)),
-    Line(start: const Offset(65, 315), end: const Offset(190, 315)),
-    Line(start: const Offset(65, 505), end: const Offset(190, 505)),
-    Line(start: const Offset(230, 315), end: const Offset(350, 315)),
+    Line(
+        start: const Offset(210, 135),
+        end: const Offset(210, 300),
+        isTheCorrect: false),
+    Line(
+        start: const Offset(370, 135),
+        end: const Offset(370, 300),
+        isTheCorrect: false),
+    Line(
+        start: const Offset(65, 315),
+        end: const Offset(190, 315),
+        isTheCorrect: false),
+    Line(
+        start: const Offset(65, 505),
+        end: const Offset(190, 505),
+        isTheCorrect: false),
+    Line(
+        start: const Offset(230, 315),
+        end: const Offset(350, 315),
+        isTheCorrect: false),
     // Line(start: const Offset(230, 505), end: const Offset(350, 505)),
-    Line(start: const Offset(230, 120), end: const Offset(350, 120)),
-    Line(start: const Offset(215, 105), end: const Offset(285, 20)),
-    Line(start: const Offset(305, 20), end: const Offset(370, 105)),
-    Line(start: const Offset(390, 125), end: const Offset(470, 205)),
-    Line(start: const Offset(470, 230), end: const Offset(390, 305)),
+    Line(
+        start: const Offset(230, 120),
+        end: const Offset(350, 120),
+        isTheCorrect: false),
+    Line(
+        start: const Offset(215, 105),
+        end: const Offset(285, 20),
+        isTheCorrect: true),
+    Line(
+        start: const Offset(305, 20),
+        end: const Offset(370, 105),
+        isTheCorrect: true),
+    Line(
+        start: const Offset(390, 125),
+        end: const Offset(470, 205),
+        isTheCorrect: true),
+    Line(
+        start: const Offset(470, 230),
+        end: const Offset(390, 305),
+        isTheCorrect: true),
   ];
 
   void _lockBoard() {
@@ -63,6 +101,7 @@ class _ExecutiveBoardState extends State<ExecutiveBoard> {
       });
       _allowInput = true;
       _greenLineCount = 0;
+      _correctLines = 0;
       print('Cleared board');
     });
   }
@@ -97,8 +136,9 @@ class _ExecutiveBoardState extends State<ExecutiveBoard> {
     } else if (widget.type == 'draw') {
       widget.answersModel.constructionsDraw = bytes;
     } else if (widget.type == 'temp') {
-      widget.answersModel.executiveTempDraw = bytes;
+      widget.answersModel.executiveLinesDraw = bytes;
     }
+    widget.answersModel.isExecLinesDrawCompleted = false;
   }
 
   void _checkIfLineIsDrawnOn() {
@@ -114,6 +154,12 @@ class _ExecutiveBoardState extends State<ExecutiveBoard> {
             if (line.color != Colors.green) {
               line.color = Colors.green;
               _greenLineCount++;
+              if (line.isTheCorrect != true) {
+                print('INCORRECT LINE: ' + _correctLines.toString());
+              } else {
+                _correctLines++;
+                print('CORRECT LINE: ' + _correctLines.toString());
+              }
               if (_greenLineCount >= 4) {
                 _lockBoard();
               }
@@ -175,6 +221,11 @@ class _ExecutiveBoardState extends State<ExecutiveBoard> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.answersModel.isExecLinesDrawCompleted != true) {
+    } else {
+      widget.answersModel.executiveLines = _correctLines.toString();
+      _convertToByteData();
+    }
     return GestureDetector(
       onPanUpdate: (DragUpdateDetails details) {
         if (!_isLocked) {
@@ -308,10 +359,12 @@ class Line {
   Offset end;
   bool? isDrawnOn;
   Color? color;
+  bool? isTheCorrect;
 
   Line(
       {required this.start,
       required this.end,
+      required this.isTheCorrect,
       isDrawnOn,
       this.color = Colors.black});
 }

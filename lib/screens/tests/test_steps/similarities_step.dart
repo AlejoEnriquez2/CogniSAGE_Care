@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:frontend_form/providers/providers.dart';
 import 'package:frontend_form/models/models.dart';
 
@@ -112,8 +113,7 @@ class _SimilaritiesStepState extends State<SimilaritiesStep> {
                     },
                     focusNode: widget.focusNodes[13],
                     onFieldSubmitted: (_) {
-                      FocusScope.of(context)
-                          .requestFocus(widget.focusNodes[14]);
+                      SystemChannels.textInput.invokeMethod('TextInput.hide');
                     },
                     decoration: const InputDecoration(
                       labelText: '\$',
