@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../models/models.dart';
 import '../../providers/providers.dart';
-import 'package:frontend_form/screens/steps.dart';
+import 'package:frontend_form/screens/tests/steps.dart';
 
 class PersonalInformationScreen extends StatefulWidget {
   const PersonalInformationScreen({Key? key}) : super(key: key);

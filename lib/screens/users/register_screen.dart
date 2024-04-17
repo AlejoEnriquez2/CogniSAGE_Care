@@ -3,9 +3,9 @@ import 'package:frontend_form/widgets/auth_background.dart';
 import 'package:frontend_form/widgets/card_container.dart';
 import 'package:provider/provider.dart';
 
-import '../models/models.dart';
-import '../providers/providers.dart';
-import '../services/registration_service.dart';
+import '../../models/models.dart';
+import '../../providers/providers.dart';
+import '../../services/registration_service.dart';
 
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({Key? key}) : super(key: key);

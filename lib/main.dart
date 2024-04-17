@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:frontend_form/providers/providers.dart';
 import 'package:frontend_form/theme/theme.dart';
 import 'package:provider/provider.dart';
 
@@ -25,7 +26,10 @@ class AppState extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) {
           return FormService();
-        })
+        }),
+        ChangeNotifierProvider(create: (context) {
+          return PatientProvider();
+        }),
       ],
       child: const MyApp(),
     );
@@ -47,7 +51,7 @@ class MyApp extends StatelessWidget {
           'test': (_) => const TestScreen(),
           'instructions': (_) => const TestInstructionsScreen(),
           'personal': (_) => const PersonalInformationScreen(),
-          'login': (_) => const LoginScreen(),
+          'login': (_) => LoginScreen(),
           'register': (_) => RegisterScreen(),
         });
   }

@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_form/providers/patient_provider.dart';
+import 'package:frontend_form/services/secure_storage.dart';
+import 'package:frontend_form/services/auth_service.dart';
 import 'package:frontend_form/widgets/auth_background.dart';
 import 'package:frontend_form/widgets/card_container.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  final patientProvider = PatientProvider();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final authService = AuthService();
+  final storage = SecureStorage();
+
+  LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +49,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   TextFormField(
+                    controller: _emailController,
                     decoration: const InputDecoration(
                       labelText: 'Email',
                       prefixIcon: Icon(Icons.email),
@@ -46,6 +57,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   TextFormField(
+                    controller: _passwordController,
                     decoration: const InputDecoration(
                       labelText: 'Password',
                       prefixIcon: Icon(Icons.lock),
@@ -54,8 +66,18 @@ class LoginScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 50),
                   ElevatedButton(
-                    onPressed: () {
-                      // Add your login logic here
+                    onPressed: () async {
+                      String? token = await authService.login(
+                          _emailController.text, _passwordController.text);
+                      if (token != null) {
+                        await storage.storeToken(token);
+                        Provider.of<PatientProvider>(context, listen: false)
+                            .login(token);
+                        FocusScope.of(context).unfocus();
+                        Navigator.pushReplacementNamed(context, 'home');
+                      } else {
+                        print('LOGIN FAILED');
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.yellow,
