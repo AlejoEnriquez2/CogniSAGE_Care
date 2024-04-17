@@ -53,6 +53,7 @@ class MyApp extends StatelessWidget {
           'personal': (_) => const PersonalInformationScreen(),
           'login': (_) => LoginScreen(),
           'register': (_) => RegisterScreen(),
+          'user_info': (_) => UserInfoScreen2(),
         });
   }
 }

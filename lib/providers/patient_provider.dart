@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_form/services/secure_storage.dart';
 
 class PatientProvider with ChangeNotifier {
   bool _isLoggedIn = false;
@@ -13,6 +14,7 @@ class PatientProvider with ChangeNotifier {
 
   void logout() {
     _isLoggedIn = false;
+    SecureStorage().deleteToken();
     notifyListeners();
   }
 }
