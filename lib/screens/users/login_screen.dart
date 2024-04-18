@@ -17,30 +17,27 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PatientProvider patientProvider = Provider.of<PatientProvider>(context);
+    //PatientProvider patientProvider = Provider.of<PatientProvider>(context);
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.white,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, 'home');
+            },
           ),
-          onPressed: () {
-            Navigator.pushReplacementNamed(context, 'home');
-          },
         ),
-      ),
-      body: !patientProvider.isLoggedIn
-          ? LoginWidget(
-              emailController: _emailController,
-              passwordController: _passwordController,
-              authService: authService,
-              storage: storage,
-            )
-          : Center(child: Text('Is not logged in')),
-    );
+        body: LoginWidget(
+          emailController: _emailController,
+          passwordController: _passwordController,
+          authService: authService,
+          storage: storage,
+        ));
   }
 }
 

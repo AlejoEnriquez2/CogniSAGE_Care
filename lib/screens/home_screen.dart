@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend_form/providers/providers.dart';
+import 'package:frontend_form/screens/users/user_info_screen.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -152,7 +153,11 @@ class HomeScreen extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () {
                         print('button User');
-                        Navigator.pushReplacementNamed(context, 'user_info');
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(
+                                builder: (context) => UserInfoScreen()),
+                            (Route<dynamic> route) => false);
+                        // Navigator.pushReplacementNamed(context, 'user_info');
                       },
                       child: ClipOval(
                         child: Stack(
