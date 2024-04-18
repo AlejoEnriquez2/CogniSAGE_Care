@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 class Patient {
+  int? id;
   String? name;
   String? email;
   String? password;
@@ -9,6 +10,7 @@ class Patient {
   String? description;
 
   Patient({
+    this.id,
     this.name,
     this.email,
     this.password,
@@ -22,6 +24,7 @@ class Patient {
   String toRawJson() => json.encode(toJson());
 
   factory Patient.fromJson(Map<String, dynamic> json) => Patient(
+        id: json["id"],
         name: json["name"],
         email: json["email"],
         password: json["password"],
@@ -31,6 +34,7 @@ class Patient {
       );
 
   Map<String, dynamic> toJson() => {
+        "id": id,
         "name": name,
         "email": email,
         "password": password,

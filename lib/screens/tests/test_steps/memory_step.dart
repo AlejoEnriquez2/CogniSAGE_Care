@@ -1,9 +1,6 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:frontend_form/providers/providers.dart';
 import 'package:frontend_form/models/models.dart';
-import 'package:frontend_form/widgets/show_byte_image_widget.dart';
 
 class MemoryStep extends StatefulWidget {
   final List<FocusNode> focusNodes;
@@ -34,7 +31,7 @@ class _MemoryStepState extends State<MemoryStep> {
       padding: const EdgeInsets.all(30),
       child: Column(children: [
         Container(
-          height: MediaQuery.of(context).size.height * 0.67,
+          height: MediaQuery.of(context).size.height * 0.60,
           width: MediaQuery.of(context).size.width - 100,
           decoration: BoxDecoration(
             color: const Color.fromARGB(255, 255, 253, 255),
@@ -70,16 +67,6 @@ class _MemoryStepState extends State<MemoryStep> {
                       prefixIcon: Icon(Icons.edit),
                     ),
                     textInputAction: TextInputAction.done,
-                  ),
-                  const SizedBox(height: 50),
-                  SizedBox(
-                    height: 350,
-                    width: 250,
-                    child: widget.answersModel.executiveDraw != null
-                        ? ShowImageWidget(
-                            imageBytes: Uint8List.fromList(
-                                widget.answersModel.executiveDraw ?? []))
-                        : const Text(''),
                   ),
                 ],
               ),

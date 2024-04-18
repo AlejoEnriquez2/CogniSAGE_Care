@@ -5,4 +5,4 @@ export 'package:frontend_form/screens/users/register_screen.dart';
 export 'package:frontend_form/screens/tests/test_screen.dart';
 export 'package:frontend_form/screens/tests/test_instructions_screen.dart';
 export 'package:frontend_form/screens/tests/personal_information_screen.dart';
-export 'package:frontend_form/screens/users/user_info_screen2.dart';
+export 'package:frontend_form/screens/users/user_info_screen.dart';

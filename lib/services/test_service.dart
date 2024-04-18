@@ -12,7 +12,6 @@ class TestService {
         DateTime.now().difference(testModel.testDate!).inSeconds;
     testModel.testTotalGrade = 0;
     testModel.formId = 1;
-    testModel.patientId = 5;
 
     int testId = await saveTestAnswers(answersModel, context);
     testModel.answersId = testId;

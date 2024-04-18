@@ -17,6 +17,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    PatientProvider patientProvider = Provider.of<PatientProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -31,86 +32,119 @@ class LoginScreen extends StatelessWidget {
           },
         ),
       ),
-      body: Center(
-        child: AuthBackground(
-          child: SafeArea(
-            child: Column(children: [
-              const SizedBox(height: 150),
-              CardContainer(
-                  child: Column(
-                children: [
-                  const SizedBox(height: 20),
-                  const Text(
-                    'Login',
-                    style: TextStyle(
-                        color: Colors.black54,
-                        fontSize: 35,
-                        fontWeight: FontWeight.bold),
+      body: !patientProvider.isLoggedIn
+          ? LoginWidget(
+              emailController: _emailController,
+              passwordController: _passwordController,
+              authService: authService,
+              storage: storage,
+            )
+          : Center(child: Text('Is not logged in')),
+    );
+  }
+}
+
+class LoginWidget extends StatelessWidget {
+  const LoginWidget({
+    super.key,
+    required TextEditingController emailController,
+    required TextEditingController passwordController,
+    required this.authService,
+    required this.storage,
+  })  : _emailController = emailController,
+        _passwordController = passwordController;
+
+  final TextEditingController _emailController;
+  final TextEditingController _passwordController;
+  final AuthService authService;
+  final SecureStorage storage;
+
+  @override
+  Widget build(BuildContext context) {
+    PatientProvider patientProvider = Provider.of<PatientProvider>(context);
+    return Center(
+      child: AuthBackground(
+        child: SafeArea(
+          child: Column(children: [
+            const SizedBox(height: 150),
+            CardContainer(
+                child: Column(
+              children: [
+                const SizedBox(height: 20),
+                const Text(
+                  'Login',
+                  style: TextStyle(
+                      color: Colors.black54,
+                      fontSize: 35,
+                      fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 20),
+                TextFormField(
+                  controller: _emailController,
+                  decoration: const InputDecoration(
+                    labelText: 'Email',
+                    prefixIcon: Icon(Icons.email),
                   ),
-                  const SizedBox(height: 20),
-                  TextFormField(
-                    controller: _emailController,
-                    decoration: const InputDecoration(
-                      labelText: 'Email',
-                      prefixIcon: Icon(Icons.email),
-                    ),
+                ),
+                const SizedBox(height: 20),
+                TextFormField(
+                  controller: _passwordController,
+                  decoration: const InputDecoration(
+                    labelText: 'Password',
+                    prefixIcon: Icon(Icons.lock),
                   ),
-                  const SizedBox(height: 20),
-                  TextFormField(
-                    controller: _passwordController,
-                    decoration: const InputDecoration(
-                      labelText: 'Password',
-                      prefixIcon: Icon(Icons.lock),
-                    ),
-                    obscureText: true,
-                  ),
-                  const SizedBox(height: 50),
-                  ElevatedButton(
-                    onPressed: () async {
-                      String? token = await authService.login(
-                          _emailController.text, _passwordController.text);
-                      if (token != null) {
-                        await storage.storeToken(token);
-                        Provider.of<PatientProvider>(context, listen: false)
-                            .login(token);
+                  obscureText: true,
+                ),
+                const SizedBox(height: 50),
+                ElevatedButton(
+                  onPressed: () async {
+                    FocusScope.of(context).unfocus();
+                    var token = await authService.login(
+                        _emailController.text, _passwordController.text);
+                    if (token != null) {
+                      await storage.storeToken(token);
+                      patientProvider.login(token);
+                      if (patientProvider.isLoggedIn != false) {
                         FocusScope.of(context).unfocus();
                         Navigator.pushReplacementNamed(context, 'home');
                       } else {
                         print('LOGIN FAILED');
                       }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.yellow,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 40, vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                    ),
-                    child: const Text(
-                      'Login',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    } else {
+                      print('TOKEN IS NULL');
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.yellow,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 40, vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
                     ),
                   ),
-                  const SizedBox(height: 20),
-                  TextButton(
-                      onPressed: () =>
-                          Navigator.pushReplacementNamed(context, 'register'),
-                      child: const Text(
-                        "I don't have an account",
-                        style: TextStyle(color: Colors.blueAccent),
-                      ))
-                ],
-              )),
-              const SizedBox(height: 30),
-              const SizedBox(height: 30),
-              const SizedBox(height: 50),
-            ]),
-          ),
+                  child: const Text(
+                    'Login',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                TextButton(
+                    onPressed: () =>
+                        Navigator.pushReplacementNamed(context, 'register'),
+                    child: const Text(
+                      "I don't have an account",
+                      style: TextStyle(color: Colors.blueAccent),
+                    ))
+              ],
+            )),
+            const SizedBox(height: 30),
+            const SizedBox(height: 30),
+            const SizedBox(height: 50),
+          ]),
         ),
       ),
     );

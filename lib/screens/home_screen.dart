@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_form/providers/providers.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    PatientProvider patientProvider = Provider.of<PatientProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -35,15 +39,23 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               children: [
                 const SizedBox(height: 30),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    'Welcome %Username!',
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 255, 255, 255),
-                        fontSize: 35,
-                        fontWeight: FontWeight.bold),
-                  ),
+                  child: patientProvider.isLoggedIn != true
+                      ? Text(
+                          'Welcome',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 255, 255, 255),
+                              fontSize: 35,
+                              fontWeight: FontWeight.bold),
+                        )
+                      : Text(
+                          'Welcome back!',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 255, 255, 255),
+                              fontSize: 35,
+                              fontWeight: FontWeight.bold),
+                        ),
                 ),
                 const SizedBox(height: 30),
                 Stack(children: [
@@ -106,7 +118,7 @@ class HomeScreen extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () {
                         print('button games');
-                        Navigator.pushReplacementNamed(context, 'login');
+                        // Navigator.pushReplacementNamed(context, 'login');
                       },
                       child: ClipOval(
                         child: Stack(

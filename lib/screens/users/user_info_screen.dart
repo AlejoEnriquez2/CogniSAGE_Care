@@ -1,46 +1,82 @@
 import 'package:flutter/material.dart';
-import 'package:frontend_form/services/secure_storage.dart';
+import 'package:frontend_form/providers/providers.dart';
+import 'package:provider/provider.dart';
+
+import '../../models/models.dart';
+import '../../services/services.dart';
 
 class UserInfoScreen extends StatelessWidget {
-  UserInfoScreen({Key? key}) : super(key: key);
-  final storage = SecureStorage();
+  const UserInfoScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: FutureBuilder(
-          future: storage.getToken(),
-          builder: (context, snapshot) {
+    final databaseService = Provider.of<DatabaseService>(context);
+    return Builder(builder: (BuildContext innerContext) {
+      return Consumer<PatientProvider>(
+          builder: (context, patientProvider, child) {
+        if (!patientProvider.isLoggedIn) {
+          Future.microtask(
+            () => Navigator.pushReplacementNamed(context, 'login'),
+          );
+          return const Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
+
+        return FutureBuilder<Patient>(
+          future: databaseService.getPatientInfo(),
+          builder: (context, AsyncSnapshot<Patient> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator());
             } else if (snapshot.hasError) {
-              return const Center(child: Text('Something went wrong'));
-            } else if (snapshot.data != null) {
-              return UserInfoCustom(
-                snapshot: snapshot,
-              );
+              return Center(
+                  child: Scaffold(
+                      appBar: AppBar(
+                        elevation: 0,
+                        title: const Text(
+                          'My information',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        leading: IconButton(
+                          icon: const Icon(
+                            Icons.arrow_back,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            Navigator.pushReplacementNamed(context, 'home');
+                          },
+                        ),
+                        centerTitle: true,
+                      ),
+                      body: Center(
+                        child: Text(snapshot.error.toString(),
+                            style: TextStyle(color: Colors.white)),
+                      )));
             } else {
-              print('SESSION NOT FOUND');
-              WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-                Navigator.pushReplacementNamed(context, 'login');
-              });
+              print("GETS INSIDE THE ELSE");
+              Patient patient = snapshot.data!;
+              print(patient.toJson());
+              return UserInfoCustom(
+                  patient: patient, patientProvider: patientProvider);
             }
-            return Container(); // Add a return statement at the end
           },
-        ),
-      ),
-    );
+        );
+        // return Scaffold(body: UserInfoCustom(patientProvider: patientProvider));
+      });
+    });
   }
 }
 
 class UserInfoCustom extends StatelessWidget {
-  final snapshot;
-
-  UserInfoCustom({
-    Key? key,
-    required this.snapshot,
-  }) : super(key: key);
+  final PatientProvider patientProvider;
+  final Patient patient;
+  const UserInfoCustom({
+    super.key,
+    required this.patientProvider,
+    required this.patient,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -78,57 +114,172 @@ class UserInfoCustom extends StatelessWidget {
                     padding: const EdgeInsets.all(40.0),
                     child: Column(
                       children: [
-                        Text(
-                          'Welcome ${snapshot.data}',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold),
+                        Row(
+                          children: [
+                            Container(
+                              width: 125,
+                              height: 150,
+                              decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage('assets/images/logo1.png'),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 50),
+                            Text(
+                              'Welcome ${patient.name}',
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
                         ),
-                        SizedBox(height: 30),
+                        const SizedBox(height: 30),
                         Container(
-                          padding: EdgeInsets.all(25),
+                          padding: const EdgeInsets.all(25),
                           width: 700,
-                          height: 400,
+                          height: 750,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             color: Colors.white,
                           ),
-                          child: const Column(
-                            children: [
-                              Align(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  "The SAGE test, or Self-Administered Gerocognitive Exam, is a brief self-assessment tool designed to detect early signs of cognitive impairment. Developed by researchers at the Ohio State University Wexner Medical Center, the test aims to identify changes in cognitive functions that are subtle and might not be immediately apparent, serving as a preliminary screen for conditions like Alzheimer's disease, other dementias, and various neurological problems.The test encompasses a variety of questions and tasks that assess different aspects of cognition, including memory, problem-solving abilities, language, and other key functions.",
-                                  style: TextStyle(fontSize: 17),
-                                  textAlign: TextAlign.justify,
+                          child: Padding(
+                            padding: const EdgeInsets.all(30),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Container(
+                                      width: 150,
+                                      height: 150,
+                                      child: const Icon(
+                                        Icons.person,
+                                        size: 130,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 0),
+                                    Container(
+                                      width: 300,
+                                      height: 150,
+                                      child: Center(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Text(
+                                              'The user name is: ${patient.name}',
+                                              style:
+                                                  const TextStyle(fontSize: 20),
+                                            ),
+                                            Text('')
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 25),
+                                  ],
                                 ),
-                              ),
-                              SizedBox(height: 15),
-                              Text(
-                                "It is designed to be taken on paper, but this is a digitized adaptation of it, and can be completed in approximately 15 minutes. After completion, the system will grade and provide feedback and recommendations about cognitive health.",
-                                style: TextStyle(fontSize: 17),
-                                textAlign: TextAlign.justify,
-                              ),
-                              SizedBox(height: 26),
-                              Text(
-                                "You will have many screens in which you have to write or draw your answers.",
-                                style: TextStyle(fontStyle: FontStyle.italic),
-                              ),
-                            ],
+                                const SizedBox(height: 10),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Container(
+                                      width: 150,
+                                      height: 150,
+                                      child: const Icon(
+                                        Icons.checklist_rtl,
+                                        size: 130,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 0),
+                                    Container(
+                                      width: 300,
+                                      height: 150,
+                                      child: Center(
+                                        child: Text(
+                                          patient.grade == 0
+                                              ? "Still haven't done the test"
+                                              : "The last grade is: ${patient.grade}",
+                                          style: const TextStyle(fontSize: 20),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 25),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Container(
+                                      width: 150,
+                                      height: 150,
+                                      child: const Icon(
+                                        Icons.emoji_events_rounded,
+                                        size: 130,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 0),
+                                    Container(
+                                      width: 300,
+                                      height: 150,
+                                      child: const Center(
+                                        child: Text(
+                                          'The game you have played the most is Matching Cards',
+                                          style: TextStyle(fontSize: 20),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 25),
+                                  ],
+                                ),
+                                const SizedBox(height: 20),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Container(
+                                      width: 150,
+                                      height: 150,
+                                      child: const Icon(
+                                        Icons.tips_and_updates_rounded,
+                                        size: 130,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 0),
+                                    Container(
+                                      width: 300,
+                                      height: 150,
+                                      child: Center(
+                                        child: Text(
+                                          patient.status.toString(),
+                                          style: const TextStyle(fontSize: 20),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 25),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                        SizedBox(height: 15),
+                        const SizedBox(height: 15),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            SizedBox(),
+                            const SizedBox(),
                             ElevatedButton(
                               onPressed: () async {
-                                SecureStorage storage = SecureStorage();
-                                storage.deleteToken();
-                                FocusScope.of(context).unfocus();
-                                Navigator.pushReplacementNamed(context, 'home');
+                                // Navigator.pushReplacementNamed(context, 'home');
+                                patientProvider.logout();
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.yellow,
@@ -136,7 +287,7 @@ class UserInfoCustom extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                               ),
-                              child: Text(
+                              child: const Text(
                                 'Logout',
                                 style: TextStyle(
                                   color: Colors.black,
@@ -153,13 +304,13 @@ class UserInfoCustom extends StatelessWidget {
               ),
             ),
           ),
-          Align(
+          const Align(
             alignment: Alignment.bottomCenter,
-            child: Container(
+            child: SizedBox(
               height: 160,
               child: Stack(
                 children: [
-                  const Positioned(
+                  Positioned(
                     bottom: 0,
                     left: 0,
                     right: 0,
@@ -172,20 +323,20 @@ class UserInfoCustom extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Positioned(
-                    bottom: 20,
-                    left: MediaQuery.of(context).size.width / 2 - 62.5,
-                    child: Container(
-                      width: 125,
-                      height: 140,
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/images/logo1.png'),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
+                  // Positioned(
+                  //   bottom: 20,
+                  //   left: MediaQuery.of(context).size.width / 2 - 62.5,
+                  //   child: Container(
+                  //     width: 125,
+                  //     height: 140,
+                  //     decoration: const BoxDecoration(
+                  //       image: DecorationImage(
+                  //         image: AssetImage('assets/images/logo1.png'),
+                  //         fit: BoxFit.cover,
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             ),

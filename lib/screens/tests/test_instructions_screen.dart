@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_form/providers/providers.dart';
+import 'package:provider/provider.dart';
 
 class TestInstructionsScreen extends StatelessWidget {
   const TestInstructionsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // return Consumer<PatientProvider>(
+    //     builder: (context, patientProvider, child) {
+    //   if (!patientProvider.isLoggedIn) {
+    //     Future.microtask(
+    //         () => Navigator.pushReplacementNamed(context, 'login'));
+    //     return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    //   } else {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -155,4 +164,6 @@ class TestInstructionsScreen extends StatelessWidget {
       ),
     );
   }
+  // });
 }
+// }

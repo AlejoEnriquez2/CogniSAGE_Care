@@ -30,6 +30,9 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(create: (context) {
           return PatientProvider();
         }),
+        ChangeNotifierProvider(create: (context) {
+          return DatabaseService();
+        }),
       ],
       child: const MyApp(),
     );
@@ -53,7 +56,7 @@ class MyApp extends StatelessWidget {
           'personal': (_) => const PersonalInformationScreen(),
           'login': (_) => LoginScreen(),
           'register': (_) => RegisterScreen(),
-          'user_info': (_) => UserInfoScreen2(),
+          'user_info': (_) => UserInfoScreen(),
         });
   }
 }

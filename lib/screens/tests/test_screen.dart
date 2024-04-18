@@ -40,6 +40,15 @@ class _TestScreenState extends State<TestScreen> {
   Widget build(BuildContext context) {
     TestModel testModel =
         ModalRoute.of(context)!.settings.arguments as TestModel;
+
+    // return Consumer<PatientProvider>(
+    //     builder: (context, patientProvider, child) {
+    // if (!patientProvider.isLoggedIn) {
+    //   Future.microtask(
+    //       () => Navigator.pushReplacementNamed(context, 'login'));
+    //   return const Scaffold(
+    //       body: Center(child: CircularProgressIndicator()));
+    // } else {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -96,11 +105,7 @@ class _TestScreenState extends State<TestScreen> {
                                       (currentStep == getSteps().length - 1);
                                   if (isLastStep) {
                                     // SEND TEST TO API
-                                    final stateManager = TestService();
-                                    stateManager.saveTestPersonalInfo(
-                                        testModel, answersModel, context);
-                                    Navigator.pushReplacementNamed(
-                                        context, 'home');
+                                    saveTest(testModel, context);
                                   } else {
                                     // log(answersModel.toJson().toString());
                                     setState(() {
@@ -242,6 +247,9 @@ class _TestScreenState extends State<TestScreen> {
         ],
       ),
     );
+    // }
+    //   },
+    // );
   }
 
   List<Step> getSteps() {
@@ -405,5 +413,13 @@ class _TestScreenState extends State<TestScreen> {
     log('SAVING EXECUTIVE DRAW');
     answersModel.isExecDrawCompleted = true;
     details.onStepContinue!();
+  }
+
+  void saveTest(TestModel testModel, BuildContext context) async {
+    final stateManager = TestService();
+    //final patient = await DatabaseService().getPatientInfo();
+    testModel.patientId = 5;
+    stateManager.saveTestPersonalInfo(testModel, answersModel, context);
+    Navigator.pushReplacementNamed(context, 'home');
   }
 }
