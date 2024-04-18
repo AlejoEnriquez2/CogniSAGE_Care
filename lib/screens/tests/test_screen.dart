@@ -417,8 +417,8 @@ class _TestScreenState extends State<TestScreen> {
 
   void saveTest(TestModel testModel, BuildContext context) async {
     final stateManager = TestService();
-    //final patient = await DatabaseService().getPatientInfo();
-    testModel.patientId = 5;
+    final patient = await DatabaseService().getPatientInfo();
+    testModel.patientId = patient.id;
     stateManager.saveTestPersonalInfo(testModel, answersModel, context);
     Navigator.pushReplacementNamed(context, 'home');
   }
