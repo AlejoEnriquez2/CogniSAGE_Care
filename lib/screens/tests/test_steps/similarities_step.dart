@@ -84,7 +84,10 @@ class _SimilaritiesStepState extends State<SimilaritiesStep> {
                   TextFormField(
                     onChanged: (value) {
                       setState(() {
-                        widget.answersModel.calculation1 = double.parse(value);
+                        if (value != '') {
+                          widget.answersModel.calculation1 =
+                              double.parse(value);
+                        }
                       });
                     },
                     focusNode: widget.focusNodes[12],
@@ -108,7 +111,10 @@ class _SimilaritiesStepState extends State<SimilaritiesStep> {
                   TextFormField(
                     onChanged: (value) {
                       setState(() {
-                        widget.answersModel.calculation2 = double.parse(value);
+                        if (value != '') {
+                          widget.answersModel.calculation2 =
+                              double.parse(value);
+                        }
                       });
                     },
                     focusNode: widget.focusNodes[13],
