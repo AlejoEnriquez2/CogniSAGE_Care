@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_form/services/auth_service.dart';
 import 'package:frontend_form/widgets/auth_background.dart';
 import 'package:frontend_form/widgets/card_container.dart';
 import 'package:provider/provider.dart';
@@ -99,13 +100,8 @@ class RegisterScreen extends StatelessWidget {
                           const SizedBox(height: 50),
                           ElevatedButton(
                             onPressed: () {
-                              if (registrationFormProvider.formKey.currentState!
-                                  .validate()) {
-                                final stateManager = RegistrationService();
-                                stateManager.submitRegistration(
-                                    patient, context);
-                                Navigator.pushReplacementNamed(context, 'home');
-                              }
+                              registerPatient(
+                                  registrationFormProvider, context);
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.yellow,
@@ -148,5 +144,36 @@ class RegisterScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void registerPatient(
+      RegistrationFormProvider registrationFormProvider, BuildContext context) {
+    try {
+      if (registrationFormProvider.formKey.currentState!.validate()) {
+        final stateManager = RegistrationService();
+        AuthService authService = AuthService();
+        stateManager.submitRegistration(patient, context);
+        authService.login(patient.email!, patient.password!);
+        Navigator.pushReplacementNamed(context, 'user_info');
+      }
+    } on Exception catch (e) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Error'),
+            content: Text(e.toString()),
+            actions: [
+              TextButton(
+                child: Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 }

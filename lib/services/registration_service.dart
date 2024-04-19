@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 
 class RegistrationService {
@@ -18,5 +20,8 @@ class RegistrationService {
       body: registrationModel.toRawJson(),
     );
     print(response.body);
+    if (response.statusCode != 201) {
+      throw Exception(jsonDecode(response.body)['message']);
+    }
   }
 }
