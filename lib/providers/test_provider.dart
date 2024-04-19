@@ -81,6 +81,4 @@ class TestProvider extends ChangeNotifier {
     test.patientDifficulties = selectedDifficulties;
     notifyListeners();
   }
-
-  nextStep() {}
 }

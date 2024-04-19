@@ -62,89 +62,131 @@ class LoginWidget extends StatelessWidget {
     return Center(
       child: AuthBackground(
         child: SafeArea(
-          child: Column(children: [
-            const SizedBox(height: 150),
-            CardContainer(
-                child: Column(
-              children: [
-                const SizedBox(height: 20),
-                const Text(
-                  'Login',
-                  style: TextStyle(
-                      color: Colors.black54,
-                      fontSize: 35,
-                      fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  keyboardType: TextInputType.emailAddress,
-                  controller: _emailController,
-                  decoration: const InputDecoration(
-                    labelText: 'Email',
-                    prefixIcon: Icon(Icons.email),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  controller: _passwordController,
-                  decoration: const InputDecoration(
-                    labelText: 'Password',
-                    prefixIcon: Icon(Icons.lock),
-                  ),
-                  obscureText: true,
-                ),
-                const SizedBox(height: 50),
-                ElevatedButton(
-                  onPressed: () async {
-                    FocusScope.of(context).unfocus();
-                    var token = await authService.login(
-                        _emailController.text, _passwordController.text);
-                    if (token != null) {
-                      await storage.storeToken(token);
-                      patientProvider.login(token);
-                      if (patientProvider.isLoggedIn != false) {
-                        FocusScope.of(context).unfocus();
-                        Navigator.pushReplacementNamed(context, 'home');
-                      } else {
-                        print('LOGIN FAILED');
-                      }
-                    } else {
-                      print('TOKEN IS NULL');
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.yellow,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 40, vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                  ),
-                  child: const Text(
+          child: Form(
+            key: patientProvider.formKey,
+            child: Column(children: [
+              const SizedBox(height: 250),
+              CardContainer(
+                  child: Column(
+                children: [
+                  const SizedBox(height: 20),
+                  const Text(
                     'Login',
                     style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                        color: Colors.black54,
+                        fontSize: 35,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 20),
+                  TextFormField(
+                    keyboardType: TextInputType.emailAddress,
+                    controller: _emailController,
+                    decoration: const InputDecoration(
+                      labelText: 'Email',
+                      prefixIcon: Icon(Icons.email),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your email';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 20),
+                  TextFormField(
+                    controller: _passwordController,
+                    decoration: const InputDecoration(
+                      labelText: 'Password',
+                      prefixIcon: Icon(Icons.lock),
+                    ),
+                    obscureText: true,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your password';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 50),
+                  ElevatedButton(
+                    onPressed: () async {
+                      if (patientProvider.formKey.currentState!.validate()) {
+                        FocusScope.of(context).unfocus();
+                        await login(patientProvider, context);
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.yellow,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 40, vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                    child: const Text(
+                      'Login',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 20),
-                TextButton(
-                    onPressed: () =>
-                        Navigator.pushReplacementNamed(context, 'register'),
-                    child: const Text(
-                      "I don't have an account",
-                      style: TextStyle(color: Colors.blueAccent),
-                    ))
-              ],
-            )),
-            const SizedBox(height: 30),
-            const SizedBox(height: 30),
-            const SizedBox(height: 50),
-          ]),
+                  const SizedBox(height: 20),
+                  TextButton(
+                      onPressed: () =>
+                          Navigator.pushReplacementNamed(context, 'register'),
+                      child: const Text(
+                        "I don't have an account",
+                        style: TextStyle(color: Colors.blueAccent),
+                      ))
+                ],
+              )),
+              const SizedBox(height: 30),
+              const SizedBox(height: 30),
+              const SizedBox(height: 50),
+            ]),
+          ),
         ),
       ),
     );
+  }
+
+  Future<void> login(
+      PatientProvider patientProvider, BuildContext context) async {
+    try {
+      var token = await authService.login(
+          _emailController.text, _passwordController.text);
+      if (token != null) {
+        await storage.storeToken(token);
+        patientProvider.login(token);
+        if (patientProvider.isLoggedIn != false) {
+          FocusScope.of(context).unfocus();
+          Navigator.pushReplacementNamed(context, 'home');
+        } else {
+          print('LOGIN FAILED');
+        }
+      } else {
+        print('TOKEN IS NULL');
+      }
+    } on Exception catch (e) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Error'),
+            content: Text(e.toString()),
+            actions: [
+              TextButton(
+                child: Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 }

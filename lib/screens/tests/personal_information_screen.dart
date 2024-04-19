@@ -27,7 +27,8 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
   ];
   List<FocusNode> focusNodes = List.generate(6, (_) => FocusNode());
   TestModel testModel = TestModel();
-
+  List<GlobalKey<FormState>> _formKeys =
+      List.generate(4, (_) => GlobalKey<FormState>());
   @override
   Widget build(BuildContext context) {
     testModel.testDate = DateTime.now();
@@ -74,94 +75,146 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                             create: (context) => TestProvider(),
                             child: Consumer<TestProvider>(
                                 builder: (context, testProvider, _) {
-                              return Form(
-                                  key: testProvider.formKey,
-                                  child: Container(
-                                    child: Stepper(
-                                      physics: NeverScrollableScrollPhysics(),
-                                      elevation: 10,
-                                      type: StepperType.horizontal,
-                                      currentStep: currentStep,
-                                      onStepCancel: () => currentStep == 0
-                                          ? null
-                                          : setState(() {
-                                              currentStep -= 1;
-                                            }),
-                                      onStepContinue: () {
-                                        bool isLastStep = (currentStep ==
-                                            getSteps().length - 1);
-                                        if (isLastStep) {
-                                          // final stateManager = TestService();
-                                          // stateManager.saveTestPersonalInfo(
-                                          //     testModel, context);
-                                          // Navigator.pushReplacementNamed(
-                                          //     context, 'home');
-                                          Navigator.pushNamed(context, 'test',
-                                              arguments: testModel);
+                              return Container(
+                                child: Stepper(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  elevation: 10,
+                                  type: StepperType.horizontal,
+                                  currentStep: currentStep,
+                                  onStepCancel: () => currentStep == 0
+                                      ? null
+                                      : setState(() {
+                                          currentStep -= 1;
+                                        }),
+                                  onStepContinue: () {
+                                    bool isLastStep =
+                                        (currentStep == getSteps().length - 1);
+                                    if (isLastStep) {
+                                      if (testModel.patientDepression == null ||
+                                          testModel.patientPersonality ==
+                                              null ||
+                                          testModel.patientDifficulties ==
+                                              null) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(const SnackBar(
+                                                content: Text(
+                                                    'Please Complete the form')));
+                                      } else {
+                                        Navigator.pushNamed(context, 'test',
+                                            arguments: testModel);
+                                      }
+                                    } else {
+                                      if (currentStep == 0) {
+                                        if (_formKeys[currentStep]
+                                            .currentState!
+                                            .validate()) {
+                                          if (testModel.patientGender == null) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(const SnackBar(
+                                                    content: Text(
+                                                        'Please complete the form')));
+
+                                            return;
+                                          } else {
+                                            setState(() {
+                                              currentStep += 1;
+                                            });
+                                          }
+                                        }
+                                      }
+                                      if (currentStep == 1) {
+                                        if (_formKeys[currentStep]
+                                            .currentState!
+                                            .validate()) {
+                                          if (testModel.patientMemory == null ||
+                                              testModel.patientRelatives ==
+                                                  null) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(const SnackBar(
+                                                    content: Text(
+                                                        'Please complete the form')));
+                                            return;
+                                          } else {
+                                            setState(() {
+                                              currentStep += 1;
+                                            });
+                                          }
+                                        }
+                                      }
+                                      if (currentStep == 2) {
+                                        if (testModel.patientBalance == null ||
+                                            testModel.patientMajorStroke ==
+                                                null ||
+                                            testModel.patientMinorStroke ==
+                                                null) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(const SnackBar(
+                                                  content: Text(
+                                                      'Please Complete the form')));
                                         } else {
                                           setState(() {
                                             currentStep += 1;
                                           });
                                         }
-                                      },
-                                      steps: getSteps(),
-                                      stepIconBuilder: (index, state) {
-                                        Color color = currentStep == index
-                                            ? Colors.blue
-                                            : (currentStep < index
-                                                ? Colors.black
-                                                : const Color.fromARGB(
-                                                    155, 158, 158, 158));
-                                        return Container(
-                                          decoration: const BoxDecoration(
+                                      }
+                                    }
+                                  },
+                                  steps: getSteps(),
+                                  stepIconBuilder: (index, state) {
+                                    Color color = currentStep == index
+                                        ? Colors.blue
+                                        : (currentStep < index
+                                            ? Colors.black
+                                            : const Color.fromARGB(
+                                                155, 158, 158, 158));
+                                    return Container(
+                                      decoration: const BoxDecoration(
+                                        color: Colors.white,
+                                      ),
+                                      child: Icon(
+                                        _stepIcons[index],
+                                        color: color,
+                                        size: 25,
+                                      ),
+                                    );
+                                  },
+                                  controlsBuilder: (BuildContext context,
+                                      ControlsDetails details) {
+                                    return Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        IconButton(
+                                          onPressed: details.onStepCancel,
+                                          icon: const Icon(
+                                            Icons.arrow_back,
                                             color: Colors.white,
                                           ),
-                                          child: Icon(
-                                            _stepIcons[index],
-                                            color: color,
-                                            size: 25,
+                                        ),
+                                        const SizedBox(width: 10),
+                                        const SizedBox(width: 10),
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            print(testModel.toJson());
+                                            details.onStepContinue!();
+                                          },
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: Colors.yellow,
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 20, vertical: 10),
                                           ),
-                                        );
-                                      },
-                                      controlsBuilder: (BuildContext context,
-                                          ControlsDetails details) {
-                                        return Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            IconButton(
-                                              onPressed: details.onStepCancel,
-                                              icon: const Icon(
-                                                Icons.arrow_back,
-                                                color: Colors.white,
-                                              ),
+                                          child: const Text(
+                                            'Continue',
+                                            style: TextStyle(
+                                              color: Colors.black,
                                             ),
-                                            SizedBox(width: 10),
-                                            SizedBox(width: 10),
-                                            ElevatedButton(
-                                              onPressed: () {
-                                                print(testModel.toJson());
-                                                details.onStepContinue!();
-                                              },
-                                              style: ElevatedButton.styleFrom(
-                                                backgroundColor: Colors.yellow,
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 20,
-                                                        vertical: 10),
-                                              ),
-                                              child: const Text(
-                                                'Continue',
-                                                style: TextStyle(
-                                                  color: Colors.black,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        );
-                                      },
-                                    ),
-                                  ));
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                ),
+                              );
                             }),
                           ),
                         ),
@@ -246,6 +299,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
           focusNodes: focusNodes,
           onRefresh: refresh,
           testModel: testModel,
+          formKey: _formKeys[0],
         ),
       ),
       Step(
@@ -256,6 +310,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
           focusNodes: focusNodes,
           onRefresh: refresh,
           testModel: testModel,
+          formKey: _formKeys[1],
         ),
       ),
       Step(

@@ -13,41 +13,17 @@ class AuthService {
   Patient? patient;
 
   Future<String?> login(String email, String password) async {
-    // try {
     var url = Uri.parse('$_baseUrl/auth/login');
 
-    print(url);
     var response =
         await http.post(url, body: {'email': email, 'password': password});
 
     print(response.body);
-    if (response.statusCode == 201) {
-      var data = jsonDecode(response.body);
-
-      // token = data['access_token'];
-      // await storage.storeToken(token);
-      // patientProvider.login(token);
-
-      // if (data['access_token'] != null) {
-      //   patientProvider.patient = await databaseService.getPatientInfo();
-      //   print("FROM THE PATIENT PROVIDER: " + patientProvider.patient.name!);
-
-      // patient = Patient.fromJson(jsonDecode(response.body));
-      // patientProvider.setPatient(patient!);
-      // print('THE PATIENT IS BEING SAVED ON THE PROVIDER: ${patient!.name}');
-
-      return data['access_token'];
-      // } else {
-      //   print('IT IS NULL');
-      //   return null;
-      // }
+    if (response.statusCode != 201) {
+      throw Exception(jsonDecode(response.body)['message']);
     } else {
-      print('Will print null');
-      return null;
+      var data = jsonDecode(response.body);
+      return data['access_token'];
     }
-    // } catch (e) {
-    //   print('Caught error: $e');
-    //   return null;
-    // }
   }
 }

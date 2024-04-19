@@ -12,7 +12,7 @@ class AuthBackground extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      color: Colors.grey,
+      color: const Color.fromARGB(255, 158, 158, 158),
       child: Stack(
         children: [
           const _BlueBox(),
@@ -35,7 +35,11 @@ class _CustomIcon extends StatelessWidget {
       child: Container(
         width: double.infinity,
         margin: const EdgeInsets.only(top: 25),
-        child: const Icon(Icons.person_pin, color: Colors.white, size: 100),
+        child: Image.asset(
+          'assets/images/logo1.png',
+          width: 150,
+          height: 200,
+        ),
       ),
     );
   }
@@ -49,7 +53,7 @@ class _BlueBox extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Container(
         width: double.infinity,
-        height: size.height * 0.4,
+        height: size.height,
         decoration: _customBoxDecoration(),
         child: Stack(
           children: [
@@ -73,6 +77,16 @@ class _BlueBox extends StatelessWidget {
               top: 10,
               left: size.width * 0.9,
             ),
+            Positioned(
+              child: const _Bubble(),
+              top: size.height * 0.65,
+              left: size.width * 0.5,
+            ),
+            Positioned(
+              child: const _Bubble(),
+              top: size.height * 0.80,
+              left: size.width * 0.1,
+            ),
           ],
         ));
   }
@@ -80,8 +94,10 @@ class _BlueBox extends StatelessWidget {
   BoxDecoration _customBoxDecoration() => const BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Color.fromRGBO(79, 79, 255, 1),
-            Color.fromRGBO(42, 57, 255, 1),
+            // Color.fromRGBO(20, 20, 216, 1),
+            // Color.fromRGBO(64, 111, 212, 1),
+            Color.fromARGB(255, 29, 80, 143),
+            Color.fromARGB(255, 37, 102, 183),
           ],
         ),
       );
@@ -97,7 +113,7 @@ class _Bubble extends StatelessWidget {
       height: 100,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(100),
-        color: const Color.fromRGBO(255, 255, 255, 0.05),
+        color: Color.fromARGB(11, 255, 255, 255),
       ),
     );
   }

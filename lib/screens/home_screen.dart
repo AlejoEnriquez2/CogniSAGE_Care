@@ -30,10 +30,7 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Center(
         child: Container(
-          decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 37, 102, 183),
-            borderRadius: BorderRadius.circular(20),
-          ),
+          decoration: CustomBoxDecorator(),
           child: SizedBox(
             height: MediaQuery.of(context).size.height - 175,
             width: MediaQuery.of(context).size.width - 50,
@@ -191,6 +188,19 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  BoxDecoration CustomBoxDecorator() {
+    return BoxDecoration(
+      // color: const Color.fromARGB(255, 37, 102, 183),
+      borderRadius: BorderRadius.circular(20),
+      gradient: const LinearGradient(
+        colors: [
+          Color.fromARGB(255, 29, 80, 143),
+          Color.fromARGB(255, 37, 102, 183),
+        ],
       ),
     );
   }
