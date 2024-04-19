@@ -74,6 +74,7 @@ class _PersonalStepState extends State<PersonalStep> {
                     style: TextStyle(fontSize: 25),
                   ),
                   TextFormField(
+                    keyboardType: TextInputType.datetime,
                     onChanged: (value) {
                       setState(() {
                         widget.testModel.patientBirthday = value;
@@ -84,7 +85,7 @@ class _PersonalStepState extends State<PersonalStep> {
                       FocusScope.of(context).requestFocus(widget.focusNodes[2]);
                     },
                     decoration: const InputDecoration(
-                      labelText: 'Birthday',
+                      labelText: 'DD/MM/YYYY',
                       prefixIcon: Icon(Icons.date_range_rounded),
                     ),
                     textInputAction: TextInputAction.next,

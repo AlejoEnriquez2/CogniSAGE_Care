@@ -190,8 +190,17 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                                         .indexWhere((node) => node.hasFocus);
                                     if (currentFocus >= 0 &&
                                         currentFocus < focusNodes.length - 1) {
-                                      FocusScope.of(context).requestFocus(
-                                          focusNodes[currentFocus + 1]);
+                                      if (currentFocus == 2 ||
+                                          currentFocus == 3) {
+                                        print('Do nothing - FormField: ' +
+                                            currentFocus.toString());
+                                        FocusScope.of(context).unfocus();
+                                      } else {
+                                        print('FormField: ' +
+                                            currentFocus.toString());
+                                        FocusScope.of(context).requestFocus(
+                                            focusNodes[currentFocus + 1]);
+                                      }
                                     }
                                   },
                                   icon: const Icon(

@@ -212,8 +212,18 @@ class _TestScreenState extends State<TestScreen> {
                                   .indexWhere((node) => node.hasFocus);
                               if (currentFocus >= 0 &&
                                   currentFocus < focusNodes.length - 1) {
-                                FocusScope.of(context)
-                                    .requestFocus(focusNodes[currentFocus + 1]);
+                                if (currentFocus == 8 ||
+                                    currentFocus == 10 ||
+                                    currentFocus == 12 ||
+                                    currentFocus == 25 ||
+                                    currentFocus == 26) {
+                                  print('CurrentFocus: $currentFocus');
+                                  FocusScope.of(context).unfocus();
+                                } else {
+                                  print('CurrentFocus: $currentFocus');
+                                  FocusScope.of(context).requestFocus(
+                                      focusNodes[currentFocus + 1]);
+                                }
                               }
                             },
                             icon: const Icon(
@@ -417,9 +427,49 @@ class _TestScreenState extends State<TestScreen> {
 
   void saveTest(TestModel testModel, BuildContext context) async {
     final stateManager = TestService();
-    final patient = await DatabaseService().getPatientInfo();
-    testModel.patientId = patient.id;
-    stateManager.saveTestPersonalInfo(testModel, answersModel, context);
-    Navigator.pushReplacementNamed(context, 'home');
+    try {
+      final patient = await DatabaseService().getPatientInfo();
+      testModel.patientId = patient.id;
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Error'),
+            content: Text(e.toString()),
+            actions: [
+              TextButton(
+                child: Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+    try {
+      await stateManager.saveTestPersonalInfo(testModel, answersModel, context);
+      Navigator.pushReplacementNamed(context, 'home');
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Error'),
+            content: Text(e.toString()),
+            actions: [
+              TextButton(
+                child: Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 }

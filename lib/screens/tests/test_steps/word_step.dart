@@ -92,6 +92,7 @@ class _WordStepState extends State<WordStep> {
                                   labelText: '',
                                   prefixIcon: Icon(Icons.edit),
                                 ),
+                                textInputAction: TextInputAction.next,
                               ),
                             ),
                             Container(
@@ -154,6 +155,7 @@ class _WordStepState extends State<WordStep> {
                                   labelText: '',
                                   prefixIcon: Icon(Icons.edit),
                                 ),
+                                textInputAction: TextInputAction.next,
                               ),
                             ),
                             Container(
@@ -216,6 +218,7 @@ class _WordStepState extends State<WordStep> {
                                   labelText: '',
                                   prefixIcon: Icon(Icons.edit),
                                 ),
+                                textInputAction: TextInputAction.next,
                               ),
                             ),
                             Container(
@@ -278,6 +281,7 @@ class _WordStepState extends State<WordStep> {
                                   labelText: '',
                                   prefixIcon: Icon(Icons.edit),
                                 ),
+                                textInputAction: TextInputAction.next,
                               ),
                             ),
                             Container(
@@ -308,14 +312,12 @@ class _WordStepState extends State<WordStep> {
                                 },
                                 focusNode: widget.focusNodes[25],
                                 onFieldSubmitted: (_) {
-                                  FocusScope.of(context)
-                                      .requestFocus(widget.focusNodes[26]);
+                                  FocusScope.of(context).unfocus();
                                 },
                                 decoration: const InputDecoration(
                                   labelText: '',
                                   prefixIcon: Icon(Icons.edit),
                                 ),
-                                textInputAction: TextInputAction.next,
                               ),
                             ),
                           ],

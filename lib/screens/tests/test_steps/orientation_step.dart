@@ -122,8 +122,7 @@ class _OrientationStepState extends State<OrientationStep> {
                               },
                               focusNode: widget.focusNodes[8],
                               onFieldSubmitted: (_) {
-                                SystemChannels.textInput
-                                    .invokeMethod('TextInput.hide');
+                                FocusScope.of(context).unfocus();
                               },
                               decoration: const InputDecoration(
                                 labelText: 'YYYY',

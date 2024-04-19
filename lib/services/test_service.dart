@@ -14,6 +14,9 @@ class TestService {
     testModel.formId = 1;
 
     int testId = await saveTestAnswers(answersModel, context);
+    if (testId == -1) {
+      throw Exception('Error saving test answers');
+    }
     testModel.answersId = testId;
 
     final url = Uri.parse('$_baseUrl/test');
@@ -38,8 +41,12 @@ class TestService {
       body: answersModel.toRawJson(),
     );
 
-    var jsonData = json.decode(response.body);
-    return jsonData['id'];
+    if (response.statusCode == 201) {
+      var jsonData = json.decode(response.body);
+      return jsonData['id'];
+    } else {
+      return -1;
+    }
 
     // print(response.body);
     // return -1;

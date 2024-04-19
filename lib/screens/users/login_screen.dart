@@ -77,6 +77,7 @@ class LoginWidget extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 TextFormField(
+                  keyboardType: TextInputType.emailAddress,
                   controller: _emailController,
                   decoration: const InputDecoration(
                     labelText: 'Email',

@@ -33,6 +33,9 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(create: (context) {
           return DatabaseService();
         }),
+        ChangeNotifierProvider(create: (context) {
+          return TestProvider();
+        }),
       ],
       child: const MyApp(),
     );
