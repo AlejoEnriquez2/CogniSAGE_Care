@@ -145,11 +145,6 @@ class _TrailBoardState extends State<TrailBoard> {
     print(bytes);
     // Use the bytes as needed
     // ...
-    if (widget.type == 'redraw') {
-      widget.answersModel.constructionsRedraw = bytes;
-    } else if (widget.type == 'draw') {
-      widget.answersModel.constructionsDraw = bytes;
-    }
   }
 
   bool doesLineIntersectCircle(Offset p1, Offset p2, Circle circle) {

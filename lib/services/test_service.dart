@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 
 class TestService {
   final String _baseUrl = 'http://192.168.0.38:3000';
+  // final String _baseUrl = 'http://192.168.137.1:3000';
 
   Future<void> saveTestPersonalInfo(
       TestModel testModel, AnswersModel answersModel, context) async {
@@ -31,7 +32,6 @@ class TestService {
       am.executiveLinesDraw = answersModel.executiveLinesDraw ?? [];
       am.executiveDraw = answersModel.executiveDraw ?? [];
       am.memoryPhrase = answersModel.memoryPhrase ?? 'null';
-
       return am;
     }
 
@@ -52,6 +52,7 @@ class TestService {
       body: testModel.toRawJson(),
     );
     print(response.body);
+    // isLoading = false;
   }
 
   Future<int> saveTestAnswers(AnswersModel answersModel, context) async {

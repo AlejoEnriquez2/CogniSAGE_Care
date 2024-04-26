@@ -9,13 +9,13 @@ class AnswersModel {
   String? similarities;
   double? calculation1;
   double? calculation2;
-  List<int>? constructionsRedraw;
-  List<int>? constructionsDraw;
+  List<String>? constructionsRedraw;
+  List<String>? constructionsDraw;
   List<String>? verbalWords;
   String? executiveTrail;
   String? executiveLines;
-  List<int>? executiveLinesDraw;
-  List<int>? executiveDraw;
+  List<String>? executiveLinesDraw;
+  List<String>? executiveDraw;
   String? memoryPhrase;
   String? w1, w2, w3, w4, w5, w6, w7, w8, w9, w10, w11, w12;
   bool? isDrawCompleted;

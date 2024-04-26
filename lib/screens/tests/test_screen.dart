@@ -40,15 +40,6 @@ class _TestScreenState extends State<TestScreen> {
   Widget build(BuildContext context) {
     TestModel testModel =
         ModalRoute.of(context)!.settings.arguments as TestModel;
-
-    // return Consumer<PatientProvider>(
-    //     builder: (context, patientProvider, child) {
-    // if (!patientProvider.isLoggedIn) {
-    //   Future.microtask(
-    //       () => Navigator.pushReplacementNamed(context, 'login'));
-    //   return const Scaffold(
-    //       body: Center(child: CircularProgressIndicator()));
-    // } else {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -169,12 +160,21 @@ class _TestScreenState extends State<TestScreen> {
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 20, vertical: 10),
                                         ),
-                                        child: const Text(
-                                          'Continue',
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                          ),
-                                        ),
+                                        child: testProvider.isLoading
+                                            ? const Center(
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  valueColor:
+                                                      AlwaysStoppedAnimation<
+                                                          Color>(Colors.blue),
+                                                ),
+                                              )
+                                            : const Text(
+                                                'Continue',
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                ),
+                                              ),
                                       ),
                                     ],
                                   );
@@ -449,9 +449,11 @@ class _TestScreenState extends State<TestScreen> {
         },
       );
     }
+
+    final testProvider = Provider.of<TestProvider>(context, listen: false);
     try {
+      testProvider.setLoading(true);
       await stateManager.saveTestPersonalInfo(testModel, answersModel, context);
-      Navigator.pushReplacementNamed(context, 'home');
     } catch (e) {
       showDialog(
         context: context,
@@ -470,6 +472,8 @@ class _TestScreenState extends State<TestScreen> {
           );
         },
       );
+    } finally {
+      Navigator.pushReplacementNamed(context, 'home');
     }
   }
 }

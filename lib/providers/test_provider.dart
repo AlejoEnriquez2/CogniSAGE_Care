@@ -25,6 +25,9 @@ class TestProvider extends ChangeNotifier {
     patientId: 0,
   );
 
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   bool isValidForm() {
@@ -79,6 +82,11 @@ class TestProvider extends ChangeNotifier {
 
   updateDifficulties(bool selectedDifficulties) {
     test.patientDifficulties = selectedDifficulties;
+    notifyListeners();
+  }
+
+  void setLoading(bool loading) {
+    _isLoading = loading;
     notifyListeners();
   }
 }

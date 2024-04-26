@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -39,6 +40,7 @@ class _ExecutiveDrawBoardState extends State<ExecutiveDrawBoard> {
     // Create a new image recorder
     ui.PictureRecorder recorder = ui.PictureRecorder();
     Canvas canvas = Canvas(recorder);
+    widget.answersModel.executiveDraw = [];
 
     // Paint the draw on the canvas
     canvas.drawColor(
@@ -57,17 +59,11 @@ class _ExecutiveDrawBoardState extends State<ExecutiveDrawBoard> {
     // Convert the image to bytes
     ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
     Uint8List bytes = byteData!.buffer.asUint8List();
-    print(bytes);
-    // Use the bytes as needed
-    // ...
-    if (widget.type == 'redraw') {
-      widget.answersModel.constructionsRedraw = bytes;
-    } else if (widget.type == 'draw') {
-      widget.answersModel.constructionsDraw = bytes;
-    } else if (widget.type == 'temp') {
-      widget.answersModel.executiveLinesDraw = bytes;
-    } else if (widget.type == 'executive') {
-      widget.answersModel.executiveDraw = bytes;
+
+    String base64String = base64Encode(bytes);
+
+    if (widget.type == 'executive') {
+      widget.answersModel.executiveDraw!.add(base64String);
     }
     widget.answersModel.isExecDrawCompleted = false;
   }

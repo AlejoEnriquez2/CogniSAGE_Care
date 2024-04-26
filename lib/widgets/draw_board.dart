@@ -1,4 +1,5 @@
 import 'dart:typed_data';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'dart:ui' as ui;
@@ -113,10 +114,47 @@ class _DrawBoardState extends State<DrawBoard> {
     // print(bytes);
     // Use the bytes as needed
     // ...
+    // if (widget.type == 'redraw') {
+    //   // widget.answersModel.constructionsRedraw = bytes;
+    // } else if (widget.type == 'draw') {
+    //   widget.answersModel.constructionsDraw = bytes;
+    // }
+    // widget.answersModel.isDrawCompleted = false;
+  }
+
+  void _convertToByteData64() async {
+    widget.answersModel.constructionsRedraw = [];
+    widget.answersModel.constructionsDraw = [];
+    // Create a new image recorder
+    ui.PictureRecorder recorder = ui.PictureRecorder();
+    Canvas canvas = Canvas(recorder);
+
+    // Paint the draw on the canvas
+    canvas.drawColor(
+      Colors.white,
+      BlendMode.color,
+    );
+    _BoardPainter(points: _points)
+        .paint(canvas, Size(widget.canvaSize, widget.canvaSize));
+    // End recording and obtain the image
+    ui.Picture picture = recorder.endRecording();
+    ui.Image image = await picture.toImage(
+      widget.canvaSize.toInt(),
+      widget.canvaSize.toInt(),
+    );
+
+    // Convert the image to bytes
+    ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+    Uint8List bytes = byteData!.buffer.asUint8List();
+
+    // Convert bytes to Base64 string
+    String base64String = base64Encode(bytes);
+
+    // Use the Base64 string as needed
     if (widget.type == 'redraw') {
-      widget.answersModel.constructionsRedraw = bytes;
+      widget.answersModel.constructionsRedraw!.add(base64String);
     } else if (widget.type == 'draw') {
-      widget.answersModel.constructionsDraw = bytes;
+      widget.answersModel.constructionsDraw!.add(base64String);
     }
     widget.answersModel.isDrawCompleted = false;
   }
@@ -125,7 +163,7 @@ class _DrawBoardState extends State<DrawBoard> {
   Widget build(BuildContext context) {
     if (widget.answersModel.isDrawCompleted != true) {
     } else {
-      _convertToByteData();
+      _convertToByteData64();
     }
     return GestureDetector(
       onPanUpdate: (DragUpdateDetails details) {
@@ -185,7 +223,7 @@ class _DrawBoardState extends State<DrawBoard> {
                 IconButton(
                   onPressed: () {
                     setState(() {
-                      _convertToByteData();
+                      _convertToByteData64();
                     });
                   },
                   icon: const Icon(Icons.save),

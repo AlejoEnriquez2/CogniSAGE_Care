@@ -70,14 +70,14 @@ class _ShowDrawStepState extends State<ShowDrawStep> {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 550,
-                      width: 450,
-                      child: ShowImageWidget(
-                        imageBytes: Uint8List.fromList(
-                            widget.answersModel.constructionsDraw ?? []),
-                      ),
-                    ),
+                    // SizedBox(
+                    //   height: 550,
+                    //   width: 450,
+                    //   child: ShowImageWidget(
+                    //     imageBytes: Uint8List.fromList(
+                    //         widget.answersModel.constructionsDraw ?? []),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),

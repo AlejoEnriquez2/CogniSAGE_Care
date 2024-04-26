@@ -146,14 +146,15 @@ class RegisterScreen extends StatelessWidget {
     );
   }
 
-  void registerPatient(
-      RegistrationFormProvider registrationFormProvider, BuildContext context) {
+  Future<void> registerPatient(
+      RegistrationFormProvider registrationFormProvider,
+      BuildContext context) async {
     try {
       if (registrationFormProvider.formKey.currentState!.validate()) {
         final stateManager = RegistrationService();
-        AuthService authService = AuthService();
-        stateManager.submitRegistration(patient, context);
-        authService.login(patient.email!, patient.password!);
+        // AuthService authService = AuthService();
+        await stateManager.submitRegistration(patient, context);
+        // authService.login(patient.email!, patient.password!);
         Navigator.pushReplacementNamed(context, 'user_info');
       }
     } on Exception catch (e) {

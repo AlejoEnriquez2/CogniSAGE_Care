@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:math';
 import 'dart:typed_data';
 import 'dart:developer' as dev;
@@ -107,6 +108,7 @@ class _ExecutiveBoardState extends State<ExecutiveBoard> {
   }
 
   void _convertToByteData() async {
+    widget.answersModel.executiveLinesDraw = [];
     // Create a new image recorder
     ui.PictureRecorder recorder = ui.PictureRecorder();
     Canvas canvas = Canvas(recorder);
@@ -128,15 +130,12 @@ class _ExecutiveBoardState extends State<ExecutiveBoard> {
     // Convert the image to bytes
     ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
     Uint8List bytes = byteData!.buffer.asUint8List();
-    print(bytes);
+
+    String base64String = base64Encode(bytes);
+
     // Use the bytes as needed
-    // ...
-    if (widget.type == 'redraw') {
-      widget.answersModel.constructionsRedraw = bytes;
-    } else if (widget.type == 'draw') {
-      widget.answersModel.constructionsDraw = bytes;
-    } else if (widget.type == 'temp') {
-      widget.answersModel.executiveLinesDraw = bytes;
+    if (widget.type == 'temp') {
+      widget.answersModel.executiveLinesDraw!.add(base64String);
     }
     widget.answersModel.isExecLinesDrawCompleted = false;
   }

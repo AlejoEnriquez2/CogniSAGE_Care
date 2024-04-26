@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -89,18 +90,16 @@ class _ExecutiveDrawStepState extends State<ExecutiveDrawStep> {
 
                             // Once the Future is completed, show the ShowImageWidget
                             return SizedBox(
-                              height: 200,
-                              width: 250,
-                              child:
-                                  widget.answersModel.executiveLinesDraw != null
-                                      ? ShowImageWidget(
-                                          imageBytes: Uint8List.fromList(widget
-                                                  .answersModel
-                                                  .executiveLinesDraw ??
-                                              []),
-                                        )
-                                      : const Text(''),
-                            );
+                                height: 200,
+                                width: 250,
+                                child: widget.answersModel.executiveLinesDraw !=
+                                        null
+                                    ? ShowImageWidget(
+                                        imageBytes: base64Decode(
+                                        widget.answersModel
+                                            .executiveLinesDraw![0],
+                                      ))
+                                    : const Text('Image not found'));
                           },
                         )
                       ],

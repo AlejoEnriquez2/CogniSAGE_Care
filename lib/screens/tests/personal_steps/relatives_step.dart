@@ -48,7 +48,7 @@ class _RelativesStepState extends State<RelativesStep> {
                   children: [
                     const SizedBox(height: 30),
                     const Text(
-                      'My race is: ',
+                      'My ethnical background is: ',
                       style: TextStyle(fontSize: 25),
                     ),
                     TextFormField(

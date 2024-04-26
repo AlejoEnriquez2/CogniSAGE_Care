@@ -26,6 +26,33 @@ class PersonalStep extends StatefulWidget {
 
 class _PersonalStepState extends State<PersonalStep> {
   final TestProvider testProvider = TestProvider();
+  final birthdayController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    String oldText = '';
+    birthdayController.addListener(() {
+      final text = birthdayController.text;
+      if (text.length < oldText.length) {
+        oldText = text;
+        return;
+      }
+      if (text.length == 2 || text.length == 5) {
+        birthdayController.text = text + '/';
+        birthdayController.selection = TextSelection.fromPosition(
+          TextPosition(offset: birthdayController.text.length),
+        );
+      }
+      oldText = text;
+    });
+  }
+
+  @override
+  void dispose() {
+    birthdayController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,6 +113,8 @@ class _PersonalStepState extends State<PersonalStep> {
                       style: TextStyle(fontSize: 25),
                     ),
                     TextFormField(
+                      maxLength: 10,
+                      controller: birthdayController,
                       keyboardType: TextInputType.datetime,
                       onChanged: (value) {
                         setState(() {
@@ -100,6 +129,7 @@ class _PersonalStepState extends State<PersonalStep> {
                       decoration: const InputDecoration(
                         labelText: 'DD/MM/YYYY',
                         prefixIcon: Icon(Icons.date_range_rounded),
+                        counterText: '',
                       ),
                       textInputAction: TextInputAction.next,
                       validator: (value) {
