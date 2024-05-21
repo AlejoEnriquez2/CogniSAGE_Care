@@ -261,6 +261,7 @@ class UserInfoCustom extends StatelessWidget {
                                         child: Text(
                                           patient.status.toString(),
                                           style: const TextStyle(fontSize: 20),
+                                          textAlign: TextAlign.center,
                                         ),
                                       ),
                                     ),

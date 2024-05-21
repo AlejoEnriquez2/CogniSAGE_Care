@@ -29,19 +29,19 @@ class _ConstructionDrawStepState extends State<ConstructionDrawStep> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(5),
+      padding: const EdgeInsets.all(0),
       child: Column(
         children: [
           Container(
-            height: MediaQuery.of(context).size.height * 0.7,
-            width: MediaQuery.of(context).size.width - 100,
+            height: MediaQuery.of(context).size.height * 0.75,
+            width: MediaQuery.of(context).size.width - 50,
             decoration: BoxDecoration(
               color: const Color.fromARGB(255, 255, 255, 255),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Center(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -62,14 +62,14 @@ class _ConstructionDrawStepState extends State<ConstructionDrawStep> {
                           ],
                         ),
                         SizedBox(
-                          height: 175,
+                          height: 150,
                           child: VerticalDivider(
                             color: Color.fromARGB(255, 88, 88, 88),
                             thickness: 2,
                           ),
                         ),
                         SizedBox(
-                          height: 200,
+                          height: 175,
                           width: 250,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -98,10 +98,10 @@ class _ConstructionDrawStepState extends State<ConstructionDrawStep> {
                       ],
                     ),
                     SizedBox(
-                      height: 650,
-                      width: 550,
+                      height: 750,
+                      width: 650,
                       child: DrawBoard(
-                        canvaSize: 550,
+                        canvaSize: 650,
                         type: 'draw',
                         answersModel: widget.answersModel,
                       ),

@@ -42,6 +42,10 @@ class _ExecutiveDrawBoardState extends State<ExecutiveDrawBoard> {
     Canvas canvas = Canvas(recorder);
     widget.answersModel.executiveDraw = [];
 
+    if (_points.isEmpty) {
+      return;
+    }
+
     // Paint the draw on the canvas
     canvas.drawColor(
       Colors.white,

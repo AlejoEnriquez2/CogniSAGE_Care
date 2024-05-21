@@ -75,7 +75,7 @@ class TestModel {
         "testTotalTime": testTotalTime,
         "testTotalGrade": testTotalGrade,
         "patientName": patientName,
-        "patientBirthday": patientBirthday.toString(),
+        "patientBirthday": patientBirthday,
         "patientEducation": patientEducation,
         "patientGender": patientGender,
         "patientRace": patientRace,

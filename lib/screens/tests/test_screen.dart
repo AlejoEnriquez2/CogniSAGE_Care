@@ -67,11 +67,17 @@ class _TestScreenState extends State<TestScreen> {
                 borderRadius: BorderRadius.circular(20),
               ),
               child: SizedBox(
-                height: MediaQuery.of(context).size.height - 150,
-                width: MediaQuery.of(context).size.width - 50,
+                height: currentStep != 5
+                    ? MediaQuery.of(context).size.height - 150
+                    : MediaQuery.of(context).size.height - 50,
+                width: currentStep != 5
+                    ? MediaQuery.of(context).size.width - 50
+                    : MediaQuery.of(context).size.width,
                 child: Center(
                   child: Padding(
-                    padding: const EdgeInsets.all(15.0),
+                    padding: currentStep != 5
+                        ? const EdgeInsets.all(15.0)
+                        : const EdgeInsets.all(0.0),
                     child: ChangeNotifierProvider(
                       create: (context) => TestProvider(),
                       child: Consumer<TestProvider>(
@@ -214,7 +220,7 @@ class _TestScreenState extends State<TestScreen> {
                                   currentFocus < focusNodes.length - 1) {
                                 if (currentFocus == 8 ||
                                     currentFocus == 10 ||
-                                    currentFocus == 12 ||
+                                    currentFocus == 13 ||
                                     currentFocus == 25 ||
                                     currentFocus == 26) {
                                   print('CurrentFocus: $currentFocus');

@@ -125,6 +125,11 @@ class _DrawBoardState extends State<DrawBoard> {
   void _convertToByteData64() async {
     widget.answersModel.constructionsRedraw = [];
     widget.answersModel.constructionsDraw = [];
+
+    if (_points.isEmpty) {
+      return;
+    }
+
     // Create a new image recorder
     ui.PictureRecorder recorder = ui.PictureRecorder();
     Canvas canvas = Canvas(recorder);
