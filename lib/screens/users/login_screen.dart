@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_form/generated/l10n.dart';
 import 'package:frontend_form/providers/patient_provider.dart';
 import 'package:frontend_form/services/secure_storage.dart';
 import 'package:frontend_form/services/auth_service.dart';
@@ -70,8 +71,8 @@ class LoginWidget extends StatelessWidget {
                   child: Column(
                 children: [
                   const SizedBox(height: 20),
-                  const Text(
-                    'Login',
+                  Text(
+                    S.of(context).login,
                     style: TextStyle(
                         color: Colors.black54,
                         fontSize: 35,
@@ -81,13 +82,13 @@ class LoginWidget extends StatelessWidget {
                   TextFormField(
                     keyboardType: TextInputType.emailAddress,
                     controller: _emailController,
-                    decoration: const InputDecoration(
-                      labelText: 'Email',
-                      prefixIcon: Icon(Icons.email),
+                    decoration: InputDecoration(
+                      labelText: S.of(context).username,
+                      prefixIcon: Icon(Icons.person),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your email';
+                        return S.of(context).pleaseEnterYourName;
                       }
                       return null;
                     },
@@ -95,14 +96,14 @@ class LoginWidget extends StatelessWidget {
                   const SizedBox(height: 20),
                   TextFormField(
                     controller: _passwordController,
-                    decoration: const InputDecoration(
-                      labelText: 'Password',
+                    decoration: InputDecoration(
+                      labelText: S.of(context).password,
                       prefixIcon: Icon(Icons.lock),
                     ),
                     obscureText: true,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your password';
+                        return S.of(context).password;
                       }
                       return null;
                     },
@@ -123,8 +124,8 @@ class LoginWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30),
                       ),
                     ),
-                    child: const Text(
-                      'Login',
+                    child: Text(
+                      S.of(context).login,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 16,
@@ -136,8 +137,8 @@ class LoginWidget extends StatelessWidget {
                   TextButton(
                       onPressed: () =>
                           Navigator.pushReplacementNamed(context, 'register'),
-                      child: const Text(
-                        "I don't have an account",
+                      child: Text(
+                        S.of(context).iDontHaveAnAccount,
                         style: TextStyle(color: Colors.blueAccent),
                       ))
                 ],

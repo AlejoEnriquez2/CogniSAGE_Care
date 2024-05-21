@@ -1,0 +1,175 @@
+{
+    "@@locale": "es",
+    "welcome": "Bienvenido",
+    "@welcome": {
+        "description": "El mensaje de bienvenida que se muestra en la pantalla de inicio."
+    },
+    "test": "PRUEBA",
+    "@test": {
+        "description": "Etiqueta para botones o acciones relacionadas con pruebas."
+    },
+    "games": "JUEGOS",
+    "@games": {
+        "description": "Título de la sección o página que lista juegos."
+    },
+    "user": "USUARIO",
+    "@user": {
+        "description": "Etiqueta utilizada para el perfil del usuario o configuraciones relacionadas."
+    },
+    "login": "Iniciar sesión",
+    "@login": {
+        "description": "Texto del botón para la acción de iniciar sesión."
+    },
+    "username": "Nombre de usuario",
+    "@username": {
+        "description": "Texto de marcador de posición para el campo de nombre de usuario."
+    },
+    "password": "Contraseña",
+    "@password": {
+        "description": "Texto de marcador de posición para el campo de contraseña."
+    },
+    "iDontHaveAnAccount": "No tengo una cuenta",
+    "@iDontHaveAnAccount": {
+        "description": "Texto para que los usuarios naveguen a la pantalla de registro."
+    },
+    "invalidCredentials": "Credenciales inválidas",
+    "@invalidCredentials": {
+        "description": "Mensaje de error que se muestra cuando las credenciales de inicio de sesión no coinciden."
+    },
+    "registerNow": "Registrarse ahora",
+    "@registerNow": {
+        "description": "Texto de invitación para que el usuario se registre."
+    },
+    "name": "Nombre",
+    "@name": {
+        "description": "Texto de marcador para el campo de nombre."
+    },
+    "register": "Registrarse",
+    "@register": {
+        "description": "Texto del botón para realizar el registro."
+    },
+    "iHaveAnAccount": "Ya tengo una cuenta",
+    "@iHaveAnAccount": {
+        "description": "Texto para que los usuarios que ya tienen cuenta puedan navegar a la pantalla de inicio de sesión."
+    },
+    "whatIsSageTest": "¿Qué es el test SAGE?",
+    "@whatIsSageTest": {
+        "description": "Pregunta sobre qué es el test SAGE."
+    },
+    "sageTestDescription": "El test SAGE, o Examen Gerocognitivo Autoadministrado, es una herramienta de autoevaluación breve diseñada para detectar signos tempranos de deterioro cognitivo. Desarrollado por investigadores del Centro Médico Wexner de la Universidad Estatal de Ohio, tiene como objetivo identificar cambios en las funciones cognitivas que son sutiles y podrían no ser inmediatamente aparentes, sirviendo como una evaluación preliminar para condiciones como la enfermedad de Alzheimer, otras demencias y problemas neurológicos diversos.",
+    "@sageTestDescription": {
+        "description": "Descripción de qué es el test SAGE."
+    },
+    "continueTxt": "Continuar",
+    "@continueTxt": {
+        "description": "Texto del botón para proceder en la aplicación."
+    },
+    "tellUsAboutYou": "Cuéntanos sobre ti",
+    "@tellUsAboutYou": {
+        "description": "Encabezado o indicación para que el usuario proporcione detalles personales."
+    },
+    "whatIsYourName": "¿Cuál es tu nombre?",
+    "@whatIsYourName": {
+        "description": "Pregunta pidiendo el nombre del usuario."
+    },
+    "whatIsYourBirthday": "¿Cuál es tu fecha de nacimiento?",
+    "@whatIsYourBirthday": {
+        "description": "Pregunta pidiendo la fecha de nacimiento del usuario."
+    },
+    "howFarDidYouGetInSchool": "¿Cuánto estudiaste?",
+    "@howFarDidYouGetInSchool": {
+        "description": "Pregunta sobre el nivel educativo alcanzado por el usuario."
+    },
+    "studies": "Estudios",
+    "@studies": {
+        "description": "Etiqueta para el campo donde el usuario introduce su campo de estudios."
+    },
+    "iAmA": "Soy:",
+    "@iAmA": {
+        "description": "Invitación al usuario para seleccionar su género."
+    },
+    "man": "Hombre",
+    "@man": {
+        "description": "Opción para selección de género."
+    },
+    "woman": "Mujer",
+    "@woman": {
+        "description": "Opción para selección de género."
+    },
+    "pleaseEnterYourStudies": "Por favor, indica tus estudios",
+    "@pleaseEnterYourStudies": {
+        "description": "Indicación para que el usuario introduzca detalles sobre sus estudios."
+    },
+    "pleaseEnterYourBirthday": "Por favor, indica tu fecha de nacimiento",
+    "@pleaseEnterYourBirthday": {
+        "description": "Indicación para que el usuario introduzca su fecha de nacimiento."
+    },
+    "pleaseEnterYourName": "Por favor, introduce tu nombre",
+    "@pleaseEnterYourName": {
+        "description": "Indicación para que el usuario introduzca su nombre."
+    },
+    "myEthnicalBackgroundIs": "Mi origen étnico es:",
+    "@myEthnicalBackgroundIs": {
+        "description": "Pregunta sobre el origen étnico del usuario."
+    },
+    "pleaseEnterYourRace": "Por favor, indica tu raza",
+    "@pleaseEnterYourRace": {
+        "description": "Indicación para que el usuario introduzca su raza."
+    },
+    "haveYouHadAnyProblemsWithMemoryOrThinking": "¿Has tenido problemas con la memoria o el pensamiento?",
+    "@haveYouHadAnyProblemsWithMemoryOrThinking": {
+        "description": "Pregunta sobre problemas cognitivos del usuario."
+    },
+    "yes": "Sí",
+    "@yes": {
+        "description": "Respuesta afirmativa."
+    },
+    "sometimes": "A veces",
+    "@sometimes": {
+        "description": "Respuesta intermitente."
+    },
+    "no": "No",
+    "@no": {
+        "description": "Respuesta negativa."
+    },
+    "haveYouHadAnyBloodRelativesWithProblems": "¿Algún familiar de sangre ha tenido problemas con la memoria o el pensamiento?",
+    "@haveYouHadAnyBloodRelativesWithProblems": {
+        "description": "Pregunta sobre antecedentes familiares de problemas cognitivos."
+    },
+    "pleaseCompleteTheForm": "Por favor, completa el formulario",
+    "@pleaseCompleteTheForm": {
+        "description": "Indicación para completar el formulario."
+    },
+    "doYouHaveBalanceProblems": "¿Tienes problemas de equilibrio?",
+    "@doYouHaveBalanceProblems": {
+        "description": "Pregunta sobre problemas de equilibrio."
+    },
+    "doYouKnowWhy": "¿Sabes por qué?",
+    "@doYouKnowWhy": {
+        "description": "Pregunta de seguimiento sobre la causa de un problema."
+    },
+    "haveYouHadAMajorStroke": "¿Has sufrido un derrame cerebral mayor?",
+    "@haveYouHadAMajorStroke": {
+        "description": "Pregunta sobre haber sufrido un derrame cerebral mayor."
+    },
+    "haveYouHadAMinorStroke": "¿Has sufrido un derrame cerebral menor?",
+    "@haveYouHadAMinorStroke": {
+        "description": "Pregunta sobre haber sufrido un derrame cerebral menor."
+    },
+    "doYouCurrentlyFeelSadOrDepressed": "¿Te sientes triste o deprimido actualmente?",
+    "@doYouCurrentlyFeelSadOrDepressed": {
+        "description": "Pregunta sobre el estado actual de tristeza o depresión."
+    },
+    "haveYouHadAnyChangeInYourPersonality": "¿Has notado algún cambio en tu personalidad?",
+    "@haveYouHadAnyChangeInYourPersonality": {
+        "description": "Pregunta sobre cambios en la personalidad."
+    },
+    "specifyChanges": "Especifica los cambios",
+    "@specifyChanges": {
+        "description": "Indicación para especificar los cambios en detalle."
+    },
+    "doYouHaveMoreDifficultiesDoingEverydayActivitiesDueToThinkingProblems": "¿Tienes más dificultades para realizar actividades cotidianas debido a problemas de pensamiento?",
+    "@doYouHaveMoreDifficultiesDoingEverydayActivitiesDueToThinkingProblems": {
+        "description": "Pregunta sobre dificultades en actividades diarias debido a problemas cognitivos."
+    }
+}

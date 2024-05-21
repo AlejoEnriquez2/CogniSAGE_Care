@@ -1,0 +1,175 @@
+{
+    "@@locale": "en",
+    "welcome": "Welcome",
+    "@welcome": {
+        "description": "The welcome message displayed on the home screen."
+    },
+    "test": "TEST",
+    "@test": {
+        "description": "Label for buttons or actions related to testing features."
+    },
+    "games": "GAMES",
+    "@games": {
+        "description": "Title for the section or page that lists games."
+    },
+    "user": "USER",
+    "@user": {
+        "description": "Label used for user profile or user-related settings."
+    },
+    "login": "Login",
+    "@login": {
+        "description": "Button text for login action."
+    },
+    "username": "Username",
+    "@username": {
+        "description": "Placeholder text for username field."
+    },
+    "password": "Password",
+    "@password": {
+        "description": "Placeholder text for password field."
+    },
+    "iDontHaveAnAccount": "I don't have an account",
+    "@iDontHaveAnAccount": {
+        "description": "Text for users to navigate to registration screen."
+    },
+    "invalidCredentials": "Invalid credentials",
+    "@invalidCredentials": {
+        "description": "Error message displayed when login credentials do not match."
+    },
+    "registerNow": "Register Now",
+    "@registerNow": {
+        "description": "Prompt text for user to register."
+    },
+    "name": "Name",
+    "@name": {
+        "description": "Placeholder or label for name field."
+    },
+    "register": "Register",
+    "@register": {
+        "description": "Button text for registration action."
+    },
+    "iHaveAnAccount": "I have an account",
+    "@iHaveAnAccount": {
+        "description": "Prompt text for existing users to navigate to login."
+    },
+    "whatIsSageTest": "What is SAGE Test?",
+    "@whatIsSageTest": {
+        "description": "Question about what the SAGE test is."
+    },
+    "sageTestDescription": "The SAGE test, or Self-Administered Gerocognitive Exam, is a brief self-assessment tool designed to detect early signs of cognitive impairment. Developed by researchers at Ohio State University Wexner Medical Center, the test aims to identify changes in cognitive functions that are subtle and might not be immediately apparent, serving as a preliminary screen for conditions like Alzheimer's disease, other dementias, and various neurological problems.",
+    "@sageTestDescription": {
+        "description": "Description of what the SAGE test is."
+    },
+    "continueTxt": "Continue",
+    "@continueTxt": {
+        "description": "Button text to proceed in the application."
+    },
+    "tellUsAboutYou": "Tell us about you",
+    "@tellUsAboutYou": {
+        "description": "Heading or prompt asking for user details."
+    },
+    "whatIsYourName": "What is your name?",
+    "@whatIsYourName": {
+        "description": "Question asking for the user's name."
+    },
+    "whatIsYourBirthday": "What is your birthday?",
+    "@whatIsYourBirthday": {
+        "description": "Question asking for the user's date of birth."
+    },
+    "howFarDidYouGetInSchool": "How far did you get in school?",
+    "@howFarDidYouGetInSchool": {
+        "description": "Question asking about the user's educational attainment."
+    },
+    "studies": "Studies",
+    "@studies": {
+        "description": "Label for the field where the user enters their field of study."
+    },
+    "iAmA": "I am a:",
+    "@iAmA": {
+        "description": "Prompt for the user to select their gender."
+    },
+    "man": "Man",
+    "@man": {
+        "description": "Option for gender selection."
+    },
+    "woman": "Woman",
+    "@woman": {
+        "description": "Option for gender selection."
+    },
+    "pleaseEnterYourStudies": "Please enter your studies",
+    "@pleaseEnterYourStudies": {
+        "description": "Prompt asking for details about the user's studies."
+    },
+    "pleaseEnterYourBirthday": "Please enter your birthday",
+    "@pleaseEnterYourBirthday": {
+        "description": "Prompt asking for the user's date of birth."
+    },
+    "pleaseEnterYourName": "Please enter your name",
+    "@pleaseEnterYourName": {
+        "description": "Prompt asking for the user's name."
+    },
+    "myEthnicalBackgroundIs": "My ethnical background is:",
+    "@myEthnicalBackgroundIs": {
+        "description": "Prompt asking for the user's ethnical background."
+    },
+    "pleaseEnterYourRace": "Please enter your race",
+    "@pleaseEnterYourRace": {
+        "description": "Prompt asking for the user's race."
+    },
+    "haveYouHadAnyProblemsWithMemoryOrThinking": "Have you had any problems with memory or thinking?",
+    "@haveYouHadAnyProblemsWithMemoryOrThinking": {
+        "description": "Question regarding cognitive issues."
+    },
+    "yes": "Yes",
+    "@yes": {
+        "description": "Affirmative response option."
+    },
+    "sometimes": "Sometimes",
+    "@sometimes": {
+        "description": "Intermittent response option."
+    },
+    "no": "No",
+    "@no": {
+        "description": "Negative response option."
+    },
+    "haveYouHadAnyBloodRelativesWithProblems": "Have you had any blood relatives that have had problems with memory or thinking?",
+    "@haveYouHadAnyBloodRelativesWithProblems": {
+        "description": "Question regarding family history of cognitive issues."
+    },
+    "pleaseCompleteTheForm": "Please complete the form",
+    "@pleaseCompleteTheForm": {
+        "description": "Prompt to complete the form."
+    },
+    "doYouHaveBalanceProblems": "Do you have balance problems?",
+    "@doYouHaveBalanceProblems": {
+        "description": "Question about balance issues."
+    },
+    "doYouKnowWhy": "Do you know why?",
+    "@doYouKnowWhy": {
+        "description": "Follow-up question about the cause of an issue."
+    },
+    "haveYouHadAMajorStroke": "Have you had a major stroke?",
+    "@haveYouHadAMajorStroke": {
+        "description": "Question about having experienced a major stroke."
+    },
+    "haveYouHadAMinorStroke": "Have you had a minor stroke?",
+    "@haveYouHadAMinorStroke": {
+        "description": "Question about having experienced a minor stroke."
+    },
+    "doYouCurrentlyFeelSadOrDepressed": "Do you currently feel sad or depressed?",
+    "@doYouCurrentlyFeelSadOrDepressed": {
+        "description": "Question about current feelings of sadness or depression."
+    },
+    "haveYouHadAnyChangeInYourPersonality": "Have you had any change in your personality?",
+    "@haveYouHadAnyChangeInYourPersonality": {
+        "description": "Question about changes in personality."
+    },
+    "specifyChanges": "Specify changes",
+    "@specifyChanges": {
+        "description": "Prompt to specify the changes in detail."
+    },
+    "doYouHaveMoreDifficultiesDoingEverydayActivitiesDueToThinkingProblems": "Do you have more difficulties doing everyday activities due to thinking problems?",
+    "@doYouHaveMoreDifficultiesDoingEverydayActivitiesDueToThinkingProblems": {
+        "description": "Question about difficulties in daily activities due to cognitive issues."
+    }
+}

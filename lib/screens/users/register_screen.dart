@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_form/generated/l10n.dart';
 import 'package:frontend_form/services/auth_service.dart';
 import 'package:frontend_form/widgets/auth_background.dart';
 import 'package:frontend_form/widgets/card_container.dart';
@@ -47,8 +48,8 @@ class RegisterScreen extends StatelessWidget {
                           child: Column(
                         children: [
                           const SizedBox(height: 20),
-                          const Text(
-                            'Register Now',
+                          Text(
+                            S.of(context).register,
                             style: TextStyle(
                                 color: Colors.black54,
                                 fontSize: 35,
@@ -57,13 +58,13 @@ class RegisterScreen extends StatelessWidget {
                           const SizedBox(height: 15),
                           TextFormField(
                             onChanged: (value) => patient.name = value,
-                            decoration: const InputDecoration(
-                              labelText: 'Name',
+                            decoration: InputDecoration(
+                              labelText: S.of(context).name,
                               prefixIcon: Icon(Icons.person),
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter your name';
+                                return S.of(context).pleaseEnterYourName;
                               }
                               return null;
                             },
@@ -71,13 +72,13 @@ class RegisterScreen extends StatelessWidget {
                           const SizedBox(height: 15),
                           TextFormField(
                             onChanged: (value) => patient.email = value,
-                            decoration: const InputDecoration(
-                              labelText: 'Email',
+                            decoration: InputDecoration(
+                              labelText: S.of(context).username,
                               prefixIcon: Icon(Icons.email),
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter your email';
+                                return S.of(context).pleaseEnterYourName;
                               }
                               return null;
                             },
@@ -85,14 +86,14 @@ class RegisterScreen extends StatelessWidget {
                           const SizedBox(height: 20),
                           TextFormField(
                             onChanged: (value) => patient.password = value,
-                            decoration: const InputDecoration(
-                              labelText: 'Password',
+                            decoration: InputDecoration(
+                              labelText: S.of(context).password,
                               prefixIcon: Icon(Icons.lock),
                             ),
                             obscureText: true,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter your password';
+                                return S.of(context).password;
                               }
                               return null;
                             },
@@ -111,9 +112,9 @@ class RegisterScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(30),
                               ),
                             ),
-                            child: const Text(
-                              'Register',
-                              style: TextStyle(
+                            child: Text(
+                              S.of(context).register,
+                              style: const TextStyle(
                                 color: Colors.black,
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -126,8 +127,8 @@ class RegisterScreen extends StatelessWidget {
                                 Navigator.pushReplacementNamed(
                                     context, 'login');
                               },
-                              child: const Text(
-                                "I have an account",
+                              child: Text(
+                                S.of(context).iDontHaveAnAccount,
                                 style: TextStyle(color: Colors.blueAccent),
                               ))
                         ],

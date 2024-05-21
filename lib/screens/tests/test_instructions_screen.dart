@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_form/generated/l10n.dart';
 import 'package:frontend_form/providers/providers.dart';
 import 'package:provider/provider.dart';
 
@@ -45,8 +46,8 @@ class TestInstructionsScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(40.0),
                         child: Column(
                           children: [
-                            const Text(
-                              'What is SAGE Test?',
+                            Text(
+                              S.of(context).whatIsSageTest,
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 125,
@@ -61,24 +62,24 @@ class TestInstructionsScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(20),
                                 color: Colors.white,
                               ),
-                              child: const Column(
+                              child: Column(
                                 children: [
                                   Align(
                                     alignment: Alignment.center,
                                     child: Text(
-                                      "The SAGE test, or Self-Administered Gerocognitive Exam, is a brief self-assessment tool designed to detect early signs of cognitive impairment. Developed by researchers at the Ohio State University Wexner Medical Center, the test aims to identify changes in cognitive functions that are subtle and might not be immediately apparent, serving as a preliminary screen for conditions like Alzheimer's disease, other dementias, and various neurological problems.The test encompasses a variety of questions and tasks that assess different aspects of cognition, including memory, problem-solving abilities, language, and other key functions.",
-                                      style: TextStyle(fontSize: 17),
+                                      S.of(context).whatIsSageTest,
+                                      style: const TextStyle(fontSize: 17),
                                       textAlign: TextAlign.justify,
                                     ),
                                   ),
-                                  SizedBox(height: 15),
+                                  const SizedBox(height: 15),
                                   Text(
-                                    "It is designed to be taken on paper, but this is a digitized adaptation of it, and can be completed in approximately 15 minutes. After completion, the system will grade and provide feedback and recommendations about cognitive health.",
+                                    S.of(context).sageTestDescription,
                                     style: TextStyle(fontSize: 17),
                                     textAlign: TextAlign.justify,
                                   ),
-                                  SizedBox(height: 26),
-                                  Text(
+                                  const SizedBox(height: 26),
+                                  const Text(
                                     "You will have many screens in which you have to write or draw your answers.",
                                     style:
                                         TextStyle(fontStyle: FontStyle.italic),
@@ -105,7 +106,7 @@ class TestInstructionsScreen extends StatelessWidget {
                                     ),
                                   ),
                                   child: Text(
-                                    'Continue',
+                                    S.of(context).continueTxt,
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 20,

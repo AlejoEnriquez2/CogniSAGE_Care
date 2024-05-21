@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_form/generated/l10n.dart';
+import 'package:frontend_form/providers/locale_provider.dart';
 import 'package:frontend_form/providers/providers.dart';
 import 'package:frontend_form/screens/users/user_info_screen.dart';
 import 'package:provider/provider.dart';
@@ -9,6 +11,8 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     PatientProvider patientProvider = Provider.of<PatientProvider>(context);
+    LocaleProvider localeProvider =
+        Provider.of<LocaleProvider>(context, listen: false);
 
     return Scaffold(
       appBar: AppBar(
@@ -18,12 +22,30 @@ class HomeScreen extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
         leading: IconButton(
-          icon: const Icon(
-            Icons.person,
-            color: Colors.white,
+          icon: Stack(
+            children: [
+              Image.asset(
+                localeProvider.locale.toString() == 'en'
+                    ? 'assets/icons/es.png'
+                    : 'assets/icons/en.png',
+              ),
+              Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                child: Icon(
+                  Icons.repeat_sharp,
+                  color: Colors.black,
+                  size: 35,
+                ),
+              ),
+            ],
           ),
           onPressed: () {
-            // Navigator.pushReplacementNamed(context, 'home');
+            var newLocale = localeProvider.locale.toString() == 'en'
+                ? localeProvider.setLocale(Locale('es'))
+                : localeProvider.setLocale(Locale('en'));
           },
         ),
         centerTitle: true,
@@ -38,23 +60,14 @@ class HomeScreen extends StatelessWidget {
               children: [
                 const SizedBox(height: 30),
                 Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: patientProvider.isLoggedIn != true
-                      ? Text(
-                          'Welcome',
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 255, 255, 255),
-                              fontSize: 35,
-                              fontWeight: FontWeight.bold),
-                        )
-                      : Text(
-                          'Welcome back!',
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 255, 255, 255),
-                              fontSize: 35,
-                              fontWeight: FontWeight.bold),
-                        ),
-                ),
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      S.of(context).welcome,
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          fontSize: 35,
+                          fontWeight: FontWeight.bold),
+                    )),
                 const SizedBox(height: 30),
                 Stack(children: [
                   Center(
@@ -95,11 +108,11 @@ class HomeScreen extends StatelessWidget {
                               height: 300, // Adjust as needed
                               fit: BoxFit.cover,
                             ),
-                            const Positioned(
+                            Positioned(
                               top: 134, // Adjust the value as needed
                               child: Text(
-                                'TEST',
-                                style: TextStyle(
+                                S.of(context).test,
+                                style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 17,
                                   fontWeight: FontWeight.bold,
@@ -128,11 +141,11 @@ class HomeScreen extends StatelessWidget {
                               height: 300,
                               fit: BoxFit.cover,
                             ),
-                            const Positioned(
+                            Positioned(
                               top: 134,
                               child: Text(
-                                'GAMES',
-                                style: TextStyle(
+                                S.of(context).games,
+                                style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 17,
                                   fontWeight: FontWeight.bold,
@@ -166,11 +179,11 @@ class HomeScreen extends StatelessWidget {
                               height: 300,
                               fit: BoxFit.cover,
                             ),
-                            const Positioned(
+                            Positioned(
                               top: 134,
                               child: Text(
-                                'USER',
-                                style: TextStyle(
+                                S.of(context).user,
+                                style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 17,
                                   fontWeight: FontWeight.bold,
