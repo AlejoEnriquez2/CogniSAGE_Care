@@ -129,7 +129,7 @@ class HomeScreen extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () {
                         print('button games');
-                        // Navigator.pushReplacementNamed(context, 'login');
+                        Navigator.pushReplacementNamed(context, 'all_games');
                       },
                       child: ClipOval(
                         child: Stack(

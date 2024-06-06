@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 class RegistrationService {
   // final String _baseUrl = 'http://192.168.0.38:3000';
   // final String _baseUrl = 'http://192.168.137.1:3000';
-  final String _baseUrl = 'https://805a-46-239-120-87.ngrok-free.app';
+  final String _baseUrl = 'https://33b9-46-239-120-87.ngrok-free.app';
 
   Future<void> submitRegistration(registrationModel, context) async {
     registrationModel.status = 'To be evaluated';

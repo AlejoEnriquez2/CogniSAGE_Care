@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:frontend_form/providers/locale_provider.dart';
 import 'package:frontend_form/providers/providers.dart';
+import 'package:frontend_form/screens/games/screens.dart';
 import 'package:frontend_form/theme/theme.dart';
 import 'package:provider/provider.dart';
 
@@ -13,6 +16,10 @@ import 'package:frontend_form/services/services.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  ByteData data =
+      await PlatformAssetBundle().load('assets/ca/lets-encrypt-r3.pem');
+  SecurityContext.defaultContext
+      .setTrustedCertificatesBytes(data.buffer.asUint8List());
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -68,7 +75,11 @@ class MyApp extends StatelessWidget {
           'personal': (_) => const PersonalInformationScreen(),
           'login': (_) => LoginScreen(),
           'register': (_) => RegisterScreen(),
-          'user_info': (_) => UserInfoScreen(),
+          'user_info': (_) => const UserInfoScreen(),
+          'all_games': (_) => const AllGamesScreen(),
+          'matching_instructions': (_) =>
+              const MatchingCardsInstructionsScreen(),
+          'matching_cards': (_) => const MatchingCardsScreen(),
         },
         localizationsDelegates: const [
           S.delegate,
