@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_form/generated/l10n.dart';
 import 'package:frontend_form/providers/providers.dart';
 import 'package:frontend_form/models/models.dart';
 
@@ -74,14 +75,14 @@ class _PersonalStepState extends State<PersonalStep> {
                 child: Column(
                   children: [
                     const SizedBox(height: 30),
-                    const Text(
-                      'Tell us about you',
+                    Text(
+                      S.of(context).tellUsAboutYou,
                       style:
                           TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 30),
-                    const Text(
-                      'What is your name?',
+                    Text(
+                      S.of(context).whatIsYourName,
                       style: TextStyle(fontSize: 25),
                     ),
                     TextFormField(
@@ -95,21 +96,21 @@ class _PersonalStepState extends State<PersonalStep> {
                         FocusScope.of(context)
                             .requestFocus(widget.focusNodes[1]);
                       },
-                      decoration: const InputDecoration(
-                        labelText: 'Name',
-                        prefixIcon: Icon(Icons.edit_square),
+                      decoration: InputDecoration(
+                        labelText: S.of(context).name,
+                        prefixIcon: const Icon(Icons.edit_square),
                       ),
                       textInputAction: TextInputAction.next,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter your name';
+                          return S.of(context).pleaseEnterYourName;
                         }
                         return null;
                       },
                     ),
                     const SizedBox(height: 30),
-                    const Text(
-                      'What is birthday?',
+                    Text(
+                      S.of(context).whatIsYourBirthday,
                       style: TextStyle(fontSize: 25),
                     ),
                     TextFormField(
@@ -134,15 +135,15 @@ class _PersonalStepState extends State<PersonalStep> {
                       textInputAction: TextInputAction.next,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter your birthday';
+                          return S.of(context).pleaseEnterYourBirthday;
                         }
                         return null;
                       },
                     ),
                     const SizedBox(height: 30),
-                    const Text(
-                      'How far did you get in school?',
-                      style: TextStyle(fontSize: 25),
+                    Text(
+                      S.of(context).howFarDidYouGetInSchool,
+                      style: const TextStyle(fontSize: 25),
                     ),
                     TextFormField(
                       onChanged: (value) {
@@ -154,24 +155,24 @@ class _PersonalStepState extends State<PersonalStep> {
                       onFieldSubmitted: (_) {
                         FocusScope.of(context).unfocus();
                       },
-                      decoration: const InputDecoration(
-                        labelText: 'Studies',
+                      decoration: InputDecoration(
+                        labelText: S.of(context).studies,
                         prefixIcon: Icon(Icons.menu_book_outlined),
                       ),
                       textInputAction: TextInputAction.next,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter your studies';
+                          return S.of(context).pleaseEnterYourStudies;
                         }
                         return null;
                       },
                     ),
                     SizedBox(height: 30),
-                    const Text(
-                      'I am a:',
-                      style: TextStyle(fontSize: 25),
+                    Text(
+                      S.of(context).iAmA,
+                      style: const TextStyle(fontSize: 25),
                     ),
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -200,7 +201,7 @@ class _PersonalStepState extends State<PersonalStep> {
                                     });
                                   },
                                 ),
-                                const Text('Man')
+                                Text(S.of(context).man)
                               ],
                             ),
                           ),
@@ -229,7 +230,7 @@ class _PersonalStepState extends State<PersonalStep> {
                                     });
                                   },
                                 ),
-                                const Text('Woman')
+                                Text(S.of(context).woman)
                               ],
                             ),
                           ),

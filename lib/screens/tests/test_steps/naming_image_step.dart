@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:frontend_form/generated/l10n.dart';
 
 import '../../../models/models.dart';
 
@@ -7,12 +8,14 @@ class NamingImageStep extends StatefulWidget {
   final List<FocusNode> focusNodes;
   final VoidCallback onRefresh;
   final AnswersModel answersModel;
+  final int formId;
 
   const NamingImageStep({
     super.key,
     required this.focusNodes,
     required this.onRefresh,
     required this.answersModel,
+    required this.formId,
   });
 
   @override
@@ -40,10 +43,10 @@ class _NamingImageStepState extends State<NamingImageStep> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const SizedBox(height: 30),
-                      const Column(
+                      Column(
                         children: [
                           Text(
-                            "Name the following pictures",
+                            S.of(context).nameTheFollowingPictures,
                             style: TextStyle(
                               fontSize: 40,
                               fontWeight: FontWeight.bold,
@@ -51,8 +54,7 @@ class _NamingImageStepState extends State<NamingImageStep> {
                             textAlign: TextAlign.center,
                           ),
                           SizedBox(height: 10),
-                          Text(
-                              "don't worry about spelling - just do your best! :)"),
+                          Text(S.of(context).dontWorryAboutSpelling),
                         ],
                       ),
                       const SizedBox(height: 100),
@@ -63,10 +65,19 @@ class _NamingImageStepState extends State<NamingImageStep> {
                             width: 150,
                             padding: const EdgeInsets.all(8.0),
                             child: Column(children: [
-                              Transform.scale(
-                                scale: 2, // Adjust the scale value as needed
-                                child: Image.asset('assets/images/wreath.png'),
-                              ),
+                              widget.formId == 1
+                                  ? Transform.scale(
+                                      scale:
+                                          2, // Adjust the scale value as needed
+                                      child: Image.asset(
+                                          'assets/images/wreath.png'),
+                                    )
+                                  : Transform.scale(
+                                      scale:
+                                          2, // Adjust the scale value as needed
+                                      child: Image.asset(
+                                          'assets/images/rhino.png'),
+                                    ),
                               SizedBox(height: 75),
                               TextFormField(
                                 onChanged: (value) {
@@ -91,10 +102,19 @@ class _NamingImageStepState extends State<NamingImageStep> {
                             width: 150,
                             padding: const EdgeInsets.all(8.0),
                             child: Column(children: [
-                              Transform.scale(
-                                scale: 2, // Adjust the scale value as needed
-                                child: Image.asset('assets/images/volcano.png'),
-                              ),
+                              widget.formId == 1
+                                  ? Transform.scale(
+                                      scale:
+                                          2, // Adjust the scale value as needed
+                                      child: Image.asset(
+                                          'assets/images/volcano.png'),
+                                    )
+                                  : Transform.scale(
+                                      scale:
+                                          2, // Adjust the scale value as needed
+                                      child:
+                                          Image.asset('assets/images/harp.png'),
+                                    ),
                               SizedBox(height: 75),
                               TextFormField(
                                 onChanged: (value) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_form/generated/l10n.dart';
 import 'package:frontend_form/services/services.dart';
 import 'package:provider/provider.dart';
 import 'dart:developer';
@@ -35,11 +36,13 @@ class _TestScreenState extends State<TestScreen> {
   List<FocusNode> focusNodes = List.generate(40, (_) => FocusNode());
 
   AnswersModel answersModel = AnswersModel();
+  int formId = 0;
 
   @override
   Widget build(BuildContext context) {
     TestModel testModel =
         ModalRoute.of(context)!.settings.arguments as TestModel;
+    formId = testModel.formId!;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -175,8 +178,8 @@ class _TestScreenState extends State<TestScreen> {
                                                           Color>(Colors.blue),
                                                 ),
                                               )
-                                            : const Text(
-                                                'Continue',
+                                            : Text(
+                                                S.of(context).continueTxt,
                                                 style: TextStyle(
                                                   color: Colors.black,
                                                 ),
@@ -290,6 +293,7 @@ class _TestScreenState extends State<TestScreen> {
           focusNodes: focusNodes,
           onRefresh: refresh,
           answersModel: answersModel,
+          formId: formId,
         ),
       ),
       Step(
@@ -300,6 +304,7 @@ class _TestScreenState extends State<TestScreen> {
           focusNodes: focusNodes,
           onRefresh: refresh,
           answersModel: answersModel,
+          formId: formId,
         ),
       ),
       Step(
@@ -310,6 +315,7 @@ class _TestScreenState extends State<TestScreen> {
           focusNodes: focusNodes,
           onRefresh: refresh,
           answersModel: answersModel,
+          formId: formId,
         ),
       ),
       Step(
@@ -320,6 +326,7 @@ class _TestScreenState extends State<TestScreen> {
           focusNodes: focusNodes,
           onRefresh: refresh,
           answersModel: answersModel,
+          formId: formId,
         ),
       ),
       Step(
@@ -330,6 +337,7 @@ class _TestScreenState extends State<TestScreen> {
           focusNodes: focusNodes,
           onRefresh: refresh,
           answersModel: answersModel,
+          formId: formId,
         ),
       ),
       Step(
@@ -340,6 +348,7 @@ class _TestScreenState extends State<TestScreen> {
           focusNodes: focusNodes,
           onRefresh: refresh,
           answersModel: answersModel,
+          formId: formId,
         ),
       ),
       Step(
@@ -350,6 +359,7 @@ class _TestScreenState extends State<TestScreen> {
           focusNodes: focusNodes,
           onRefresh: refresh,
           answersModel: answersModel,
+          formId: formId,
         ),
       ),
       Step(
@@ -360,6 +370,7 @@ class _TestScreenState extends State<TestScreen> {
           focusNodes: focusNodes,
           onRefresh: refresh,
           answersModel: answersModel,
+          formId: formId,
         ),
       ),
       Step(
@@ -370,6 +381,7 @@ class _TestScreenState extends State<TestScreen> {
           focusNodes: focusNodes,
           onRefresh: refresh,
           answersModel: answersModel,
+          formId: formId,
         ),
       ),
       Step(
@@ -380,6 +392,7 @@ class _TestScreenState extends State<TestScreen> {
           focusNodes: focusNodes,
           onRefresh: refresh,
           answersModel: answersModel,
+          formId: formId,
         ),
       ),
     ];
@@ -433,10 +446,14 @@ class _TestScreenState extends State<TestScreen> {
 
   void saveTest(TestModel testModel, BuildContext context) async {
     final stateManager = TestService();
+    final testProvider = Provider.of<TestProvider>(context, listen: false);
     try {
+      testProvider.setLoading(true);
       final patient = await DatabaseService().getPatientInfo();
       testModel.patientId = patient.id;
+      testProvider.setLoading(false);
     } catch (e) {
+      testProvider.setLoading(false);
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -456,11 +473,29 @@ class _TestScreenState extends State<TestScreen> {
       );
     }
 
-    final testProvider = Provider.of<TestProvider>(context, listen: false);
     try {
       testProvider.setLoading(true);
       await stateManager.saveTestPersonalInfo(testModel, answersModel, context);
+      testProvider.setLoading(false);
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Success'),
+            content: Text('Test saved successfully'),
+            actions: [
+              TextButton(
+                child: Text('Continue'),
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, 'home');
+                },
+              ),
+            ],
+          );
+        },
+      );
     } catch (e) {
+      testProvider.setLoading(false);
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -479,7 +514,7 @@ class _TestScreenState extends State<TestScreen> {
         },
       );
     } finally {
-      Navigator.pushReplacementNamed(context, 'home');
+      // Navigator.pushReplacementNamed(context, 'home');
     }
   }
 }

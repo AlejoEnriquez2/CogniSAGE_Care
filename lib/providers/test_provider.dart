@@ -21,7 +21,7 @@ class TestProvider extends ChangeNotifier {
     patientPersonality: '',
     patientDifficulties: false,
     answersId: 0,
-    formId: 0,
+    formId: 1,
     patientId: 0,
   );
 
@@ -42,6 +42,11 @@ class TestProvider extends ChangeNotifier {
       gender = "woman";
     }
     test.patientGender = gender;
+    notifyListeners();
+  }
+
+  updateTestForm(int formId) {
+    test.formId = formId;
     notifyListeners();
   }
 

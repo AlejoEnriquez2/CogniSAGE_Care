@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_form/generated/l10n.dart';
 import 'package:frontend_form/providers/providers.dart';
 import 'package:frontend_form/models/models.dart';
 
@@ -6,12 +7,14 @@ class MemoryStep extends StatefulWidget {
   final List<FocusNode> focusNodes;
   final VoidCallback onRefresh;
   final AnswersModel answersModel;
+  final int formId;
 
   const MemoryStep({
     super.key,
     required this.focusNodes,
     required this.onRefresh,
     required this.answersModel,
+    required this.formId,
   });
 
   void refreshMainScreen() {
@@ -44,12 +47,14 @@ class _MemoryStepState extends State<MemoryStep> {
                 children: [
                   SizedBox(height: 30),
                   Text(
-                    'Memory Test',
+                    S.of(context).memoryTest,
                     style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 50),
                   Text(
-                    'Have you finished?',
+                    widget.formId == 1
+                        ? S.of(context).haveYouFinished
+                        : S.of(context).areYouDone,
                     style: TextStyle(fontSize: 25),
                   ),
                   SizedBox(height: 50),

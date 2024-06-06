@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_form/generated/l10n.dart';
 import 'package:frontend_form/providers/providers.dart';
 import 'package:frontend_form/models/models.dart';
 import 'package:frontend_form/widgets/draw_board.dart';
@@ -7,12 +8,14 @@ class RedrawStep extends StatefulWidget {
   final List<FocusNode> focusNodes;
   final VoidCallback onRefresh;
   final AnswersModel answersModel;
+  final int formId;
 
   const RedrawStep({
     super.key,
     required this.focusNodes,
     required this.onRefresh,
     required this.answersModel,
+    required this.formId,
   });
 
   void refreshMainScreen() {
@@ -48,23 +51,25 @@ class _RedrawStepState extends State<RedrawStep> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        const Column(
+                        Column(
                           children: [
                             Text(
-                              'DRAW',
+                              S.of(context).draw,
                               style: TextStyle(
                                 fontSize: 30,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             SizedBox(height: 20),
-                            Text('Copy this image on the space bellow'),
+                            Text(S.of(context).copyRedrawThisImage),
                           ],
                         ),
                         SizedBox(
                           height: 200,
                           width: 200,
-                          child: Image.asset('assets/images/cube.png'),
+                          child: widget.formId == 1
+                              ? Image.asset('assets/images/cube.png')
+                              : Image.asset('assets/images/redraw.png'),
                         ),
                       ],
                     ),

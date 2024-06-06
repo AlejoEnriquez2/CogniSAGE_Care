@@ -21,6 +21,8 @@ class AnswersModel {
   bool? isDrawCompleted;
   bool? isExecDrawCompleted;
   bool? isExecLinesDrawCompleted;
+  int? formId;
+  String? testLanguage;
 
   AnswersModel({
     this.orientationMonth,
@@ -54,6 +56,8 @@ class AnswersModel {
     this.isDrawCompleted,
     this.isExecDrawCompleted,
     this.isExecLinesDrawCompleted,
+    this.formId,
+    this.testLanguage,
   });
 
   factory AnswersModel.fromRawJson(String str) =>
@@ -78,6 +82,8 @@ class AnswersModel {
         executiveDraw: json["executiveDraw"],
         executiveLinesDraw: json["executiveLinesDraw"],
         memoryPhrase: json["memoryPhrase"],
+        formId: json["formId"],
+        testLanguage: json["testLanguage"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -99,6 +105,8 @@ class AnswersModel {
         "executiveDraw": executiveDraw,
         "executiveLinesDraw": executiveLinesDraw,
         "memoryPhrase": memoryPhrase,
+        "formId": formId,
+        "testLanguage": testLanguage,
       };
 
   String toPrint() {

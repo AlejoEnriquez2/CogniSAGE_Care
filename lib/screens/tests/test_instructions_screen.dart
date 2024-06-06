@@ -4,10 +4,11 @@ import 'package:frontend_form/providers/providers.dart';
 import 'package:provider/provider.dart';
 
 class TestInstructionsScreen extends StatelessWidget {
-  const TestInstructionsScreen({Key? key}) : super(key: key);
+  const TestInstructionsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    TestProvider testProvider = Provider.of(context);
     return Consumer<PatientProvider>(
         builder: (context, patientProvider, child) {
       if (!patientProvider.isLoggedIn) {
@@ -31,6 +32,21 @@ class TestInstructionsScreen extends StatelessWidget {
                 Navigator.pushReplacementNamed(context, 'home');
               },
             ),
+            actions: [
+              IconButton(
+                icon: Text(
+                  testProvider.test.formId.toString(),
+                  style: const TextStyle(color: Colors.white),
+                ),
+                onPressed: () {
+                  if (testProvider.test.formId == 1) {
+                    testProvider.updateTestForm(4);
+                  } else if (testProvider.test.formId == 4) {
+                    testProvider.updateTestForm(1);
+                  }
+                },
+              ),
+            ],
             centerTitle: true,
           ),
           body: Stack(
@@ -48,16 +64,16 @@ class TestInstructionsScreen extends StatelessWidget {
                           children: [
                             Text(
                               S.of(context).whatIsSageTest,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 125,
                                   fontWeight: FontWeight.bold),
                             ),
-                            SizedBox(height: 60),
+                            const SizedBox(height: 60),
                             Container(
-                              padding: EdgeInsets.all(25),
+                              padding: const EdgeInsets.all(25),
                               width: 700,
-                              height: 400,
+                              height: 450,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
                                 color: Colors.white,
@@ -67,36 +83,37 @@ class TestInstructionsScreen extends StatelessWidget {
                                   Align(
                                     alignment: Alignment.center,
                                     child: Text(
-                                      S.of(context).whatIsSageTest,
+                                      S.of(context).sageTestDescription,
                                       style: const TextStyle(fontSize: 17),
                                       textAlign: TextAlign.justify,
                                     ),
                                   ),
                                   const SizedBox(height: 15),
                                   Text(
-                                    S.of(context).sageTestDescription,
-                                    style: TextStyle(fontSize: 17),
+                                    S.of(context).sageTestInstructions,
+                                    style: const TextStyle(fontSize: 17),
                                     textAlign: TextAlign.justify,
                                   ),
                                   const SizedBox(height: 26),
-                                  const Text(
-                                    "You will have many screens in which you have to write or draw your answers.",
-                                    style:
-                                        TextStyle(fontStyle: FontStyle.italic),
+                                  Text(
+                                    S.of(context).screensInstructions,
+                                    style: const TextStyle(
+                                        fontStyle: FontStyle.italic),
                                   ),
                                 ],
                               ),
                             ),
-                            SizedBox(height: 15),
+                            const SizedBox(height: 15),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                SizedBox(),
+                                const SizedBox(),
                                 ElevatedButton(
                                   onPressed: () {
                                     Navigator.pushReplacementNamed(
                                       context,
                                       'personal',
+                                      arguments: testProvider.test.formId,
                                     );
                                   },
                                   style: ElevatedButton.styleFrom(
@@ -107,7 +124,7 @@ class TestInstructionsScreen extends StatelessWidget {
                                   ),
                                   child: Text(
                                     S.of(context).continueTxt,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       color: Colors.black,
                                       fontSize: 20,
                                     ),
@@ -124,7 +141,7 @@ class TestInstructionsScreen extends StatelessWidget {
               ),
               Align(
                 alignment: Alignment.bottomCenter,
-                child: Container(
+                child: SizedBox(
                   height: 160,
                   child: Stack(
                     children: [

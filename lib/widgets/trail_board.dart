@@ -11,12 +11,14 @@ class TrailBoard extends StatefulWidget {
   final AnswersModel answersModel;
   final double canvaSize;
   final String type;
+  final int formId;
 
   const TrailBoard({
     Key? key,
     required this.answersModel,
     required this.canvaSize,
     required this.type,
+    required this.formId,
   }) : super(key: key);
 
   @override
@@ -30,13 +32,29 @@ class _TrailBoardState extends State<TrailBoard> {
   Offset endPoint = Offset.zero;
   List<String> answers = [];
 
+  // // example circles
+  // List<Circle> circles = [
+  //   Circle(position: const Offset(80, 100), text: '1'),
+  //   Circle(position: const Offset(255, 50), text: 'A'),
+  //   Circle(position: const Offset(355, 100), text: '2'),
+  //   Circle(position: const Offset(180, 140), text: 'B'),
+  //   Circle(position: const Offset(430, 170), text: '3'),
+  //   Circle(position: const Offset(480, 100), text: 'C'),
+  // ];
+
   List<Circle> circles = [
     Circle(position: const Offset(80, 100), text: '1'),
-    Circle(position: const Offset(255, 50), text: 'A'),
-    Circle(position: const Offset(355, 100), text: '2'),
-    Circle(position: const Offset(180, 140), text: 'B'),
-    Circle(position: const Offset(430, 170), text: '3'),
-    Circle(position: const Offset(480, 100), text: 'C'),
+    Circle(position: const Offset(200, 140), text: 'A'),
+    Circle(position: const Offset(319.3, 119.8), text: '2'),
+    Circle(position: const Offset(361.9, 310.4), text: 'B'),
+    Circle(position: const Offset(261.3, 333.7), text: '3'),
+    Circle(position: const Offset(209.4, 245.8), text: 'C'),
+    Circle(position: const Offset(66.8, 412.3), text: '4'),
+    Circle(position: const Offset(215.4, 493.0), text: 'D'),
+    Circle(position: const Offset(401.9, 431.0), text: '5'),
+    Circle(position: const Offset(494.5, 502.3), text: 'E'),
+    Circle(position: const Offset(415.9, 207.1), text: '6'),
+    Circle(position: const Offset(477.2, 72.5), text: 'F'),
   ];
 
   void _undoLastLine() {
@@ -182,19 +200,38 @@ class _TrailBoardState extends State<TrailBoard> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      // onPanDown: (DragDownDetails details) {
+      //   if (!_isLocked) {
+      //     RenderBox renderBox = context.findRenderObject() as RenderBox;
+      //     startPoint = renderBox.globalToLocal(details.globalPosition);
+      //     print("START POINT: " + startPoint.toString());
+      //   }
+      // },
       onPanDown: (DragDownDetails details) {
         if (!_isLocked) {
           RenderBox renderBox = context.findRenderObject() as RenderBox;
-          startPoint = renderBox.globalToLocal(details.globalPosition);
-          print("START POINT: " + startPoint.toString());
+          Offset touchPosition =
+              renderBox.globalToLocal(details.globalPosition);
+          print("POSITION: " + touchPosition.toString());
+          for (Circle circle in circles) {
+            if ((touchPosition - circle.position).distance <= 25) {
+              setState(() {
+                circle.isDrawnOn = true;
+              });
+              if (!answers.contains(circle.text)) {
+                answers.add(circle.text);
+              }
+              break;
+            }
+          }
         }
       },
       onPanUpdate: (DragUpdateDetails details) {
         if (!_isLocked) {
           setState(() {
             RenderBox renderBox = context.findRenderObject() as RenderBox;
-            endPoint = renderBox.globalToLocal(details.globalPosition);
-            print("END POINT: " + endPoint.toString());
+            // endPoint = renderBox.globalToLocal(details.globalPosition);
+            // print("END POINT: " + endPoint.toString());
             Offset localPosition =
                 renderBox.globalToLocal(details.globalPosition);
             if (localPosition.dx >= 0 &&
@@ -206,6 +243,23 @@ class _TrailBoardState extends State<TrailBoard> {
             for (Circle circle in circles) {
               if ((localPosition - circle.position).distance <= 25) {
                 circle.isDrawnOn = true;
+
+                bool isIntersecting = false;
+                for (int i = 0; i < _points.length - 1; i++) {
+                  if (_points[i] != Offset.zero &&
+                      _points[i + 1] != Offset.zero) {
+                    if (doesLineIntersectCircle(
+                        _points[i], _points[i + 1], circle)) {
+                      isIntersecting = true;
+                      print("IT SHOULD RECORD THE CIRCLE: " + circle.text);
+                      if (!answers.contains(circle.text)) {
+                        answers.add(circle.text);
+                      }
+                      break;
+                    }
+                  }
+                }
+                circle.isDrawnOn = isIntersecting;
               }
             }
           });
@@ -214,81 +268,84 @@ class _TrailBoardState extends State<TrailBoard> {
       onPanEnd: (DragEndDetails details) {
         if (!_isLocked) {
           setState(() {
-            print("START POINT: " + startPoint.toString());
-            _undoLastLine();
-            Circle startCircle = Circle(position: Offset.zero, text: '');
-            Circle endCircle = Circle(position: Offset.zero, text: '');
-            for (Circle circle in circles) {
-              if (doesPointLieInCircle(startPoint, circle)) {
-                startCircle = circle;
-              }
-              if (doesPointLieInCircle(endPoint, circle)) {
-                endCircle = circle;
-              }
-            }
-
-            if (startCircle.position != Offset.zero &&
-                endCircle.position != Offset.zero) {
-              // Calculate the angle of the line for the startPoint
-              double startAngle = math.atan2(
-                  endPoint.dy - startPoint.dy, endPoint.dx - startPoint.dx);
-
-              // Calculate the x and y coordinates of the point on the startCircle's border for the startPoint
-              double startFinalX = startCircle.position.dx +
-                  startCircle.radius * math.cos(startAngle);
-              double startFinalY = startCircle.position.dy +
-                  startCircle.radius * math.sin(startAngle);
-
-              // Replace the startPoint with the intersection point
-              startPoint = Offset(startFinalX, startFinalY);
-
-              // Calculate the angle of the line for the endPoint using the startPoint and the center of the endCircle
-              double endAngle = math.atan2(
-                  startPoint.dy - endCircle.position.dy,
-                  startPoint.dx - endCircle.position.dx);
-
-              // Calculate the x and y coordinates of the point on the endCircle's border for the endPoint
-              double endFinalX =
-                  endCircle.position.dx + endCircle.radius * math.cos(endAngle);
-              double endFinalY =
-                  endCircle.position.dy + endCircle.radius * math.sin(endAngle);
-
-              // Replace the endPoint with the intersection point
-              endPoint = Offset(endFinalX, endFinalY);
-            }
-
-            _points.add(startPoint);
-            print("END POINT: " + endPoint.toString());
-            if (endPoint.dx > 550 ||
-                endPoint.dy > 550 ||
-                endPoint.dx < 0 ||
-                endPoint.dy < 0) {
-              endPoint = startPoint;
-            }
-            _points.add(endPoint);
             _points.add(Offset.zero);
-            startPoint = Offset.zero;
-            endPoint = Offset.zero;
-
-            for (Circle circle in circles) {
-              bool isIntersecting = false;
-              for (int i = 0; i < _points.length - 1; i++) {
-                if (_points[i] != Offset.zero &&
-                    _points[i + 1] != Offset.zero) {
-                  if (doesLineIntersectCircle(
-                      _points[i], _points[i + 1], circle)) {
-                    isIntersecting = true;
-                    print("IT SHOULD RECORD THE CIRCLE: " + circle.text);
-                    if (!answers.contains(circle.text)) {
-                      answers.add(circle.text);
-                    }
-                    break;
-                  }
-                }
-              }
-              circle.isDrawnOn = isIntersecting;
-            }
           });
+          // setState(() {
+          //   print("START POINT: " + startPoint.toString());
+          //   _undoLastLine();
+          //   Circle startCircle = Circle(position: Offset.zero, text: '');
+          //   Circle endCircle = Circle(position: Offset.zero, text: '');
+          //   for (Circle circle in circles) {
+          //     if (doesPointLieInCircle(startPoint, circle)) {
+          //       startCircle = circle;
+          //     }
+          //     if (doesPointLieInCircle(endPoint, circle)) {
+          //       endCircle = circle;
+          //     }
+          //   }
+
+          //   if (startCircle.position != Offset.zero &&
+          //       endCircle.position != Offset.zero) {
+          //     // Calculate the angle of the line for the startPoint
+          //     double startAngle = math.atan2(
+          //         endPoint.dy - startPoint.dy, endPoint.dx - startPoint.dx);
+
+          //     // Calculate the x and y coordinates of the point on the startCircle's border for the startPoint
+          //     double startFinalX = startCircle.position.dx +
+          //         startCircle.radius * math.cos(startAngle);
+          //     double startFinalY = startCircle.position.dy +
+          //         startCircle.radius * math.sin(startAngle);
+
+          //     // Replace the startPoint with the intersection point
+          //     startPoint = Offset(startFinalX, startFinalY);
+
+          //     // Calculate the angle of the line for the endPoint using the startPoint and the center of the endCircle
+          //     double endAngle = math.atan2(
+          //         startPoint.dy - endCircle.position.dy,
+          //         startPoint.dx - endCircle.position.dx);
+
+          //     // Calculate the x and y coordinates of the point on the endCircle's border for the endPoint
+          //     double endFinalX =
+          //         endCircle.position.dx + endCircle.radius * math.cos(endAngle);
+          //     double endFinalY =
+          //         endCircle.position.dy + endCircle.radius * math.sin(endAngle);
+
+          //     // Replace the endPoint with the intersection point
+          //     endPoint = Offset(endFinalX, endFinalY);
+          //   }
+
+          //   _points.add(startPoint);
+          //   print("END POINT: " + endPoint.toString());
+          //   if (endPoint.dx > 550 ||
+          //       endPoint.dy > 550 ||
+          //       endPoint.dx < 0 ||
+          //       endPoint.dy < 0) {
+          //     endPoint = startPoint;
+          //   }
+          //   _points.add(endPoint);
+          //   _points.add(Offset.zero);
+          //   startPoint = Offset.zero;
+          //   endPoint = Offset.zero;
+
+          // for (Circle circle in circles) {
+          //   bool isIntersecting = false;
+          //   for (int i = 0; i < _points.length - 1; i++) {
+          //     if (_points[i] != Offset.zero &&
+          //         _points[i + 1] != Offset.zero) {
+          //       if (doesLineIntersectCircle(
+          //           _points[i], _points[i + 1], circle)) {
+          //         isIntersecting = true;
+          //         print("IT SHOULD RECORD THE CIRCLE: " + circle.text);
+          //         if (!answers.contains(circle.text)) {
+          //           answers.add(circle.text);
+          //         }
+          //         break;
+          //       }
+          //     }
+          //   }
+          //   circle.isDrawnOn = isIntersecting;
+          // }
+          // });
         }
         widget.answersModel.executiveTrail = answers.toString();
         print(widget.answersModel.executiveTrail);
@@ -370,6 +427,16 @@ class _BoardPainter extends CustomPainter {
       drawCircle(canvas, size, circlePaint, circle);
     }
 
+    TextPainter tp = TextPainter(
+        text: TextSpan(
+          style: TextStyle(color: Colors.black, fontSize: 25),
+          text: 'Start',
+        ),
+        textAlign: TextAlign.center,
+        textDirection: TextDirection.ltr);
+    tp.layout();
+    tp.paint(canvas, Offset(53, 130));
+
     for (int i = 0; i < points.length - 1; i++) {
       if (points[i] != Offset.zero && points[i + 1] != Offset.zero) {
         canvas.drawLine(points[i], points[i + 1], paint);
@@ -385,12 +452,13 @@ class _BoardPainter extends CustomPainter {
         ..style = PaintingStyle.stroke
         ..color = circle.isDrawnOn ? Colors.green : Colors.black,
     );
+
     TextPainter textPainter = TextPainter(
       text: TextSpan(
         text: circle.text,
-        style: const TextStyle(
-          color: Colors.black,
-          fontSize: 25, // Increase the font size
+        style: TextStyle(
+          color: circle.text != "1" ? Colors.black : Colors.green,
+          fontSize: 25,
           fontWeight: FontWeight.bold,
         ),
       ),

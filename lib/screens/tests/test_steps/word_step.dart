@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_form/generated/l10n.dart';
 import 'package:frontend_form/models/models.dart';
 
 class WordStep extends StatefulWidget {
   final List<FocusNode> focusNodes;
   final VoidCallback onRefresh;
   final AnswersModel answersModel;
+  final int formId;
 
   const WordStep({
     super.key,
     required this.focusNodes,
     required this.onRefresh,
     required this.answersModel,
+    required this.formId,
   });
 
   void refreshMainScreen() {
@@ -40,33 +43,41 @@ class _WordStepState extends State<WordStep> {
                 child: Column(
                   children: [
                     const SizedBox(height: 30),
-                    const Column(
+                    Column(
                       children: [
                         Text(
-                          "Write 12 different",
+                          S.of(context).writeTuelveDifferent,
                           style: TextStyle(
                               fontSize: 40, fontWeight: FontWeight.bold),
                         ),
                         SizedBox(height: 10),
-                        Text.rich(
-                          TextSpan(
-                            text: "Different ",
-                            style: TextStyle(fontSize: 20),
-                            children: [
-                              TextSpan(
-                                text: "ANIMALS",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              TextSpan(
-                                text: " you can think of",
-                                style: TextStyle(fontSize: 20),
-                              ),
-                            ],
-                          ),
+                        Text(
+                          widget.formId == 1
+                              ? S.of(context).writeTwelveDifferentAnimals
+                              : S.of(context).countries,
+                          style: const TextStyle(
+                              fontSize: 25, fontStyle: FontStyle.italic),
+                          textAlign: TextAlign.center,
                         ),
+                        // Text.rich(
+                        //   TextSpan(
+                        //     text: "Different ",
+                        //     style: TextStyle(fontSize: 20),
+                        //     children: [
+                        //       TextSpan(
+                        //         text: "ANIMALS",
+                        //         style: TextStyle(
+                        //           fontSize: 20,
+                        //           fontWeight: FontWeight.bold,
+                        //         ),
+                        //       ),
+                        //       TextSpan(
+                        //         text: " you can think of",
+                        //         style: TextStyle(fontSize: 20),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
                       ],
                     ),
                     const SizedBox(height: 40),

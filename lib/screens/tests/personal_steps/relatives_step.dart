@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_form/generated/l10n.dart';
 import 'package:frontend_form/providers/providers.dart';
 import 'package:frontend_form/models/models.dart';
 
@@ -47,8 +48,8 @@ class _RelativesStepState extends State<RelativesStep> {
                 child: Column(
                   children: [
                     const SizedBox(height: 30),
-                    const Text(
-                      'My ethnical background is: ',
+                    Text(
+                      S.of(context).myEthnicalBackgroundIs,
                       style: TextStyle(fontSize: 25),
                     ),
                     TextFormField(
@@ -62,21 +63,24 @@ class _RelativesStepState extends State<RelativesStep> {
                         FocusScope.of(context)
                             .requestFocus(widget.focusNodes[4]);
                       },
-                      decoration: const InputDecoration(
-                        labelText: 'asian, black, hispanic, white, etc.',
+                      decoration: InputDecoration(
+                        labelText:
+                            S.of(context).pleaseEnterYourEthnicalBackground,
                         prefixIcon: Icon(Icons.edit_square),
                       ),
                       textInputAction: TextInputAction.next,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter your race';
+                          return S
+                              .of(context)
+                              .pleaseEnterYourEthnicalBackground;
                         }
                         return null;
                       },
                     ),
                     const SizedBox(height: 50),
-                    const Text(
-                      'Have you had any problems with memory or thinking?',
+                    Text(
+                      S.of(context).haveYouHadAnyProblemsWithMemoryOrThinking,
                       style: TextStyle(fontSize: 23),
                     ),
                     const SizedBox(height: 30),
@@ -107,7 +111,7 @@ class _RelativesStepState extends State<RelativesStep> {
                                     });
                                   },
                                 ),
-                                const Text('Yes')
+                                Text(S.of(context).yes)
                               ],
                             ),
                           ),
@@ -139,7 +143,7 @@ class _RelativesStepState extends State<RelativesStep> {
                                     });
                                   },
                                 ),
-                                const Text('Sometimes')
+                                Text(S.of(context).sometimes)
                               ],
                             ),
                           ),
@@ -168,7 +172,7 @@ class _RelativesStepState extends State<RelativesStep> {
                                     });
                                   },
                                 ),
-                                const Text('No')
+                                Text(S.of(context).no)
                               ],
                             ),
                           ),
@@ -176,8 +180,8 @@ class _RelativesStepState extends State<RelativesStep> {
                       ],
                     ),
                     const SizedBox(height: 50),
-                    const Text(
-                      'Have you had any blood relatives that have had problems with memory or thinking?',
+                    Text(
+                      S.of(context).haveYouHadAnyBloodRelativesWithProblems,
                       style: TextStyle(fontSize: 23),
                     ),
                     const SizedBox(height: 30),
@@ -208,7 +212,7 @@ class _RelativesStepState extends State<RelativesStep> {
                                     });
                                   },
                                 ),
-                                const Text('Yes')
+                                Text(S.of(context).yes)
                               ],
                             ),
                           ),
@@ -237,7 +241,7 @@ class _RelativesStepState extends State<RelativesStep> {
                                     });
                                   },
                                 ),
-                                const Text('No')
+                                Text(S.of(context).no)
                               ],
                             ),
                           ),

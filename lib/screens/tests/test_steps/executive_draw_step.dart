@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:frontend_form/generated/l10n.dart';
 import 'package:frontend_form/providers/providers.dart';
 import 'package:frontend_form/models/models.dart';
 import 'package:frontend_form/widgets/executive_draw_board.dart';
@@ -11,12 +12,14 @@ class ExecutiveDrawStep extends StatefulWidget {
   final List<FocusNode> focusNodes;
   final VoidCallback onRefresh;
   final AnswersModel answersModel;
+  final int formId;
 
   const ExecutiveDrawStep({
     super.key,
     required this.focusNodes,
     required this.onRefresh,
     required this.answersModel,
+    required this.formId,
   });
 
   void refreshMainScreen() {
@@ -52,10 +55,10 @@ class _ExecutiveDrawStepState extends State<ExecutiveDrawStep> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        const Column(
+                        Column(
                           children: [
                             Text(
-                              'Draw your answer:',
+                              S.of(context).drawYourAnswer,
                               style: TextStyle(
                                 fontSize: 33,
                                 fontWeight: FontWeight.bold,
@@ -65,7 +68,11 @@ class _ExecutiveDrawStepState extends State<ExecutiveDrawStep> {
                             SizedBox(
                               width: 200,
                               child: Text(
-                                'Considering the 4 lines you took out, draw the final result of 4 squares only',
+                                widget.formId == 1
+                                    ? S.of(context).finalResultFourSquares
+                                    : S
+                                        .of(context)
+                                        .rule_complete_triangle_lines,
                                 style: TextStyle(fontSize: 17),
                               ),
                             ),
@@ -80,7 +87,7 @@ class _ExecutiveDrawStepState extends State<ExecutiveDrawStep> {
                         ),
                         FutureBuilder(
                           // Wait for 3 seconds
-                          future: Future.delayed(Duration(seconds: 3)),
+                          future: Future.delayed(Duration(seconds: 1)),
                           builder: (context, snapshot) {
                             // While the Future is not completed, show a CircularProgressIndicator
                             if (snapshot.connectionState !=
@@ -101,7 +108,8 @@ class _ExecutiveDrawStepState extends State<ExecutiveDrawStep> {
                                       ))
                                     : const Text('Image not found'));
                           },
-                        )
+                        ),
+                        const SizedBox(height: 50),
                       ],
                     ),
                     SizedBox(

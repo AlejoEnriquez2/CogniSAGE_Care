@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:frontend_form/generated/l10n.dart';
 import 'package:frontend_form/providers/providers.dart';
 import 'package:frontend_form/models/models.dart';
 
@@ -7,12 +8,14 @@ class SimilaritiesStep extends StatefulWidget {
   final List<FocusNode> focusNodes;
   final VoidCallback onRefresh;
   final AnswersModel answersModel;
+  final int formId;
 
   const SimilaritiesStep({
     super.key,
     required this.focusNodes,
     required this.onRefresh,
     required this.answersModel,
+    required this.formId,
   });
 
   void refreshMainScreen() {
@@ -40,22 +43,25 @@ class _SimilaritiesStepState extends State<SimilaritiesStep> {
           ),
           child: Center(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 80),
+              padding: const EdgeInsets.symmetric(horizontal: 50),
               child: Column(
                 children: [
                   const SizedBox(height: 30),
-                  const Text(
-                    'Answer these questions:',
+                  Text(
+                    S.of(context).answerTheseQuestions,
                     style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 50),
-                  const Text(
-                    'How are a watch and a ruler similar?',
-                    style: TextStyle(fontSize: 25),
+                  Text(
+                    widget.formId == 1
+                        ? S.of(context).howAreWatchAndRulerSimilar
+                        : S.of(context).howAreARoseAndATulipSimilar,
+                    style: const TextStyle(fontSize: 25),
+                    textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: 10),
-                  const Text('Write down how they are alike.'),
-                  const SizedBox(height: 30),
+                  // const SizedBox(height: 10),
+                  // Text(S.of(context).writeDownHowTheyAreAlike),
+                  // const SizedBox(height: 30),
                   TextFormField(
                     onChanged: (value) {
                       setState(() {
@@ -67,8 +73,8 @@ class _SimilaritiesStepState extends State<SimilaritiesStep> {
                       FocusScope.of(context)
                           .requestFocus(widget.focusNodes[12]);
                     },
-                    decoration: const InputDecoration(
-                      labelText: 'They both are...',
+                    decoration: InputDecoration(
+                      labelText: S.of(context).theyBothAre,
                       prefixIcon: Icon(Icons.edit_square),
                     ),
                     keyboardType: TextInputType.multiline,
@@ -76,9 +82,12 @@ class _SimilaritiesStepState extends State<SimilaritiesStep> {
                     textInputAction: TextInputAction.next,
                   ),
                   const SizedBox(height: 30),
-                  const Text(
-                    'How many nickels are in 60 cents?',
+                  Text(
+                    widget.formId == 1
+                        ? S.of(context).howManyNickelsInSixtyCents
+                        : S.of(context).question_quarters_in_euros,
                     style: TextStyle(fontSize: 25),
+                    textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 10),
                   TextFormField(
@@ -103,8 +112,10 @@ class _SimilaritiesStepState extends State<SimilaritiesStep> {
                     keyboardType: TextInputType.number,
                   ),
                   const SizedBox(height: 50),
-                  const Text(
-                    'You are buying \$13.45 of groceries. How much change would you receive back from a \$20 bill?',
+                  Text(
+                    widget.formId == 1
+                        ? S.of(context).changeFromTwentyDollarBill
+                        : S.of(context).question_groceries_change,
                     style: TextStyle(fontSize: 23),
                   ),
                   const SizedBox(height: 30),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_form/generated/l10n.dart';
 import 'package:frontend_form/providers/providers.dart';
 import 'package:frontend_form/models/models.dart';
 import 'package:frontend_form/widgets/draw_board.dart';
@@ -7,12 +8,14 @@ class ConstructionDrawStep extends StatefulWidget {
   final List<FocusNode> focusNodes;
   final VoidCallback onRefresh;
   final AnswersModel answersModel;
+  final int formId;
 
   const ConstructionDrawStep({
     super.key,
     required this.focusNodes,
     required this.onRefresh,
     required this.answersModel,
+    required this.formId,
   });
 
   void refreshMainScreen() {
@@ -45,20 +48,20 @@ class _ConstructionDrawStepState extends State<ConstructionDrawStep> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Column(
                           children: [
                             Text(
-                              'Draw',
+                              S.of(context).draw,
                               style: TextStyle(
                                 fontSize: 30,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             SizedBox(height: 20),
-                            Text('Following the next instructions'),
+                            Text(S.of(context).followNextInstructions),
                           ],
                         ),
                         SizedBox(
@@ -75,19 +78,21 @@ class _ConstructionDrawStepState extends State<ConstructionDrawStep> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Text(
-                                '1. Draw a large face of a clock and place in the numbers',
+                                S.of(context).drawLargeClockFace,
                                 style: TextStyle(
                                   fontSize: 17,
                                 ),
                               ),
                               Text(
-                                '2. Position the hands for 5 minutes after 11 o\'clock',
+                                widget.formId == 1
+                                    ? S.of(context).positionHandsForTime
+                                    : S.of(context).positionHandsForTime4,
                                 style: TextStyle(
                                   fontSize: 17,
                                 ),
                               ),
                               Text(
-                                '3. On your clock, label "L" for the long hand and "S" for the short hand',
+                                S.of(context).labelClockHands,
                                 style: TextStyle(
                                   fontSize: 17,
                                 ),

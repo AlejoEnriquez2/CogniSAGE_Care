@@ -17,6 +17,7 @@ class TestModel {
   String? patientDepression;
   String? patientPersonality;
   bool? patientDifficulties;
+  String? testLanguage;
   int? answersId;
   int? formId;
   int? patientId;
@@ -38,6 +39,7 @@ class TestModel {
     this.patientDepression,
     this.patientPersonality,
     this.patientDifficulties,
+    this.testLanguage,
     this.answersId,
     this.formId,
     this.patientId,
@@ -65,6 +67,7 @@ class TestModel {
         patientDepression: json["patientDepression"],
         patientPersonality: json["patientPersonality"],
         patientDifficulties: json["patientDifficulties"],
+        testLanguage: json["testLanguage"],
         answersId: json["answersId"],
         formId: json["formId"],
         patientId: json["patientId"],
@@ -87,6 +90,7 @@ class TestModel {
         "patientDepression": patientDepression,
         "patientPersonality": patientPersonality,
         "patientDifficulties": patientDifficulties,
+        "testLanguage": testLanguage,
         "answersId": answersId,
         "formId": formId,
         "patientId": patientId,

@@ -2,18 +2,29 @@ import 'dart:convert';
 
 import 'package:frontend_form/models/answers_model.dart';
 import 'package:frontend_form/models/models.dart';
+import 'package:frontend_form/providers/locale_provider.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 
 class TestService {
-  final String _baseUrl = 'http://192.168.0.38:3000';
+  // final String _baseUrl = 'http://192.168.0.38:3000';
   // final String _baseUrl = 'http://192.168.137.1:3000';
+  final String _baseUrl = 'https://805a-46-239-120-87.ngrok-free.app';
+
+  int formId = 1;
+  String testLanguage = 'en';
 
   Future<void> saveTestPersonalInfo(
       TestModel testModel, AnswersModel answersModel, context) async {
     testModel.testTotalTime =
         DateTime.now().difference(testModel.testDate!).inSeconds;
     testModel.testTotalGrade = 0;
-    testModel.formId = 1;
+    LocaleProvider localeProvider =
+        Provider.of<LocaleProvider>(context, listen: false);
+
+    testModel.testLanguage = localeProvider.locale.toString();
+    formId = testModel.formId!;
+    testLanguage = testModel.testLanguage!;
 
     AnswersModel fillEmptyFields(AnswersModel am) {
       am.orientationDay = answersModel.orientationDay ?? 'null';
@@ -59,6 +70,8 @@ class TestService {
     final url = Uri.parse('$_baseUrl/user-answers');
     final headers = {"Content-type": "application/json"};
     print(answersModel.toPrint());
+    answersModel.formId = formId;
+    answersModel.testLanguage = testLanguage;
     final response = await http.post(
       url,
       headers: headers,

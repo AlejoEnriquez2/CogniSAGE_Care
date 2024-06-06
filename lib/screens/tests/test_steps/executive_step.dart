@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_form/generated/l10n.dart';
 import 'package:frontend_form/providers/providers.dart';
 import 'package:frontend_form/models/models.dart';
 import 'package:frontend_form/widgets/executive_board.dart';
@@ -7,12 +8,14 @@ class ExecutiveStep extends StatefulWidget {
   final List<FocusNode> focusNodes;
   final VoidCallback onRefresh;
   final AnswersModel answersModel;
+  final int formId;
 
   const ExecutiveStep({
     super.key,
     required this.focusNodes,
     required this.onRefresh,
     required this.answersModel,
+    required this.formId,
   });
 
   void refreshMainScreen() {
@@ -48,10 +51,10 @@ class _ExecutiveStepState extends State<ExecutiveStep> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        const Column(
+                        Column(
                           children: [
                             Text(
-                              'Solve the following:',
+                              S.of(context).solveFollowing,
                               style: TextStyle(
                                 fontSize: 33,
                                 fontWeight: FontWeight.bold,
@@ -61,7 +64,13 @@ class _ExecutiveStepState extends State<ExecutiveStep> {
                             SizedBox(
                               width: 200,
                               child: Text(
-                                  'You start with 2 squares and 2 triangles.'),
+                                widget.formId == 1
+                                    ? S.of(context).startWithTwoShapes
+                                    : S
+                                        .of(context)
+                                        .instruction_start_with_triangles,
+                                style: const TextStyle(fontSize: 25),
+                              ),
                             ),
                           ],
                         ),
@@ -79,7 +88,9 @@ class _ExecutiveStepState extends State<ExecutiveStep> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Text(
-                                'Mark 4 lines that you would have to move in order to have 4 squares only',
+                                widget.formId == 1
+                                    ? S.of(context).crossOutFourLines
+                                    : S.of(context).instruction_cross_out_lines,
                                 style: TextStyle(fontSize: 20),
                               ),
                             ],
@@ -92,7 +103,7 @@ class _ExecutiveStepState extends State<ExecutiveStep> {
                       width: 550,
                       child: ExecutiveBoard(
                         canvaSize: 550,
-                        type: 'temp',
+                        formId: widget.formId,
                         answersModel: widget.answersModel,
                       ),
                     ),

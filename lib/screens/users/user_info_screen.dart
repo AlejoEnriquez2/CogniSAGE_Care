@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_form/generated/l10n.dart';
 import 'package:frontend_form/providers/providers.dart';
 import 'package:provider/provider.dart';
 
@@ -35,8 +36,8 @@ class UserInfoScreen extends StatelessWidget {
                   child: Scaffold(
                       appBar: AppBar(
                         elevation: 0,
-                        title: const Text(
-                          'My information',
+                        title: Text(
+                          S.of(context).myInformation,
                           style: TextStyle(color: Colors.white),
                         ),
                         leading: IconButton(
@@ -83,8 +84,8 @@ class UserInfoCustom extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: const Text(
-          'My information',
+        title: Text(
+          S.of(context).myInformation,
           style: TextStyle(color: Colors.white),
         ),
         leading: IconButton(
@@ -128,7 +129,7 @@ class UserInfoCustom extends StatelessWidget {
                             ),
                             const SizedBox(width: 50),
                             Text(
-                              'Welcome ${patient.name}',
+                              '${S.of(context).welcome} ${patient.name}',
                               style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 30,
@@ -171,7 +172,7 @@ class UserInfoCustom extends StatelessWidget {
                                               MainAxisAlignment.spaceEvenly,
                                           children: [
                                             Text(
-                                              'The user name is: ${patient.name}',
+                                              '${S.of(context).userNameIs} ${patient.name}',
                                               style:
                                                   const TextStyle(fontSize: 20),
                                             ),
@@ -204,7 +205,7 @@ class UserInfoCustom extends StatelessWidget {
                                         child: Text(
                                           patient.grade == 0
                                               ? "Still haven't done the test"
-                                              : "The last grade is: ${patient.grade}",
+                                              : "${S.of(context).lastGradeIs} ${patient.grade}",
                                           style: const TextStyle(fontSize: 20),
                                         ),
                                       ),
@@ -229,9 +230,9 @@ class UserInfoCustom extends StatelessWidget {
                                     Container(
                                       width: 300,
                                       height: 150,
-                                      child: const Center(
+                                      child: Center(
                                         child: Text(
-                                          'The game you have played the most is Matching Cards',
+                                          S.of(context).mostPlayedGame,
                                           style: TextStyle(fontSize: 20),
                                           textAlign: TextAlign.center,
                                         ),
@@ -288,8 +289,8 @@ class UserInfoCustom extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                               ),
-                              child: const Text(
-                                'Logout',
+                              child: Text(
+                                S.of(context).logout,
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 20,

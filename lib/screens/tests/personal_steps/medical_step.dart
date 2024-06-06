@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_form/generated/l10n.dart';
 import 'package:frontend_form/providers/providers.dart';
 import 'package:frontend_form/models/models.dart';
 
@@ -43,8 +44,8 @@ class _MedicalStepState extends State<MedicalStep> {
               child: Column(
                 children: [
                   const SizedBox(height: 30),
-                  const Text(
-                    'Do you have balance problems?',
+                  Text(
+                    S.of(context).doYouHaveBalanceProblems,
                     style: TextStyle(fontSize: 25),
                   ),
                   const SizedBox(height: 25),
@@ -76,7 +77,7 @@ class _MedicalStepState extends State<MedicalStep> {
                                   });
                                 },
                               ),
-                              const Text('Yes')
+                              Text(S.of(context).yes)
                             ],
                           ),
                         ),
@@ -102,8 +103,8 @@ class _MedicalStepState extends State<MedicalStep> {
                                 widget.focusNodes[5],
                               );
                             },
-                            decoration: const InputDecoration(
-                              labelText: 'Do you know why?',
+                            decoration: InputDecoration(
+                              labelText: S.of(context).doYouKnowWhy,
                             ),
                           ),
                         ),
@@ -133,7 +134,7 @@ class _MedicalStepState extends State<MedicalStep> {
                                   });
                                 },
                               ),
-                              const Text('No')
+                              Text(S.of(context).no)
                             ],
                           ),
                         ),
@@ -141,8 +142,8 @@ class _MedicalStepState extends State<MedicalStep> {
                     ],
                   ),
                   const SizedBox(height: 40),
-                  const Text(
-                    'Have you had a major stroke?',
+                  Text(
+                    S.of(context).haveYouHadAMajorStroke,
                     style: TextStyle(fontSize: 23),
                   ),
                   const SizedBox(height: 30),
@@ -172,7 +173,7 @@ class _MedicalStepState extends State<MedicalStep> {
                                   });
                                 },
                               ),
-                              const Text('Yes')
+                              Text(S.of(context).yes)
                             ],
                           ),
                         ),
@@ -201,7 +202,7 @@ class _MedicalStepState extends State<MedicalStep> {
                                   });
                                 },
                               ),
-                              const Text('No')
+                              Text(S.of(context).no)
                             ],
                           ),
                         ),
@@ -209,8 +210,8 @@ class _MedicalStepState extends State<MedicalStep> {
                     ],
                   ),
                   const SizedBox(height: 50),
-                  const Text(
-                    'Have you had a minor stroke?',
+                  Text(
+                    S.of(context).haveYouHadAMinorStroke,
                     style: TextStyle(fontSize: 23),
                   ),
                   const SizedBox(height: 30),
@@ -240,7 +241,7 @@ class _MedicalStepState extends State<MedicalStep> {
                                   });
                                 },
                               ),
-                              const Text('Yes')
+                              Text(S.of(context).yes)
                             ],
                           ),
                         ),
@@ -269,7 +270,7 @@ class _MedicalStepState extends State<MedicalStep> {
                                   });
                                 },
                               ),
-                              const Text('No')
+                              Text(S.of(context).no)
                             ],
                           ),
                         ),

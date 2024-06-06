@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_form/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/models.dart';
@@ -29,9 +30,11 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
   TestModel testModel = TestModel();
   List<GlobalKey<FormState>> _formKeys =
       List.generate(4, (_) => GlobalKey<FormState>());
+
   @override
   Widget build(BuildContext context) {
     testModel.testDate = DateTime.now();
+    testModel.formId = ModalRoute.of(context)!.settings.arguments as int;
     return Consumer<PatientProvider>(
         builder: (context, patientProvider, child) {
       if (!patientProvider.isLoggedIn) {
@@ -96,9 +99,10 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                                           testModel.patientDifficulties ==
                                               null) {
                                         ScaffoldMessenger.of(context)
-                                            .showSnackBar(const SnackBar(
-                                                content: Text(
-                                                    'Please Complete the form')));
+                                            .showSnackBar(SnackBar(
+                                                content: Text(S
+                                                    .of(context)
+                                                    .pleaseCompleteTheForm)));
                                       } else {
                                         Navigator.pushNamed(context, 'test',
                                             arguments: testModel);
@@ -110,9 +114,10 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                                             .validate()) {
                                           if (testModel.patientGender == null) {
                                             ScaffoldMessenger.of(context)
-                                                .showSnackBar(const SnackBar(
-                                                    content: Text(
-                                                        'Please complete the form')));
+                                                .showSnackBar(SnackBar(
+                                                    content: Text(S
+                                                        .of(context)
+                                                        .pleaseCompleteTheForm)));
 
                                             return;
                                           } else {
@@ -130,9 +135,10 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                                               testModel.patientRelatives ==
                                                   null) {
                                             ScaffoldMessenger.of(context)
-                                                .showSnackBar(const SnackBar(
-                                                    content: Text(
-                                                        'Please complete the form')));
+                                                .showSnackBar(SnackBar(
+                                                    content: Text(S
+                                                        .of(context)
+                                                        .pleaseCompleteTheForm)));
                                             return;
                                           } else {
                                             setState(() {
@@ -148,9 +154,10 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                                             testModel.patientMinorStroke ==
                                                 null) {
                                           ScaffoldMessenger.of(context)
-                                              .showSnackBar(const SnackBar(
-                                                  content: Text(
-                                                      'Please Complete the form')));
+                                              .showSnackBar(SnackBar(
+                                                  content: Text(S
+                                                      .of(context)
+                                                      .pleaseCompleteTheForm)));
                                         } else {
                                           setState(() {
                                             currentStep += 1;
@@ -203,8 +210,8 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                                             padding: const EdgeInsets.symmetric(
                                                 horizontal: 20, vertical: 10),
                                           ),
-                                          child: const Text(
-                                            'Continue',
+                                          child: Text(
+                                            S.of(context).continueTxt,
                                             style: TextStyle(
                                               color: Colors.black,
                                             ),

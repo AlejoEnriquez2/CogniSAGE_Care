@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_form/generated/l10n.dart';
 import 'package:frontend_form/providers/providers.dart';
 import 'package:frontend_form/models/models.dart';
 
@@ -43,8 +44,8 @@ class _MentalStepState extends State<MentalStep> {
               child: Column(
                 children: [
                   const SizedBox(height: 30),
-                  const Text(
-                    'Do you currently feel sad or depressed?',
+                  Text(
+                    S.of(context).doYouCurrentlyFeelSadOrDepressed,
                     style: TextStyle(fontSize: 23),
                   ),
                   const SizedBox(height: 30),
@@ -74,7 +75,7 @@ class _MentalStepState extends State<MentalStep> {
                                   });
                                 },
                               ),
-                              const Text('Yes')
+                              Text(S.of(context).yes)
                             ],
                           ),
                         ),
@@ -105,7 +106,7 @@ class _MentalStepState extends State<MentalStep> {
                                   });
                                 },
                               ),
-                              const Text('Sometimes')
+                              Text(S.of(context).sometimes)
                             ],
                           ),
                         ),
@@ -133,7 +134,7 @@ class _MentalStepState extends State<MentalStep> {
                                   });
                                 },
                               ),
-                              const Text('No')
+                              Text(S.of(context).no)
                             ],
                           ),
                         ),
@@ -141,8 +142,8 @@ class _MentalStepState extends State<MentalStep> {
                     ],
                   ),
                   const SizedBox(height: 40),
-                  const Text(
-                    'Have you had any change in your personality?',
+                  Text(
+                    S.of(context).haveYouHadAnyChangeInYourPersonality,
                     style: TextStyle(fontSize: 25),
                   ),
                   const SizedBox(height: 25),
@@ -174,7 +175,7 @@ class _MentalStepState extends State<MentalStep> {
                                   });
                                 },
                               ),
-                              const Text('Yes')
+                              Text(S.of(context).yes)
                             ],
                           ),
                         ),
@@ -194,8 +195,8 @@ class _MentalStepState extends State<MentalStep> {
                               });
                             },
                             focusNode: widget.focusNodes[5],
-                            decoration: const InputDecoration(
-                              labelText: 'Specify changes',
+                            decoration: InputDecoration(
+                              labelText: S.of(context).specifyChanges,
                             ),
                           ),
                         ),
@@ -225,7 +226,7 @@ class _MentalStepState extends State<MentalStep> {
                                   });
                                 },
                               ),
-                              const Text('No')
+                              Text(S.of(context).no)
                             ],
                           ),
                         ),
@@ -233,8 +234,10 @@ class _MentalStepState extends State<MentalStep> {
                     ],
                   ),
                   const SizedBox(height: 50),
-                  const Text(
-                    'Do you have more difficulties doing everyday activites due to thinking problems?',
+                  Text(
+                    S
+                        .of(context)
+                        .doYouHaveMoreDifficultiesDoingEverydayActivitiesDueToThinkingProblems,
                     style: TextStyle(fontSize: 23),
                   ),
                   const SizedBox(height: 20),
@@ -264,7 +267,7 @@ class _MentalStepState extends State<MentalStep> {
                                   });
                                 },
                               ),
-                              const Text('Yes')
+                              Text(S.of(context).yes)
                             ],
                           ),
                         ),
@@ -294,7 +297,7 @@ class _MentalStepState extends State<MentalStep> {
                                   });
                                 },
                               ),
-                              const Text('No')
+                              Text(S.of(context).no)
                             ],
                           ),
                         ),

@@ -190,12 +190,32 @@ class S {
     );
   }
 
-  /// `The SAGE test, or Self-Administered Gerocognitive Exam, is a brief self-assessment tool designed to detect early signs of cognitive impairment. Developed by researchers at Ohio State University Wexner Medical Center, the test aims to identify changes in cognitive functions that are subtle and might not be immediately apparent, serving as a preliminary screen for conditions like Alzheimer's disease, other dementias, and various neurological problems.`
+  /// `The SAGE test, or Self-Administered Gerocognitive Exam, is a brief self-assessment tool designed to detect early signs of cognitive impairment. Developed by researchers at the Ohio State University Wexner Medical Center, the test aims to identify changes in cognitive functions that are subtle and might not be immediately apparent, serving as a preliminary screen for conditions like Alzheimer's disease, other dementias, and various neurological problems.The test encompasses a variety of questions and tasks that assess different aspects of cognition, including memory, problem-solving abilities, language, and other key functions.`
   String get sageTestDescription {
     return Intl.message(
-      'The SAGE test, or Self-Administered Gerocognitive Exam, is a brief self-assessment tool designed to detect early signs of cognitive impairment. Developed by researchers at Ohio State University Wexner Medical Center, the test aims to identify changes in cognitive functions that are subtle and might not be immediately apparent, serving as a preliminary screen for conditions like Alzheimer\'s disease, other dementias, and various neurological problems.',
+      'The SAGE test, or Self-Administered Gerocognitive Exam, is a brief self-assessment tool designed to detect early signs of cognitive impairment. Developed by researchers at the Ohio State University Wexner Medical Center, the test aims to identify changes in cognitive functions that are subtle and might not be immediately apparent, serving as a preliminary screen for conditions like Alzheimer\'s disease, other dementias, and various neurological problems.The test encompasses a variety of questions and tasks that assess different aspects of cognition, including memory, problem-solving abilities, language, and other key functions.',
       name: 'sageTestDescription',
       desc: 'Description of what the SAGE test is.',
+      args: [],
+    );
+  }
+
+  /// `It is designed to be taken on paper, but this is a digitized adaptation of it, and can be completed in approximately 15 minutes. After completion, the system will grade and provide feedback and recommendations about cognitive health.`
+  String get sageTestInstructions {
+    return Intl.message(
+      'It is designed to be taken on paper, but this is a digitized adaptation of it, and can be completed in approximately 15 minutes. After completion, the system will grade and provide feedback and recommendations about cognitive health.',
+      name: 'sageTestInstructions',
+      desc: 'Instructions about the SAGE test.',
+      args: [],
+    );
+  }
+
+  /// `You will have many screens in which you have to write or draw your answers.`
+  String get screensInstructions {
+    return Intl.message(
+      'You will have many screens in which you have to write or draw your answers.',
+      name: 'screensInstructions',
+      desc: 'Instructions about the SAGE test.',
       args: [],
     );
   }
@@ -330,12 +350,12 @@ class S {
     );
   }
 
-  /// `Please enter your race`
-  String get pleaseEnterYourRace {
+  /// `Please enter your ethnical background`
+  String get pleaseEnterYourEthnicalBackground {
     return Intl.message(
-      'Please enter your race',
-      name: 'pleaseEnterYourRace',
-      desc: 'Prompt asking for the user\'s race.',
+      'Please enter your ethnical background',
+      name: 'pleaseEnterYourEthnicalBackground',
+      desc: 'Prompt asking for the user\'s ethnical background.',
       args: [],
     );
   }
@@ -479,6 +499,530 @@ class S {
           'doYouHaveMoreDifficultiesDoingEverydayActivitiesDueToThinkingProblems',
       desc:
           'Question about difficulties in daily activities due to cognitive issues.',
+      args: [],
+    );
+  }
+
+  /// `The user name is:`
+  String get userNameIs {
+    return Intl.message(
+      'The user name is:',
+      name: 'userNameIs',
+      desc: 'Prefix for displaying the user name.',
+      args: [],
+    );
+  }
+
+  /// `The last grade is:`
+  String get lastGradeIs {
+    return Intl.message(
+      'The last grade is:',
+      name: 'lastGradeIs',
+      desc: 'Prefix for displaying the last grade achieved in school.',
+      args: [],
+    );
+  }
+
+  /// `The game you have played the most is`
+  String get mostPlayedGame {
+    return Intl.message(
+      'The game you have played the most is',
+      name: 'mostPlayedGame',
+      desc: 'Prefix for displaying the most played game.',
+      args: [],
+    );
+  }
+
+  /// `Go see a doctor as soon as possible`
+  String get seeDoctor {
+    return Intl.message(
+      'Go see a doctor as soon as possible',
+      name: 'seeDoctor',
+      desc: 'Urgent recommendation to seek medical advice.',
+      args: [],
+    );
+  }
+
+  /// `Please enter your username`
+  String get enterUsername {
+    return Intl.message(
+      'Please enter your username',
+      name: 'enterUsername',
+      desc: 'Prompt to enter the username.',
+      args: [],
+    );
+  }
+
+  /// `Please enter your password`
+  String get enterPassword {
+    return Intl.message(
+      'Please enter your password',
+      name: 'enterPassword',
+      desc: 'Prompt to enter the password.',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get logout {
+    return Intl.message(
+      'Logout',
+      name: 'logout',
+      desc: 'Button text for logging out of the application.',
+      args: [],
+    );
+  }
+
+  /// `What is today's date?`
+  String get whatsTodaysDate {
+    return Intl.message(
+      'What is today\'s date?',
+      name: 'whatsTodaysDate',
+      desc: 'Question asking for the current date.',
+      args: [],
+    );
+  }
+
+  /// `In numbers (from memory - no cheating!)`
+  String get inNumbersFromMemory {
+    return Intl.message(
+      'In numbers (from memory - no cheating!)',
+      name: 'inNumbersFromMemory',
+      desc: 'Prompt to answer from memory without help.',
+      args: [],
+    );
+  }
+
+  /// `Month`
+  String get month {
+    return Intl.message(
+      'Month',
+      name: 'month',
+      desc: 'Label for the month part of a date.',
+      args: [],
+    );
+  }
+
+  /// `Date`
+  String get date {
+    return Intl.message(
+      'Date',
+      name: 'date',
+      desc: 'Label for the day part of a date.',
+      args: [],
+    );
+  }
+
+  /// `Year`
+  String get year {
+    return Intl.message(
+      'Year',
+      name: 'year',
+      desc: 'Label for the year part of a date.',
+      args: [],
+    );
+  }
+
+  /// `Name the following pictures`
+  String get nameTheFollowingPictures {
+    return Intl.message(
+      'Name the following pictures',
+      name: 'nameTheFollowingPictures',
+      desc: 'Instruction to name various pictures shown.',
+      args: [],
+    );
+  }
+
+  /// `don't worry about spelling - just do your best!`
+  String get dontWorryAboutSpelling {
+    return Intl.message(
+      'don\'t worry about spelling - just do your best!',
+      name: 'dontWorryAboutSpelling',
+      desc: 'Encouragement to focus on attempting rather than accuracy.',
+      args: [],
+    );
+  }
+
+  /// `Answer these questions:`
+  String get answerTheseQuestions {
+    return Intl.message(
+      'Answer these questions:',
+      name: 'answerTheseQuestions',
+      desc: 'Lead-in to a list of questions.',
+      args: [],
+    );
+  }
+
+  /// `How are a watch and a ruler similar? They both are... what?`
+  String get howAreWatchAndRulerSimilar {
+    return Intl.message(
+      'How are a watch and a ruler similar? They both are... what?',
+      name: 'howAreWatchAndRulerSimilar',
+      desc: 'Question asking for similarities between a watch and a ruler.',
+      args: [],
+    );
+  }
+
+  /// `Write down how they are alike.`
+  String get writeDownHowTheyAreAlike {
+    return Intl.message(
+      'Write down how they are alike.',
+      name: 'writeDownHowTheyAreAlike',
+      desc: 'Instruction to document similarities.',
+      args: [],
+    );
+  }
+
+  /// `They both are...`
+  String get theyBothAre {
+    return Intl.message(
+      'They both are...',
+      name: 'theyBothAre',
+      desc: 'Starter phrase for listing similarities.',
+      args: [],
+    );
+  }
+
+  /// `How many nickels are in 60 cents?`
+  String get howManyNickelsInSixtyCents {
+    return Intl.message(
+      'How many nickels are in 60 cents?',
+      name: 'howManyNickelsInSixtyCents',
+      desc: 'Math question involving currency.',
+      args: [],
+    );
+  }
+
+  /// `You are buying $13.45 of groceries. How much change would you receive back from a $20 bill?`
+  String get changeFromTwentyDollarBill {
+    return Intl.message(
+      'You are buying \$13.45 of groceries. How much change would you receive back from a \$20 bill?',
+      name: 'changeFromTwentyDollarBill',
+      desc: 'Problem solving question involving making change from a purchase.',
+      args: [],
+    );
+  }
+
+  /// `Memory Test`
+  String get memoryTest {
+    return Intl.message(
+      'Memory Test',
+      name: 'memoryTest',
+      desc: 'Title for a memory test section.',
+      args: [],
+    );
+  }
+
+  /// `Memorize this phrase`
+  String get memorizeThisPhrase {
+    return Intl.message(
+      'Memorize this phrase',
+      name: 'memorizeThisPhrase',
+      desc: 'Instruction to memorize a given phrase.',
+      args: [],
+    );
+  }
+
+  /// `In the final section, you will be asked to write this phrase.`
+  String get inTheFinalSection {
+    return Intl.message(
+      'In the final section, you will be asked to write this phrase.',
+      name: 'inTheFinalSection',
+      desc:
+          'Information about a future test section involving the memorized phrase.',
+      args: [],
+    );
+  }
+
+  /// `I am done`
+  String get iAmDone {
+    return Intl.message(
+      'I am done',
+      name: 'iAmDone',
+      desc: 'Statement used to indicate completion of a task.',
+      args: [],
+    );
+  }
+
+  /// `DRAW`
+  String get draw {
+    return Intl.message(
+      'DRAW',
+      name: 'draw',
+      desc: 'Command to draw.',
+      args: [],
+    );
+  }
+
+  /// `Copy/Redraw this image in the space below`
+  String get copyRedrawThisImage {
+    return Intl.message(
+      'Copy/Redraw this image in the space below',
+      name: 'copyRedrawThisImage',
+      desc: 'Instruction to replicate an image by drawing.',
+      args: [],
+    );
+  }
+
+  /// `Follow the next instructions`
+  String get followNextInstructions {
+    return Intl.message(
+      'Follow the next instructions',
+      name: 'followNextInstructions',
+      desc: 'Directive to follow forthcoming instructions.',
+      args: [],
+    );
+  }
+
+  /// `1. Draw a large face of a clock and place the numbers`
+  String get drawLargeClockFace {
+    return Intl.message(
+      '1. Draw a large face of a clock and place the numbers',
+      name: 'drawLargeClockFace',
+      desc: 'Step one in a series of instructions for drawing a clock.',
+      args: [],
+    );
+  }
+
+  /// `2. Position the hands for 5 minutes after 11 o'clock`
+  String get positionHandsForTime {
+    return Intl.message(
+      '2. Position the hands for 5 minutes after 11 o\'clock',
+      name: 'positionHandsForTime',
+      desc: 'Step two, setting the clock hands to a specific time.',
+      args: [],
+    );
+  }
+
+  /// `3. On your clock, label 'L' for the long hand and 'S' for the shorthand`
+  String get labelClockHands {
+    return Intl.message(
+      '3. On your clock, label \'L\' for the long hand and \'S\' for the shorthand',
+      name: 'labelClockHands',
+      desc: 'Step three, labeling the hands of the clock.',
+      args: [],
+    );
+  }
+
+  /// `ANIMALS you can think of`
+  String get writeTwelveDifferentAnimals {
+    return Intl.message(
+      'ANIMALS you can think of',
+      name: 'writeTwelveDifferentAnimals',
+      desc: 'Prompt to list various animals.',
+      args: [],
+    );
+  }
+
+  /// `Connect the dots`
+  String get connectTheDots {
+    return Intl.message(
+      'Connect the dots',
+      name: 'connectTheDots',
+      desc: 'Instruction to connect dots in a sequence.',
+      args: [],
+    );
+  }
+
+  /// `Draw a line from one circle to another, start from 1 and alternate with numbers and letters as (1 -> A -> 2 -> B -> 3 -> C... and so on)`
+  String get drawLineCircleToCircle {
+    return Intl.message(
+      'Draw a line from one circle to another, start from 1 and alternate with numbers and letters as (1 -> A -> 2 -> B -> 3 -> C... and so on)',
+      name: 'drawLineCircleToCircle',
+      desc:
+          'Detailed instructions on how to connect circles using a pattern of numbers and letters.',
+      args: [],
+    );
+  }
+
+  /// `Solve the following:`
+  String get solveFollowing {
+    return Intl.message(
+      'Solve the following:',
+      name: 'solveFollowing',
+      desc: 'Lead-in to a problem-solving task.',
+      args: [],
+    );
+  }
+
+  /// `You start with 2 squares and 2 triangles.`
+  String get startWithTwoShapes {
+    return Intl.message(
+      'You start with 2 squares and 2 triangles.',
+      name: 'startWithTwoShapes',
+      desc:
+          'Description of the initial setup for a problem involving geometric shapes.',
+      args: [],
+    );
+  }
+
+  /// `Cross out 4 lines that you would have to move in order to have 4 squares only`
+  String get crossOutFourLines {
+    return Intl.message(
+      'Cross out 4 lines that you would have to move in order to have 4 squares only',
+      name: 'crossOutFourLines',
+      desc: 'Instruction to modify a drawing to achieve a specified outcome.',
+      args: [],
+    );
+  }
+
+  /// `Draw your answer:`
+  String get drawYourAnswer {
+    return Intl.message(
+      'Draw your answer:',
+      name: 'drawYourAnswer',
+      desc: 'Prompt to illustrate the solution to the given problem.',
+      args: [],
+    );
+  }
+
+  /// `Considering the 4 lines you took out, draw the final result of 4 squares only`
+  String get finalResultFourSquares {
+    return Intl.message(
+      'Considering the 4 lines you took out, draw the final result of 4 squares only',
+      name: 'finalResultFourSquares',
+      desc: 'Instruction to show the end result of a geometry puzzle.',
+      args: [],
+    );
+  }
+
+  /// `Have you finished?`
+  String get haveYouFinished {
+    return Intl.message(
+      'Have you finished?',
+      name: 'haveYouFinished',
+      desc: 'Question to check if the user has completed their tasks.',
+      args: [],
+    );
+  }
+
+  /// `Write twelve different`
+  String get writeTuelveDifferent {
+    return Intl.message(
+      'Write twelve different',
+      name: 'writeTuelveDifferent',
+      desc: 'General instructions for writing ',
+      args: [],
+    );
+  }
+
+  /// `My information`
+  String get myInformation {
+    return Intl.message(
+      'My information',
+      name: 'myInformation',
+      desc: 'My information label',
+      args: [],
+    );
+  }
+
+  /// `How are a rose and a tulip similar? Write down how they are alike. They both are… what?`
+  String get howAreARoseAndATulipSimilar {
+    return Intl.message(
+      'How are a rose and a tulip similar? Write down how they are alike. They both are… what?',
+      name: 'howAreARoseAndATulipSimilar',
+      desc: 'Abstract question on form 4',
+      args: [],
+    );
+  }
+
+  /// `How many quarters (25 cents) are in €6.75?`
+  String get question_quarters_in_euros {
+    return Intl.message(
+      'How many quarters (25 cents) are in €6.75?',
+      name: 'question_quarters_in_euros',
+      desc: 'Question about converting euros to quarters',
+      args: [],
+    );
+  }
+
+  /// `You are buying €3.05 of groceries. How much change would you receive back from a €5 bill?`
+  String get question_groceries_change {
+    return Intl.message(
+      'You are buying €3.05 of groceries. How much change would you receive back from a €5 bill?',
+      name: 'question_groceries_change',
+      desc: 'Question about calculating change from a transaction',
+      args: [],
+    );
+  }
+
+  /// `I have finished`
+  String get instruction_finish_last_page {
+    return Intl.message(
+      'I have finished',
+      name: 'instruction_finish_last_page',
+      desc: 'Instruction for confirming completion on the last page',
+      args: [],
+    );
+  }
+
+  /// `COUNTRIES around the world`
+  String get countries {
+    return Intl.message(
+      'COUNTRIES around the world',
+      name: 'countries',
+      desc: 'Task to list names of different countries',
+      args: [],
+    );
+  }
+
+  /// `Beginning with 4 triangles`
+  String get instruction_start_with_triangles {
+    return Intl.message(
+      'Beginning with 4 triangles',
+      name: 'instruction_start_with_triangles',
+      desc: 'Instruction to start with four triangles',
+      args: [],
+    );
+  }
+
+  /// `Cross out 2 lines (mark them). Leaving 3 triangles only`
+  String get instruction_cross_out_lines {
+    return Intl.message(
+      'Cross out 2 lines (mark them). Leaving 3 triangles only',
+      name: 'instruction_cross_out_lines',
+      desc: 'Instruction to cross out two lines',
+      args: [],
+    );
+  }
+
+  /// `Leaving 3 triangles`
+  String get instruction_leave_triangles {
+    return Intl.message(
+      'Leaving 3 triangles',
+      name: 'instruction_leave_triangles',
+      desc: 'Instruction to leave three triangles after crossing out lines',
+      args: [],
+    );
+  }
+
+  /// `Draw the result considering that each line must be part of a complete triangle (no extra lines).`
+  String get rule_complete_triangle_lines {
+    return Intl.message(
+      'Draw the result considering that each line must be part of a complete triangle (no extra lines).',
+      name: 'rule_complete_triangle_lines',
+      desc: 'Rule that each line must complete a triangle',
+      args: [],
+    );
+  }
+
+  /// `Are you done?`
+  String get areYouDone {
+    return Intl.message(
+      'Are you done?',
+      name: 'areYouDone',
+      desc: 'Final text of form 4',
+      args: [],
+    );
+  }
+
+  /// `2. Position the hands for 10 minutes before 11 o’clock`
+  String get positionHandsForTime4 {
+    return Intl.message(
+      '2. Position the hands for 10 minutes before 11 o’clock',
+      name: 'positionHandsForTime4',
+      desc:
+          'Segundo paso, configurando las agujas del reloj a una hora específica.',
       args: [],
     );
   }

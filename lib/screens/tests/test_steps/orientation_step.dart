@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:frontend_form/generated/l10n.dart';
 import 'package:frontend_form/models/models.dart';
 
 class OrientationStep extends StatefulWidget {
@@ -37,19 +38,19 @@ class _OrientationStepState extends State<OrientationStep> {
             ),
             child: Center(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 80),
+                padding: const EdgeInsets.symmetric(horizontal: 70),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const SizedBox(height: 30),
-                    const Column(
+                    Column(
                       children: [
                         Text(
-                          "What is today's date?",
+                          S.of(context).whatsTodaysDate,
                           style: TextStyle(
                               fontSize: 40, fontWeight: FontWeight.bold),
                         ),
-                        Text(' In numbers (from memory - no cheating!)'),
+                        Text(S.of(context).inNumbersFromMemory),
                       ],
                     ),
                     const SizedBox(height: 10),
@@ -60,8 +61,8 @@ class _OrientationStepState extends State<OrientationStep> {
                           width: 150,
                           padding: const EdgeInsets.all(8.0),
                           child: Column(children: [
-                            const Text(
-                              'Month',
+                            Text(
+                              S.of(context).month,
                               style: TextStyle(fontSize: 25),
                             ),
                             TextFormField(
@@ -86,8 +87,8 @@ class _OrientationStepState extends State<OrientationStep> {
                           width: 150,
                           padding: const EdgeInsets.all(8.0),
                           child: Column(children: [
-                            const Text(
-                              'Date',
+                            Text(
+                              S.of(context).date,
                               style: TextStyle(fontSize: 25),
                             ),
                             TextFormField(
@@ -112,8 +113,8 @@ class _OrientationStepState extends State<OrientationStep> {
                           width: 150,
                           padding: const EdgeInsets.all(8.0),
                           child: Column(children: [
-                            const Text(
-                              'Year',
+                            Text(
+                              S.of(context).year,
                               style: TextStyle(fontSize: 25),
                             ),
                             TextFormField(

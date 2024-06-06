@@ -56,9 +56,17 @@
     "@whatIsSageTest": {
         "description": "Question about what the SAGE test is."
     },
-    "sageTestDescription": "The SAGE test, or Self-Administered Gerocognitive Exam, is a brief self-assessment tool designed to detect early signs of cognitive impairment. Developed by researchers at Ohio State University Wexner Medical Center, the test aims to identify changes in cognitive functions that are subtle and might not be immediately apparent, serving as a preliminary screen for conditions like Alzheimer's disease, other dementias, and various neurological problems.",
+    "sageTestDescription": "The SAGE test, or Self-Administered Gerocognitive Exam, is a brief self-assessment tool designed to detect early signs of cognitive impairment. Developed by researchers at the Ohio State University Wexner Medical Center, the test aims to identify changes in cognitive functions that are subtle and might not be immediately apparent, serving as a preliminary screen for conditions like Alzheimer's disease, other dementias, and various neurological problems.The test encompasses a variety of questions and tasks that assess different aspects of cognition, including memory, problem-solving abilities, language, and other key functions.",
     "@sageTestDescription": {
         "description": "Description of what the SAGE test is."
+    },
+    "sageTestInstructions": "It is designed to be taken on paper, but this is a digitized adaptation of it, and can be completed in approximately 15 minutes. After completion, the system will grade and provide feedback and recommendations about cognitive health.",
+    "@sageTestInstructions": {
+        "description": "Instructions about the SAGE test."
+    },
+    "screensInstructions": "You will have many screens in which you have to write or draw your answers.",
+    "@screensInstructions": {
+        "description": "Instructions about the SAGE test."
     },
     "continueTxt": "Continue",
     "@continueTxt": {
@@ -112,9 +120,9 @@
     "@myEthnicalBackgroundIs": {
         "description": "Prompt asking for the user's ethnical background."
     },
-    "pleaseEnterYourRace": "Please enter your race",
-    "@pleaseEnterYourRace": {
-        "description": "Prompt asking for the user's race."
+    "pleaseEnterYourEthnicalBackground": "Please enter your ethnical background",
+    "@pleaseEnterYourEthnicalBackground": {
+        "description": "Prompt asking for the user's ethnical background."
     },
     "haveYouHadAnyProblemsWithMemoryOrThinking": "Have you had any problems with memory or thinking?",
     "@haveYouHadAnyProblemsWithMemoryOrThinking": {
@@ -171,5 +179,213 @@
     "doYouHaveMoreDifficultiesDoingEverydayActivitiesDueToThinkingProblems": "Do you have more difficulties doing everyday activities due to thinking problems?",
     "@doYouHaveMoreDifficultiesDoingEverydayActivitiesDueToThinkingProblems": {
         "description": "Question about difficulties in daily activities due to cognitive issues."
+    },
+    "userNameIs": "The user name is:",
+    "@userNameIs": {
+        "description": "Prefix for displaying the user name."
+    },
+    "lastGradeIs": "The last grade is:",
+    "@lastGradeIs": {
+        "description": "Prefix for displaying the last grade achieved in school."
+    },
+    "mostPlayedGame": "The game you have played the most is",
+    "@mostPlayedGame": {
+        "description": "Prefix for displaying the most played game."
+    },
+    "seeDoctor": "Go see a doctor as soon as possible",
+    "@seeDoctor": {
+        "description": "Urgent recommendation to seek medical advice."
+    },
+    "enterUsername": "Please enter your username",
+    "@enterUsername": {
+        "description": "Prompt to enter the username."
+    },
+    "enterPassword": "Please enter your password",
+    "@enterPassword": {
+        "description": "Prompt to enter the password."
+    },
+    "logout": "Logout",
+    "@logout": {
+        "description": "Button text for logging out of the application."
+    },
+    "whatsTodaysDate": "What is today's date?",
+    "@whatsTodaysDate": {
+        "description": "Question asking for the current date."
+    },
+    "inNumbersFromMemory": "In numbers (from memory - no cheating!)",
+    "@inNumbersFromMemory": {
+        "description": "Prompt to answer from memory without help."
+    },
+    "month": "Month",
+    "@month": {
+        "description": "Label for the month part of a date."
+    },
+    "date": "Date",
+    "@date": {
+        "description": "Label for the day part of a date."
+    },
+    "year": "Year",
+    "@year": {
+        "description": "Label for the year part of a date."
+    },
+    "nameTheFollowingPictures": "Name the following pictures",
+    "@nameTheFollowingPictures": {
+        "description": "Instruction to name various pictures shown."
+    },
+    "dontWorryAboutSpelling": "don't worry about spelling - just do your best!",
+    "@dontWorryAboutSpelling": {
+        "description": "Encouragement to focus on attempting rather than accuracy."
+    },
+    "answerTheseQuestions": "Answer these questions:",
+    "@answerTheseQuestions": {
+        "description": "Lead-in to a list of questions."
+    },
+    "howAreWatchAndRulerSimilar": "How are a watch and a ruler similar? They both are... what?",
+    "@howAreWatchAndRulerSimilar": {
+        "description": "Question asking for similarities between a watch and a ruler."
+    },
+    "writeDownHowTheyAreAlike": "Write down how they are alike.",
+    "@writeDownHowTheyAreAlike": {
+        "description": "Instruction to document similarities."
+    },
+    "theyBothAre": "They both are...",
+    "@theyBothAre": {
+        "description": "Starter phrase for listing similarities."
+    },
+    "howManyNickelsInSixtyCents": "How many nickels are in 60 cents?",
+    "@howManyNickelsInSixtyCents": {
+        "description": "Math question involving currency."
+    },
+    "changeFromTwentyDollarBill": "You are buying $13.45 of groceries. How much change would you receive back from a $20 bill?",
+    "@changeFromTwentyDollarBill": {
+        "description": "Problem solving question involving making change from a purchase."
+    },
+    "memoryTest": "Memory Test",
+    "@memoryTest": {
+        "description": "Title for a memory test section."
+    },
+    "memorizeThisPhrase": "Memorize this phrase",
+    "@memorizeThisPhrase": {
+        "description": "Instruction to memorize a given phrase."
+    },
+    "inTheFinalSection": "In the final section, you will be asked to write this phrase.",
+    "@inTheFinalSection": {
+        "description": "Information about a future test section involving the memorized phrase."
+    },
+    "iAmDone": "I am done",
+    "@iAmDone": {
+        "description": "Statement used to indicate completion of a task."
+    },
+    "draw": "DRAW",
+    "@draw": {
+        "description": "Command to draw."
+    },
+    "copyRedrawThisImage": "Copy/Redraw this image in the space below",
+    "@copyRedrawThisImage": {
+        "description": "Instruction to replicate an image by drawing."
+    },
+    "followNextInstructions": "Follow the next instructions",
+    "@followNextInstructions": {
+        "description": "Directive to follow forthcoming instructions."
+    },
+    "drawLargeClockFace": "1. Draw a large face of a clock and place the numbers",
+    "@drawLargeClockFace": {
+        "description": "Step one in a series of instructions for drawing a clock."
+    },
+    "positionHandsForTime": "2. Position the hands for 5 minutes after 11 o'clock",
+    "@positionHandsForTime": {
+        "description": "Step two, setting the clock hands to a specific time."
+    },
+    "labelClockHands": "3. On your clock, label 'L' for the long hand and 'S' for the shorthand",
+    "@labelClockHands": {
+        "description": "Step three, labeling the hands of the clock."
+    },
+    "writeTwelveDifferentAnimals": "ANIMALS you can think of",
+    "@writeTwelveDifferentAnimals": {
+        "description": "Prompt to list various animals."
+    },
+    "connectTheDots": "Connect the dots",
+    "@connectTheDots": {
+        "description": "Instruction to connect dots in a sequence."
+    },
+    "drawLineCircleToCircle": "Draw a line from one circle to another, start from 1 and alternate with numbers and letters as (1 -> A -> 2 -> B -> 3 -> C... and so on)",
+    "@drawLineCircleToCircle": {
+        "description": "Detailed instructions on how to connect circles using a pattern of numbers and letters."
+    },
+    "solveFollowing": "Solve the following:",
+    "@solveFollowing": {
+        "description": "Lead-in to a problem-solving task."
+    },
+    "startWithTwoShapes": "You start with 2 squares and 2 triangles.",
+    "@startWithTwoShapes": {
+        "description": "Description of the initial setup for a problem involving geometric shapes."
+    },
+    "crossOutFourLines": "Cross out 4 lines that you would have to move in order to have 4 squares only",
+    "@crossOutFourLines": {
+        "description": "Instruction to modify a drawing to achieve a specified outcome."
+    },
+    "drawYourAnswer": "Draw your answer:",
+    "@drawYourAnswer": {
+        "description": "Prompt to illustrate the solution to the given problem."
+    },
+    "finalResultFourSquares": "Considering the 4 lines you took out, draw the final result of 4 squares only",
+    "@finalResultFourSquares": {
+        "description": "Instruction to show the end result of a geometry puzzle."
+    },
+    "haveYouFinished": "Have you finished?",
+    "@haveYouFinished": {
+        "description": "Question to check if the user has completed their tasks."
+    },
+    "writeTuelveDifferent": "Write twelve different",
+    "@writeTuelveDifferent": {
+        "description": "General instructions for writing "
+    },
+    "myInformation": "My information",
+    "@myInformation": {
+        "description": "My information label"
+    },
+    "howAreARoseAndATulipSimilar": "How are a rose and a tulip similar? Write down how they are alike. They both are… what?",
+    "@howAreARoseAndATulipSimilar": {
+        "description": "Abstract question on form 4"
+    },
+    "question_quarters_in_euros": "How many quarters (25 cents) are in €6.75?",
+    "@question_quarters_in_euros": {
+        "description": "Question about converting euros to quarters"
+    },
+    "question_groceries_change": "You are buying €3.05 of groceries. How much change would you receive back from a €5 bill?",
+    "@question_groceries_change": {
+        "description": "Question about calculating change from a transaction"
+    },
+    "instruction_finish_last_page": "I have finished",
+    "@instruction_finish_last_page": {
+        "description": "Instruction for confirming completion on the last page"
+    },
+    "countries": "COUNTRIES around the world",
+    "@countries": {
+        "description": "Task to list names of different countries"
+    },
+    "instruction_start_with_triangles": "Beginning with 4 triangles",
+    "@instruction_start_with_triangles": {
+        "description": "Instruction to start with four triangles"
+    },
+    "instruction_cross_out_lines": "Cross out 2 lines (mark them). Leaving 3 triangles only",
+    "@instruction_cross_out_lines": {
+        "description": "Instruction to cross out two lines"
+    },
+    "instruction_leave_triangles": "Leaving 3 triangles",
+    "@instruction_leave_triangles": {
+        "description": "Instruction to leave three triangles after crossing out lines"
+    },
+    "rule_complete_triangle_lines": "Draw the result considering that each line must be part of a complete triangle (no extra lines).",
+    "@rule_complete_triangle_lines": {
+        "description": "Rule that each line must complete a triangle"
+    },
+    "areYouDone": "Are you done?",
+    "@areYouDone": {
+        "description": "Final text of form 4"
+    },
+    "positionHandsForTime4": "2. Position the hands for 10 minutes before 11 o’clock",
+    "@positionHandsForTime4": {
+        "description": "Segundo paso, configurando las agujas del reloj a una hora específica."
     }
 }

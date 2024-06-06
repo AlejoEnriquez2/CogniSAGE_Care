@@ -88,7 +88,7 @@ class LoginWidget extends StatelessWidget {
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return S.of(context).pleaseEnterYourName;
+                        return S.of(context).enterUsername;
                       }
                       return null;
                     },
@@ -103,7 +103,7 @@ class LoginWidget extends StatelessWidget {
                     obscureText: true,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return S.of(context).password;
+                        return S.of(context).enterPassword;
                       }
                       return null;
                     },

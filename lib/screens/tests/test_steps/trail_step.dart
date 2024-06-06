@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_form/generated/l10n.dart';
 import 'package:frontend_form/providers/providers.dart';
 import 'package:frontend_form/models/models.dart';
 import 'package:frontend_form/widgets/trail_board.dart';
@@ -7,12 +8,14 @@ class TrailStep extends StatefulWidget {
   final List<FocusNode> focusNodes;
   final VoidCallback onRefresh;
   final AnswersModel answersModel;
+  final int formId;
 
   const TrailStep({
     super.key,
     required this.focusNodes,
     required this.onRefresh,
     required this.answersModel,
+    required this.formId,
   });
 
   void refreshMainScreen() {
@@ -51,7 +54,7 @@ class _TrailStepState extends State<TrailStep> {
                         Column(
                           children: [
                             Text(
-                              'Connect the dots',
+                              S.of(context).connectTheDots,
                               style: TextStyle(
                                 fontSize: 33,
                                 fontWeight: FontWeight.bold,
@@ -60,8 +63,7 @@ class _TrailStepState extends State<TrailStep> {
                             SizedBox(height: 20),
                             Container(
                               width: 200,
-                              child: Text(
-                                  'Draw a line from one circle to another, start from 1 and alternate with numbers and letters as (1 -> A -> 2 -> B -> 3 -> C... and so on)'),
+                              child: Text(S.of(context).drawLineCircleToCircle),
                             ),
                           ],
                         ),
@@ -86,6 +88,7 @@ class _TrailStepState extends State<TrailStep> {
                         canvaSize: 550,
                         type: 'draw',
                         answersModel: widget.answersModel,
+                        formId: widget.formId,
                       ),
                     ),
                   ],

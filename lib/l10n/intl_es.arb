@@ -56,9 +56,17 @@
     "@whatIsSageTest": {
         "description": "Pregunta sobre qué es el test SAGE."
     },
-    "sageTestDescription": "El test SAGE, o Examen Gerocognitivo Autoadministrado, es una herramienta de autoevaluación breve diseñada para detectar signos tempranos de deterioro cognitivo. Desarrollado por investigadores del Centro Médico Wexner de la Universidad Estatal de Ohio, tiene como objetivo identificar cambios en las funciones cognitivas que son sutiles y podrían no ser inmediatamente aparentes, sirviendo como una evaluación preliminar para condiciones como la enfermedad de Alzheimer, otras demencias y problemas neurológicos diversos.",
+    "sageTestDescription": "El test SAGE, o Examen Gerocognitivo Autoadministrado, es una herramienta de autoevaluación breve diseñada para detectar signos tempranos de deterioro cognitivo. Desarrollado por investigadores del Centro Médico Wexner de la Universidad Estatal de Ohio, tiene como objetivo identificar cambios en las funciones cognitivas que son sutiles y podrían no ser inmediatamente aparentes, sirviendo como una evaluación preliminar para condiciones como la enfermedad de Alzheimer, otras demencias y problemas neurológicos diversos. La prueba consiste de varias preguntas y desafíos que se enfocan en evaluar aspectos cognitivos, incluyendo memoria, capacidad de resolución de problemas, lenguaje, y otras funciones clave.",
     "@sageTestDescription": {
         "description": "Descripción de qué es el test SAGE."
+    },
+    "sageTestInstructions": "Está diseñado para ser realizado en papel, pero esta es una adaptación digitalizada del mismo, y puede completarse en aproximadamente 15 minutos. Después de completarlo, el sistema calificará y proporcionará retroalimentación y recomendaciones sobre la salud cognitiva.",
+    "@sageTestInstructions": {
+        "description": "Instrucciones de qué es el test SAGE."
+    },
+    "screensInstructions": "Tendrás que escribir, dibujar o seleccionar tus respuestas en multiples pantallas.",
+    "@screensInstructions": {
+        "description": "Instructions about the SAGE test."
     },
     "continueTxt": "Continuar",
     "@continueTxt": {
@@ -76,7 +84,7 @@
     "@whatIsYourBirthday": {
         "description": "Pregunta pidiendo la fecha de nacimiento del usuario."
     },
-    "howFarDidYouGetInSchool": "¿Cuánto estudiaste?",
+    "howFarDidYouGetInSchool": "¿Cuál es tu nivel de educación?",
     "@howFarDidYouGetInSchool": {
         "description": "Pregunta sobre el nivel educativo alcanzado por el usuario."
     },
@@ -111,9 +119,9 @@
     "myEthnicalBackgroundIs": "Mi origen étnico es:",
     "@myEthnicalBackgroundIs": {
         "description": "Pregunta sobre el origen étnico del usuario."
-    },
-    "pleaseEnterYourRace": "Por favor, indica tu raza",
-    "@pleaseEnterYourRace": {
+    },    
+    "pleaseEnterYourEthnicalBackground": "Por favor, indica tu origen étnico",
+    "@pleaseEnterYourEthnicalBackground": {
         "description": "Indicación para que el usuario introduzca su raza."
     },
     "haveYouHadAnyProblemsWithMemoryOrThinking": "¿Has tenido problemas con la memoria o el pensamiento?",
@@ -171,5 +179,213 @@
     "doYouHaveMoreDifficultiesDoingEverydayActivitiesDueToThinkingProblems": "¿Tienes más dificultades para realizar actividades cotidianas debido a problemas de pensamiento?",
     "@doYouHaveMoreDifficultiesDoingEverydayActivitiesDueToThinkingProblems": {
         "description": "Pregunta sobre dificultades en actividades diarias debido a problemas cognitivos."
+    },
+    "userNameIs": "El nombre de usuario es:",
+    "@userNameIs": {
+        "description": "Prefijo para mostrar el nombre de usuario."
+    },
+    "lastGradeIs": "La última calificación es:",
+    "@lastGradeIs": {
+        "description": "Prefijo para mostrar el último grado alcanzado en la escuela."
+    },
+    "mostPlayedGame": "El juego que más has jugado es",
+    "@mostPlayedGame": {
+        "description": "Prefijo para mostrar el juego más jugado."
+    },
+    "seeDoctor": "Ve a ver a un médico lo antes posible",
+    "@seeDoctor": {
+        "description": "Recomendación urgente para buscar consejo médico."
+    },
+    "enterUsername": "Por favor, introduce tu nombre de usuario",
+    "@enterUsername": {
+        "description": "Indicación para introducir el nombre de usuario."
+    },
+    "enterPassword": "Por favor, introduce tu contraseña",
+    "@enterPassword": {
+        "description": "Indicación para introducir la contraseña."
+    },
+    "logout": "Cerrar sesión",
+    "@logout": {
+        "description": "Texto del botón para cerrar sesión en la aplicación."
+    },
+    "whatsTodaysDate": "¿Cuál es la fecha de hoy?",
+    "@whatsTodaysDate": {
+        "description": "Pregunta sobre la fecha actual."
+    },
+    "inNumbersFromMemory": "En números (de memoria, ¡sin hacer trampa!)",
+    "@inNumbersFromMemory": {
+        "description": "Indicación para responder de memoria sin ayuda."
+    },
+    "month": "Mes",
+    "@month": {
+        "description": "Etiqueta para la parte del mes de una fecha."
+    },
+    "date": "Fecha",
+    "@date": {
+        "description": "Etiqueta para el día de una fecha."
+    },
+    "year": "Año",
+    "@year": {
+        "description": "Etiqueta para el año de una fecha."
+    },
+    "nameTheFollowingPictures": "Nombra las siguientes imágenes",
+    "@nameTheFollowingPictures": {
+        "description": "Instrucción para nombrar varias imágenes mostradas."
+    },
+    "dontWorryAboutSpelling": "no te preocupes por la ortografía, ¡hazlo lo mejor que puedas!",
+    "@dontWorryAboutSpelling": {
+        "description": "Estímulo para enfocarse en intentarlo en lugar de la precisión."
+    },
+    "answerTheseQuestions": "Responde estas preguntas:",
+    "@answerTheseQuestions": {
+        "description": "Introducción a una lista de preguntas."
+    },
+    "howAreWatchAndRulerSimilar": "¿En qué se parecen un reloj y una regla?",
+    "@howAreWatchAndRulerSimilar": {
+        "description": "Pregunta sobre las similitudes entre un reloj y una regla."
+    },
+    "writeDownHowTheyAreAlike": "Escribe cómo son similares.",
+    "@writeDownHowTheyAreAlike": {
+        "description": "Instrucción para documentar similitudes."
+    },
+    "theyBothAre": "Ambos son...",
+    "@theyBothAre": {
+        "description": "Frase inicial para listar similitudes."
+    },
+    "howManyNickelsInSixtyCents": "¿Cuántos níqueles hay en 60 centavos?",
+    "@howManyNickelsInSixtyCents": {
+        "description": "Pregunta matemática involucrando moneda."
+    },
+    "changeFromTwentyDollarBill": "Estás comprando $13.45 en comestibles. ¿Cuánto cambio recibirías de un billete de $20?",
+    "@changeFromTwentyDollarBill": {
+        "description": "Problema de cálculo de cambio a partir de una compra."
+    },
+    "memoryTest": "Prueba de memoria",
+    "@memoryTest": {
+        "description": "Título para una sección de prueba de memoria."
+    },
+    "memorizeThisPhrase": "Memoriza esta frase",
+    "@memorizeThisPhrase": {
+        "description": "Instrucción para memorizar una frase dada."
+    },
+    "inTheFinalSection": "En la sección final, se te pedirá que escribas esta frase.",
+    "@inTheFinalSection": {
+        "description": "Información sobre una sección futura de prueba que involucra la frase memorizada."
+    },
+    "iAmDone": "He terminado",
+    "@iAmDone": {
+        "description": "Declaración usada para indicar la finalización de una tarea."
+    },
+    "draw": "DIBUJA",
+    "@draw": {
+        "description": "Comando para dibujar."
+    },
+    "copyRedrawThisImage": "Copia/redibuja esta imagen en el espacio de abajo",
+    "@copyRedrawThisImage": {
+        "description": "Instrucción para replicar una imagen mediante dibujo."
+    },
+    "followNextInstructions": "Sigue las instrucciones",
+    "@followNextInstructions": {
+        "description": "Directiva para seguir instrucciones subsiguientes."
+    },
+    "drawLargeClockFace": "1. Dibuja una gran esfera de reloj y coloca los números",
+    "@drawLargeClockFace": {
+        "description": "Primer paso en una serie de instrucciones para dibujar un reloj."
+    },
+    "positionHandsForTime": "2. Coloca las agujas para 5 minutos después de las 11",
+    "@positionHandsForTime": {
+        "description": "Segundo paso, configurando las agujas del reloj a una hora específica."
+    },
+    "labelClockHands": "3. En tu reloj, etiqueta con 'L' la aguja larga y con 'S' la aguja corta",
+    "@labelClockHands": {
+        "description": "Tercer paso, etiquetando las agujas del reloj."
+    },
+    "writeTwelveDifferentAnimals": "ANIMALES que se te ocurran",
+    "@writeTwelveDifferentAnimals": {
+        "description": "Indicación para listar varios animales."
+    },
+    "connectTheDots": "Conecta los puntos",
+    "@connectTheDots": {
+        "description": "Instrucción para conectar puntos en secuencia."
+    },
+    "drawLineCircleToCircle": "Dibuja una línea de un círculo a otro, empieza desde el 1 y alterna con números y letras así (1 -> A -> 2 -> B -> 3 -> C... y así sucesivamente)",
+    "@drawLineCircleToCircle": {
+        "description": "Instrucciones detalladas sobre cómo conectar círculos usando un patrón de números y letras."
+    },
+    "solveFollowing": "Resuelve lo siguiente:",
+    "@solveFollowing": {
+        "description": "Introducción a una tarea de resolución de problemas."
+    },
+    "startWithTwoShapes": "Comienzas con 2 cuadrados y 2 triángulos.",
+    "@startWithTwoShapes": {
+        "description": "Descripción de la configuración inicial para un problema que involucra formas geométricas."
+    },
+    "crossOutFourLines": "Tacha 4 líneas que tendrías que mover para tener solo 4 cuadrados",
+    "@crossOutFourLines": {
+        "description": "Instrucción para modificar un dibujo para alcanzar un resultado especificado."
+    },
+    "drawYourAnswer": "Dibuja tu respuesta:",
+    "@drawYourAnswer": {
+        "description": "Indicación para ilustrar la solución al problema dado."
+    },
+    "finalResultFourSquares": "Considerando las 4 líneas que sacaste, dibuja el resultado final de solo 4 cuadrados",
+    "@finalResultFourSquares": {
+        "description": "Instrucción para mostrar el resultado final de un puzzle geométrico."
+    },
+    "haveYouFinished": "¿Has terminado?",
+    "@haveYouFinished": {
+        "description": "Pregunta para verificar si el usuario ha completado sus tareas."
+    },
+    "writeTuelveDifferent": "Escribe 12 diferentes...",
+    "@writeTuelveDifferent": {
+        "description": "General instructions for writing "
+    },
+    "myInformation": "Mi información",
+    "@myInformation": {
+        "description": "My information label"
+    },
+    "howAreARoseAndATulipSimilar": "¿En qué se parecen una rosa y un tulipán? Escriba en qué se parecen. Ambos son... ¿qué?",
+    "@howAreARoseAndATulipSimilar": {
+        "description": "Abstract question on form 4"
+    },
+    "question_quarters_in_euros": "¿Cuántas monedas de veinticinco centavos hay en €6.75?",
+    "@question_quarters_in_euros": {
+        "description": "Pregunta sobre convertir euros a cuartos de dólar"
+    },
+    "question_groceries_change": "Estás comprando €3.05 en comestibles. ¿Cuánto cambio recibirías de un billete de €5?",
+    "@question_groceries_change": {
+        "description": "Pregunta sobre calcular el cambio de una transacción"
+    },
+    "instruction_finish_last_page": "He finalizado",
+    "@instruction_finish_last_page": {
+        "description": "Instrucción para confirmar la finalización en la última página"
+    },
+    "countries": "PAÍSES",
+    "@countries": {
+        "description": "Tarea para listar nombres de diferentes países"
+    },
+    "instruction_start_with_triangles": "Comenzando con 4 triángulos",
+    "@instruction_start_with_triangles": {
+        "description": "Instrucción para comenzar con cuatro triángulos"
+    },
+    "instruction_cross_out_lines": "Tacha 2 líneas de tal forma de que queden 3 triángulos unicamente",
+    "@instruction_cross_out_lines": {
+        "description": "Instrucción para tachar dos líneas"
+    },
+    "instruction_leave_triangles": "Deben quedar 3 triángulos",
+    "@instruction_leave_triangles": {
+        "description": "Instrucción para dejar tres triángulos después de tachar líneas"
+    },
+    "rule_complete_triangle_lines": "Cada línea debe ser parte de un triángulo completo (sin líneas extras).",
+    "@rule_complete_triangle_lines": {
+        "description": "Regla que cada línea debe completar un triángulo"
+    },
+    "areYouDone": "¿Terminó?",
+    "@areYouDone": {
+        "description": "Final text of form 4"
+    },
+    "positionHandsForTime4": "2. Coloca las agujas para 10 minutos antes de las 11",
+    "@positionHandsForTime4": {
+        "description": "Segundo paso, configurando las agujas del reloj a una hora específica."
     }
 }

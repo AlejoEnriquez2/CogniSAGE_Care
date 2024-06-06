@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
 import 'dart:typed_data';
-import 'dart:developer' as dev;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'dart:ui' as ui;
@@ -10,13 +9,13 @@ import '../models/models.dart';
 class ExecutiveBoard extends StatefulWidget {
   final AnswersModel answersModel;
   final double canvaSize;
-  final String type;
+  final int formId;
 
   const ExecutiveBoard({
     super.key,
     required this.answersModel,
     required this.canvaSize,
-    required this.type,
+    required this.formId,
   });
 
   @override
@@ -33,7 +32,7 @@ class _ExecutiveBoardState extends State<ExecutiveBoard> {
   int _greenLineCount = 0;
   int _correctLines = 0;
 
-  List<Line> lines = [
+  List<Line> linesForm1 = [
     Line(
         start: const Offset(50, 330),
         end: const Offset(50, 495),
@@ -86,6 +85,49 @@ class _ExecutiveBoardState extends State<ExecutiveBoard> {
         isTheCorrect: true),
   ];
 
+  List<Line> linesForm2 = [
+    Line(
+        start: const Offset(50, 490),
+        end: const Offset(150, 325),
+        isTheCorrect: false),
+    Line(
+        start: const Offset(165, 325),
+        end: const Offset(270, 490),
+        isTheCorrect: false),
+    Line(
+        start: const Offset(60, 500),
+        end: const Offset(260, 500),
+        isTheCorrect: false),
+    //
+    Line(
+        start: const Offset(165, 305),
+        end: const Offset(260, 170),
+        isTheCorrect: false),
+    Line(
+        start: const Offset(275, 170),
+        end: const Offset(375, 300),
+        isTheCorrect: false),
+    Line(
+        start: const Offset(170, 315),
+        end: const Offset(370, 315),
+        isTheCorrect: false),
+    //
+    Line(
+        start: const Offset(280, 490),
+        end: const Offset(380, 325),
+        isTheCorrect: false),
+    Line(
+        start: const Offset(285, 160),
+        end: const Offset(470, 160),
+        isTheCorrect: false),
+    Line(
+        start: const Offset(395, 300),
+        end: const Offset(485, 165),
+        isTheCorrect: false),
+  ];
+
+  List<Line> lines = [];
+
   void _lockBoard() {
     setState(() {
       _isLocked = true;
@@ -134,14 +176,19 @@ class _ExecutiveBoardState extends State<ExecutiveBoard> {
     String base64String = base64Encode(bytes);
 
     // Use the bytes as needed
-    if (widget.type == 'temp') {
-      widget.answersModel.executiveLinesDraw!.add(base64String);
-    }
+
+    widget.answersModel.executiveLinesDraw!.add(base64String);
     widget.answersModel.isExecLinesDrawCompleted = false;
   }
 
   void _checkIfLineIsDrawnOn() {
     if (!_allowInput) return;
+    var linesAmount = 0;
+    if (widget.formId == 1) {
+      linesAmount = 4;
+    } else {
+      linesAmount = 2;
+    }
 
     for (var line in lines) {
       line.isDrawnOn = false;
@@ -154,12 +201,15 @@ class _ExecutiveBoardState extends State<ExecutiveBoard> {
               line.color = Colors.green;
               _greenLineCount++;
               if (line.isTheCorrect != true) {
-                print('INCORRECT LINE: ' + _correctLines.toString());
+                print('INCORRECT LINE: ' +
+                    _correctLines.toString() +
+                    "on line: " +
+                    line.start.toString());
               } else {
                 _correctLines++;
                 print('CORRECT LINE: ' + _correctLines.toString());
               }
-              if (_greenLineCount >= 4) {
+              if (_greenLineCount >= linesAmount) {
                 _lockBoard();
               }
             }
@@ -225,7 +275,17 @@ class _ExecutiveBoardState extends State<ExecutiveBoard> {
       widget.answersModel.executiveLines = _correctLines.toString();
       _convertToByteData();
     }
+    if (widget.formId == 1) {
+      lines = linesForm1;
+    } else if (widget.formId == 4) {
+      lines = linesForm2;
+    }
     return GestureDetector(
+      onPanDown: (DragDownDetails details) {
+        RenderBox renderBox = context.findRenderObject() as RenderBox;
+        Offset touchPosition = renderBox.globalToLocal(details.globalPosition);
+        print("POSITION: " + touchPosition.toString());
+      },
       onPanUpdate: (DragUpdateDetails details) {
         if (!_isLocked) {
           setState(() {
@@ -293,14 +353,14 @@ class _ExecutiveBoardState extends State<ExecutiveBoard> {
                     width: 20,
                   ),
                 ),
-                IconButton(
-                  onPressed: () {
-                    setState(() {
-                      _convertToByteData();
-                    });
-                  },
-                  icon: const Icon(Icons.save),
-                )
+                // IconButton(
+                //   onPressed: () {
+                //     setState(() {
+                //       _convertToByteData();
+                //     });
+                //   },
+                //   icon: const Icon(Icons.save),
+                // ),
               ],
             ),
           )
