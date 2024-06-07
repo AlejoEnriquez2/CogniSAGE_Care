@@ -25,60 +25,63 @@ class NamingImageStep extends StatefulWidget {
 class _NamingImageStepState extends State<NamingImageStep> {
   @override
   Widget build(BuildContext context) {
+    final deviceHeight = MediaQuery.of(context).size.height;
+    final deviceWidth = MediaQuery.of(context).size.width;
     return Padding(
-      padding: const EdgeInsets.all(30),
+      padding: EdgeInsets.symmetric(
+          horizontal: deviceWidth * 0.025, vertical: deviceHeight * 0.01),
       child: SingleChildScrollView(
         child: Column(children: [
           Container(
-              height: MediaQuery.of(context).size.height * 0.6,
-              width: MediaQuery.of(context).size.width - 100,
+              height: deviceHeight * 0.6,
+              width: deviceWidth * 0.95,
               decoration: BoxDecoration(
                 color: const Color.fromARGB(255, 255, 253, 255),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Center(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 80),
+                  padding: EdgeInsets.symmetric(horizontal: deviceWidth * 0.1),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const SizedBox(height: 30),
+                      SizedBox(height: deviceHeight * 0.02),
                       Column(
                         children: [
                           Text(
                             S.of(context).nameTheFollowingPictures,
                             style: TextStyle(
-                              fontSize: 40,
+                              fontSize: deviceHeight * 0.035,
                               fontWeight: FontWeight.bold,
                             ),
                             textAlign: TextAlign.center,
                           ),
-                          SizedBox(height: 10),
+                          SizedBox(height: deviceHeight * 0.01),
                           Text(S.of(context).dontWorryAboutSpelling),
                         ],
                       ),
-                      const SizedBox(height: 100),
+                      SizedBox(height: deviceHeight * 0.1),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            width: 150,
-                            padding: const EdgeInsets.all(8.0),
+                            width: deviceWidth * 0.19,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: deviceWidth * 0.01,
+                                vertical: deviceHeight * 0.01),
                             child: Column(children: [
                               widget.formId == 1
                                   ? Transform.scale(
-                                      scale:
-                                          2, // Adjust the scale value as needed
+                                      scale: deviceHeight * 0.12 / 75,
                                       child: Image.asset(
                                           'assets/images/wreath.png'),
                                     )
                                   : Transform.scale(
-                                      scale:
-                                          2, // Adjust the scale value as needed
+                                      scale: deviceHeight * 0.12 / 75,
                                       child: Image.asset(
                                           'assets/images/rhino.png'),
                                     ),
-                              SizedBox(height: 75),
+                              SizedBox(height: deviceHeight * 0.06),
                               TextFormField(
                                 onChanged: (value) {
                                   setState(() {
@@ -99,23 +102,23 @@ class _NamingImageStepState extends State<NamingImageStep> {
                             ]),
                           ),
                           Container(
-                            width: 150,
-                            padding: const EdgeInsets.all(8.0),
+                            width: deviceWidth * 0.19,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: deviceWidth * 0.01,
+                                vertical: deviceHeight * 0.01),
                             child: Column(children: [
                               widget.formId == 1
                                   ? Transform.scale(
-                                      scale:
-                                          2, // Adjust the scale value as needed
+                                      scale: deviceHeight * 0.12 / 75,
                                       child: Image.asset(
                                           'assets/images/volcano.png'),
                                     )
                                   : Transform.scale(
-                                      scale:
-                                          2, // Adjust the scale value as needed
+                                      scale: deviceHeight * 0.12 / 75,
                                       child:
                                           Image.asset('assets/images/harp.png'),
                                     ),
-                              SizedBox(height: 75),
+                              SizedBox(height: deviceHeight * 0.06),
                               TextFormField(
                                 onChanged: (value) {
                                   setState(() {
@@ -138,13 +141,13 @@ class _NamingImageStepState extends State<NamingImageStep> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 10),
-                      const SizedBox(height: 10),
-                      const SizedBox(height: 10),
-                      const SizedBox(height: 10),
-                      const SizedBox(height: 10),
-                      const SizedBox(height: 10),
-                      const SizedBox(height: 10),
+                      SizedBox(),
+                      SizedBox(),
+                      SizedBox(),
+                      SizedBox(),
+                      SizedBox(),
+                      SizedBox(),
+                      SizedBox(),
                     ],
                   ),
                 ),

@@ -31,32 +31,38 @@ class _SimilaritiesStepState extends State<SimilaritiesStep> {
 
   @override
   Widget build(BuildContext context) {
+    final deviceHeight = MediaQuery.of(context).size.height;
+    final deviceWidth = MediaQuery.of(context).size.width;
+
     return Padding(
-      padding: const EdgeInsets.all(30),
+      padding: EdgeInsets.symmetric(
+          horizontal: deviceWidth * 0.025, vertical: deviceHeight * 0.01),
       child: Column(children: [
         Container(
-          height: MediaQuery.of(context).size.height * 0.6,
-          width: MediaQuery.of(context).size.width - 100,
+          height: deviceHeight * 0.6,
+          width: deviceWidth * 0.95,
           decoration: BoxDecoration(
             color: const Color.fromARGB(255, 255, 253, 255),
             borderRadius: BorderRadius.circular(20),
           ),
           child: Center(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 50),
+              padding: EdgeInsets.symmetric(horizontal: deviceWidth * 0.05),
               child: Column(
                 children: [
-                  const SizedBox(height: 30),
+                  SizedBox(height: deviceHeight * 0.025),
                   Text(
                     S.of(context).answerTheseQuestions,
-                    style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: deviceHeight * 0.03,
+                        fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(height: 50),
+                  SizedBox(height: deviceHeight * 0.03),
                   Text(
                     widget.formId == 1
                         ? S.of(context).howAreWatchAndRulerSimilar
                         : S.of(context).howAreARoseAndATulipSimilar,
-                    style: const TextStyle(fontSize: 25),
+                    style: TextStyle(fontSize: deviceHeight * 0.02),
                     textAlign: TextAlign.center,
                   ),
                   // const SizedBox(height: 10),
@@ -76,20 +82,22 @@ class _SimilaritiesStepState extends State<SimilaritiesStep> {
                     decoration: InputDecoration(
                       labelText: S.of(context).theyBothAre,
                       prefixIcon: Icon(Icons.edit_square),
+                      labelStyle: TextStyle(fontSize: deviceHeight * 0.013),
                     ),
                     keyboardType: TextInputType.multiline,
                     maxLines: null,
                     textInputAction: TextInputAction.next,
+                    style: TextStyle(fontSize: deviceHeight * 0.015),
                   ),
-                  const SizedBox(height: 30),
+                  SizedBox(height: deviceHeight * 0.03),
                   Text(
                     widget.formId == 1
                         ? S.of(context).howManyNickelsInSixtyCents
                         : S.of(context).question_quarters_in_euros,
-                    style: TextStyle(fontSize: 25),
+                    style: TextStyle(fontSize: deviceHeight * 0.02),
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: 10),
+                  SizedBox(height: deviceHeight * 0.01),
                   TextFormField(
                     onChanged: (value) {
                       setState(() {
@@ -104,21 +112,23 @@ class _SimilaritiesStepState extends State<SimilaritiesStep> {
                       FocusScope.of(context)
                           .requestFocus(widget.focusNodes[13]);
                     },
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       labelText: '\$ ',
                       prefixIcon: Icon(Icons.edit_square),
+                      labelStyle: TextStyle(fontSize: deviceHeight * 0.013),
                     ),
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.number,
+                    style: TextStyle(fontSize: deviceHeight * 0.015),
                   ),
-                  const SizedBox(height: 50),
+                  SizedBox(height: deviceHeight * 0.04),
                   Text(
                     widget.formId == 1
                         ? S.of(context).changeFromTwentyDollarBill
                         : S.of(context).question_groceries_change,
-                    style: TextStyle(fontSize: 23),
+                    style: TextStyle(fontSize: deviceHeight * 0.02),
                   ),
-                  const SizedBox(height: 30),
+                  SizedBox(height: deviceHeight * 0.02),
                   TextFormField(
                     onChanged: (value) {
                       setState(() {
@@ -132,14 +142,16 @@ class _SimilaritiesStepState extends State<SimilaritiesStep> {
                     onFieldSubmitted: (_) {
                       SystemChannels.textInput.invokeMethod('TextInput.hide');
                     },
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       labelText: '\$',
                       prefixIcon: Icon(Icons.edit_square),
+                      labelStyle: TextStyle(fontSize: deviceHeight * 0.013),
                     ),
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.number,
+                    style: TextStyle(fontSize: deviceHeight * 0.015),
                   ),
-                  const SizedBox(height: 30),
+                  SizedBox(height: deviceHeight * 0.03),
                 ],
               ),
             ),

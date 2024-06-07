@@ -27,36 +27,42 @@ class WordStep extends StatefulWidget {
 class _WordStepState extends State<WordStep> {
   @override
   Widget build(BuildContext context) {
+    final deviceHeight = MediaQuery.of(context).size.height;
+    final deviceWidth = MediaQuery.of(context).size.width;
+
     return Padding(
-      padding: const EdgeInsets.all(30),
+      padding: EdgeInsets.symmetric(
+          horizontal: deviceWidth * 0.025, vertical: deviceHeight * 0.01),
       child: Column(children: [
         Container(
-            height: MediaQuery.of(context).size.height * 0.6,
-            width: MediaQuery.of(context).size.width - 100,
+            height: deviceHeight * 0.60,
+            width: deviceWidth * 0.95,
             decoration: BoxDecoration(
               color: const Color.fromARGB(255, 255, 253, 255),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Center(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 50),
+                padding: EdgeInsets.symmetric(horizontal: deviceWidth * 0.05),
                 child: Column(
                   children: [
-                    const SizedBox(height: 30),
+                    SizedBox(height: deviceHeight * 0.025),
                     Column(
                       children: [
                         Text(
                           S.of(context).writeTuelveDifferent,
                           style: TextStyle(
-                              fontSize: 40, fontWeight: FontWeight.bold),
+                              fontSize: deviceHeight * 0.035,
+                              fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(height: 10),
+                        SizedBox(height: deviceHeight * 0.01),
                         Text(
                           widget.formId == 1
                               ? S.of(context).writeTwelveDifferentAnimals
                               : S.of(context).countries,
-                          style: const TextStyle(
-                              fontSize: 25, fontStyle: FontStyle.italic),
+                          style: TextStyle(
+                              fontSize: deviceHeight * 0.022,
+                              fontStyle: FontStyle.italic),
                           textAlign: TextAlign.center,
                         ),
                         // Text.rich(
@@ -80,7 +86,7 @@ class _WordStepState extends State<WordStep> {
                         // ),
                       ],
                     ),
-                    const SizedBox(height: 40),
+                    SizedBox(height: deviceHeight * 0.03),
                     Column(
                       // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -88,8 +94,10 @@ class _WordStepState extends State<WordStep> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
-                              width: 150,
-                              padding: const EdgeInsets.all(8.0),
+                              width: deviceWidth * 0.19,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: deviceWidth * 0.008,
+                                  vertical: deviceHeight * 0.008),
                               child: TextFormField(
                                 onChanged: (value) {
                                   widget.answersModel.w1 = value;
@@ -104,11 +112,15 @@ class _WordStepState extends State<WordStep> {
                                   prefixIcon: Icon(Icons.edit),
                                 ),
                                 textInputAction: TextInputAction.next,
+                                style:
+                                    TextStyle(fontSize: deviceHeight * 0.012),
                               ),
                             ),
                             Container(
-                              width: 150,
-                              padding: const EdgeInsets.all(8.0),
+                              width: deviceWidth * 0.19,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: deviceWidth * 0.008,
+                                  vertical: deviceHeight * 0.008),
                               child: TextFormField(
                                 onChanged: (value) {
                                   widget.answersModel.w2 = value;
@@ -123,11 +135,15 @@ class _WordStepState extends State<WordStep> {
                                   prefixIcon: Icon(Icons.edit),
                                 ),
                                 textInputAction: TextInputAction.next,
+                                style:
+                                    TextStyle(fontSize: deviceHeight * 0.012),
                               ),
                             ),
                             Container(
-                              width: 150,
-                              padding: const EdgeInsets.all(8.0),
+                              width: deviceWidth * 0.19,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: deviceWidth * 0.008,
+                                  vertical: deviceHeight * 0.008),
                               child: TextFormField(
                                 onChanged: (value) {
                                   widget.answersModel.w3 = value;
@@ -142,17 +158,21 @@ class _WordStepState extends State<WordStep> {
                                   prefixIcon: Icon(Icons.edit),
                                 ),
                                 textInputAction: TextInputAction.next,
+                                style:
+                                    TextStyle(fontSize: deviceHeight * 0.012),
                               ),
                             ),
                           ],
                         ),
-                        const SizedBox(height: 20),
+                        SizedBox(height: deviceHeight * 0.016),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
-                              width: 150,
-                              padding: const EdgeInsets.all(8.0),
+                              width: deviceWidth * 0.19,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: deviceWidth * 0.008,
+                                  vertical: deviceHeight * 0.008),
                               child: TextFormField(
                                 onChanged: (value) {
                                   widget.answersModel.w4 = value;
@@ -167,11 +187,15 @@ class _WordStepState extends State<WordStep> {
                                   prefixIcon: Icon(Icons.edit),
                                 ),
                                 textInputAction: TextInputAction.next,
+                                style:
+                                    TextStyle(fontSize: deviceHeight * 0.012),
                               ),
                             ),
                             Container(
-                              width: 150,
-                              padding: const EdgeInsets.all(8.0),
+                              width: deviceWidth * 0.19,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: deviceWidth * 0.008,
+                                  vertical: deviceHeight * 0.008),
                               child: TextFormField(
                                 onChanged: (value) {
                                   widget.answersModel.w5 = value;
@@ -186,11 +210,15 @@ class _WordStepState extends State<WordStep> {
                                   prefixIcon: Icon(Icons.edit),
                                 ),
                                 textInputAction: TextInputAction.next,
+                                style:
+                                    TextStyle(fontSize: deviceHeight * 0.012),
                               ),
                             ),
                             Container(
-                              width: 150,
-                              padding: const EdgeInsets.all(8.0),
+                              width: deviceWidth * 0.19,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: deviceWidth * 0.008,
+                                  vertical: deviceHeight * 0.008),
                               child: TextFormField(
                                 onChanged: (value) {
                                   widget.answersModel.w6 = value;
@@ -205,17 +233,21 @@ class _WordStepState extends State<WordStep> {
                                   prefixIcon: Icon(Icons.edit),
                                 ),
                                 textInputAction: TextInputAction.next,
+                                style:
+                                    TextStyle(fontSize: deviceHeight * 0.012),
                               ),
                             ),
                           ],
                         ),
-                        const SizedBox(height: 20),
+                        SizedBox(height: deviceHeight * 0.016),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
-                              width: 150,
-                              padding: const EdgeInsets.all(8.0),
+                              width: deviceWidth * 0.19,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: deviceWidth * 0.008,
+                                  vertical: deviceHeight * 0.008),
                               child: TextFormField(
                                 onChanged: (value) {
                                   widget.answersModel.w7 = value;
@@ -230,11 +262,15 @@ class _WordStepState extends State<WordStep> {
                                   prefixIcon: Icon(Icons.edit),
                                 ),
                                 textInputAction: TextInputAction.next,
+                                style:
+                                    TextStyle(fontSize: deviceHeight * 0.012),
                               ),
                             ),
                             Container(
-                              width: 150,
-                              padding: const EdgeInsets.all(8.0),
+                              width: deviceWidth * 0.19,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: deviceWidth * 0.008,
+                                  vertical: deviceHeight * 0.008),
                               child: TextFormField(
                                 onChanged: (value) {
                                   widget.answersModel.w8 = value;
@@ -249,11 +285,15 @@ class _WordStepState extends State<WordStep> {
                                   prefixIcon: Icon(Icons.edit),
                                 ),
                                 textInputAction: TextInputAction.next,
+                                style:
+                                    TextStyle(fontSize: deviceHeight * 0.012),
                               ),
                             ),
                             Container(
-                              width: 150,
-                              padding: const EdgeInsets.all(8.0),
+                              width: deviceWidth * 0.19,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: deviceWidth * 0.008,
+                                  vertical: deviceHeight * 0.008),
                               child: TextFormField(
                                 onChanged: (value) {
                                   widget.answersModel.w9 = value;
@@ -268,17 +308,21 @@ class _WordStepState extends State<WordStep> {
                                   prefixIcon: Icon(Icons.edit),
                                 ),
                                 textInputAction: TextInputAction.next,
+                                style:
+                                    TextStyle(fontSize: deviceHeight * 0.012),
                               ),
                             ),
                           ],
                         ),
-                        const SizedBox(height: 20),
+                        SizedBox(height: deviceHeight * 0.016),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
-                              width: 150,
-                              padding: const EdgeInsets.all(8.0),
+                              width: deviceWidth * 0.19,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: deviceWidth * 0.008,
+                                  vertical: deviceHeight * 0.008),
                               child: TextFormField(
                                 onChanged: (value) {
                                   widget.answersModel.w10 = value;
@@ -293,11 +337,15 @@ class _WordStepState extends State<WordStep> {
                                   prefixIcon: Icon(Icons.edit),
                                 ),
                                 textInputAction: TextInputAction.next,
+                                style:
+                                    TextStyle(fontSize: deviceHeight * 0.012),
                               ),
                             ),
                             Container(
-                              width: 150,
-                              padding: const EdgeInsets.all(8.0),
+                              width: deviceWidth * 0.19,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: deviceWidth * 0.008,
+                                  vertical: deviceHeight * 0.008),
                               child: TextFormField(
                                 onChanged: (value) {
                                   widget.answersModel.w11 = value;
@@ -312,11 +360,15 @@ class _WordStepState extends State<WordStep> {
                                   prefixIcon: Icon(Icons.edit),
                                 ),
                                 textInputAction: TextInputAction.next,
+                                style:
+                                    TextStyle(fontSize: deviceHeight * 0.012),
                               ),
                             ),
                             Container(
-                              width: 150,
-                              padding: const EdgeInsets.all(8.0),
+                              width: deviceWidth * 0.19,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: deviceWidth * 0.008,
+                                  vertical: deviceHeight * 0.008),
                               child: TextFormField(
                                 onChanged: (value) {
                                   widget.answersModel.w12 = value;
@@ -329,13 +381,15 @@ class _WordStepState extends State<WordStep> {
                                   labelText: '',
                                   prefixIcon: Icon(Icons.edit),
                                 ),
+                                style:
+                                    TextStyle(fontSize: deviceHeight * 0.012),
                               ),
                             ),
                           ],
                         ),
                       ],
                     ),
-                    const SizedBox(height: 10),
+                    SizedBox(height: deviceHeight * 0.016),
                   ],
                 ),
               ),

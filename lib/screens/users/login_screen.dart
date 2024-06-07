@@ -63,90 +63,92 @@ class LoginWidget extends StatelessWidget {
     return Center(
       child: AuthBackground(
         child: SafeArea(
-          child: Form(
-            key: patientProvider.formKey,
-            child: Column(children: [
-              const SizedBox(height: 250),
-              CardContainer(
-                  child: Column(
-                children: [
-                  const SizedBox(height: 20),
-                  Text(
-                    S.of(context).login,
-                    style: TextStyle(
-                        color: Colors.black54,
-                        fontSize: 35,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 20),
-                  TextFormField(
-                    keyboardType: TextInputType.emailAddress,
-                    controller: _emailController,
-                    decoration: InputDecoration(
-                      labelText: S.of(context).username,
-                      prefixIcon: Icon(Icons.person),
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return S.of(context).enterUsername;
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(height: 20),
-                  TextFormField(
-                    controller: _passwordController,
-                    decoration: InputDecoration(
-                      labelText: S.of(context).password,
-                      prefixIcon: Icon(Icons.lock),
-                    ),
-                    obscureText: true,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return S.of(context).enterPassword;
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(height: 50),
-                  ElevatedButton(
-                    onPressed: () async {
-                      if (patientProvider.formKey.currentState!.validate()) {
-                        FocusScope.of(context).unfocus();
-                        await login(patientProvider, context);
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.yellow,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 40, vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                    ),
-                    child: Text(
+          child: SingleChildScrollView(
+            child: Form(
+              key: patientProvider.formKey,
+              child: Column(children: [
+                const SizedBox(height: 250),
+                CardContainer(
+                    child: Column(
+                  children: [
+                    const SizedBox(height: 20),
+                    Text(
                       S.of(context).login,
                       style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+                          color: Colors.black54,
+                          fontSize: 35,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      keyboardType: TextInputType.emailAddress,
+                      controller: _emailController,
+                      decoration: InputDecoration(
+                        labelText: S.of(context).username,
+                        prefixIcon: Icon(Icons.person),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return S.of(context).enterUsername;
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      controller: _passwordController,
+                      decoration: InputDecoration(
+                        labelText: S.of(context).password,
+                        prefixIcon: Icon(Icons.lock),
+                      ),
+                      obscureText: true,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return S.of(context).enterPassword;
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 50),
+                    ElevatedButton(
+                      onPressed: () async {
+                        if (patientProvider.formKey.currentState!.validate()) {
+                          FocusScope.of(context).unfocus();
+                          await login(patientProvider, context);
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.yellow,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 40, vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                      ),
+                      child: Text(
+                        S.of(context).login,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 20),
-                  TextButton(
-                      onPressed: () =>
-                          Navigator.pushReplacementNamed(context, 'register'),
-                      child: Text(
-                        S.of(context).iDontHaveAnAccount,
-                        style: TextStyle(color: Colors.blueAccent),
-                      ))
-                ],
-              )),
-              const SizedBox(height: 30),
-              const SizedBox(height: 30),
-              const SizedBox(height: 50),
-            ]),
+                    const SizedBox(height: 20),
+                    TextButton(
+                        onPressed: () =>
+                            Navigator.pushReplacementNamed(context, 'register'),
+                        child: Text(
+                          S.of(context).iDontHaveAnAccount,
+                          style: TextStyle(color: Colors.blueAccent),
+                        ))
+                  ],
+                )),
+                const SizedBox(height: 30),
+                const SizedBox(height: 30),
+                const SizedBox(height: 50),
+              ]),
+            ),
           ),
         ),
       ),

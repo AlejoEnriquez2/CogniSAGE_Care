@@ -42,6 +42,8 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
             () => Navigator.pushReplacementNamed(context, 'login'));
         return const Scaffold(body: Center(child: CircularProgressIndicator()));
       } else {
+        final deviceHeight = MediaQuery.of(context).size.height;
+        final deviceWidth = MediaQuery.of(context).size.width;
         return Scaffold(
             appBar: AppBar(
               elevation: 0,
@@ -66,21 +68,23 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                   child: Container(
                     decoration: BoxDecoration(
                       color: const Color.fromARGB(255, 37, 102, 183),
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(deviceHeight * 0.015),
                     ),
                     child: SizedBox(
-                      height: MediaQuery.of(context).size.height - 125,
-                      width: MediaQuery.of(context).size.width - 50,
+                      height: deviceHeight * 0.87,
+                      width: deviceWidth * 0.95,
                       child: Center(
                         child: Padding(
-                          padding: const EdgeInsets.all(15.0),
+                          padding: EdgeInsets.symmetric(
+                              vertical: deviceHeight * 0.015,
+                              horizontal: deviceWidth * 0.025),
                           child: ChangeNotifierProvider(
                             create: (context) => TestProvider(),
                             child: Consumer<TestProvider>(
                                 builder: (context, testProvider, _) {
                               return Container(
                                 child: Stepper(
-                                  physics: const NeverScrollableScrollPhysics(),
+                                  // physics: const NeverScrollableScrollPhysics(),
                                   elevation: 10,
                                   type: StepperType.horizontal,
                                   currentStep: currentStep,
@@ -90,6 +94,8 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                                           currentStep -= 1;
                                         }),
                                   onStepContinue: () {
+                                    print('Current Step: ' +
+                                        currentStep.toString());
                                     bool isLastStep =
                                         (currentStep == getSteps().length - 1);
                                     if (isLastStep) {
@@ -124,6 +130,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                                             setState(() {
                                               currentStep += 1;
                                             });
+                                            return;
                                           }
                                         }
                                       }
@@ -144,6 +151,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                                             setState(() {
                                               currentStep += 1;
                                             });
+                                            return;
                                           }
                                         }
                                       }
@@ -162,6 +170,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                                           setState(() {
                                             currentStep += 1;
                                           });
+                                          return;
                                         }
                                       }
                                     }
@@ -198,8 +207,8 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                                             color: Colors.white,
                                           ),
                                         ),
-                                        const SizedBox(width: 10),
-                                        const SizedBox(width: 10),
+                                        SizedBox(width: deviceWidth * 0.05),
+                                        SizedBox(width: deviceWidth * 0.05),
                                         ElevatedButton(
                                           onPressed: () {
                                             print(testModel.toJson());
@@ -207,8 +216,9 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                                           },
                                           style: ElevatedButton.styleFrom(
                                             backgroundColor: Colors.yellow,
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 20, vertical: 10),
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: deviceWidth * 0.015,
+                                                vertical: deviceHeight * 0.004),
                                           ),
                                           child: Text(
                                             S.of(context).continueTxt,
@@ -232,7 +242,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Container(
-                    height: 160,
+                    height: deviceHeight * 0.15,
                     child: Stack(
                       children: [
                         Positioned(
@@ -240,6 +250,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                           left: 0,
                           right: 0,
                           child: BottomAppBar(
+                            height: deviceHeight * 0.05,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -273,11 +284,11 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                           ),
                         ),
                         Positioned(
-                          bottom: 20,
-                          left: MediaQuery.of(context).size.width / 2 - 62.5,
+                          bottom: deviceHeight * 0.01,
+                          left: deviceWidth * 0.424,
                           child: Container(
-                            width: 115,
-                            height: 136,
+                            width: deviceWidth * 0.145,
+                            height: deviceHeight * 0.11,
                             decoration: const BoxDecoration(
                               image: DecorationImage(
                                 image: AssetImage('assets/images/logo1.png'),

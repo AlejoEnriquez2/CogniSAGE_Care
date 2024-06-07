@@ -1,5 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:frontend_form/generated/l10n.dart';
+import 'package:frontend_form/models/models.dart';
+import 'package:frontend_form/providers/card_provider.dart';
 import 'package:frontend_form/providers/providers.dart';
 import 'package:provider/provider.dart';
 
@@ -8,7 +12,20 @@ class MatchingCardsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TestProvider testProvider = Provider.of(context);
+    CardProvider cardProvider = Provider.of(context);
+
+    final deviceHeight = MediaQuery.of(context).size.height;
+    final deviceWidth = MediaQuery.of(context).size.width;
+
+    var cards = [
+      CardModel(id: 1, name: 'A', isCorrect: false),
+      CardModel(id: 2, name: 'B', isCorrect: false),
+      CardModel(id: 3, name: 'C', isCorrect: false),
+      CardModel(id: 4, name: 'D', isCorrect: false),
+      CardModel(id: 5, name: 'E', isCorrect: false),
+      CardModel(id: 6, name: 'F', isCorrect: false),
+    ];
+    cards.shuffle();
 
     return Scaffold(
       appBar: AppBar(
@@ -23,8 +40,8 @@ class MatchingCardsScreen extends StatelessWidget {
             color: Colors.white,
           ),
           onPressed: () {
-            // Navigator.pushReplacementNamed(context, 'all_games');
-            Navigator.pop(context);
+            Navigator.pushReplacementNamed(context, 'matching_instructions');
+            // Navigator.pop(context);
           },
         ),
         centerTitle: true,
@@ -35,66 +52,81 @@ class MatchingCardsScreen extends StatelessWidget {
             child: Container(
               decoration: CustomBoxDecorator(),
               child: SizedBox(
-                height: MediaQuery.of(context).size.height - 150,
-                width: MediaQuery.of(context).size.width - 50,
+                height: deviceHeight * 0.87,
+                width: deviceWidth * 0.95,
                 child: Center(
                   child: Padding(
-                    padding: const EdgeInsets.all(40.0),
+                    padding: EdgeInsets.symmetric(
+                        vertical: deviceHeight * 0.02,
+                        horizontal: deviceWidth * 0.025),
                     child: Column(
                       children: [
-                        const Text(
+                        Text(
                           'Correct: ',
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 50,
+                              fontSize: deviceHeight * 0.05,
                               fontWeight: FontWeight.bold),
                         ),
-                        const SizedBox(height: 60),
+                        SizedBox(height: deviceHeight * 0.05),
                         Container(
-                          padding: const EdgeInsets.all(25),
-                          width: 700,
-                          height: 450,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: deviceWidth * 0.005,
+                              vertical: deviceHeight * 0.025),
+                          width: deviceWidth * 0.90,
+                          height: deviceHeight * 0.6,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             color: Colors.white,
                           ),
-                          child: const Column(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Align(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  'You will have for a few seconds the chance to review the order of the cards, then the cards will flip and you will have to touch them to flip them back and match them. You will have to match all the cards to win the game.',
-                                  style: TextStyle(fontSize: 27),
-                                  textAlign: TextAlign.justify,
-                                ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  CardCustom(card: cards[0]),
+                                  CardCustom(card: cards[1]),
+                                  CardCustom(card: cards[2]),
+                                  CardCustom(card: cards[3]),
+                                ],
                               ),
-                              SizedBox(height: 15),
-                              Text(
-                                'This game is designed to test your memory and attention skills. It is important to focus and try to remember the order of the cards as best as you can. And don\'t forget about the ones you already discovered, they will help you to match the rest of the cards. Good luck!',
-                                style: TextStyle(fontSize: 17),
-                                textAlign: TextAlign.justify,
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  CardCustom(card: cards[4]),
+                                  CardCustom(card: cards[5]),
+                                  CardCustom(card: cards[0]),
+                                  CardCustom(card: cards[1]),
+                                ],
                               ),
-                              SizedBox(height: 26),
-                              Text(
-                                'Have fun!',
-                                style: TextStyle(
-                                    fontStyle: FontStyle.italic, fontSize: 25),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  CardCustom(card: cards[2]),
+                                  CardCustom(card: cards[3]),
+                                  CardCustom(card: cards[4]),
+                                  CardCustom(card: cards[5]),
+                                ],
                               ),
                             ],
                           ),
                         ),
-                        const SizedBox(height: 15),
+                        SizedBox(height: deviceHeight * 0.02),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             const SizedBox(),
                             ElevatedButton(
                               onPressed: () {
-                                Navigator.pushReplacementNamed(
-                                  context,
-                                  'personal',
-                                  arguments: testProvider.test.formId,
-                                );
+                                // Navigator.pushReplacementNamed(
+                                //   context,
+                                //   'personal',
+                                //   arguments: testProvider.test.formId,
+                                // );
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.yellow,
@@ -104,9 +136,9 @@ class MatchingCardsScreen extends StatelessWidget {
                               ),
                               child: Text(
                                 S.of(context).continueTxt,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: 20,
+                                  fontSize: deviceHeight * 0.016,
                                 ),
                               ),
                             ),
@@ -122,14 +154,15 @@ class MatchingCardsScreen extends StatelessWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: SizedBox(
-              height: 160,
+              height: deviceHeight * 0.14,
               child: Stack(
                 children: [
-                  const Positioned(
+                  Positioned(
                     bottom: 0,
                     left: 0,
                     right: 0,
                     child: BottomAppBar(
+                      height: deviceHeight * 0.06,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -139,11 +172,11 @@ class MatchingCardsScreen extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    bottom: 20,
-                    left: MediaQuery.of(context).size.width / 2 - 62.5,
+                    bottom: deviceHeight * 0.01,
+                    left: deviceWidth * 0.424,
                     child: Container(
-                      width: 125,
-                      height: 140,
+                      width: deviceWidth * 0.15,
+                      height: deviceHeight * 0.11,
                       decoration: const BoxDecoration(
                         image: DecorationImage(
                           image: AssetImage('assets/images/logo1.png'),
@@ -170,6 +203,119 @@ class MatchingCardsScreen extends StatelessWidget {
           Color.fromARGB(255, 29, 80, 143),
           Color.fromARGB(255, 37, 102, 183),
         ],
+      ),
+    );
+  }
+}
+
+class CardCustom extends StatefulWidget {
+  final CardModel card;
+
+  CardCustom({
+    Key? key,
+    required this.card,
+  }) : super(key: key);
+
+  @override
+  State<CardCustom> createState() => _CardCustomState();
+}
+
+class _CardCustomState extends State<CardCustom> {
+  bool _showFrontSide = true;
+
+  void _flipCard() {
+    setState(() {
+      print('flips the card');
+      _showFrontSide = !_showFrontSide;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final deviceHeight = MediaQuery.of(context).size.height;
+    final deviceWidth = MediaQuery.of(context).size.width;
+
+    return GestureDetector(
+        onTap: _flipCard,
+        child: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 500),
+          transitionBuilder: (Widget child, Animation<double> animation) {
+            final rotate = Tween(begin: pi, end: 0.0).animate(animation);
+            return AnimatedBuilder(
+                animation: rotate,
+                child: child,
+                builder: (context, child) {
+                  final isUnder = (ValueKey(_showFrontSide) != child?.key);
+                  final value =
+                      isUnder ? min(rotate.value, pi / 2) : rotate.value;
+                  return Transform(
+                    transform: Matrix4.rotationY(value),
+                    alignment: Alignment.center,
+                    child: child,
+                  );
+                });
+          },
+          layoutBuilder: (widget, list) => Stack(children: [widget!, ...list]),
+          child: _showFrontSide
+              ? _buildFront(deviceWidth, deviceHeight)
+              : _buildBack(deviceWidth, deviceHeight, widget.card),
+          switchInCurve: Curves.easeInOut,
+          switchOutCurve: Curves.easeInOut,
+        ));
+  }
+
+  Widget _buildFront(double width, double height) {
+    return Container(
+      key: const ValueKey(true),
+      width: width * 0.2,
+      height: height * 0.16,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: Colors.lightBlue,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 5,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Center(
+        child: Image(
+          image: const AssetImage('assets/images/logo1.png'),
+          height: height * 0.1,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildBack(double width, double height, CardModel card) {
+    return Container(
+      key: const ValueKey(false),
+      width: width * 0.2,
+      height: height * 0.16,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: Colors.grey[350],
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 5,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Center(
+        child: Text(
+          '${card.name}',
+          style: TextStyle(
+            fontSize: height * 0.05,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
     );
   }

@@ -180,7 +180,8 @@ class _DrawBoardState extends State<DrawBoard> {
             if (localPosition.dx >= 0 &&
                 localPosition.dx <= renderBox.size.width &&
                 localPosition.dy >= 0 &&
-                localPosition.dy <= renderBox.size.height - 75) {
+                localPosition.dy <=
+                    renderBox.size.height - widget.canvaSize * 0.12) {
               _points = List.from(_points)..add(localPosition);
             }
           });
@@ -207,7 +208,7 @@ class _DrawBoardState extends State<DrawBoard> {
             ),
           ),
           Container(
-            height: 75,
+            height: widget.canvaSize * 0.12,
             width: widget.canvaSize,
             color: Colors.grey,
             child: Row(
@@ -225,14 +226,14 @@ class _DrawBoardState extends State<DrawBoard> {
                     width: 20,
                   ),
                 ),
-                IconButton(
-                  onPressed: () {
-                    setState(() {
-                      _convertToByteData64();
-                    });
-                  },
-                  icon: const Icon(Icons.save),
-                )
+                // IconButton(
+                //   onPressed: () {
+                //     setState(() {
+                //       _convertToByteData64();
+                //     });
+                //   },
+                //   icon: const Icon(Icons.save),
+                // )
               ],
             ),
           )

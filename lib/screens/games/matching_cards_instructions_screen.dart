@@ -9,6 +9,8 @@ class MatchingCardsInstructionsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TestProvider testProvider = Provider.of(context);
+    final deviceHeight = MediaQuery.of(context).size.height;
+    final deviceWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       appBar: AppBar(
@@ -35,55 +37,60 @@ class MatchingCardsInstructionsScreen extends StatelessWidget {
             child: Container(
               decoration: CustomBoxDecorator(),
               child: SizedBox(
-                height: MediaQuery.of(context).size.height - 150,
-                width: MediaQuery.of(context).size.width - 50,
+                height: deviceHeight * 0.87,
+                width: deviceWidth * 0.95,
                 child: Center(
                   child: Padding(
-                    padding: const EdgeInsets.all(40.0),
+                    padding: EdgeInsets.symmetric(
+                        vertical: deviceHeight * 0.02,
+                        horizontal: deviceWidth * 0.025),
                     child: Column(
                       children: [
-                        const Text(
+                        Text(
                           'How to play this game?',
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 125,
+                              fontSize: deviceHeight * 0.1,
                               fontWeight: FontWeight.bold),
                         ),
-                        const SizedBox(height: 60),
+                        SizedBox(height: deviceHeight * 0.05),
                         Container(
-                          padding: const EdgeInsets.all(25),
-                          width: 700,
-                          height: 450,
+                          padding: EdgeInsets.all(deviceHeight * 0.02),
+                          width: deviceWidth * 0.88,
+                          height: deviceHeight * 0.37,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             color: Colors.white,
                           ),
-                          child: const Column(
+                          child: Column(
                             children: [
                               Align(
                                 alignment: Alignment.center,
                                 child: Text(
                                   'You will have for a few seconds the chance to review the order of the cards, then the cards will flip and you will have to touch them to flip them back and match them. You will have to match all the cards to win the game.',
-                                  style: TextStyle(fontSize: 27),
+                                  style:
+                                      TextStyle(fontSize: deviceHeight * 0.02),
                                   textAlign: TextAlign.justify,
                                 ),
                               ),
-                              SizedBox(height: 15),
+                              SizedBox(height: deviceHeight * 0.025),
                               Text(
                                 'This game is designed to test your memory and attention skills. It is important to focus and try to remember the order of the cards as best as you can. And don\'t forget about the ones you already discovered, they will help you to match the rest of the cards. Good luck!',
-                                style: TextStyle(fontSize: 17),
+                                style:
+                                    TextStyle(fontSize: deviceHeight * 0.015),
                                 textAlign: TextAlign.justify,
                               ),
-                              SizedBox(height: 26),
+                              SizedBox(height: deviceHeight * 0.02),
                               Text(
                                 'Have fun!',
                                 style: TextStyle(
-                                    fontStyle: FontStyle.italic, fontSize: 25),
+                                    fontStyle: FontStyle.italic,
+                                    fontSize: deviceHeight * 0.02),
                               ),
                             ],
                           ),
                         ),
-                        const SizedBox(height: 15),
+                        SizedBox(height: deviceHeight * 0.015),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -104,9 +111,9 @@ class MatchingCardsInstructionsScreen extends StatelessWidget {
                               ),
                               child: Text(
                                 S.of(context).continueTxt,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: 20,
+                                  fontSize: deviceHeight * 0.015,
                                 ),
                               ),
                             ),
@@ -122,14 +129,15 @@ class MatchingCardsInstructionsScreen extends StatelessWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: SizedBox(
-              height: 160,
+              height: deviceHeight * 0.14,
               child: Stack(
                 children: [
-                  const Positioned(
+                  Positioned(
                     bottom: 0,
                     left: 0,
                     right: 0,
                     child: BottomAppBar(
+                      height: deviceHeight * 0.06,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -139,11 +147,11 @@ class MatchingCardsInstructionsScreen extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    bottom: 20,
-                    left: MediaQuery.of(context).size.width / 2 - 62.5,
+                    bottom: deviceHeight * 0.01,
+                    left: deviceWidth * 0.424,
                     child: Container(
-                      width: 125,
-                      height: 140,
+                      width: deviceWidth * 0.15,
+                      height: deviceHeight * 0.11,
                       decoration: const BoxDecoration(
                         image: DecorationImage(
                           image: AssetImage('assets/images/logo1.png'),

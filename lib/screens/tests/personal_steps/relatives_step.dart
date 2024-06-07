@@ -30,12 +30,15 @@ class _RelativesStepState extends State<RelativesStep> {
 
   @override
   Widget build(BuildContext context) {
+    final deviceHeight = MediaQuery.of(context).size.height;
+    final deviceWidth = MediaQuery.of(context).size.width;
     return Padding(
-      padding: const EdgeInsets.all(30),
+      padding: EdgeInsets.symmetric(
+          horizontal: deviceHeight * 0.03, vertical: deviceWidth * 0.01),
       child: Column(children: [
         Container(
-          height: MediaQuery.of(context).size.height * 0.65,
-          width: MediaQuery.of(context).size.width - 100,
+          height: deviceHeight * 0.65,
+          width: deviceWidth * 0.9,
           decoration: BoxDecoration(
             color: const Color.fromARGB(255, 255, 253, 255),
             borderRadius: BorderRadius.circular(20),
@@ -44,13 +47,13 @@ class _RelativesStepState extends State<RelativesStep> {
             key: widget.formKey,
             child: Center(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 80),
+                padding: EdgeInsets.symmetric(horizontal: deviceWidth * 0.09),
                 child: Column(
                   children: [
-                    const SizedBox(height: 30),
+                    SizedBox(height: deviceHeight * 0.02),
                     Text(
                       S.of(context).myEthnicalBackgroundIs,
-                      style: TextStyle(fontSize: 25),
+                      style: TextStyle(fontSize: deviceHeight * 0.02),
                     ),
                     TextFormField(
                       onChanged: (value) {
@@ -64,6 +67,7 @@ class _RelativesStepState extends State<RelativesStep> {
                             .requestFocus(widget.focusNodes[4]);
                       },
                       decoration: InputDecoration(
+                        labelStyle: TextStyle(fontSize: deviceHeight * 0.012),
                         labelText:
                             S.of(context).pleaseEnterYourEthnicalBackground,
                         prefixIcon: Icon(Icons.edit_square),
@@ -77,13 +81,14 @@ class _RelativesStepState extends State<RelativesStep> {
                         }
                         return null;
                       },
+                      style: TextStyle(fontSize: deviceHeight * 0.015),
                     ),
-                    const SizedBox(height: 50),
+                    SizedBox(height: deviceHeight * 0.045),
                     Text(
                       S.of(context).haveYouHadAnyProblemsWithMemoryOrThinking,
-                      style: TextStyle(fontSize: 23),
+                      style: TextStyle(fontSize: deviceHeight * 0.019),
                     ),
-                    const SizedBox(height: 30),
+                    SizedBox(height: deviceHeight * 0.04),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -94,14 +99,14 @@ class _RelativesStepState extends State<RelativesStep> {
                               ? Colors.green
                               : const Color.fromARGB(255, 204, 204, 204),
                           child: Container(
-                            height: 120,
-                            width: 100,
+                            height: deviceHeight * 0.1,
+                            width: deviceWidth * 0.13,
                             child: Column(
                               children: [
                                 IconButton(
-                                  icon: const Icon(
+                                  icon: Icon(
                                     Icons.check_rounded,
-                                    size: 75,
+                                    size: deviceHeight * 0.06,
                                   ),
                                   onPressed: () {
                                     setState(() {
@@ -111,7 +116,9 @@ class _RelativesStepState extends State<RelativesStep> {
                                     });
                                   },
                                 ),
-                                Text(S.of(context).yes)
+                                Text(S.of(context).yes,
+                                    style: TextStyle(
+                                        fontSize: deviceHeight * 0.010))
                               ],
                             ),
                           ),
@@ -124,14 +131,14 @@ class _RelativesStepState extends State<RelativesStep> {
                                   ? Colors.green
                                   : const Color.fromARGB(255, 204, 204, 204),
                           child: Container(
-                            height: 120,
-                            width: 100,
+                            height: deviceHeight * 0.1,
+                            width: deviceWidth * 0.13,
                             child: Column(
                               children: [
                                 IconButton(
-                                  icon: const Icon(
+                                  icon: Icon(
                                     Icons.circle_outlined,
-                                    size: 65,
+                                    size: deviceHeight * 0.06,
                                   ),
                                   onPressed: () {
                                     setState(() {
@@ -143,7 +150,9 @@ class _RelativesStepState extends State<RelativesStep> {
                                     });
                                   },
                                 ),
-                                Text(S.of(context).sometimes)
+                                Text(S.of(context).sometimes,
+                                    style: TextStyle(
+                                        fontSize: deviceHeight * 0.010))
                               ],
                             ),
                           ),
@@ -155,14 +164,14 @@ class _RelativesStepState extends State<RelativesStep> {
                               ? Colors.green
                               : const Color.fromARGB(255, 204, 204, 204),
                           child: Container(
-                            height: 120,
-                            width: 100,
+                            height: deviceHeight * 0.1,
+                            width: deviceWidth * 0.13,
                             child: Column(
                               children: [
                                 IconButton(
-                                  icon: const Icon(
+                                  icon: Icon(
                                     Icons.close_rounded,
-                                    size: 75,
+                                    size: deviceHeight * 0.06,
                                   ),
                                   onPressed: () {
                                     setState(() {
@@ -172,19 +181,21 @@ class _RelativesStepState extends State<RelativesStep> {
                                     });
                                   },
                                 ),
-                                Text(S.of(context).no)
+                                Text(S.of(context).no,
+                                    style: TextStyle(
+                                        fontSize: deviceHeight * 0.010))
                               ],
                             ),
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 50),
+                    SizedBox(height: deviceHeight * 0.045),
                     Text(
                       S.of(context).haveYouHadAnyBloodRelativesWithProblems,
-                      style: TextStyle(fontSize: 23),
+                      style: TextStyle(fontSize: deviceHeight * 0.018),
                     ),
-                    const SizedBox(height: 30),
+                    SizedBox(height: deviceHeight * 0.035),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -195,14 +206,14 @@ class _RelativesStepState extends State<RelativesStep> {
                               ? Colors.green
                               : const Color.fromARGB(255, 204, 204, 204),
                           child: Container(
-                            height: 120,
-                            width: 100,
+                            height: deviceHeight * 0.1,
+                            width: deviceWidth * 0.13,
                             child: Column(
                               children: [
                                 IconButton(
-                                  icon: const Icon(
+                                  icon: Icon(
                                     Icons.check_rounded,
-                                    size: 75,
+                                    size: deviceHeight * 0.06,
                                   ),
                                   onPressed: () {
                                     setState(() {
@@ -212,7 +223,9 @@ class _RelativesStepState extends State<RelativesStep> {
                                     });
                                   },
                                 ),
-                                Text(S.of(context).yes)
+                                Text(S.of(context).yes,
+                                    style: TextStyle(
+                                        fontSize: deviceHeight * 0.010))
                               ],
                             ),
                           ),
@@ -224,14 +237,14 @@ class _RelativesStepState extends State<RelativesStep> {
                               ? Colors.green
                               : const Color.fromARGB(255, 204, 204, 204),
                           child: Container(
-                            height: 120,
-                            width: 100,
+                            height: deviceHeight * 0.1,
+                            width: deviceWidth * 0.13,
                             child: Column(
                               children: [
                                 IconButton(
-                                  icon: const Icon(
+                                  icon: Icon(
                                     Icons.close_rounded,
-                                    size: 75,
+                                    size: deviceHeight * 0.06,
                                   ),
                                   onPressed: () {
                                     setState(() {
@@ -241,14 +254,15 @@ class _RelativesStepState extends State<RelativesStep> {
                                     });
                                   },
                                 ),
-                                Text(S.of(context).no)
+                                Text(S.of(context).no,
+                                    style: TextStyle(
+                                        fontSize: deviceHeight * 0.010))
                               ],
                             ),
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 50),
                   ],
                 ),
               ),

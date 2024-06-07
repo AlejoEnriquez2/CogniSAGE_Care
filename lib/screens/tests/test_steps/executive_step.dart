@@ -28,87 +28,113 @@ class ExecutiveStep extends StatefulWidget {
 
 class _ExecutiveStepState extends State<ExecutiveStep> {
   final TestProvider testProvider = TestProvider();
+  bool _isRowVisible = true;
 
   @override
   Widget build(BuildContext context) {
+    final deviceHeight = MediaQuery.of(context).size.height;
+    final deviceWidth = MediaQuery.of(context).size.width;
+
     return Padding(
       padding: const EdgeInsets.all(5),
       child: Column(
         children: [
           Container(
-            height: MediaQuery.of(context).size.height * 0.7,
-            width: MediaQuery.of(context).size.width - 100,
+            height: _isRowVisible == true
+                ? deviceHeight * 0.70
+                : deviceHeight * 0.6,
+            width: deviceWidth,
             decoration: BoxDecoration(
               color: const Color.fromARGB(255, 255, 255, 255),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Center(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Column(
+                padding: EdgeInsets.symmetric(horizontal: deviceWidth * 0.04),
+                child: Stack(children: [
+                  Positioned(
+                    child: IconButton(
+                      icon: Icon(Icons.info_outline),
+                      onPressed: () {
+                        setState(() {
+                          _isRowVisible = !_isRowVisible;
+                        });
+                      },
+                    ),
+                    top: 0,
+                    left: -10,
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      if (_isRowVisible)
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Text(
-                              S.of(context).solveFollowing,
-                              style: TextStyle(
-                                fontSize: 33,
-                                fontWeight: FontWeight.bold,
+                            Column(
+                              children: [
+                                Text(
+                                  S.of(context).solveFollowing,
+                                  style: TextStyle(
+                                    fontSize: deviceHeight * 0.025,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(height: deviceHeight * 0.01),
+                                SizedBox(
+                                  width: deviceWidth * 0.3,
+                                  child: Text(
+                                    widget.formId == 1
+                                        ? S.of(context).startWithTwoShapes
+                                        : S
+                                            .of(context)
+                                            .instruction_start_with_triangles,
+                                    style: TextStyle(
+                                        fontSize: deviceHeight * 0.015),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: deviceHeight * 0.14,
+                              child: VerticalDivider(
+                                color: Color.fromARGB(255, 88, 88, 88),
+                                thickness: 2,
                               ),
                             ),
-                            SizedBox(height: 20),
                             SizedBox(
-                              width: 200,
-                              child: Text(
-                                widget.formId == 1
-                                    ? S.of(context).startWithTwoShapes
-                                    : S
-                                        .of(context)
-                                        .instruction_start_with_triangles,
-                                style: const TextStyle(fontSize: 25),
+                              height: deviceHeight * 0.16,
+                              width: deviceWidth * 0.35,
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Text(
+                                    widget.formId == 1
+                                        ? S.of(context).crossOutFourLines
+                                        : S
+                                            .of(context)
+                                            .instruction_cross_out_lines,
+                                    style: TextStyle(
+                                        fontSize: deviceHeight * 0.015),
+                                  ),
+                                ],
                               ),
                             ),
                           ],
                         ),
-                        const SizedBox(
-                          height: 175,
-                          child: VerticalDivider(
-                            color: Color.fromARGB(255, 88, 88, 88),
-                            thickness: 2,
-                          ),
+                      SizedBox(
+                        height: 650,
+                        width: 550,
+                        child: ExecutiveBoard(
+                          canvaSize: 550,
+                          formId: widget.formId,
+                          answersModel: widget.answersModel,
                         ),
-                        SizedBox(
-                          height: 200,
-                          width: 250,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(
-                                widget.formId == 1
-                                    ? S.of(context).crossOutFourLines
-                                    : S.of(context).instruction_cross_out_lines,
-                                style: TextStyle(fontSize: 20),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 650,
-                      width: 550,
-                      child: ExecutiveBoard(
-                        canvaSize: 550,
-                        formId: widget.formId,
-                        answersModel: widget.answersModel,
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
+                ]),
               ),
             ),
           ),

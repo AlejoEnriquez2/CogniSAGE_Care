@@ -9,6 +9,9 @@ class TestInstructionsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TestProvider testProvider = Provider.of(context);
+    final deviceHeight = MediaQuery.of(context).size.height;
+    final deviceWidth = MediaQuery.of(context).size.width;
+
     return Consumer<PatientProvider>(
         builder: (context, patientProvider, child) {
       if (!patientProvider.isLoggedIn) {
@@ -55,27 +58,32 @@ class TestInstructionsScreen extends StatelessWidget {
                 child: Container(
                   decoration: CustomBoxDecorator(),
                   child: SizedBox(
-                    height: MediaQuery.of(context).size.height - 150,
-                    width: MediaQuery.of(context).size.width - 50,
+                    height: deviceHeight * 0.87,
+                    width: deviceWidth * 0.95,
                     child: Center(
                       child: Padding(
-                        padding: const EdgeInsets.all(40.0),
+                        padding: EdgeInsets.symmetric(
+                            vertical: deviceHeight * 0.02,
+                            horizontal: deviceWidth * 0.025),
                         child: Column(
                           children: [
                             Text(
                               S.of(context).whatIsSageTest,
-                              style: const TextStyle(
+                              style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 125,
+                                  fontSize: deviceHeight * 0.10,
                                   fontWeight: FontWeight.bold),
                             ),
-                            const SizedBox(height: 60),
+                            SizedBox(height: deviceHeight * 0.045),
                             Container(
-                              padding: const EdgeInsets.all(25),
-                              width: 700,
-                              height: 450,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: deviceWidth * 0.04,
+                                  vertical: deviceHeight * 0.025),
+                              width: deviceWidth * 0.83,
+                              height: deviceHeight * 0.37,
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius:
+                                    BorderRadius.circular(deviceHeight * 0.014),
                                 color: Colors.white,
                               ),
                               child: Column(
@@ -84,26 +92,29 @@ class TestInstructionsScreen extends StatelessWidget {
                                     alignment: Alignment.center,
                                     child: Text(
                                       S.of(context).sageTestDescription,
-                                      style: const TextStyle(fontSize: 17),
+                                      style: TextStyle(
+                                          fontSize: deviceHeight * 0.0135),
                                       textAlign: TextAlign.justify,
                                     ),
                                   ),
-                                  const SizedBox(height: 15),
+                                  SizedBox(height: deviceHeight * 0.015),
                                   Text(
                                     S.of(context).sageTestInstructions,
-                                    style: const TextStyle(fontSize: 17),
+                                    style: TextStyle(
+                                        fontSize: deviceHeight * 0.0135),
                                     textAlign: TextAlign.justify,
                                   ),
-                                  const SizedBox(height: 26),
+                                  SizedBox(height: deviceHeight * 0.024),
                                   Text(
                                     S.of(context).screensInstructions,
-                                    style: const TextStyle(
-                                        fontStyle: FontStyle.italic),
+                                    style: TextStyle(
+                                        fontStyle: FontStyle.italic,
+                                        fontSize: deviceHeight * 0.0135),
                                   ),
                                 ],
                               ),
                             ),
-                            const SizedBox(height: 15),
+                            SizedBox(height: deviceHeight * 0.025),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -119,14 +130,15 @@ class TestInstructionsScreen extends StatelessWidget {
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.yellow,
                                     shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
+                                      borderRadius: BorderRadius.circular(
+                                          deviceHeight * 0.005),
                                     ),
                                   ),
                                   child: Text(
                                     S.of(context).continueTxt,
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       color: Colors.black,
-                                      fontSize: 20,
+                                      fontSize: deviceHeight * 0.016,
                                     ),
                                   ),
                                 ),
@@ -142,14 +154,15 @@ class TestInstructionsScreen extends StatelessWidget {
               Align(
                 alignment: Alignment.bottomCenter,
                 child: SizedBox(
-                  height: 160,
+                  height: deviceHeight * 0.14,
                   child: Stack(
                     children: [
-                      const Positioned(
+                      Positioned(
                         bottom: 0,
                         left: 0,
                         right: 0,
                         child: BottomAppBar(
+                          height: deviceHeight * 0.06,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -159,11 +172,13 @@ class TestInstructionsScreen extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                        bottom: 20,
-                        left: MediaQuery.of(context).size.width / 2 - 62.5,
+                        bottom: deviceHeight * 0.01,
+                        left: deviceWidth * 0.424,
                         child: Container(
-                          width: 125,
-                          height: 140,
+                          width: deviceWidth * 0.15,
+                          height: deviceHeight * 0.11,
+                          // width: 125,
+                          // height: 140,
                           decoration: const BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage('assets/images/logo1.png'),

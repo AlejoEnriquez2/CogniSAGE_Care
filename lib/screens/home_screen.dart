@@ -14,6 +14,9 @@ class HomeScreen extends StatelessWidget {
     LocaleProvider localeProvider =
         Provider.of<LocaleProvider>(context, listen: false);
 
+    final deviceHeight = MediaQuery.of(context).size.height;
+    final deviceWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -54,33 +57,35 @@ class HomeScreen extends StatelessWidget {
         child: Container(
           decoration: CustomBoxDecorator(),
           child: SizedBox(
-            height: MediaQuery.of(context).size.height - 175,
-            width: MediaQuery.of(context).size.width - 50,
+            height: deviceHeight * 0.85,
+            width: deviceWidth * 0.95,
             child: Column(
               children: [
-                const SizedBox(height: 30),
+                SizedBox(height: deviceHeight * 0.005),
                 Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: EdgeInsets.symmetric(
+                        vertical: deviceHeight * 0.005,
+                        horizontal: deviceHeight * 0.005),
                     child: Text(
                       S.of(context).welcome,
                       style: TextStyle(
                           color: Color.fromARGB(255, 255, 255, 255),
-                          fontSize: 35,
+                          fontSize: deviceHeight * 0.04,
                           fontWeight: FontWeight.bold),
                     )),
                 const SizedBox(height: 30),
                 Stack(children: [
                   Center(
                     child: Container(
-                      width: 650,
-                      height: MediaQuery.of(context).size.height - 500,
+                      width: deviceWidth * 0.5,
+                      height: deviceHeight * 0.62,
                       // color: Colors.white,
                       child: Center(
                         child: Align(
                           alignment: Alignment.bottomCenter,
                           child: Container(
-                            height: 500,
-                            width: 400,
+                            height: deviceWidth * 0.65,
+                            width: deviceWidth * 0.5,
                             child: Image.asset(
                               'assets/images/logo1.png',
                               fit: BoxFit.fitWidth,
@@ -91,7 +96,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    top: 140,
+                    top: deviceHeight * 0.1,
                     left: 0,
                     child: GestureDetector(
                       onTap: () {
@@ -104,17 +109,22 @@ class HomeScreen extends StatelessWidget {
                           children: [
                             Image.asset(
                               'assets/images/button.png',
-                              width: 200, // Adjust as needed
-                              height: 300, // Adjust as needed
+                              width: deviceWidth * 0.24,
+                              height: deviceHeight * 0.24,
                               fit: BoxFit.cover,
                             ),
                             Positioned(
-                              top: 134, // Adjust the value as needed
+                              top: localeProvider.locale.toString() == 'en'
+                                  ? deviceHeight * 0.104
+                                  : deviceHeight * 0.108,
                               child: Text(
                                 S.of(context).test,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 17,
+                                  fontSize:
+                                      localeProvider.locale.toString() == 'en'
+                                          ? deviceHeight * 0.018
+                                          : deviceHeight * 0.0132,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -137,17 +147,22 @@ class HomeScreen extends StatelessWidget {
                           children: [
                             Image.asset(
                               'assets/images/button.png',
-                              width: 200,
-                              height: 300,
+                              width: deviceWidth * 0.24,
+                              height: deviceHeight * 0.24,
                               fit: BoxFit.cover,
                             ),
                             Positioned(
-                              top: 134,
+                              top: localeProvider.locale.toString() == 'en'
+                                  ? deviceHeight * 0.1057
+                                  : deviceHeight * 0.108,
                               child: Text(
                                 S.of(context).games,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 17,
+                                  fontSize:
+                                      localeProvider.locale.toString() == 'en'
+                                          ? deviceHeight * 0.015
+                                          : deviceHeight * 0.0132,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -158,7 +173,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    top: 140,
+                    top: deviceHeight * 0.1,
                     right: 0,
                     child: GestureDetector(
                       onTap: () {
@@ -175,17 +190,22 @@ class HomeScreen extends StatelessWidget {
                           children: [
                             Image.asset(
                               'assets/images/button.png',
-                              width: 200,
-                              height: 300,
+                              width: deviceWidth * 0.24,
+                              height: deviceHeight * 0.24,
                               fit: BoxFit.cover,
                             ),
                             Positioned(
-                              top: 134,
+                              top: localeProvider.locale.toString() == 'en'
+                                  ? deviceHeight * 0.104
+                                  : deviceHeight * 0.108,
                               child: Text(
                                 S.of(context).user,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 17,
+                                  fontSize:
+                                      localeProvider.locale.toString() == 'en'
+                                          ? deviceHeight * 0.018
+                                          : deviceHeight * 0.012,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),

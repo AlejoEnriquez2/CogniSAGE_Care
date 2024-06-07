@@ -30,34 +30,40 @@ class _MemoryStepState extends State<MemoryStep> {
 
   @override
   Widget build(BuildContext context) {
+    final deviceHeight = MediaQuery.of(context).size.height;
+    final deviceWidth = MediaQuery.of(context).size.width;
+
     return Padding(
-      padding: const EdgeInsets.all(30),
+      padding: EdgeInsets.symmetric(
+          horizontal: deviceWidth * 0.025, vertical: deviceHeight * 0.01),
       child: Column(children: [
         Container(
-          height: MediaQuery.of(context).size.height * 0.60,
-          width: MediaQuery.of(context).size.width - 100,
+          height: deviceHeight * 0.6,
+          width: deviceWidth * 0.95,
           decoration: BoxDecoration(
             color: const Color.fromARGB(255, 255, 253, 255),
             borderRadius: BorderRadius.circular(20),
           ),
           child: Center(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 80),
+              padding: EdgeInsets.symmetric(horizontal: deviceWidth * 0.09),
               child: Column(
                 children: [
-                  SizedBox(height: 30),
+                  SizedBox(height: deviceHeight * 0.025),
                   Text(
                     S.of(context).memoryTest,
-                    style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: deviceHeight * 0.037,
+                        fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 50),
+                  SizedBox(height: deviceHeight * 0.045),
                   Text(
                     widget.formId == 1
                         ? S.of(context).haveYouFinished
                         : S.of(context).areYouDone,
-                    style: TextStyle(fontSize: 25),
+                    style: TextStyle(fontSize: deviceHeight * 0.02),
                   ),
-                  SizedBox(height: 50),
+                  SizedBox(height: deviceHeight * 0.045),
                   TextFormField(
                     onChanged: (value) {
                       widget.answersModel.memoryPhrase = value;
@@ -72,6 +78,7 @@ class _MemoryStepState extends State<MemoryStep> {
                       prefixIcon: Icon(Icons.edit),
                     ),
                     textInputAction: TextInputAction.done,
+                    style: TextStyle(fontSize: deviceHeight * 0.016),
                   ),
                 ],
               ),

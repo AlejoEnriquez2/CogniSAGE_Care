@@ -50,6 +50,9 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(create: (context) {
           return LocaleProvider();
         }),
+        ChangeNotifierProvider(create: (context) {
+          return CardProvider();
+        }),
       ],
       child: const MyApp(),
     );

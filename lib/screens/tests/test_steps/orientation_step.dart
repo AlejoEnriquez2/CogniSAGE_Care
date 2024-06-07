@@ -26,44 +26,52 @@ class OrientationStep extends StatefulWidget {
 class _OrientationStepState extends State<OrientationStep> {
   @override
   Widget build(BuildContext context) {
+    final deviceHeight = MediaQuery.of(context).size.height;
+    final deviceWidth = MediaQuery.of(context).size.width;
     return Padding(
-      padding: const EdgeInsets.all(30),
+      padding: EdgeInsets.symmetric(
+          horizontal: deviceWidth * 0.025, vertical: deviceHeight * 0.01),
       child: Column(children: [
         Container(
-            height: MediaQuery.of(context).size.height * 0.6,
-            width: MediaQuery.of(context).size.width - 100,
+            height: deviceHeight * 0.6,
+            width: deviceWidth * 0.95,
             decoration: BoxDecoration(
               color: const Color.fromARGB(255, 255, 253, 255),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Center(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 70),
+                padding: EdgeInsets.symmetric(horizontal: deviceWidth * 0.01),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const SizedBox(height: 30),
+                    SizedBox(height: deviceHeight * 0.02),
                     Column(
                       children: [
                         Text(
                           S.of(context).whatsTodaysDate,
                           style: TextStyle(
-                              fontSize: 40, fontWeight: FontWeight.bold),
+                              fontSize: deviceHeight * 0.035,
+                              fontWeight: FontWeight.bold),
                         ),
-                        Text(S.of(context).inNumbersFromMemory),
+                        Text(S.of(context).inNumbersFromMemory,
+                            style: TextStyle(fontSize: deviceHeight * 0.015)),
                       ],
                     ),
-                    const SizedBox(height: 10),
-                    const SizedBox(height: 10),
+                    SizedBox(height: deviceHeight * 0.02),
+                    SizedBox(height: deviceHeight * 0.02),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          width: 150,
-                          padding: const EdgeInsets.all(8.0),
+                          width: deviceWidth * 0.19,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: deviceWidth * 0.01,
+                              vertical: deviceHeight * 0.01),
                           child: Column(children: [
                             Text(
                               S.of(context).month,
-                              style: TextStyle(fontSize: 25),
+                              style: TextStyle(fontSize: deviceHeight * 0.020),
                             ),
                             TextFormField(
                               keyboardType: TextInputType.number,
@@ -84,12 +92,12 @@ class _OrientationStepState extends State<OrientationStep> {
                           ]),
                         ),
                         Container(
-                          width: 150,
+                          width: deviceWidth * 0.19,
                           padding: const EdgeInsets.all(8.0),
                           child: Column(children: [
                             Text(
                               S.of(context).date,
-                              style: TextStyle(fontSize: 25),
+                              style: TextStyle(fontSize: deviceHeight * 0.020),
                             ),
                             TextFormField(
                               onChanged: (value) {
@@ -110,12 +118,12 @@ class _OrientationStepState extends State<OrientationStep> {
                           ]),
                         ),
                         Container(
-                          width: 150,
+                          width: deviceWidth * 0.19,
                           padding: const EdgeInsets.all(8.0),
                           child: Column(children: [
                             Text(
                               S.of(context).year,
-                              style: TextStyle(fontSize: 25),
+                              style: TextStyle(fontSize: deviceHeight * 0.020),
                             ),
                             TextFormField(
                               onChanged: (value) {
@@ -136,18 +144,18 @@ class _OrientationStepState extends State<OrientationStep> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 10),
+                    SizedBox(height: deviceHeight * 0.01),
                     // IconButton(
                     //   onPressed: () {
                     //     print(widget.answersModel.toRawJson());
                     //   },
                     //   icon: Icon(Icons.arrow_forward),
                     // ),
-                    const SizedBox(height: 10),
-                    const SizedBox(height: 10),
-                    const SizedBox(height: 10),
-                    const SizedBox(height: 10),
-                    const SizedBox(height: 10),
+                    SizedBox(height: deviceHeight * 0.01),
+                    SizedBox(height: deviceHeight * 0.01),
+                    SizedBox(height: deviceHeight * 0.01),
+                    SizedBox(height: deviceHeight * 0.01),
+                    SizedBox(height: deviceHeight * 0.01),
                   ],
                 ),
               ),

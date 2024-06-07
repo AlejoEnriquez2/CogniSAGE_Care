@@ -84,6 +84,9 @@ class GamesListCustom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final deviceHeight = MediaQuery.of(context).size.height;
+    final deviceWidth = MediaQuery.of(context).size.width;
+
     List<GameModel> games = [
       GameModel(
         id: '1',
@@ -149,45 +152,46 @@ class GamesListCustom extends StatelessWidget {
                 ],
               ),
               child: SizedBox(
-                height: MediaQuery.of(context).size.height - 150,
-                width: MediaQuery.of(context).size.width - 50,
+                height: deviceHeight * 0.89,
+                width: deviceWidth * 0.94,
                 child: Center(
                   child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Container(
-                              width: 125,
-                              height: 150,
-                              decoration: const BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage('assets/images/logo1.png'),
-                                  fit: BoxFit.cover,
+                    padding: EdgeInsets.all(deviceHeight * 0.017),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Container(
+                                width: deviceWidth * 0.19,
+                                height: deviceHeight * 0.14,
+                                decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                    image:
+                                        AssetImage('assets/images/logo1.png'),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(width: 50),
-                            Text(
-                              '${S.of(context).welcome} ${patient.name}',
-                              style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 30),
-                        Container(
-                          padding: const EdgeInsets.all(0),
-                          width: 800,
-                          height: 850,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            // color: Colors.white,
+                              SizedBox(width: deviceWidth * 0.05),
+                              Text(
+                                '${S.of(context).welcome} ${patient.name}',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: deviceHeight * 0.03,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
                           ),
-                          child: SingleChildScrollView(
+                          SizedBox(height: deviceHeight * 0.02),
+                          Container(
+                            padding: const EdgeInsets.all(0),
+                            width: deviceWidth * 0.9,
+                            // height: deviceHeight * 0.9,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              // color: Colors.white,
+                            ),
                             child: Column(
                               children: [
                                 Row(
@@ -210,7 +214,7 @@ class GamesListCustom extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: 20),
+                                SizedBox(height: deviceHeight * 0.02),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -221,7 +225,7 @@ class GamesListCustom extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                const SizedBox(height: 20),
+                                SizedBox(height: deviceHeight * 0.02),
                                 const Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -233,8 +237,8 @@ class GamesListCustom extends StatelessWidget {
                               ],
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -259,6 +263,8 @@ class GameCardCustom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final deviceHeight = MediaQuery.of(context).size.height;
+    final deviceWidth = MediaQuery.of(context).size.width;
     var rec = '';
     if (recommendation == 1) {
       rec = '1.- Most recommended';
@@ -267,8 +273,8 @@ class GameCardCustom extends StatelessWidget {
     }
     return Container(
       padding: const EdgeInsets.all(0),
-      width: 340,
-      height: 380,
+      width: deviceWidth * 0.43,
+      height: deviceHeight * 0.31,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: Colors.white,
@@ -302,17 +308,21 @@ class GameCardCustom extends StatelessWidget {
                 ),
               ),
               child: SizedBox(
-                width: recommendation == 1 ? 200 : 50,
+                width: recommendation == 1
+                    ? deviceWidth * 0.25
+                    : deviceWidth * 0.05,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     recommendation == 1
-                        ? const Icon(Icons.star_purple500_outlined,
-                            color: Colors.red)
-                        : const Icon(Icons.star_border, color: Colors.red),
+                        ? Icon(Icons.star_purple500_outlined,
+                            color: Colors.red, size: deviceHeight * 0.016)
+                        : Icon(Icons.star_border,
+                            color: Colors.red, size: deviceHeight * 0.016),
                     Text(rec,
-                        style: const TextStyle(
-                            color: Color.fromARGB(255, 244, 91, 49))),
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 244, 91, 49),
+                            fontSize: deviceHeight * 0.011)),
                     const SizedBox(),
                     const SizedBox(),
                   ],
@@ -325,8 +335,8 @@ class GameCardCustom extends StatelessWidget {
             top: 40,
             child: Container(
               padding: const EdgeInsets.all(0),
-              width: 320,
-              height: 350,
+              width: deviceWidth * 0.4,
+              height: deviceHeight * 0.3,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 // color: Colors.white,
@@ -336,7 +346,7 @@ class GameCardCustom extends StatelessWidget {
                   Text(
                     game.name,
                     style: TextStyle(
-                      fontSize: 25,
+                      fontSize: deviceHeight * 0.019,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -345,11 +355,12 @@ class GameCardCustom extends StatelessWidget {
                   //   style: TextStyle(fontSize: 14),
                   // ),
                   Image.asset(
-                    'assets/games/${game.imageName}', // Replace with your image path
-                    width: 280,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                      'assets/games/${game.imageName}', // Replace with your image path
+                      width: deviceWidth * 0.38),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: deviceWidth * 0.005,
+                        vertical: deviceHeight * 0.003),
                     child: Divider(),
                   ),
                   Column(
@@ -359,7 +370,11 @@ class GameCardCustom extends StatelessWidget {
                         children: [
                           const Expanded(child: SizedBox()),
                           const Expanded(child: Icon(Icons.check)),
-                          Expanded(flex: 3, child: Text(game.focus[0])),
+                          Expanded(
+                              flex: 3,
+                              child: Text(game.focus[0],
+                                  style: TextStyle(
+                                      fontSize: deviceHeight * 0.012))),
                         ],
                       ),
                       Row(
@@ -369,7 +384,9 @@ class GameCardCustom extends StatelessWidget {
                           const Expanded(child: Icon(Icons.check)),
                           Expanded(
                             flex: 3,
-                            child: Text(game.focus[1]),
+                            child: Text(game.focus[1],
+                                style:
+                                    TextStyle(fontSize: deviceHeight * 0.012)),
                           ),
                         ],
                       ),
@@ -380,7 +397,9 @@ class GameCardCustom extends StatelessWidget {
                           const Expanded(child: Icon(Icons.check)),
                           Expanded(
                             flex: 3,
-                            child: Text(game.focus[2]),
+                            child: Text(game.focus[2],
+                                style:
+                                    TextStyle(fontSize: deviceHeight * 0.012)),
                           ),
                         ],
                       ),

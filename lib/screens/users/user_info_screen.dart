@@ -12,6 +12,7 @@ class UserInfoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final databaseService = Provider.of<DatabaseService>(context);
+
     return Builder(builder: (BuildContext innerContext) {
       return Consumer<PatientProvider>(
           builder: (context, patientProvider, child) {
@@ -81,6 +82,9 @@ class UserInfoCustom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final deviceHeight = MediaQuery.of(context).size.height;
+    final deviceWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -108,18 +112,21 @@ class UserInfoCustom extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
               ),
               child: SizedBox(
-                height: MediaQuery.of(context).size.height - 150,
-                width: MediaQuery.of(context).size.width - 50,
-                child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(40.0),
+                height: deviceHeight * 0.90,
+                width: deviceWidth * 0.95,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: deviceWidth * 0.05,
+                      vertical: deviceHeight * 0.001),
+                  child: SingleChildScrollView(
                     child: Column(
                       children: [
+                        SizedBox(height: deviceHeight * 0.02),
                         Row(
                           children: [
                             Container(
-                              width: 125,
-                              height: 150,
+                              width: deviceWidth * 0.19,
+                              height: deviceHeight * 0.14,
                               decoration: const BoxDecoration(
                                 image: DecorationImage(
                                   image: AssetImage('assets/images/logo1.png'),
@@ -127,27 +134,28 @@ class UserInfoCustom extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            const SizedBox(width: 50),
+                            SizedBox(width: deviceWidth * 0.05),
                             Text(
                               '${S.of(context).welcome} ${patient.name}',
-                              style: const TextStyle(
+                              style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 30,
+                                  fontSize: deviceHeight * 0.035,
                                   fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),
-                        const SizedBox(height: 30),
+                        SizedBox(height: deviceHeight * 0.02),
                         Container(
-                          padding: const EdgeInsets.all(25),
-                          width: 700,
-                          height: 750,
+                          // padding: const EdgeInsets.all(25),
+                          width: deviceWidth * 0.9,
+                          height: deviceHeight * 0.6,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             color: Colors.white,
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.all(30),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: deviceWidth * 0.04),
                             child: Column(
                               children: [
                                 Row(
@@ -155,17 +163,17 @@ class UserInfoCustom extends StatelessWidget {
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Container(
-                                      width: 150,
-                                      height: 150,
-                                      child: const Icon(
+                                      width: deviceWidth * 0.2,
+                                      height: deviceHeight * 0.15,
+                                      child: Icon(
                                         Icons.person,
-                                        size: 130,
+                                        size: deviceHeight * 0.13,
                                       ),
                                     ),
                                     const SizedBox(width: 0),
                                     Container(
-                                      width: 300,
-                                      height: 150,
+                                      width: deviceWidth * 0.5,
+                                      height: deviceHeight * 0.08,
                                       child: Center(
                                         child: Column(
                                           mainAxisAlignment:
@@ -173,107 +181,107 @@ class UserInfoCustom extends StatelessWidget {
                                           children: [
                                             Text(
                                               '${S.of(context).userNameIs} ${patient.name}',
-                                              style:
-                                                  const TextStyle(fontSize: 20),
+                                              style: TextStyle(
+                                                  fontSize:
+                                                      deviceHeight * 0.018),
                                             ),
-                                            Text('')
+                                            // Text('')
                                           ],
                                         ),
                                       ),
                                     ),
-                                    const SizedBox(width: 25),
+                                    SizedBox(width: deviceWidth * 0.025),
                                   ],
                                 ),
-                                const SizedBox(height: 10),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Container(
-                                      width: 150,
-                                      height: 150,
-                                      child: const Icon(
+                                      width: deviceWidth * 0.2,
+                                      height: deviceHeight * 0.13,
+                                      child: Icon(
                                         Icons.checklist_rtl,
-                                        size: 130,
+                                        size: deviceHeight * 0.13,
                                       ),
                                     ),
-                                    const SizedBox(width: 0),
                                     Container(
-                                      width: 300,
-                                      height: 150,
+                                      width: deviceWidth * 0.5,
+                                      height: deviceHeight * 0.08,
                                       child: Center(
                                         child: Text(
                                           patient.grade == 0
                                               ? "Still haven't done the test"
                                               : "${S.of(context).lastGradeIs} ${patient.grade}",
-                                          style: const TextStyle(fontSize: 20),
+                                          style: TextStyle(
+                                              fontSize: deviceHeight * 0.018),
                                         ),
                                       ),
                                     ),
-                                    const SizedBox(width: 25),
                                   ],
                                 ),
-                                const SizedBox(height: 10),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Container(
-                                      width: 150,
-                                      height: 150,
-                                      child: const Icon(
+                                      width: deviceWidth * 0.2,
+                                      height: deviceHeight * 0.13,
+                                      child: Icon(
                                         Icons.emoji_events_rounded,
-                                        size: 130,
+                                        size: deviceHeight * 0.12,
                                       ),
                                     ),
                                     const SizedBox(width: 0),
                                     Container(
-                                      width: 300,
-                                      height: 150,
+                                      width: deviceWidth * 0.4,
+                                      height: deviceHeight * 0.08,
                                       child: Center(
                                         child: Text(
                                           S.of(context).mostPlayedGame,
-                                          style: TextStyle(fontSize: 20),
+                                          style: TextStyle(
+                                              fontSize: deviceHeight * 0.018),
                                           textAlign: TextAlign.center,
                                         ),
                                       ),
                                     ),
-                                    const SizedBox(width: 25),
+                                    SizedBox(width: deviceWidth * 0.025),
                                   ],
                                 ),
-                                const SizedBox(height: 20),
+                                SizedBox(height: deviceHeight * 0.02),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Container(
-                                      width: 150,
-                                      height: 150,
-                                      child: const Icon(
+                                      width: deviceWidth * 0.2,
+                                      height: deviceHeight * 0.13,
+                                      child: Icon(
                                         Icons.tips_and_updates_rounded,
-                                        size: 130,
+                                        size: deviceHeight * 0.12,
                                       ),
                                     ),
                                     const SizedBox(width: 0),
                                     Container(
-                                      width: 300,
-                                      height: 150,
+                                      width: deviceWidth * 0.4,
+                                      height: deviceHeight * 0.08,
                                       child: Center(
                                         child: Text(
                                           patient.status.toString(),
-                                          style: const TextStyle(fontSize: 20),
+                                          style: TextStyle(
+                                              fontSize: deviceHeight * 0.018),
                                           textAlign: TextAlign.center,
                                         ),
                                       ),
                                     ),
-                                    const SizedBox(width: 25),
+                                    SizedBox(width: deviceWidth * 0.025),
                                   ],
                                 ),
                               ],
                             ),
                           ),
                         ),
-                        const SizedBox(height: 15),
+                        SizedBox(height: deviceHeight * 0.02),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -293,7 +301,7 @@ class UserInfoCustom extends StatelessWidget {
                                 S.of(context).logout,
                                 style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: 20,
+                                  fontSize: deviceHeight * 0.016,
                                 ),
                               ),
                             ),
@@ -306,43 +314,43 @@ class UserInfoCustom extends StatelessWidget {
               ),
             ),
           ),
-          const Align(
-            alignment: Alignment.bottomCenter,
-            child: SizedBox(
-              height: 160,
-              child: Stack(
-                children: [
-                  Positioned(
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    child: BottomAppBar(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(),
-                        ],
-                      ),
-                    ),
-                  ),
-                  // Positioned(
-                  //   bottom: 20,
-                  //   left: MediaQuery.of(context).size.width / 2 - 62.5,
-                  //   child: Container(
-                  //     width: 125,
-                  //     height: 140,
-                  //     decoration: const BoxDecoration(
-                  //       image: DecorationImage(
-                  //         image: AssetImage('assets/images/logo1.png'),
-                  //         fit: BoxFit.cover,
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-                ],
-              ),
-            ),
-          ),
+          // Align(
+          //   alignment: Alignment.bottomCenter,
+          //   child: SizedBox(
+          //     height: deviceHeight * 0.10,
+          //     child: const Stack(
+          //       children: [
+          //         Positioned(
+          //           bottom: 0,
+          //           left: 0,
+          //           right: 0,
+          //           child: BottomAppBar(
+          //             child: Row(
+          //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //               children: [
+          //                 SizedBox(),
+          //               ],
+          //             ),
+          //           ),
+          //         ),
+          // Positioned(
+          //   bottom: 20,
+          //   left: MediaQuery.of(context).size.width / 2 - 62.5,
+          //   child: Container(
+          //     width: 125,
+          //     height: 140,
+          //     decoration: const BoxDecoration(
+          //       image: DecorationImage(
+          //         image: AssetImage('assets/images/logo1.png'),
+          //         fit: BoxFit.cover,
+          //       ),
+          //     ),
+          //   ),
+          // ),
+          //   ],
+          // ),
+          //       ),
+          //     ),
         ],
       ),
     );

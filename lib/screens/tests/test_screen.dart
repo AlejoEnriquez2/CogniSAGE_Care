@@ -43,6 +43,9 @@ class _TestScreenState extends State<TestScreen> {
     TestModel testModel =
         ModalRoute.of(context)!.settings.arguments as TestModel;
     formId = testModel.formId!;
+    final deviceHeight = MediaQuery.of(context).size.height;
+    final deviceWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -70,17 +73,26 @@ class _TestScreenState extends State<TestScreen> {
                 borderRadius: BorderRadius.circular(20),
               ),
               child: SizedBox(
-                height: currentStep != 5
-                    ? MediaQuery.of(context).size.height - 150
-                    : MediaQuery.of(context).size.height - 50,
-                width: currentStep != 5
-                    ? MediaQuery.of(context).size.width - 50
-                    : MediaQuery.of(context).size.width,
+                height: currentStep == 5 ||
+                        currentStep == 7 ||
+                        currentStep == 8 ||
+                        currentStep == 9
+                    ? deviceHeight
+                    : deviceHeight * 0.87,
+                width: currentStep == 5 ||
+                        currentStep == 7 ||
+                        currentStep == 8 ||
+                        currentStep == 9
+                    ? deviceWidth
+                    : deviceWidth * 0.95,
                 child: Center(
                   child: Padding(
-                    padding: currentStep != 5
-                        ? const EdgeInsets.all(15.0)
-                        : const EdgeInsets.all(0.0),
+                    padding: currentStep == 5 ||
+                            currentStep == 7 ||
+                            currentStep == 8 ||
+                            currentStep == 9
+                        ? const EdgeInsets.all(0.0)
+                        : const EdgeInsets.all(15.0),
                     child: ChangeNotifierProvider(
                       create: (context) => TestProvider(),
                       child: Consumer<TestProvider>(
@@ -144,8 +156,8 @@ class _TestScreenState extends State<TestScreen> {
                                           color: Colors.white,
                                         ),
                                       ),
-                                      const SizedBox(width: 10),
-                                      const SizedBox(width: 10),
+                                      SizedBox(),
+                                      SizedBox(),
                                       ElevatedButton(
                                         onPressed: () {
                                           print(testModel);
@@ -166,8 +178,9 @@ class _TestScreenState extends State<TestScreen> {
                                         },
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.yellow,
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 20, vertical: 10),
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: deviceWidth * 0.012,
+                                              vertical: deviceHeight * 0.01),
                                         ),
                                         child: testProvider.isLoading
                                             ? const Center(
@@ -203,7 +216,7 @@ class _TestScreenState extends State<TestScreen> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: 160,
+              height: deviceHeight * 0.15,
               child: Stack(
                 children: [
                   Positioned(
@@ -211,6 +224,7 @@ class _TestScreenState extends State<TestScreen> {
                     left: 0,
                     right: 0,
                     child: BottomAppBar(
+                      height: deviceHeight * 0.05,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -245,11 +259,11 @@ class _TestScreenState extends State<TestScreen> {
                     ),
                   ),
                   Positioned(
-                    bottom: 20,
-                    left: MediaQuery.of(context).size.width / 2 - 62.5,
+                    bottom: deviceHeight * 0.01,
+                    left: deviceWidth * 0.426,
                     child: Container(
-                      width: 115,
-                      height: 136,
+                      width: deviceWidth * 0.145,
+                      height: deviceHeight * 0.11,
                       decoration: const BoxDecoration(
                         image: DecorationImage(
                           image: AssetImage('assets/images/logo1.png'),

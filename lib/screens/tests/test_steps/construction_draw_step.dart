@@ -28,85 +28,106 @@ class ConstructionDrawStep extends StatefulWidget {
 
 class _ConstructionDrawStepState extends State<ConstructionDrawStep> {
   final TestProvider testProvider = TestProvider();
+  bool _isRowVisible = true;
 
   @override
   Widget build(BuildContext context) {
+    final deviceHeight = MediaQuery.of(context).size.height;
+    final deviceWidth = MediaQuery.of(context).size.width;
+
     return Padding(
       padding: const EdgeInsets.all(0),
       child: Column(
         children: [
           Container(
             height: MediaQuery.of(context).size.height * 0.75,
-            width: MediaQuery.of(context).size.width - 50,
+            width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               color: const Color.fromARGB(255, 255, 255, 255),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Center(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
+                padding: EdgeInsets.symmetric(horizontal: deviceWidth * 0.04),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Column(
-                          children: [
-                            Text(
-                              S.of(context).draw,
-                              style: TextStyle(
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            SizedBox(height: 20),
-                            Text(S.of(context).followNextInstructions),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 150,
-                          child: VerticalDivider(
-                            color: Color.fromARGB(255, 88, 88, 88),
-                            thickness: 2,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 175,
-                          width: 250,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        // IconButton(
+                        //   icon: Icon(Icons.info),
+                        //   onPressed: () {
+                        //     setState(() {
+                        //       _isRowVisible = !_isRowVisible;
+                        //     });
+                        //   },
+                        // ),
+                        if (_isRowVisible)
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                S.of(context).drawLargeClockFace,
-                                style: TextStyle(
-                                  fontSize: 17,
+                              Column(
+                                children: [
+                                  Text(
+                                    S.of(context).draw,
+                                    style: TextStyle(
+                                      fontSize: deviceHeight * 0.03,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  SizedBox(height: deviceHeight * 0.01),
+                                  Text(S.of(context).followNextInstructions,
+                                      style: TextStyle(
+                                          fontSize: deviceHeight * 0.015)),
+                                ],
+                              ),
+                              SizedBox(
+                                height: deviceHeight * 0.11,
+                                child: VerticalDivider(
+                                  color: Color.fromARGB(255, 88, 88, 88),
+                                  thickness: 2,
                                 ),
                               ),
-                              Text(
-                                widget.formId == 1
-                                    ? S.of(context).positionHandsForTime
-                                    : S.of(context).positionHandsForTime4,
-                                style: TextStyle(
-                                  fontSize: 17,
-                                ),
-                              ),
-                              Text(
-                                S.of(context).labelClockHands,
-                                style: TextStyle(
-                                  fontSize: 17,
+                              SizedBox(
+                                height: deviceHeight * 0.12,
+                                width: deviceWidth * 0.40,
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text(
+                                      S.of(context).drawLargeClockFace,
+                                      style: TextStyle(
+                                        fontSize: deviceHeight * 0.014,
+                                      ),
+                                    ),
+                                    Text(
+                                      widget.formId == 1
+                                          ? S.of(context).positionHandsForTime
+                                          : S.of(context).positionHandsForTime4,
+                                      style: TextStyle(
+                                        fontSize: deviceHeight * 0.014,
+                                      ),
+                                    ),
+                                    Text(
+                                      S.of(context).labelClockHands,
+                                      style: TextStyle(
+                                        fontSize: deviceHeight * 0.014,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],
                           ),
-                        ),
                       ],
                     ),
                     SizedBox(
-                      height: 750,
-                      width: 650,
+                      // height: 750,
+                      width: deviceWidth * 0.9,
                       child: DrawBoard(
-                        canvaSize: 650,
+                        canvaSize: deviceWidth * 0.80,
                         type: 'draw',
                         answersModel: widget.answersModel,
                       ),
