@@ -79,8 +79,8 @@ class TestInstructionsScreen extends StatelessWidget {
                               padding: EdgeInsets.symmetric(
                                   horizontal: deviceWidth * 0.04,
                                   vertical: deviceHeight * 0.025),
-                              width: deviceWidth * 0.83,
-                              height: deviceHeight * 0.37,
+                              width: deviceWidth * 0.9,
+                              height: deviceHeight * 0.4,
                               decoration: BoxDecoration(
                                 borderRadius:
                                     BorderRadius.circular(deviceHeight * 0.014),

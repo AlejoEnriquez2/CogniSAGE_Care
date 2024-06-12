@@ -683,10 +683,10 @@ class S {
     );
   }
 
-  /// `How many nickels are in 60 cents?`
+  /// `How many 5 cents are in 60 cents?`
   String get howManyNickelsInSixtyCents {
     return Intl.message(
-      'How many nickels are in 60 cents?',
+      'How many 5 cents are in 60 cents?',
       name: 'howManyNickelsInSixtyCents',
       desc: 'Math question involving currency.',
       args: [],

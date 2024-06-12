@@ -83,6 +83,8 @@ class MyApp extends StatelessWidget {
           'matching_instructions': (_) =>
               const MatchingCardsInstructionsScreen(),
           'matching_cards': (_) => const MatchingCardsScreen(),
+          'guess_word': (_) => const GuessTheWordScreen(),
+          'math': (_) => const MathExerciseScreen(),
         },
         localizationsDelegates: const [
           S.delegate,

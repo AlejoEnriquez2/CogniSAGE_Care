@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:frontend_form/generated/l10n.dart';
@@ -208,9 +209,15 @@ class GamesListCustom extends StatelessWidget {
                                         game: games[0],
                                       ),
                                     ),
-                                    GameCardCustom(
-                                      recommendation: 2,
-                                      game: games[1],
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.pushNamed(
+                                            context, 'guess_word');
+                                      },
+                                      child: GameCardCustom(
+                                        recommendation: 2,
+                                        game: games[1],
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -219,9 +226,14 @@ class GamesListCustom extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    GameCardCustom(
-                                      recommendation: 3,
-                                      game: games[2],
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.pushNamed(context, 'math');
+                                      },
+                                      child: GameCardCustom(
+                                        recommendation: 3,
+                                        game: games[2],
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -354,8 +366,7 @@ class GameCardCustom extends StatelessWidget {
                   //   '100 high score',
                   //   style: TextStyle(fontSize: 14),
                   // ),
-                  Image.asset(
-                      'assets/games/${game.imageName}', // Replace with your image path
+                  Image.asset('assets/games/${game.imageName}',
                       width: deviceWidth * 0.38),
                   Padding(
                     padding: EdgeInsets.symmetric(

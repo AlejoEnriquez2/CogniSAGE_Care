@@ -87,7 +87,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "howFarDidYouGetInSchool": MessageLookupByLibrary.simpleMessage(
             "How far did you get in school?"),
         "howManyNickelsInSixtyCents": MessageLookupByLibrary.simpleMessage(
-            "How many nickels are in 60 cents?"),
+            "How many 5 cents are in 60 cents?"),
         "iAmA": MessageLookupByLibrary.simpleMessage("I am a:"),
         "iAmDone": MessageLookupByLibrary.simpleMessage("I am done"),
         "iDontHaveAnAccount":

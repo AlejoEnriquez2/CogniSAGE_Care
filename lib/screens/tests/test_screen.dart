@@ -101,7 +101,7 @@ class _TestScreenState extends State<TestScreen> {
                             key: testProvider.formKey,
                             child: Container(
                               child: Stepper(
-                                physics: currentStep >= 4
+                                physics: currentStep >= 4 && currentStep != 6
                                     ? const NeverScrollableScrollPhysics()
                                     : const AlwaysScrollableScrollPhysics(),
                                 elevation: 10,

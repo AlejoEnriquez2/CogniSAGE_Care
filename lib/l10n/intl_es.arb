@@ -252,7 +252,7 @@
     "@theyBothAre": {
         "description": "Frase inicial para listar similitudes."
     },
-    "howManyNickelsInSixtyCents": "¿Cuántos níqueles hay en 60 centavos?",
+    "howManyNickelsInSixtyCents": "¿Cuántas monedas de 5 hay en 60 centavos?",
     "@howManyNickelsInSixtyCents": {
         "description": "Pregunta matemática involucrando moneda."
     },
@@ -272,7 +272,7 @@
     "@inTheFinalSection": {
         "description": "Información sobre una sección futura de prueba que involucra la frase memorizada."
     },
-    "iAmDone": "He terminado",
+    "iAmDone": "Terminé",
     "@iAmDone": {
         "description": "Declaración usada para indicar la finalización de una tarea."
     },

@@ -69,7 +69,7 @@ class _CalculationStepState extends State<CalculationStep> {
                       prefixIcon: Icon(Icons.edit_square),
                     ),
                     textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.number,
+                    keyboardType: TextInputType.numberWithOptions(),
                   ),
                   const SizedBox(height: 80),
                   const Text(

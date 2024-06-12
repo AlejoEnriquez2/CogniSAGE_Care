@@ -252,7 +252,7 @@
     "@theyBothAre": {
         "description": "Starter phrase for listing similarities."
     },
-    "howManyNickelsInSixtyCents": "How many nickels are in 60 cents?",
+    "howManyNickelsInSixtyCents": "How many 5 cents are in 60 cents?",
     "@howManyNickelsInSixtyCents": {
         "description": "Math question involving currency."
     },

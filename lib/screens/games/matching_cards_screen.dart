@@ -1,31 +1,60 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:frontend_form/generated/l10n.dart';
-import 'package:frontend_form/models/models.dart';
-import 'package:frontend_form/providers/card_provider.dart';
-import 'package:frontend_form/providers/providers.dart';
-import 'package:provider/provider.dart';
 
-class MatchingCardsScreen extends StatelessWidget {
-  const MatchingCardsScreen({super.key});
+class MatchingCardsScreen extends StatefulWidget {
+  const MatchingCardsScreen({Key? key}) : super(key: key);
+
+  @override
+  _MatchingCardsScreenState createState() => _MatchingCardsScreenState();
+}
+
+class _MatchingCardsScreenState extends State<MatchingCardsScreen> {
+  List<CardModel> cards = [];
+  CardModel? _firstCard;
+  CardModel? _secondCard;
+  bool _waitForFlip = false;
+
+  @override
+  void initState() {
+    super.initState();
+    cards = _createCardPairs();
+  }
+
+  void _onCardFlip(CardModel card) {
+    if (_waitForFlip || card.isFlipped || card.isCorrect) return;
+
+    setState(() {
+      card.isFlipped = true;
+
+      if (_firstCard == null) {
+        _firstCard = card;
+      } else if (_secondCard == null) {
+        _secondCard = card;
+        _waitForFlip = true;
+
+        Future.delayed(const Duration(seconds: 1), () {
+          setState(() {
+            if (_firstCard!.name == _secondCard!.name) {
+              _firstCard!.isCorrect = true;
+              _secondCard!.isCorrect = true;
+            } else {
+              _firstCard!.isFlipped = false;
+              _secondCard!.isFlipped = false;
+            }
+
+            _firstCard = null;
+            _secondCard = null;
+            _waitForFlip = false;
+          });
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    CardProvider cardProvider = Provider.of(context);
-
     final deviceHeight = MediaQuery.of(context).size.height;
     final deviceWidth = MediaQuery.of(context).size.width;
-
-    var cards = [
-      CardModel(id: 1, name: 'A', isCorrect: false),
-      CardModel(id: 2, name: 'B', isCorrect: false),
-      CardModel(id: 3, name: 'C', isCorrect: false),
-      CardModel(id: 4, name: 'D', isCorrect: false),
-      CardModel(id: 5, name: 'E', isCorrect: false),
-      CardModel(id: 6, name: 'F', isCorrect: false),
-    ];
-    cards.shuffle();
 
     return Scaffold(
       appBar: AppBar(
@@ -41,7 +70,6 @@ class MatchingCardsScreen extends StatelessWidget {
           ),
           onPressed: () {
             Navigator.pushReplacementNamed(context, 'matching_instructions');
-            // Navigator.pop(context);
           },
         ),
         centerTitle: true,
@@ -62,7 +90,7 @@ class MatchingCardsScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         Text(
-                          'Correct: ',
+                          'Correct: ${cards.where((card) => card.isCorrect).length}',
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: deviceHeight * 0.05,
@@ -81,38 +109,18 @@ class MatchingCardsScreen extends StatelessWidget {
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Row(
+                            children: List.generate(3, (rowIndex) {
+                              return Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
-                                children: [
-                                  CardCustom(card: cards[0]),
-                                  CardCustom(card: cards[1]),
-                                  CardCustom(card: cards[2]),
-                                  CardCustom(card: cards[3]),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  CardCustom(card: cards[4]),
-                                  CardCustom(card: cards[5]),
-                                  CardCustom(card: cards[0]),
-                                  CardCustom(card: cards[1]),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  CardCustom(card: cards[2]),
-                                  CardCustom(card: cards[3]),
-                                  CardCustom(card: cards[4]),
-                                  CardCustom(card: cards[5]),
-                                ],
-                              ),
-                            ],
+                                children: List.generate(4, (colIndex) {
+                                  int cardIndex = rowIndex * 4 + colIndex;
+                                  return CardCustom(
+                                      card: cards[cardIndex],
+                                      onFlip: _onCardFlip);
+                                }),
+                              );
+                            }),
                           ),
                         ),
                         SizedBox(height: deviceHeight * 0.02),
@@ -122,11 +130,12 @@ class MatchingCardsScreen extends StatelessWidget {
                             const SizedBox(),
                             ElevatedButton(
                               onPressed: () {
-                                // Navigator.pushReplacementNamed(
-                                //   context,
-                                //   'personal',
-                                //   arguments: testProvider.test.formId,
-                                // );
+                                setState(() {
+                                  cards = _createCardPairs();
+                                  _firstCard = null;
+                                  _secondCard = null;
+                                  _waitForFlip = false;
+                                });
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.yellow,
@@ -135,7 +144,7 @@ class MatchingCardsScreen extends StatelessWidget {
                                 ),
                               ),
                               child: Text(
-                                S.of(context).continueTxt,
+                                'Restart',
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: deviceHeight * 0.016,
@@ -165,7 +174,7 @@ class MatchingCardsScreen extends StatelessWidget {
                       height: deviceHeight * 0.06,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
+                        children: const [
                           SizedBox(),
                         ],
                       ),
@@ -196,7 +205,6 @@ class MatchingCardsScreen extends StatelessWidget {
 
   BoxDecoration CustomBoxDecorator() {
     return BoxDecoration(
-      // color: const Color.fromARGB(255, 37, 102, 183),
       borderRadius: BorderRadius.circular(20),
       gradient: const LinearGradient(
         colors: [
@@ -210,24 +218,20 @@ class MatchingCardsScreen extends StatelessWidget {
 
 class CardCustom extends StatefulWidget {
   final CardModel card;
+  final Function(CardModel) onFlip;
 
-  CardCustom({
-    Key? key,
-    required this.card,
-  }) : super(key: key);
+  const CardCustom({Key? key, required this.card, required this.onFlip})
+      : super(key: key);
 
   @override
-  State<CardCustom> createState() => _CardCustomState();
+  _CardCustomState createState() => _CardCustomState();
 }
 
 class _CardCustomState extends State<CardCustom> {
-  bool _showFrontSide = true;
+  bool get _showFrontSide => widget.card.isFlipped || widget.card.isCorrect;
 
   void _flipCard() {
-    setState(() {
-      print('flips the card');
-      _showFrontSide = !_showFrontSide;
-    });
+    widget.onFlip(widget.card);
   }
 
   @override
@@ -236,32 +240,33 @@ class _CardCustomState extends State<CardCustom> {
     final deviceWidth = MediaQuery.of(context).size.width;
 
     return GestureDetector(
-        onTap: _flipCard,
-        child: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 500),
-          transitionBuilder: (Widget child, Animation<double> animation) {
-            final rotate = Tween(begin: pi, end: 0.0).animate(animation);
-            return AnimatedBuilder(
-                animation: rotate,
-                child: child,
-                builder: (context, child) {
-                  final isUnder = (ValueKey(_showFrontSide) != child?.key);
-                  final value =
-                      isUnder ? min(rotate.value, pi / 2) : rotate.value;
-                  return Transform(
-                    transform: Matrix4.rotationY(value),
-                    alignment: Alignment.center,
-                    child: child,
-                  );
-                });
-          },
-          layoutBuilder: (widget, list) => Stack(children: [widget!, ...list]),
-          child: _showFrontSide
-              ? _buildFront(deviceWidth, deviceHeight)
-              : _buildBack(deviceWidth, deviceHeight, widget.card),
-          switchInCurve: Curves.easeInOut,
-          switchOutCurve: Curves.easeInOut,
-        ));
+      onTap: _flipCard,
+      child: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 500),
+        transitionBuilder: (Widget child, Animation<double> animation) {
+          final rotate = Tween(begin: pi, end: 0.0).animate(animation);
+          return AnimatedBuilder(
+              animation: rotate,
+              child: child,
+              builder: (context, child) {
+                final isUnder = (ValueKey(_showFrontSide) != child?.key);
+                final value =
+                    isUnder ? min(rotate.value, pi / 2) : rotate.value;
+                return Transform(
+                  transform: Matrix4.rotationY(value),
+                  alignment: Alignment.center,
+                  child: child,
+                );
+              });
+        },
+        layoutBuilder: (widget, list) => Stack(children: [widget!, ...list]),
+        child: _showFrontSide
+            ? _buildBack(deviceWidth, deviceHeight, widget.card)
+            : _buildFront(deviceWidth, deviceHeight),
+        switchInCurve: Curves.easeInOut,
+        switchOutCurve: Curves.easeInOut,
+      ),
+    );
   }
 
   Widget _buildFront(double width, double height) {
@@ -312,11 +317,44 @@ class _CardCustomState extends State<CardCustom> {
           '${card.name}',
           style: TextStyle(
             fontSize: height * 0.05,
-            color: Colors.white,
+            color: Colors.black,
             fontWeight: FontWeight.bold,
           ),
         ),
       ),
     );
   }
+}
+
+List<CardModel> _createCardPairs() {
+  var cards = [
+    CardModel(id: 1, name: 'A'),
+    CardModel(id: 2, name: 'B'),
+    CardModel(id: 3, name: 'C'),
+    CardModel(id: 4, name: 'D'),
+    CardModel(id: 5, name: 'E'),
+    CardModel(id: 6, name: 'F'),
+    CardModel(id: 7, name: 'A'),
+    CardModel(id: 8, name: 'B'),
+    CardModel(id: 9, name: 'C'),
+    CardModel(id: 10, name: 'D'),
+    CardModel(id: 11, name: 'E'),
+    CardModel(id: 12, name: 'F'),
+  ];
+  cards.shuffle();
+  return cards;
+}
+
+class CardModel {
+  final int id;
+  final String name;
+  bool isCorrect;
+  bool isFlipped;
+
+  CardModel({
+    required this.id,
+    required this.name,
+    this.isCorrect = false,
+    this.isFlipped = false,
+  });
 }

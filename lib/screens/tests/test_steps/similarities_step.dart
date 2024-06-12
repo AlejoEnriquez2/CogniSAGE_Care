@@ -132,12 +132,15 @@ class _SimilaritiesStepState extends State<SimilaritiesStep> {
                   TextFormField(
                     onChanged: (value) {
                       setState(() {
-                        if (value != '') {
+                        if (value != '' && double.tryParse(value) != null) {
                           widget.answersModel.calculation2 =
                               double.parse(value);
                         }
                       });
                     },
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.allow(RegExp(r'[0-9.]')),
+                    ],
                     focusNode: widget.focusNodes[13],
                     onFieldSubmitted: (_) {
                       SystemChannels.textInput.invokeMethod('TextInput.hide');
@@ -148,7 +151,7 @@ class _SimilaritiesStepState extends State<SimilaritiesStep> {
                       labelStyle: TextStyle(fontSize: deviceHeight * 0.013),
                     ),
                     textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.number,
+                    keyboardType: TextInputType.visiblePassword,
                     style: TextStyle(fontSize: deviceHeight * 0.015),
                   ),
                   SizedBox(height: deviceHeight * 0.03),

@@ -9,7 +9,7 @@ class CardModel {
   CardModel({
     required this.id,
     required this.name,
-    required this.isCorrect,
+    this.isCorrect = false,
     this.description,
   });
 
