@@ -22,6 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "acceptContinueTxt":
+            MessageLookupByLibrary.simpleMessage("Accept and Continue"),
         "answerTheseQuestions":
             MessageLookupByLibrary.simpleMessage("Answer these questions:"),
         "areYouDone": MessageLookupByLibrary.simpleMessage("Are you done?"),
@@ -152,6 +154,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "registerNow": MessageLookupByLibrary.simpleMessage("Register Now"),
         "rule_complete_triangle_lines": MessageLookupByLibrary.simpleMessage(
             "Draw the result considering that each line must be part of a complete triangle (no extra lines)."),
+        "sageInformedConsent": MessageLookupByLibrary.simpleMessage(
+            "By proceeding with the test, you indicate that you understand the purpose of the study, the procedures involved, the risks and benefits, and that you voluntarily agree to participate."),
+        "sageRisks": MessageLookupByLibrary.simpleMessage(
+            "It has risks and benefits that should be considered before starting the test. The test is not a diagnostic tool, but it can help you identify if you have cognitive impairment. Consider that the results are an interpretation just to be consider as informative. If you have any questions or concerns, please contact your healthcare provider. And although there are not direct benefits, participating in this study may contribute to advancements in early detection methods for cognitive impairment and provide you better undesrtanding of your cognitive health. \n Your responses will be kept confidential and used solely for the purposes of this study. Data will be anonymized to protect your identity. Your participation in this study is entirely voluntary. You may withdraw at any time without major consequences."),
         "sageTestDescription": MessageLookupByLibrary.simpleMessage(
             "The SAGE test, or Self-Administered Gerocognitive Exam, is a brief self-assessment tool designed to detect early signs of cognitive impairment. Developed by researchers at the Ohio State University Wexner Medical Center, the test aims to identify changes in cognitive functions that are subtle and might not be immediately apparent, serving as a preliminary screen for conditions like Alzheimer\'s disease, other dementias, and various neurological problems.The test encompasses a variety of questions and tasks that assess different aspects of cognition, including memory, problem-solving abilities, language, and other key functions."),
         "sageTestInstructions": MessageLookupByLibrary.simpleMessage(

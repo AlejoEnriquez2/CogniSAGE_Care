@@ -160,20 +160,22 @@ class _TestScreenState extends State<TestScreen> {
                                       SizedBox(),
                                       ElevatedButton(
                                         onPressed: () {
-                                          print(testModel);
-                                          print(answersModel.toPrint());
-                                          if (currentStep == 7) {
-                                            onContinueStep7(details);
-                                          } else if (currentStep == 4) {
-                                            onContinueStep4(details);
-                                          } else if (currentStep == 5) {
-                                            onContinueStep5(details);
-                                          } else if (currentStep == 8) {
-                                            onContinueStep8(details);
-                                          } else if (currentStep == 9) {
-                                            onContinueStep9(details);
-                                          } else {
-                                            details.onStepContinue!();
+                                          if (!testProvider.isLoading) {
+                                            print(testModel);
+                                            print(answersModel.toPrint());
+                                            if (currentStep == 7) {
+                                              onContinueStep7(details);
+                                            } else if (currentStep == 4) {
+                                              onContinueStep4(details);
+                                            } else if (currentStep == 5) {
+                                              onContinueStep5(details);
+                                            } else if (currentStep == 8) {
+                                              onContinueStep8(details);
+                                            } else if (currentStep == 9) {
+                                              onContinueStep9(details);
+                                            } else {
+                                              details.onStepContinue!();
+                                            }
                                           }
                                         },
                                         style: ElevatedButton.styleFrom(

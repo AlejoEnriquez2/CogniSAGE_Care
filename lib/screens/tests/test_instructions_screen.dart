@@ -71,47 +71,63 @@ class TestInstructionsScreen extends StatelessWidget {
                               S.of(context).whatIsSageTest,
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: deviceHeight * 0.10,
+                                  fontSize: deviceHeight * 0.05,
                                   fontWeight: FontWeight.bold),
                             ),
-                            SizedBox(height: deviceHeight * 0.045),
+                            SizedBox(height: deviceHeight * 0.02),
                             Container(
                               padding: EdgeInsets.symmetric(
                                   horizontal: deviceWidth * 0.04,
                                   vertical: deviceHeight * 0.025),
                               width: deviceWidth * 0.9,
-                              height: deviceHeight * 0.4,
+                              height: deviceHeight * 0.65,
                               decoration: BoxDecoration(
                                 borderRadius:
                                     BorderRadius.circular(deviceHeight * 0.014),
                                 color: Colors.white,
                               ),
-                              child: Column(
-                                children: [
-                                  Align(
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      S.of(context).sageTestDescription,
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        S.of(context).sageTestDescription,
+                                        style: TextStyle(
+                                            fontSize: deviceHeight * 0.0135),
+                                        textAlign: TextAlign.justify,
+                                      ),
+                                    ),
+                                    SizedBox(height: deviceHeight * 0.013),
+                                    Text(
+                                      S.of(context).sageTestInstructions,
                                       style: TextStyle(
                                           fontSize: deviceHeight * 0.0135),
                                       textAlign: TextAlign.justify,
                                     ),
-                                  ),
-                                  SizedBox(height: deviceHeight * 0.015),
-                                  Text(
-                                    S.of(context).sageTestInstructions,
-                                    style: TextStyle(
-                                        fontSize: deviceHeight * 0.0135),
-                                    textAlign: TextAlign.justify,
-                                  ),
-                                  SizedBox(height: deviceHeight * 0.024),
-                                  Text(
-                                    S.of(context).screensInstructions,
-                                    style: TextStyle(
-                                        fontStyle: FontStyle.italic,
-                                        fontSize: deviceHeight * 0.0135),
-                                  ),
-                                ],
+                                    SizedBox(height: deviceHeight * 0.013),
+                                    Text(
+                                      S.of(context).sageRisks,
+                                      style: TextStyle(
+                                          fontSize: deviceHeight * 0.0135),
+                                      textAlign: TextAlign.justify,
+                                    ),
+                                    SizedBox(height: deviceHeight * 0.024),
+                                    Text(
+                                      S.of(context).sageInformedConsent,
+                                      style: TextStyle(
+                                          fontSize: deviceHeight * 0.0135),
+                                      textAlign: TextAlign.justify,
+                                    ),
+                                    SizedBox(height: deviceHeight * 0.024),
+                                    Text(
+                                      S.of(context).screensInstructions,
+                                      style: TextStyle(
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: deviceHeight * 0.0135),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                             SizedBox(height: deviceHeight * 0.025),
@@ -135,7 +151,7 @@ class TestInstructionsScreen extends StatelessWidget {
                                     ),
                                   ),
                                   child: Text(
-                                    S.of(context).continueTxt,
+                                    S.of(context).acceptContinueTxt,
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: deviceHeight * 0.016,

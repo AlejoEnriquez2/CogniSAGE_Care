@@ -200,6 +200,26 @@ class S {
     );
   }
 
+  /// `It has risks and benefits that should be considered before starting the test. The test is not a diagnostic tool, but it can help you identify if you have cognitive impairment. Consider that the results are an interpretation just to be consider as informative. If you have any questions or concerns, please contact your healthcare provider. And although there are not direct benefits, participating in this study may contribute to advancements in early detection methods for cognitive impairment and provide you better undesrtanding of your cognitive health. \n Your responses will be kept confidential and used solely for the purposes of this study. Data will be anonymized to protect your identity. Your participation in this study is entirely voluntary. You may withdraw at any time without major consequences.`
+  String get sageRisks {
+    return Intl.message(
+      'It has risks and benefits that should be considered before starting the test. The test is not a diagnostic tool, but it can help you identify if you have cognitive impairment. Consider that the results are an interpretation just to be consider as informative. If you have any questions or concerns, please contact your healthcare provider. And although there are not direct benefits, participating in this study may contribute to advancements in early detection methods for cognitive impairment and provide you better undesrtanding of your cognitive health. \n Your responses will be kept confidential and used solely for the purposes of this study. Data will be anonymized to protect your identity. Your participation in this study is entirely voluntary. You may withdraw at any time without major consequences.',
+      name: 'sageRisks',
+      desc: 'Description of what the SAGE test is.',
+      args: [],
+    );
+  }
+
+  /// `By proceeding with the test, you indicate that you understand the purpose of the study, the procedures involved, the risks and benefits, and that you voluntarily agree to participate.`
+  String get sageInformedConsent {
+    return Intl.message(
+      'By proceeding with the test, you indicate that you understand the purpose of the study, the procedures involved, the risks and benefits, and that you voluntarily agree to participate.',
+      name: 'sageInformedConsent',
+      desc: 'Description of what the SAGE test is.',
+      args: [],
+    );
+  }
+
   /// `It is designed to be taken on paper, but this is a digitized adaptation of it, and can be completed in approximately 15 minutes. After completion, the system will grade and provide feedback and recommendations about cognitive health.`
   String get sageTestInstructions {
     return Intl.message(
@@ -226,6 +246,16 @@ class S {
       'Continue',
       name: 'continueTxt',
       desc: 'Button text to proceed in the application.',
+      args: [],
+    );
+  }
+
+  /// `Accept and Continue`
+  String get acceptContinueTxt {
+    return Intl.message(
+      'Accept and Continue',
+      name: 'acceptContinueTxt',
+      desc: 'Texto del botón para proceder en la aplicación.',
       args: [],
     );
   }

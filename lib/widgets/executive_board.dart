@@ -119,11 +119,11 @@ class _ExecutiveBoardState extends State<ExecutiveBoard> {
     Line(
         start: const Offset(285, 160),
         end: const Offset(470, 160),
-        isTheCorrect: false),
+        isTheCorrect: true),
     Line(
         start: const Offset(395, 300),
         end: const Offset(485, 165),
-        isTheCorrect: false),
+        isTheCorrect: true),
   ];
 
   List<Line> lines = [];

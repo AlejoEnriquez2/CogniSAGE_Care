@@ -60,6 +60,14 @@
     "@sageTestDescription": {
         "description": "Description of what the SAGE test is."
     },
+    "sageRisks": "It has risks and benefits that should be considered before starting the test. The test is not a diagnostic tool, but it can help you identify if you have cognitive impairment. Consider that the results are an interpretation just to be consider as informative. If you have any questions or concerns, please contact your healthcare provider. And although there are not direct benefits, participating in this study may contribute to advancements in early detection methods for cognitive impairment and provide you better undesrtanding of your cognitive health. \n Your responses will be kept confidential and used solely for the purposes of this study. Data will be anonymized to protect your identity. Your participation in this study is entirely voluntary. You may withdraw at any time without major consequences.",
+    "@sageRisks": {
+        "description": "Description of what the SAGE test is."
+    },
+    "sageInformedConsent": "By proceeding with the test, you indicate that you understand the purpose of the study, the procedures involved, the risks and benefits, and that you voluntarily agree to participate.",
+    "@sageInformedConsent": {
+        "description": "Description of what the SAGE test is."
+    },
     "sageTestInstructions": "It is designed to be taken on paper, but this is a digitized adaptation of it, and can be completed in approximately 15 minutes. After completion, the system will grade and provide feedback and recommendations about cognitive health.",
     "@sageTestInstructions": {
         "description": "Instructions about the SAGE test."
@@ -71,6 +79,10 @@
     "continueTxt": "Continue",
     "@continueTxt": {
         "description": "Button text to proceed in the application."
+    },
+    "acceptContinueTxt": "Accept and Continue",
+    "@acceptContinueTxt": {
+        "description": "Texto del botón para proceder en la aplicación."
     },
     "tellUsAboutYou": "Tell us about you",
     "@tellUsAboutYou": {

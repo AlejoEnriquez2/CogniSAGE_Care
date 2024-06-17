@@ -125,9 +125,9 @@ class _ConstructionDrawStepState extends State<ConstructionDrawStep> {
                     ),
                     SizedBox(
                       // height: 750,
-                      width: deviceWidth * 0.9,
+                      width: deviceWidth * 0.80,
                       child: DrawBoard(
-                        canvaSize: deviceWidth * 0.80,
+                        canvaSize: deviceWidth * 0.8,
                         type: 'draw',
                         answersModel: widget.answersModel,
                       ),

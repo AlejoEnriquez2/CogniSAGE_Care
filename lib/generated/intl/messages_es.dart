@@ -22,6 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "acceptContinueTxt":
+            MessageLookupByLibrary.simpleMessage("Aceptar y Continuar"),
         "answerTheseQuestions":
             MessageLookupByLibrary.simpleMessage("Responde estas preguntas:"),
         "areYouDone": MessageLookupByLibrary.simpleMessage("¿Terminó?"),
@@ -151,8 +153,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Registrarse ahora"),
         "rule_complete_triangle_lines": MessageLookupByLibrary.simpleMessage(
             "Cada línea debe ser parte de un triángulo completo (sin líneas extras)."),
+        "sageInformedConsent": MessageLookupByLibrary.simpleMessage(
+            "Al proceder con la prueba, indicas que entiendes el propósito del estudio, los procedimientos involucrados, los riesgos y beneficios, y que aceptas voluntariamente participar."),
+        "sageRisks": MessageLookupByLibrary.simpleMessage(
+            "Tiene riesgos y beneficios que deben considerarse antes de comenzar la prueba. La prueba no es una herramienta de diagnóstico, pero puede ayudarte a identificar si tienes deterioro cognitivo. Considera que los resultados son una interpretación que solo debe considerarse como informativa. Si tienes alguna pregunta o preocupación, por favor contacta a un médico. Y aunque no hay beneficios directos, participar en este estudio puede contribuir a avances en los métodos de detección temprana para el deterioro cognitivo y ofrecerte una mejor comprensión de tu salud cognitiva.\nTus respuestas se mantendrán confidenciales y se utilizarán únicamente para los fines de este estudio. Los datos serán anonimizados para proteger tu identidad. Tu participación en este estudio es completamente voluntaria. Puedes retirarte en cualquier momento sin consecuencias mayores."),
         "sageTestDescription": MessageLookupByLibrary.simpleMessage(
-            "El test SAGE, o Examen Gerocognitivo Autoadministrado, es una herramienta de autoevaluación breve diseñada para detectar signos tempranos de deterioro cognitivo. Desarrollado por investigadores del Centro Médico Wexner de la Universidad Estatal de Ohio, tiene como objetivo identificar cambios en las funciones cognitivas que son sutiles y podrían no ser inmediatamente aparentes, sirviendo como una evaluación preliminar para condiciones como la enfermedad de Alzheimer, otras demencias y problemas neurológicos diversos. La prueba consiste de varias preguntas y desafíos que se enfocan en evaluar aspectos cognitivos, incluyendo memoria, capacidad de resolución de problemas, lenguaje, y otras funciones clave."),
+            "La prueba SAGE, o Examen Gerocognitivo Autoadministrado, es una herramienta de autoevaluación breve diseñada para detectar signos tempranos de deterioro cognitivo. Desarrollado por investigadores del Centro Médico Wexner de la Universidad Estatal de Ohio, tiene como objetivo identificar cambios en las funciones cognitivas que son sutiles y podrían no ser inmediatamente aparentes, sirviendo como una evaluación preliminar para condiciones como la enfermedad de Alzheimer, otras demencias y problemas neurológicos diversos. La prueba consiste de varias preguntas y desafíos que se enfocan en evaluar aspectos cognitivos, incluyendo memoria, capacidad de resolución de problemas, lenguaje, y otras funciones clave."),
         "sageTestInstructions": MessageLookupByLibrary.simpleMessage(
             "Está diseñado para ser realizado en papel, pero esta es una adaptación digitalizada del mismo, y puede completarse en aproximadamente 15 minutos. Después de completarlo, el sistema calificará y proporcionará retroalimentación y recomendaciones sobre la salud cognitiva."),
         "screensInstructions": MessageLookupByLibrary.simpleMessage(
@@ -177,7 +183,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "username": MessageLookupByLibrary.simpleMessage("Nombre de usuario"),
         "welcome": MessageLookupByLibrary.simpleMessage("Bienvenido"),
         "whatIsSageTest":
-            MessageLookupByLibrary.simpleMessage("¿Qué es el test SAGE?"),
+            MessageLookupByLibrary.simpleMessage("¿Qué es la prueba SAGE?"),
         "whatIsYourBirthday": MessageLookupByLibrary.simpleMessage(
             "¿Cuál es tu fecha de nacimiento?"),
         "whatIsYourName":

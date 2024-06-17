@@ -52,17 +52,25 @@
     "@iHaveAnAccount": {
         "description": "Texto para que los usuarios que ya tienen cuenta puedan navegar a la pantalla de inicio de sesión."
     },
-    "whatIsSageTest": "¿Qué es el test SAGE?",
+    "whatIsSageTest": "¿Qué es la prueba SAGE?",
     "@whatIsSageTest": {
         "description": "Pregunta sobre qué es el test SAGE."
     },
-    "sageTestDescription": "El test SAGE, o Examen Gerocognitivo Autoadministrado, es una herramienta de autoevaluación breve diseñada para detectar signos tempranos de deterioro cognitivo. Desarrollado por investigadores del Centro Médico Wexner de la Universidad Estatal de Ohio, tiene como objetivo identificar cambios en las funciones cognitivas que son sutiles y podrían no ser inmediatamente aparentes, sirviendo como una evaluación preliminar para condiciones como la enfermedad de Alzheimer, otras demencias y problemas neurológicos diversos. La prueba consiste de varias preguntas y desafíos que se enfocan en evaluar aspectos cognitivos, incluyendo memoria, capacidad de resolución de problemas, lenguaje, y otras funciones clave.",
+    "sageTestDescription": "La prueba SAGE, o Examen Gerocognitivo Autoadministrado, es una herramienta de autoevaluación breve diseñada para detectar signos tempranos de deterioro cognitivo. Desarrollado por investigadores del Centro Médico Wexner de la Universidad Estatal de Ohio, tiene como objetivo identificar cambios en las funciones cognitivas que son sutiles y podrían no ser inmediatamente aparentes, sirviendo como una evaluación preliminar para condiciones como la enfermedad de Alzheimer, otras demencias y problemas neurológicos diversos. La prueba consiste de varias preguntas y desafíos que se enfocan en evaluar aspectos cognitivos, incluyendo memoria, capacidad de resolución de problemas, lenguaje, y otras funciones clave.",
     "@sageTestDescription": {
         "description": "Descripción de qué es el test SAGE."
     },
     "sageTestInstructions": "Está diseñado para ser realizado en papel, pero esta es una adaptación digitalizada del mismo, y puede completarse en aproximadamente 15 minutos. Después de completarlo, el sistema calificará y proporcionará retroalimentación y recomendaciones sobre la salud cognitiva.",
     "@sageTestInstructions": {
         "description": "Instrucciones de qué es el test SAGE."
+    },    
+    "sageRisks": "Tiene riesgos y beneficios que deben considerarse antes de comenzar la prueba. La prueba no es una herramienta de diagnóstico, pero puede ayudarte a identificar si tienes deterioro cognitivo. Considera que los resultados son una interpretación que solo debe considerarse como informativa. Si tienes alguna pregunta o preocupación, por favor contacta a un médico. Y aunque no hay beneficios directos, participar en este estudio puede contribuir a avances en los métodos de detección temprana para el deterioro cognitivo y ofrecerte una mejor comprensión de tu salud cognitiva.\nTus respuestas se mantendrán confidenciales y se utilizarán únicamente para los fines de este estudio. Los datos serán anonimizados para proteger tu identidad. Tu participación en este estudio es completamente voluntaria. Puedes retirarte en cualquier momento sin consecuencias mayores.",
+    "@sageRisks": {
+        "description": "Descripción de lo que es el test SAGE."
+    },
+    "sageInformedConsent": "Al proceder con la prueba, indicas que entiendes el propósito del estudio, los procedimientos involucrados, los riesgos y beneficios, y que aceptas voluntariamente participar.",
+    "@sageInformedConsent": {
+        "description": "Descripción de lo que es el test SAGE."
     },
     "screensInstructions": "Tendrás que escribir, dibujar o seleccionar tus respuestas en multiples pantallas.",
     "@screensInstructions": {
@@ -70,6 +78,10 @@
     },
     "continueTxt": "Continuar",
     "@continueTxt": {
+        "description": "Texto del botón para proceder en la aplicación."
+    },
+    "acceptContinueTxt": "Aceptar y Continuar",
+    "@acceptContinueTxt": {
         "description": "Texto del botón para proceder en la aplicación."
     },
     "tellUsAboutYou": "Cuéntanos sobre ti",
