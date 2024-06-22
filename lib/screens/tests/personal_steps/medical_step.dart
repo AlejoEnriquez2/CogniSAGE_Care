@@ -80,6 +80,7 @@ class _MedicalStepState extends State<MedicalStep> {
                                     setState(() {
                                       widget.testModel.patientBalance = 'yes';
                                       testProvider.updateBalanceProblems('yes');
+                                      // FocusScope.of(context).unfocus();
                                       print('YES!');
                                     });
                                   },
@@ -131,6 +132,7 @@ class _MedicalStepState extends State<MedicalStep> {
                             setState(() {
                               widget.testModel.patientBalance = 'no';
                               testProvider.updateBalanceProblems('no');
+                              FocusScope.of(context).unfocus();
                             });
                           },
                         ),
@@ -157,6 +159,7 @@ class _MedicalStepState extends State<MedicalStep> {
                             setState(() {
                               widget.testModel.patientMajorStroke = true;
                               testProvider.updateMajorStroke(true);
+                              FocusScope.of(context).unfocus();
                             });
                           },
                         ),
@@ -172,6 +175,7 @@ class _MedicalStepState extends State<MedicalStep> {
                             setState(() {
                               widget.testModel.patientMajorStroke = false;
                               testProvider.updateMajorStroke(false);
+                              FocusScope.of(context).unfocus();
                             });
                           },
                         ),
@@ -198,6 +202,7 @@ class _MedicalStepState extends State<MedicalStep> {
                             setState(() {
                               widget.testModel.patientMinorStroke = true;
                               testProvider.updateMinorStroke(true);
+                              FocusScope.of(context).unfocus();
                             });
                           },
                         ),
@@ -213,6 +218,7 @@ class _MedicalStepState extends State<MedicalStep> {
                             setState(() {
                               widget.testModel.patientMinorStroke = false;
                               testProvider.updateMinorStroke(false);
+                              FocusScope.of(context).unfocus();
                             });
                           },
                         ),

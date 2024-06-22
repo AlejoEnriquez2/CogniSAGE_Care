@@ -3,14 +3,22 @@ import 'package:frontend_form/generated/l10n.dart';
 import 'package:frontend_form/providers/providers.dart';
 import 'package:provider/provider.dart';
 
-class TestInstructionsScreen extends StatelessWidget {
+class TestInstructionsScreen extends StatefulWidget {
   const TestInstructionsScreen({super.key});
+
+  @override
+  State<TestInstructionsScreen> createState() => _TestInstructionsScreenState();
+}
+
+class _TestInstructionsScreenState extends State<TestInstructionsScreen> {
+  bool _changeSize = true;
 
   @override
   Widget build(BuildContext context) {
     TestProvider testProvider = Provider.of(context);
     final deviceHeight = MediaQuery.of(context).size.height;
     final deviceWidth = MediaQuery.of(context).size.width;
+    var textSize = _changeSize ? deviceHeight * 0.0135 : deviceHeight * 0.0235;
 
     return Consumer<PatientProvider>(
         builder: (context, patientProvider, child) {
@@ -54,6 +62,18 @@ class TestInstructionsScreen extends StatelessWidget {
           ),
           body: Stack(
             children: [
+              Positioned(
+                child: IconButton(
+                  icon: Icon(Icons.format_size, color: Colors.white),
+                  onPressed: () {
+                    setState(() {
+                      _changeSize = !_changeSize;
+                    });
+                  },
+                ),
+                top: 0,
+                left: 0,
+              ),
               Center(
                 child: Container(
                   decoration: CustomBoxDecorator(),
@@ -93,30 +113,26 @@ class TestInstructionsScreen extends StatelessWidget {
                                       alignment: Alignment.center,
                                       child: Text(
                                         S.of(context).sageTestDescription,
-                                        style: TextStyle(
-                                            fontSize: deviceHeight * 0.0135),
+                                        style: TextStyle(fontSize: textSize),
                                         textAlign: TextAlign.justify,
                                       ),
                                     ),
                                     SizedBox(height: deviceHeight * 0.013),
                                     Text(
                                       S.of(context).sageTestInstructions,
-                                      style: TextStyle(
-                                          fontSize: deviceHeight * 0.0135),
+                                      style: TextStyle(fontSize: textSize),
                                       textAlign: TextAlign.justify,
                                     ),
                                     SizedBox(height: deviceHeight * 0.013),
                                     Text(
                                       S.of(context).sageRisks,
-                                      style: TextStyle(
-                                          fontSize: deviceHeight * 0.0135),
+                                      style: TextStyle(fontSize: textSize),
                                       textAlign: TextAlign.justify,
                                     ),
                                     SizedBox(height: deviceHeight * 0.024),
                                     Text(
                                       S.of(context).sageInformedConsent,
-                                      style: TextStyle(
-                                          fontSize: deviceHeight * 0.0135),
+                                      style: TextStyle(fontSize: textSize),
                                       textAlign: TextAlign.justify,
                                     ),
                                     SizedBox(height: deviceHeight * 0.024),
@@ -124,7 +140,7 @@ class TestInstructionsScreen extends StatelessWidget {
                                       S.of(context).screensInstructions,
                                       style: TextStyle(
                                           fontStyle: FontStyle.italic,
-                                          fontSize: deviceHeight * 0.0135),
+                                          fontSize: textSize),
                                     ),
                                   ],
                                 ),

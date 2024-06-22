@@ -71,6 +71,7 @@ class _MentalStepState extends State<MentalStep> {
                             setState(() {
                               widget.testModel.patientDepression = 'yes';
                               testProvider.updateDepression('yes');
+                              FocusScope.of(context).unfocus();
                             });
                           },
                         ),
@@ -87,6 +88,7 @@ class _MentalStepState extends State<MentalStep> {
                               widget.testModel.patientDepression =
                                   'occasionally';
                               testProvider.updateDepression('occasionally');
+                              FocusScope.of(context).unfocus();
                             });
                           },
                         ),
@@ -102,6 +104,7 @@ class _MentalStepState extends State<MentalStep> {
                             setState(() {
                               widget.testModel.patientDepression = 'no';
                               testProvider.updateDepression('no');
+                              FocusScope.of(context).unfocus();
                             });
                           },
                         ),
@@ -138,6 +141,7 @@ class _MentalStepState extends State<MentalStep> {
                                       widget.testModel.patientPersonality =
                                           'yes';
                                       testProvider.updatePersonality('yes');
+                                      FocusScope.of(context).unfocus();
                                       print('YES!');
                                     });
                                   },
@@ -186,6 +190,7 @@ class _MentalStepState extends State<MentalStep> {
                             setState(() {
                               widget.testModel.patientPersonality = 'no';
                               testProvider.updatePersonality('no');
+                              FocusScope.of(context).unfocus();
                             });
                           },
                         ),
@@ -214,6 +219,7 @@ class _MentalStepState extends State<MentalStep> {
                             setState(() {
                               widget.testModel.patientDifficulties = true;
                               testProvider.updateDifficulties(true);
+                              FocusScope.of(context).unfocus();
                             });
                           },
                         ),
@@ -229,6 +235,7 @@ class _MentalStepState extends State<MentalStep> {
                             setState(() {
                               widget.testModel.patientDifficulties = false;
                               testProvider.updateDifficulties(false);
+                              FocusScope.of(context).unfocus();
                             });
                           },
                         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_form/services/test_service.dart';
 
 import '../models/models.dart';
 
@@ -23,6 +24,12 @@ class TestProvider extends ChangeNotifier {
     answersId: 0,
     formId: 1,
     patientId: 0,
+    mentalDemand: 0,
+    physicalDemand: 0,
+    temporalDemand: 0,
+    performance: 0,
+    effort: 0,
+    frustration: 0,
   );
 
   bool _isLoading = false;
@@ -87,6 +94,36 @@ class TestProvider extends ChangeNotifier {
 
   updateDifficulties(bool selectedDifficulties) {
     test.patientDifficulties = selectedDifficulties;
+    notifyListeners();
+  }
+
+  void updateMentalDemand(double value) {
+    test.mentalDemand = value;
+    notifyListeners();
+  }
+
+  void updatePhysicalDemand(double value) {
+    test.physicalDemand = value;
+    notifyListeners();
+  }
+
+  void updateTemporalDemand(double value) {
+    test.temporalDemand = value;
+    notifyListeners();
+  }
+
+  void updatePerformance(double value) {
+    test.performance = value;
+    notifyListeners();
+  }
+
+  void updateEffort(double value) {
+    test.effort = value;
+    notifyListeners();
+  }
+
+  void updateFrustration(double value) {
+    test.frustration = value;
     notifyListeners();
   }
 

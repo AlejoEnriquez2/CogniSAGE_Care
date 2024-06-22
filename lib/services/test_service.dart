@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:frontend_form/models/answers_model.dart';
 import 'package:frontend_form/models/models.dart';
 import 'package:frontend_form/providers/locale_provider.dart';
@@ -16,7 +17,7 @@ class TestService {
   int formId = 1;
   String testLanguage = 'en';
 
-  Future<void> saveTestPersonalInfo(
+  Future<String> saveTestPersonalInfo(
       TestModel testModel, AnswersModel answersModel, context) async {
     testModel.testTotalTime =
         DateTime.now().difference(testModel.testDate!).inSeconds;
@@ -67,9 +68,10 @@ class TestService {
         headers: headers,
         body: testModel.toRawJson(),
       );
-      _processResponse(response);
+      return response.body;
     } catch (e) {
       await _retryWithSslBypass(url, headers, testModel.toRawJson());
+      return 'trying again...';
     }
   }
 
@@ -143,6 +145,24 @@ class TestService {
       return jsonData['id'];
     } else {
       return -1;
+    }
+  }
+
+  Future<void> saveNasaTlx(int id, String nasa, context) async {
+    final url = Uri.parse('$_baseUrl/test/$id');
+    final headers = {"Content-type": "application/json"};
+    print(nasa);
+
+    try {
+      // First attempt without SSL bypass
+      final response = await http.put(
+        url,
+        headers: headers,
+        body: nasa,
+      );
+      print(response.body);
+    } catch (e) {
+      print('ERROR: ' + e.toString());
     }
   }
 }

@@ -52,9 +52,13 @@ class _MemoryInstructionsStepState extends State<MemoryInstructionsStep> {
                   SizedBox(height: deviceHeight * 0.025),
                   Text(
                     S.of(context).memoryTest,
-                    style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: deviceHeight * 0.045),
+                  SizedBox(height: deviceHeight * 0.035),
                   Text(
                     S.of(context).memorizeThisPhrase,
                     style: TextStyle(fontSize: deviceHeight * 0.02),

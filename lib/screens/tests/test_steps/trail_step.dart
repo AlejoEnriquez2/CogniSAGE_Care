@@ -9,6 +9,7 @@ class TrailStep extends StatefulWidget {
   final VoidCallback onRefresh;
   final AnswersModel answersModel;
   final int formId;
+  final bool isActive;
 
   const TrailStep({
     super.key,
@@ -16,6 +17,7 @@ class TrailStep extends StatefulWidget {
     required this.onRefresh,
     required this.answersModel,
     required this.formId,
+    required this.isActive,
   });
 
   void refreshMainScreen() {
@@ -29,6 +31,68 @@ class TrailStep extends StatefulWidget {
 class _TrailStepState extends State<TrailStep> {
   final TestProvider testProvider = TestProvider();
   bool _isRowVisible = true;
+  bool _dialogShown = false;
+
+  @override
+  void didUpdateWidget(covariant TrailStep oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.isActive && !_dialogShown) {
+      _dialogShown = true;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _showInstructionsDialog();
+      });
+    }
+  }
+
+  void _showInstructionsDialog() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            S.of(context).instructionsTitle,
+            style: TextStyle(
+                fontSize: MediaQuery.of(context).size.height * 0.014,
+                fontStyle: FontStyle.italic),
+          ),
+          content: SingleChildScrollView(
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.7,
+              child: Column(
+                children: [
+                  Text(
+                    S.of(context).exampleCheck,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: MediaQuery.of(context).size.height * 0.02),
+                  ),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+                  Text(
+                    S.of(context).instructionsDetail,
+                    style: TextStyle(
+                        fontSize: MediaQuery.of(context).size.height * 0.013),
+                  ),
+                  Image.asset(
+                    'assets/images/instructions.gif',
+                    height: MediaQuery.of(context).size.height * 0.25,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text(S.of(context).continueTxt),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,9 +120,7 @@ class _TrailStepState extends State<TrailStep> {
                     child: IconButton(
                       icon: Icon(Icons.info_outline),
                       onPressed: () {
-                        setState(() {
-                          _isRowVisible = !_isRowVisible;
-                        });
+                        _showInstructionsDialog();
                       },
                     ),
                     top: 0,

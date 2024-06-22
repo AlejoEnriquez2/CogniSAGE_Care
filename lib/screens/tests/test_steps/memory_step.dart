@@ -49,14 +49,7 @@ class _MemoryStepState extends State<MemoryStep> {
               padding: EdgeInsets.symmetric(horizontal: deviceWidth * 0.09),
               child: Column(
                 children: [
-                  SizedBox(height: deviceHeight * 0.025),
-                  Text(
-                    S.of(context).memoryTest,
-                    style: TextStyle(
-                        fontSize: deviceHeight * 0.037,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: deviceHeight * 0.045),
+                  SizedBox(height: deviceHeight * 0.04),
                   Text(
                     widget.formId == 1
                         ? S.of(context).haveYouFinished

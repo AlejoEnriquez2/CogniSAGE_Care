@@ -370,10 +370,10 @@ class S {
     );
   }
 
-  /// `My ethnical background is:`
+  /// `My home country is:`
   String get myEthnicalBackgroundIs {
     return Intl.message(
-      'My ethnical background is:',
+      'My home country is:',
       name: 'myEthnicalBackgroundIs',
       desc: 'Prompt asking for the user\'s ethnical background.',
       args: [],
@@ -733,30 +733,30 @@ class S {
     );
   }
 
-  /// `Memory Test`
+  /// `Memory Test: \nMemorize these instructions`
   String get memoryTest {
     return Intl.message(
-      'Memory Test',
+      'Memory Test: \nMemorize these instructions',
       name: 'memoryTest',
       desc: 'Title for a memory test section.',
       args: [],
     );
   }
 
-  /// `Memorize this phrase`
+  /// `Do it later only after completing this entire test`
   String get memorizeThisPhrase {
     return Intl.message(
-      'Memorize this phrase',
+      'Do it later only after completing this entire test',
       name: 'memorizeThisPhrase',
       desc: 'Instruction to memorize a given phrase.',
       args: [],
     );
   }
 
-  /// `In the final section, you will be asked to write this phrase.`
+  /// `In the final section, you will be asked to write:`
   String get inTheFinalSection {
     return Intl.message(
-      'In the final section, you will be asked to write this phrase.',
+      'In the final section, you will be asked to write:',
       name: 'inTheFinalSection',
       desc:
           'Information about a future test section involving the memorized phrase.',
@@ -1053,6 +1053,446 @@ class S {
       name: 'positionHandsForTime4',
       desc:
           'Segundo paso, configurando las agujas del reloj a una hora específica.',
+      args: [],
+    );
+  }
+
+  /// `NASA Task Load Index Survey`
+  String get nasaSurveyTitle {
+    return Intl.message(
+      'NASA Task Load Index Survey',
+      name: 'nasaSurveyTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please rate the following dimensions:`
+  String get nasaSurveyInstruction {
+    return Intl.message(
+      'Please rate the following dimensions:',
+      name: 'nasaSurveyInstruction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mental Demand`
+  String get mentalDemand {
+    return Intl.message(
+      'Mental Demand',
+      name: 'mentalDemand',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How mentally demanding was the task?`
+  String get mentalDemandDescription {
+    return Intl.message(
+      'How mentally demanding was the task?',
+      name: 'mentalDemandDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Physical Demand`
+  String get physicalDemand {
+    return Intl.message(
+      'Physical Demand',
+      name: 'physicalDemand',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How physically demanding was the task?`
+  String get physicalDemandDescription {
+    return Intl.message(
+      'How physically demanding was the task?',
+      name: 'physicalDemandDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Temporal Demand`
+  String get temporalDemand {
+    return Intl.message(
+      'Temporal Demand',
+      name: 'temporalDemand',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How hurried or rushed was the pace of the task?`
+  String get temporalDemandDescription {
+    return Intl.message(
+      'How hurried or rushed was the pace of the task?',
+      name: 'temporalDemandDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Performance`
+  String get performance {
+    return Intl.message(
+      'Performance',
+      name: 'performance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How successful were you in accomplishing what you were asked to do?`
+  String get performanceDescription {
+    return Intl.message(
+      'How successful were you in accomplishing what you were asked to do?',
+      name: 'performanceDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Effort`
+  String get effort {
+    return Intl.message(
+      'Effort',
+      name: 'effort',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How hard did you have to work to accomplish your level of performance?`
+  String get effortDescription {
+    return Intl.message(
+      'How hard did you have to work to accomplish your level of performance?',
+      name: 'effortDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Frustration`
+  String get frustration {
+    return Intl.message(
+      'Frustration',
+      name: 'frustration',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How insecure, discouraged, irritated, stressed, and annoyed were you?`
+  String get frustrationDescription {
+    return Intl.message(
+      'How insecure, discouraged, irritated, stressed, and annoyed were you?',
+      name: 'frustrationDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit`
+  String get submit {
+    return Intl.message(
+      'Submit',
+      name: 'submit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Very Low`
+  String get veryLow {
+    return Intl.message(
+      'Very Low',
+      name: 'veryLow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Very High`
+  String get veryHigh {
+    return Intl.message(
+      'Very High',
+      name: 'veryHigh',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Neutral`
+  String get neutral {
+    return Intl.message(
+      'Neutral',
+      name: 'neutral',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Slightly High`
+  String get slightlyHigh {
+    return Intl.message(
+      'Slightly High',
+      name: 'slightlyHigh',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `High`
+  String get high {
+    return Intl.message(
+      'High',
+      name: 'high',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Very High`
+  String get veryHighLabel {
+    return Intl.message(
+      'Very High',
+      name: 'veryHighLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Extremely High`
+  String get extremelyHigh {
+    return Intl.message(
+      'Extremely High',
+      name: 'extremelyHigh',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Slightly Low`
+  String get slightlyLow {
+    return Intl.message(
+      'Slightly Low',
+      name: 'slightlyLow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Low`
+  String get low {
+    return Intl.message(
+      'Low',
+      name: 'low',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Very Low`
+  String get veryLowLabel {
+    return Intl.message(
+      'Very Low',
+      name: 'veryLowLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Extremely Low`
+  String get extremelyLow {
+    return Intl.message(
+      'Extremely Low',
+      name: 'extremelyLow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Perfect`
+  String get perfect {
+    return Intl.message(
+      'Perfect',
+      name: 'perfect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failure`
+  String get failure {
+    return Intl.message(
+      'Failure',
+      name: 'failure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Slightly Failure`
+  String get slightlyFailure {
+    return Intl.message(
+      'Slightly Failure',
+      name: 'slightlyFailure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fail`
+  String get fail {
+    return Intl.message(
+      'Fail',
+      name: 'fail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Big Failure`
+  String get bigFailure {
+    return Intl.message(
+      'Big Failure',
+      name: 'bigFailure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All Failed`
+  String get allFailed {
+    return Intl.message(
+      'All Failed',
+      name: 'allFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Good`
+  String get good {
+    return Intl.message(
+      'Good',
+      name: 'good',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Very Good`
+  String get veryGood {
+    return Intl.message(
+      'Very Good',
+      name: 'veryGood',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Almost Perfect`
+  String get almostPerfect {
+    return Intl.message(
+      'Almost Perfect',
+      name: 'almostPerfect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Completely Perfect`
+  String get completelyPerfect {
+    return Intl.message(
+      'Completely Perfect',
+      name: 'completelyPerfect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Instructions`
+  String get instructionsTitle {
+    return Intl.message(
+      'Instructions',
+      name: 'instructionsTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check this EXAMPLE`
+  String get exampleCheck {
+    return Intl.message(
+      'Check this EXAMPLE',
+      name: 'exampleCheck',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Draw a line from one circle to another starting at 1 and alternating numbers and letters (1 to A to 2 to B to 3 to C).`
+  String get instructionsDetail {
+    return Intl.message(
+      'Draw a line from one circle to another starting at 1 and alternating numbers and letters (1 to A to 2 to B to 3 to C).',
+      name: 'instructionsDetail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `1. Start with 6 squares`
+  String get startWithSixSquares {
+    return Intl.message(
+      '1. Start with 6 squares',
+      name: 'startWithSixSquares',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `2. Cross out 1 line (until it turns green)`
+  String get crossOutOneLine {
+    return Intl.message(
+      '2. Cross out 1 line (until it turns green)',
+      name: 'crossOutOneLine',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `3. Leaving 5 squares`
+  String get leavingFiveSquares {
+    return Intl.message(
+      '3. Leaving 5 squares',
+      name: 'leavingFiveSquares',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `4. Each line must be part of a complete square (no extra lines)`
+  String get completeSquareLines {
+    return Intl.message(
+      '4. Each line must be part of a complete square (no extra lines)',
+      name: 'completeSquareLines',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Considering the line crossed out, draw the figure again only with the 5 squares`
+  String get onlyFiveSquares {
+    return Intl.message(
+      'Considering the line crossed out, draw the figure again only with the 5 squares',
+      name: 'onlyFiveSquares',
+      desc: '',
       args: [],
     );
   }

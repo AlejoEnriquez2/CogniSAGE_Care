@@ -36,6 +36,23 @@ class _ExecutiveDrawBoardState extends State<ExecutiveDrawBoard> {
     }
   }
 
+  void _undoLastLine() {
+    if (!_isLocked && _points.isNotEmpty) {
+      setState(() {
+        _points.removeLast();
+        int lastIndex = _points.lastIndexOf(Offset.zero);
+
+        if (lastIndex != -1) {
+          _points.removeRange(lastIndex, _points.length);
+        } else {
+          _points.clear();
+        }
+        _points.add(Offset.zero);
+        print('Removed last line');
+      });
+    }
+  }
+
   void _convertToByteData() async {
     // Create a new image recorder
     ui.PictureRecorder recorder = ui.PictureRecorder();
@@ -121,10 +138,10 @@ class _ExecutiveDrawBoardState extends State<ExecutiveDrawBoard> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                // IconButton(
-                //   onPressed: _undoLastLine,
-                //   icon: const Icon(Icons.undo),
-                // ),
+                IconButton(
+                  onPressed: _undoLastLine,
+                  icon: const Icon(Icons.undo),
+                ),
                 IconButton(
                   onPressed: _clearBoard,
                   icon: SvgPicture.asset(
@@ -133,14 +150,14 @@ class _ExecutiveDrawBoardState extends State<ExecutiveDrawBoard> {
                     width: 20,
                   ),
                 ),
-                IconButton(
-                  onPressed: () {
-                    setState(() {
-                      _convertToByteData();
-                    });
-                  },
-                  icon: const Icon(Icons.save),
-                )
+                // IconButton(
+                //   onPressed: () {
+                //     setState(() {
+                //       _convertToByteData();
+                //     });
+                //   },
+                //   icon: const Icon(Icons.save),
+                // )
               ],
             ),
           )

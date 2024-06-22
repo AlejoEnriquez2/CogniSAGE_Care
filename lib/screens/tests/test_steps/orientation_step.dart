@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:frontend_form/generated/l10n.dart';
 import 'package:frontend_form/models/models.dart';
+import 'package:frontend_form/providers/locale_provider.dart';
+import 'package:provider/provider.dart';
 
 class OrientationStep extends StatefulWidget {
   final List<FocusNode> focusNodes;
@@ -28,12 +30,15 @@ class _OrientationStepState extends State<OrientationStep> {
   Widget build(BuildContext context) {
     final deviceHeight = MediaQuery.of(context).size.height;
     final deviceWidth = MediaQuery.of(context).size.width;
+    LocaleProvider localeProvider =
+        Provider.of<LocaleProvider>(context, listen: false);
+
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: deviceWidth * 0.025, vertical: deviceHeight * 0.01),
       child: Column(children: [
         Container(
-            height: deviceHeight * 0.6,
+            height: deviceHeight * 0.45,
             width: deviceWidth * 0.95,
             decoration: BoxDecoration(
               color: const Color.fromARGB(255, 255, 253, 255),
@@ -63,6 +68,35 @@ class _OrientationStepState extends State<OrientationStep> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        if (localeProvider.locale.languageCode == 'es')
+                          Container(
+                            width: deviceWidth * 0.19,
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(children: [
+                              Text(
+                                S.of(context).date,
+                                style:
+                                    TextStyle(fontSize: deviceHeight * 0.020),
+                              ),
+                              TextFormField(
+                                onChanged: (value) {
+                                  widget.answersModel.orientationDay = value;
+                                },
+                                focusNode: widget.focusNodes[7],
+                                onFieldSubmitted: (_) {
+                                  FocusScope.of(context)
+                                      .requestFocus(widget.focusNodes[8]);
+                                },
+                                decoration: const InputDecoration(
+                                  labelText: 'DD',
+                                  prefixIcon:
+                                      Icon(Icons.calendar_today_rounded),
+                                ),
+                                textInputAction: TextInputAction.next,
+                                keyboardType: TextInputType.number,
+                              ),
+                            ]),
+                          ),
                         Container(
                           width: deviceWidth * 0.19,
                           padding: EdgeInsets.symmetric(
@@ -91,32 +125,35 @@ class _OrientationStepState extends State<OrientationStep> {
                             ),
                           ]),
                         ),
-                        Container(
-                          width: deviceWidth * 0.19,
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(children: [
-                            Text(
-                              S.of(context).date,
-                              style: TextStyle(fontSize: deviceHeight * 0.020),
-                            ),
-                            TextFormField(
-                              onChanged: (value) {
-                                widget.answersModel.orientationDay = value;
-                              },
-                              focusNode: widget.focusNodes[7],
-                              onFieldSubmitted: (_) {
-                                FocusScope.of(context)
-                                    .requestFocus(widget.focusNodes[8]);
-                              },
-                              decoration: const InputDecoration(
-                                labelText: 'DD',
-                                prefixIcon: Icon(Icons.calendar_today_rounded),
+                        if (localeProvider.locale.languageCode == 'en')
+                          Container(
+                            width: deviceWidth * 0.19,
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(children: [
+                              Text(
+                                S.of(context).date,
+                                style:
+                                    TextStyle(fontSize: deviceHeight * 0.020),
                               ),
-                              textInputAction: TextInputAction.next,
-                              keyboardType: TextInputType.number,
-                            ),
-                          ]),
-                        ),
+                              TextFormField(
+                                onChanged: (value) {
+                                  widget.answersModel.orientationDay = value;
+                                },
+                                focusNode: widget.focusNodes[7],
+                                onFieldSubmitted: (_) {
+                                  FocusScope.of(context)
+                                      .requestFocus(widget.focusNodes[8]);
+                                },
+                                decoration: const InputDecoration(
+                                  labelText: 'DD',
+                                  prefixIcon:
+                                      Icon(Icons.calendar_today_rounded),
+                                ),
+                                textInputAction: TextInputAction.next,
+                                keyboardType: TextInputType.number,
+                              ),
+                            ]),
+                          ),
                         Container(
                           width: deviceWidth * 0.19,
                           padding: const EdgeInsets.all(8.0),

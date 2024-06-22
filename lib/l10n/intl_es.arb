@@ -128,7 +128,7 @@
     "@pleaseEnterYourName": {
         "description": "Indicación para que el usuario introduzca su nombre."
     },
-    "myEthnicalBackgroundIs": "Mi origen étnico es:",
+    "myEthnicalBackgroundIs": "Mi país de origen es:",
     "@myEthnicalBackgroundIs": {
         "description": "Pregunta sobre el origen étnico del usuario."
     },    
@@ -232,7 +232,7 @@
     "@month": {
         "description": "Etiqueta para la parte del mes de una fecha."
     },
-    "date": "Fecha",
+    "date": "Día",
     "@date": {
         "description": "Etiqueta para el día de una fecha."
     },
@@ -272,15 +272,15 @@
     "@changeFromTwentyDollarBill": {
         "description": "Problema de cálculo de cambio a partir de una compra."
     },
-    "memoryTest": "Prueba de memoria",
+    "memoryTest": "Prueba de memoria: \nMemorice estas instrucciones",
     "@memoryTest": {
         "description": "Título para una sección de prueba de memoria."
     },
-    "memorizeThisPhrase": "Memoriza esta frase",
+    "memorizeThisPhrase": "Hagalo más tarde, después de completar toda esta prueba",
     "@memorizeThisPhrase": {
         "description": "Instrucción para memorizar una frase dada."
     },
-    "inTheFinalSection": "En la sección final, se te pedirá que escribas esta frase.",
+    "inTheFinalSection": "Al final en la última sección escriba: ",
     "@inTheFinalSection": {
         "description": "Información sobre una sección futura de prueba que involucra la frase memorizada."
     },
@@ -399,5 +399,49 @@
     "positionHandsForTime4": "2. Coloca las agujas para 10 minutos antes de las 11",
     "@positionHandsForTime4": {
         "description": "Segundo paso, configurando las agujas del reloj a una hora específica."
-    }
+    },
+    "nasaSurveyTitle": "Encuesta del Índice de Carga de Tareas de la NASA",
+    "nasaSurveyInstruction": "Por favor califique las siguientes dimensiones:",
+    "mentalDemand": "Demanda Mental",
+    "mentalDemandDescription": "¿Qué tan mentalmente exigente fue la tarea?",
+    "physicalDemand": "Demanda Física",
+    "physicalDemandDescription": "¿Qué tan físicamente exigente fue la tarea?",
+    "temporalDemand": "Demanda Temporal",
+    "temporalDemandDescription": "¿Qué tan apresurado o acelerado fue el ritmo de la tarea?",
+    "performance": "Desempeño",
+    "performanceDescription": "¿Qué tan exitoso fuiste en lograr lo que se te pidió hacer?",
+    "effort": "Esfuerzo",
+    "effortDescription": "¿Qué tan duro tuviste que trabajar para lograr tu nivel de desempeño máximo?",
+    "frustration": "Frustración",
+    "frustrationDescription": "¿Qué tan inseguro, desanimado, irritado, estresado y molesto estuviste?",
+    "submit": "Enviar",
+    "veryLow": "Muy Bajo",
+    "veryHigh": "Muy Alto",
+    "neutral": "Neutral",
+    "slightlyHigh": "Ligeramente Alto",
+    "high": "Alto",
+    "veryHighLabel": "Muy Alto",
+    "extremelyHigh": "Extremadamente Alto",
+    "slightlyLow": "Ligeramente Bajo",
+    "low": "Bajo",
+    "veryLowLabel": "Muy Bajo",
+    "extremelyLow": "Extremadamente Bajo",
+    "perfect": "Perfecto",
+    "failure": "Fracaso",
+    "slightlyFailure": "Ligeramente Fracaso",
+    "fail": "Fracasar",
+    "bigFailure": "Gran Fracaso",
+    "allFailed": "Todo Fallido",
+    "good": "Bueno",
+    "veryGood": "Muy Bueno",
+    "almostPerfect": "Casi Perfecto",
+    "completelyPerfect": "Completamente Perfecto",
+    "instructionsTitle": "Instrucciones",
+    "exampleCheck": "Ver este EJEMPLO",
+    "instructionsDetail": "Dibuja una línea de un círculo a otro comenzando en 1 y alternando números y letras (1 a A a 2 a B a 3 a C).",
+    "startWithSixSquares": "1. Comience con 6 cuadrados",
+    "crossOutOneLine": "2. Tacha 1 línea (hasta que se ponga verde)",
+    "leavingFiveSquares": "3. Dejando 5 cuadrados",
+    "completeSquareLines": "4. Cada línea debe formar parte de un cuadrado completo (sin líneas adicionales)",
+    "onlyFiveSquares": "Considerando la linea que has tachado, dibuja la figura de nuevo con los 5 cuadrados unicamente"
 }

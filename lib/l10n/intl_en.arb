@@ -128,7 +128,7 @@
     "@pleaseEnterYourName": {
         "description": "Prompt asking for the user's name."
     },
-    "myEthnicalBackgroundIs": "My ethnical background is:",
+    "myEthnicalBackgroundIs": "My home country is:",
     "@myEthnicalBackgroundIs": {
         "description": "Prompt asking for the user's ethnical background."
     },
@@ -272,15 +272,15 @@
     "@changeFromTwentyDollarBill": {
         "description": "Problem solving question involving making change from a purchase."
     },
-    "memoryTest": "Memory Test",
+    "memoryTest": "Memory Test: \nMemorize these instructions",
     "@memoryTest": {
         "description": "Title for a memory test section."
     },
-    "memorizeThisPhrase": "Memorize this phrase",
+    "memorizeThisPhrase": "Do it later only after completing this entire test",
     "@memorizeThisPhrase": {
         "description": "Instruction to memorize a given phrase."
     },
-    "inTheFinalSection": "In the final section, you will be asked to write this phrase.",
+    "inTheFinalSection": "In the final section, you will be asked to write:",
     "@inTheFinalSection": {
         "description": "Information about a future test section involving the memorized phrase."
     },
@@ -399,5 +399,49 @@
     "positionHandsForTime4": "2. Position the hands for 10 minutes before 11 o’clock",
     "@positionHandsForTime4": {
         "description": "Segundo paso, configurando las agujas del reloj a una hora específica."
-    }
+    },
+    "nasaSurveyTitle": "NASA Task Load Index Survey",
+    "nasaSurveyInstruction": "Please rate the following dimensions:",
+    "mentalDemand": "Mental Demand",
+    "mentalDemandDescription": "How mentally demanding was the task?",
+    "physicalDemand": "Physical Demand",
+    "physicalDemandDescription": "How physically demanding was the task?",
+    "temporalDemand": "Temporal Demand",
+    "temporalDemandDescription": "How hurried or rushed was the pace of the task?",
+    "performance": "Performance",
+    "performanceDescription": "How successful were you in accomplishing what you were asked to do?",
+    "effort": "Effort",
+    "effortDescription": "How hard did you have to work to accomplish your level of performance?",
+    "frustration": "Frustration",
+    "frustrationDescription": "How insecure, discouraged, irritated, stressed, and annoyed were you?",
+    "submit": "Submit",
+    "veryLow": "Very Low",
+    "veryHigh": "Very High",
+    "neutral": "Neutral",
+    "slightlyHigh": "Slightly High",
+    "high": "High",
+    "veryHighLabel": "Very High",
+    "extremelyHigh": "Extremely High",
+    "slightlyLow": "Slightly Low",
+    "low": "Low",
+    "veryLowLabel": "Very Low",
+    "extremelyLow": "Extremely Low",
+    "perfect": "Perfect",
+    "failure": "Failure",
+    "slightlyFailure": "Slightly Failure",
+    "fail": "Fail",
+    "bigFailure": "Big Failure",
+    "allFailed": "All Failed",
+    "good": "Good",
+    "veryGood": "Very Good",
+    "almostPerfect": "Almost Perfect",
+    "completelyPerfect": "Completely Perfect",
+    "instructionsTitle": "Instructions",
+    "exampleCheck": "Check this EXAMPLE",
+    "instructionsDetail": "Draw a line from one circle to another starting at 1 and alternating numbers and letters (1 to A to 2 to B to 3 to C).",
+    "startWithSixSquares": "1. Start with 6 squares",
+    "crossOutOneLine": "2. Cross out 1 line (until it turns green)",
+    "leavingFiveSquares": "3. Leaving 5 squares",
+    "completeSquareLines": "4. Each line must be part of a complete square (no extra lines)",
+    "onlyFiveSquares": "Considering the line crossed out, draw the figure again only with the 5 squares"    
 }

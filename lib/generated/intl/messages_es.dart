@@ -24,11 +24,18 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "acceptContinueTxt":
             MessageLookupByLibrary.simpleMessage("Aceptar y Continuar"),
+        "allFailed": MessageLookupByLibrary.simpleMessage("Todo Fallido"),
+        "almostPerfect": MessageLookupByLibrary.simpleMessage("Casi Perfecto"),
         "answerTheseQuestions":
             MessageLookupByLibrary.simpleMessage("Responde estas preguntas:"),
         "areYouDone": MessageLookupByLibrary.simpleMessage("¿Terminó?"),
+        "bigFailure": MessageLookupByLibrary.simpleMessage("Gran Fracaso"),
         "changeFromTwentyDollarBill": MessageLookupByLibrary.simpleMessage(
             "Estás comprando \$13.45 en comestibles. ¿Cuánto cambio recibirías de un billete de \$20?"),
+        "completeSquareLines": MessageLookupByLibrary.simpleMessage(
+            "4. Cada línea debe formar parte de un cuadrado completo (sin líneas adicionales)"),
+        "completelyPerfect":
+            MessageLookupByLibrary.simpleMessage("Completamente Perfecto"),
         "connectTheDots":
             MessageLookupByLibrary.simpleMessage("Conecta los puntos"),
         "continueTxt": MessageLookupByLibrary.simpleMessage("Continuar"),
@@ -37,7 +44,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "countries": MessageLookupByLibrary.simpleMessage("PAÍSES"),
         "crossOutFourLines": MessageLookupByLibrary.simpleMessage(
             "Tacha 4 líneas que tendrías que mover para tener solo 4 cuadrados"),
-        "date": MessageLookupByLibrary.simpleMessage("Fecha"),
+        "crossOutOneLine": MessageLookupByLibrary.simpleMessage(
+            "2. Tacha 1 línea (hasta que se ponga verde)"),
+        "date": MessageLookupByLibrary.simpleMessage("Día"),
         "doYouCurrentlyFeelSadOrDepressed":
             MessageLookupByLibrary.simpleMessage(
                 "¿Te sientes triste o deprimido actualmente?"),
@@ -56,15 +65,30 @@ class MessageLookup extends MessageLookupByLibrary {
             "Dibuja una línea de un círculo a otro, empieza desde el 1 y alterna con números y letras así (1 -> A -> 2 -> B -> 3 -> C... y así sucesivamente)"),
         "drawYourAnswer":
             MessageLookupByLibrary.simpleMessage("Dibuja tu respuesta:"),
+        "effort": MessageLookupByLibrary.simpleMessage("Esfuerzo"),
+        "effortDescription": MessageLookupByLibrary.simpleMessage(
+            "¿Qué tan duro tuviste que trabajar para lograr tu nivel de desempeño máximo?"),
         "enterPassword": MessageLookupByLibrary.simpleMessage(
             "Por favor, introduce tu contraseña"),
         "enterUsername": MessageLookupByLibrary.simpleMessage(
             "Por favor, introduce tu nombre de usuario"),
+        "exampleCheck":
+            MessageLookupByLibrary.simpleMessage("Ver este EJEMPLO"),
+        "extremelyHigh":
+            MessageLookupByLibrary.simpleMessage("Extremadamente Alto"),
+        "extremelyLow":
+            MessageLookupByLibrary.simpleMessage("Extremadamente Bajo"),
+        "fail": MessageLookupByLibrary.simpleMessage("Fracasar"),
+        "failure": MessageLookupByLibrary.simpleMessage("Fracaso"),
         "finalResultFourSquares": MessageLookupByLibrary.simpleMessage(
             "Considerando las 4 líneas que sacaste, dibuja el resultado final de solo 4 cuadrados"),
         "followNextInstructions":
             MessageLookupByLibrary.simpleMessage("Sigue las instrucciones"),
+        "frustration": MessageLookupByLibrary.simpleMessage("Frustración"),
+        "frustrationDescription": MessageLookupByLibrary.simpleMessage(
+            "¿Qué tan inseguro, desanimado, irritado, estresado y molesto estuviste?"),
         "games": MessageLookupByLibrary.simpleMessage("JUEGOS"),
+        "good": MessageLookupByLibrary.simpleMessage("Bueno"),
         "haveYouFinished":
             MessageLookupByLibrary.simpleMessage("¿Has terminado?"),
         "haveYouHadAMajorStroke": MessageLookupByLibrary.simpleMessage(
@@ -80,6 +104,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "haveYouHadAnyProblemsWithMemoryOrThinking":
             MessageLookupByLibrary.simpleMessage(
                 "¿Has tenido problemas con la memoria o el pensamiento?"),
+        "high": MessageLookupByLibrary.simpleMessage("Alto"),
         "howAreARoseAndATulipSimilar": MessageLookupByLibrary.simpleMessage(
             "¿En qué se parecen una rosa y un tulipán? Escriba en qué se parecen. Ambos son... ¿qué?"),
         "howAreWatchAndRulerSimilar": MessageLookupByLibrary.simpleMessage(
@@ -97,7 +122,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "inNumbersFromMemory": MessageLookupByLibrary.simpleMessage(
             "En números (de memoria, ¡sin hacer trampa!)"),
         "inTheFinalSection": MessageLookupByLibrary.simpleMessage(
-            "En la sección final, se te pedirá que escribas esta frase."),
+            "Al final en la última sección escriba: "),
         "instruction_cross_out_lines": MessageLookupByLibrary.simpleMessage(
             "Tacha 2 líneas de tal forma de que queden 3 triángulos unicamente"),
         "instruction_finish_last_page":
@@ -106,29 +131,55 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Deben quedar 3 triángulos"),
         "instruction_start_with_triangles":
             MessageLookupByLibrary.simpleMessage("Comenzando con 4 triángulos"),
+        "instructionsDetail": MessageLookupByLibrary.simpleMessage(
+            "Dibuja una línea de un círculo a otro comenzando en 1 y alternando números y letras (1 a A a 2 a B a 3 a C)."),
+        "instructionsTitle":
+            MessageLookupByLibrary.simpleMessage("Instrucciones"),
         "invalidCredentials":
             MessageLookupByLibrary.simpleMessage("Credenciales inválidas"),
         "labelClockHands": MessageLookupByLibrary.simpleMessage(
             "3. En tu reloj, etiqueta con \'L\' la aguja larga y con \'S\' la aguja corta"),
         "lastGradeIs":
             MessageLookupByLibrary.simpleMessage("La última calificación es:"),
+        "leavingFiveSquares":
+            MessageLookupByLibrary.simpleMessage("3. Dejando 5 cuadrados"),
         "login": MessageLookupByLibrary.simpleMessage("Iniciar sesión"),
         "logout": MessageLookupByLibrary.simpleMessage("Cerrar sesión"),
+        "low": MessageLookupByLibrary.simpleMessage("Bajo"),
         "man": MessageLookupByLibrary.simpleMessage("Hombre"),
-        "memorizeThisPhrase":
-            MessageLookupByLibrary.simpleMessage("Memoriza esta frase"),
-        "memoryTest": MessageLookupByLibrary.simpleMessage("Prueba de memoria"),
+        "memorizeThisPhrase": MessageLookupByLibrary.simpleMessage(
+            "Hagalo más tarde, después de completar toda esta prueba"),
+        "memoryTest": MessageLookupByLibrary.simpleMessage(
+            "Prueba de memoria: \nMemorice estas instrucciones"),
+        "mentalDemand": MessageLookupByLibrary.simpleMessage("Demanda Mental"),
+        "mentalDemandDescription": MessageLookupByLibrary.simpleMessage(
+            "¿Qué tan mentalmente exigente fue la tarea?"),
         "month": MessageLookupByLibrary.simpleMessage("Mes"),
         "mostPlayedGame": MessageLookupByLibrary.simpleMessage(
             "El juego que más has jugado es"),
         "myEthnicalBackgroundIs":
-            MessageLookupByLibrary.simpleMessage("Mi origen étnico es:"),
+            MessageLookupByLibrary.simpleMessage("Mi país de origen es:"),
         "myInformation": MessageLookupByLibrary.simpleMessage("Mi información"),
         "name": MessageLookupByLibrary.simpleMessage("Nombre"),
         "nameTheFollowingPictures": MessageLookupByLibrary.simpleMessage(
             "Nombra las siguientes imágenes"),
+        "nasaSurveyInstruction": MessageLookupByLibrary.simpleMessage(
+            "Por favor califique las siguientes dimensiones:"),
+        "nasaSurveyTitle": MessageLookupByLibrary.simpleMessage(
+            "Encuesta del Índice de Carga de Tareas de la NASA"),
+        "neutral": MessageLookupByLibrary.simpleMessage("Neutral"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
+        "onlyFiveSquares": MessageLookupByLibrary.simpleMessage(
+            "Considerando la linea que has tachado, dibuja la figura de nuevo con los 5 cuadrados unicamente"),
         "password": MessageLookupByLibrary.simpleMessage("Contraseña"),
+        "perfect": MessageLookupByLibrary.simpleMessage("Perfecto"),
+        "performance": MessageLookupByLibrary.simpleMessage("Desempeño"),
+        "performanceDescription": MessageLookupByLibrary.simpleMessage(
+            "¿Qué tan exitoso fuiste en lograr lo que se te pidió hacer?"),
+        "physicalDemand":
+            MessageLookupByLibrary.simpleMessage("Demanda Física"),
+        "physicalDemandDescription": MessageLookupByLibrary.simpleMessage(
+            "¿Qué tan físicamente exigente fue la tarea?"),
         "pleaseCompleteTheForm": MessageLookupByLibrary.simpleMessage(
             "Por favor, completa el formulario"),
         "pleaseEnterYourBirthday": MessageLookupByLibrary.simpleMessage(
@@ -165,22 +216,39 @@ class MessageLookup extends MessageLookupByLibrary {
             "Tendrás que escribir, dibujar o seleccionar tus respuestas en multiples pantallas."),
         "seeDoctor": MessageLookupByLibrary.simpleMessage(
             "Ve a ver a un médico lo antes posible"),
+        "slightlyFailure":
+            MessageLookupByLibrary.simpleMessage("Ligeramente Fracaso"),
+        "slightlyHigh":
+            MessageLookupByLibrary.simpleMessage("Ligeramente Alto"),
+        "slightlyLow": MessageLookupByLibrary.simpleMessage("Ligeramente Bajo"),
         "solveFollowing":
             MessageLookupByLibrary.simpleMessage("Resuelve lo siguiente:"),
         "sometimes": MessageLookupByLibrary.simpleMessage("A veces"),
         "specifyChanges":
             MessageLookupByLibrary.simpleMessage("Especifica los cambios"),
+        "startWithSixSquares":
+            MessageLookupByLibrary.simpleMessage("1. Comience con 6 cuadrados"),
         "startWithTwoShapes": MessageLookupByLibrary.simpleMessage(
             "Comienzas con 2 cuadrados y 2 triángulos."),
         "studies": MessageLookupByLibrary.simpleMessage("Estudios"),
+        "submit": MessageLookupByLibrary.simpleMessage("Enviar"),
         "tellUsAboutYou":
             MessageLookupByLibrary.simpleMessage("Cuéntanos sobre ti"),
+        "temporalDemand":
+            MessageLookupByLibrary.simpleMessage("Demanda Temporal"),
+        "temporalDemandDescription": MessageLookupByLibrary.simpleMessage(
+            "¿Qué tan apresurado o acelerado fue el ritmo de la tarea?"),
         "test": MessageLookupByLibrary.simpleMessage("PRUEBA"),
         "theyBothAre": MessageLookupByLibrary.simpleMessage("Ambos son..."),
         "user": MessageLookupByLibrary.simpleMessage("USUARIO"),
         "userNameIs":
             MessageLookupByLibrary.simpleMessage("El nombre de usuario es:"),
         "username": MessageLookupByLibrary.simpleMessage("Nombre de usuario"),
+        "veryGood": MessageLookupByLibrary.simpleMessage("Muy Bueno"),
+        "veryHigh": MessageLookupByLibrary.simpleMessage("Muy Alto"),
+        "veryHighLabel": MessageLookupByLibrary.simpleMessage("Muy Alto"),
+        "veryLow": MessageLookupByLibrary.simpleMessage("Muy Bajo"),
+        "veryLowLabel": MessageLookupByLibrary.simpleMessage("Muy Bajo"),
         "welcome": MessageLookupByLibrary.simpleMessage("Bienvenido"),
         "whatIsSageTest":
             MessageLookupByLibrary.simpleMessage("¿Qué es la prueba SAGE?"),

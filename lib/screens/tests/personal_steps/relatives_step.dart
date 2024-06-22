@@ -50,40 +50,7 @@ class _RelativesStepState extends State<RelativesStep> {
                 padding: EdgeInsets.symmetric(horizontal: deviceWidth * 0.09),
                 child: Column(
                   children: [
-                    SizedBox(height: deviceHeight * 0.02),
-                    Text(
-                      S.of(context).myEthnicalBackgroundIs,
-                      style: TextStyle(fontSize: deviceHeight * 0.02),
-                    ),
-                    TextFormField(
-                      onChanged: (value) {
-                        setState(() {
-                          widget.testModel.patientRace = value;
-                        });
-                      },
-                      focusNode: widget.focusNodes[3],
-                      onFieldSubmitted: (_) {
-                        FocusScope.of(context)
-                            .requestFocus(widget.focusNodes[4]);
-                      },
-                      decoration: InputDecoration(
-                        labelStyle: TextStyle(fontSize: deviceHeight * 0.012),
-                        labelText:
-                            S.of(context).pleaseEnterYourEthnicalBackground,
-                        prefixIcon: Icon(Icons.edit_square),
-                      ),
-                      textInputAction: TextInputAction.next,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return S
-                              .of(context)
-                              .pleaseEnterYourEthnicalBackground;
-                        }
-                        return null;
-                      },
-                      style: TextStyle(fontSize: deviceHeight * 0.015),
-                    ),
-                    SizedBox(height: deviceHeight * 0.045),
+                    SizedBox(height: deviceHeight * 0.025),
                     Text(
                       S.of(context).haveYouHadAnyProblemsWithMemoryOrThinking,
                       style: TextStyle(fontSize: deviceHeight * 0.019),
@@ -112,6 +79,7 @@ class _RelativesStepState extends State<RelativesStep> {
                                     setState(() {
                                       widget.testModel.patientMemory = 'yes';
                                       testProvider.updateMemoryProblems('yes');
+                                      FocusScope.of(context).unfocus();
                                       print('YES!');
                                     });
                                   },
@@ -146,6 +114,7 @@ class _RelativesStepState extends State<RelativesStep> {
                                           'occasionally';
                                       testProvider
                                           .updateMemoryProblems('occasionally');
+                                      FocusScope.of(context).unfocus();
                                       print('Sometimes!');
                                     });
                                   },
@@ -177,6 +146,7 @@ class _RelativesStepState extends State<RelativesStep> {
                                     setState(() {
                                       widget.testModel.patientMemory = 'no';
                                       testProvider.updateMemoryProblems('no');
+                                      FocusScope.of(context).unfocus();
                                       print('NO!');
                                     });
                                   },
@@ -195,7 +165,7 @@ class _RelativesStepState extends State<RelativesStep> {
                       S.of(context).haveYouHadAnyBloodRelativesWithProblems,
                       style: TextStyle(fontSize: deviceHeight * 0.018),
                     ),
-                    SizedBox(height: deviceHeight * 0.035),
+                    SizedBox(height: deviceHeight * 0.030),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -219,6 +189,7 @@ class _RelativesStepState extends State<RelativesStep> {
                                     setState(() {
                                       widget.testModel.patientRelatives = true;
                                       testProvider.updateRelatives(true);
+                                      FocusScope.of(context).unfocus();
                                       print('YES!');
                                     });
                                   },
@@ -250,6 +221,7 @@ class _RelativesStepState extends State<RelativesStep> {
                                     setState(() {
                                       widget.testModel.patientRelatives = false;
                                       testProvider.updateRelatives(false);
+                                      FocusScope.of(context).unfocus();
                                       print('NO!');
                                     });
                                   },
@@ -262,6 +234,39 @@ class _RelativesStepState extends State<RelativesStep> {
                           ),
                         ),
                       ],
+                    ),
+                    SizedBox(height: deviceHeight * 0.035),
+                    Text(
+                      S.of(context).myEthnicalBackgroundIs,
+                      style: TextStyle(fontSize: deviceHeight * 0.02),
+                    ),
+                    TextFormField(
+                      onChanged: (value) {
+                        setState(() {
+                          widget.testModel.patientRace = value;
+                        });
+                      },
+                      focusNode: widget.focusNodes[3],
+                      onFieldSubmitted: (_) {
+                        FocusScope.of(context)
+                            .requestFocus(widget.focusNodes[4]);
+                      },
+                      decoration: InputDecoration(
+                        labelStyle: TextStyle(fontSize: deviceHeight * 0.012),
+                        labelText:
+                            S.of(context).pleaseEnterYourEthnicalBackground,
+                        prefixIcon: Icon(Icons.edit_square),
+                      ),
+                      textInputAction: TextInputAction.next,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return S
+                              .of(context)
+                              .pleaseEnterYourEthnicalBackground;
+                        }
+                        return null;
+                      },
+                      style: TextStyle(fontSize: deviceHeight * 0.015),
                     ),
                   ],
                 ),
