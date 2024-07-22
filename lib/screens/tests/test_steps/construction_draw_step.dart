@@ -91,7 +91,7 @@ class _ConstructionDrawStepState extends State<ConstructionDrawStep> {
                               ),
                               SizedBox(
                                 height: deviceHeight * 0.12,
-                                width: deviceWidth * 0.40,
+                                width: deviceWidth * 0.50,
                                 child: Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,

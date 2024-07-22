@@ -36,11 +36,11 @@ class _SimilaritiesStepState extends State<SimilaritiesStep> {
 
     return Padding(
       padding: EdgeInsets.symmetric(
-          horizontal: deviceWidth * 0.025, vertical: deviceHeight * 0.01),
+          horizontal: deviceWidth * 0.02, vertical: deviceHeight * 0.01),
       child: Column(children: [
         Container(
-          height: deviceHeight * 0.6,
-          width: deviceWidth * 0.95,
+          height: deviceHeight * 0.65,
+          width: deviceWidth,
           decoration: BoxDecoration(
             color: const Color.fromARGB(255, 255, 253, 255),
             borderRadius: BorderRadius.circular(20),

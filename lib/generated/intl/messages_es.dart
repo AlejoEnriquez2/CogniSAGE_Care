@@ -250,8 +250,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "veryLow": MessageLookupByLibrary.simpleMessage("Muy Bajo"),
         "veryLowLabel": MessageLookupByLibrary.simpleMessage("Muy Bajo"),
         "welcome": MessageLookupByLibrary.simpleMessage("Bienvenido"),
-        "whatIsSageTest":
-            MessageLookupByLibrary.simpleMessage("¿Qué es la prueba SAGE?"),
+        "whatIsSageTest": MessageLookupByLibrary.simpleMessage("¿Qué es SAGE?"),
         "whatIsYourBirthday": MessageLookupByLibrary.simpleMessage(
             "¿Cuál es tu fecha de nacimiento?"),
         "whatIsYourName":

@@ -52,7 +52,7 @@
     "@iHaveAnAccount": {
         "description": "Texto para que los usuarios que ya tienen cuenta puedan navegar a la pantalla de inicio de sesión."
     },
-    "whatIsSageTest": "¿Qué es la prueba SAGE?",
+    "whatIsSageTest": "¿Qué es SAGE?",
     "@whatIsSageTest": {
         "description": "Pregunta sobre qué es el test SAGE."
     },

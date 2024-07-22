@@ -36,7 +36,7 @@ class ExecutiveDrawStep extends StatefulWidget {
 class _ExecutiveDrawStepState extends State<ExecutiveDrawStep> {
   final TestProvider testProvider = TestProvider();
   bool _isRowVisible = true;
-  bool _dialogShown = false; // Flag to ensure the dialog is shown only once
+  bool _dialogShown = true; // Flag to ensure the dialog is shown only once
 
   @override
   void didUpdateWidget(covariant ExecutiveDrawStep oldWidget) {

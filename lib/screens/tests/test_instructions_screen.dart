@@ -146,7 +146,7 @@ class _TestInstructionsScreenState extends State<TestInstructionsScreen> {
                                 ),
                               ),
                             ),
-                            SizedBox(height: deviceHeight * 0.025),
+                            // SizedBox(height: deviceHeight * 0.025),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [

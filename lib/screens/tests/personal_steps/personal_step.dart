@@ -127,7 +127,7 @@ class _PersonalStepState extends State<PersonalStep> {
                         TextFormField(
                           maxLength: 10,
                           // controller: birthdayController,
-                          keyboardType: TextInputType.datetime,
+                          // keyboardType: TextInputType.datetime,
                           onChanged: (value) {
                             setState(() {
                               widget.testModel.patientBirthday = value;

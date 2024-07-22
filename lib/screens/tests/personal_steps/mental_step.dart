@@ -33,7 +33,7 @@ class _MentalStepState extends State<MentalStep> {
 
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: deviceHeight * 0.03,
+        horizontal: deviceHeight * 0.01,
         vertical: deviceWidth * 0.01,
       ),
       child: Column(
@@ -50,7 +50,7 @@ class _MentalStepState extends State<MentalStep> {
                 padding: EdgeInsets.symmetric(horizontal: deviceWidth * 0.08),
                 child: Column(
                   children: [
-                    SizedBox(height: deviceHeight * 0.02),
+                    SizedBox(height: deviceHeight * 0.01),
                     Text(
                       S.of(context).doYouCurrentlyFeelSadOrDepressed,
                       style: TextStyle(fontSize: deviceHeight * 0.020),

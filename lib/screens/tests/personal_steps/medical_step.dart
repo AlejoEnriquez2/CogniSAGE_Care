@@ -181,7 +181,7 @@ class _MedicalStepState extends State<MedicalStep> {
                         ),
                       ],
                     ),
-                    SizedBox(height: deviceHeight * 0.05),
+                    SizedBox(height: deviceHeight * 0.03),
                     Text(
                       S.of(context).haveYouHadAMinorStroke,
                       style: TextStyle(fontSize: deviceHeight * 0.02),
